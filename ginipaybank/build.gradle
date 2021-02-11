@@ -43,9 +43,17 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url 'https://repo.gini.net/nexus/content/repositories/open'
+    }
+}
+
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+
+    implementation "net.gini:gini-capture-sdk:${versions.capture}"
 
     dokkaHtmlPlugin "org.jetbrains.dokka:kotlin-as-java-plugin:${versions.dokka}"
 
