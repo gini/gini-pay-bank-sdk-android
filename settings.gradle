@@ -1,2 +1,3 @@
+include ':appscreenapi'
 include ':ginipaybank'
 rootProject.name = "Gini Pay Bank"

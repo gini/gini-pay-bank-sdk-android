@@ -53,13 +53,18 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
-    implementation "net.gini:gini-capture-sdk:${versions.capture}"
+    api "net.gini:gini-capture-sdk:${versions.capture}"
+    api "net.gini:gini-capture-network-lib:${versions.capture}"
+    api "net.gini:gini-capture-accounting-network-lib:${versions.capture}"
+    api "net.gini:gini-pay-api-lib-android:${versions.payapi}"
+
+    implementation "androidx.activity:activity-ktx:${versions.activity}"
 
     dokkaHtmlPlugin "org.jetbrains.dokka:kotlin-as-java-plugin:${versions.dokka}"
 
-    testImplementation 'junit:junit:4.13.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation "junit:junit:${versions.junit}"
+    androidTestImplementation "androidx.test.ext:junit:${versions.androidxTestJunit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.androidxTestEspresso}"
 }
 
 

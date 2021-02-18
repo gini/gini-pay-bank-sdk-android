@@ -1,60 +1,41 @@
 package net.gini.pay.bank
 
 import android.content.Context
-import net.gini.android.capture.DocumentImportEnabledFileTypes
+import android.content.Intent
+import androidx.activity.result.ActivityResultLauncher
 import net.gini.android.capture.GiniCapture
-import net.gini.android.capture.network.GiniCaptureNetworkApi
-import net.gini.android.capture.network.GiniCaptureNetworkService
-import net.gini.android.capture.onboarding.OnboardingPage
-import net.gini.android.capture.tracking.AnalysisScreenEvent
-import net.gini.android.capture.tracking.CameraScreenEvent
-import net.gini.android.capture.tracking.Event
-import net.gini.android.capture.tracking.EventTracker
-import net.gini.android.capture.tracking.OnboardingScreenEvent
-import net.gini.android.capture.tracking.ReviewScreenEvent
-
-data class CaptureConfiguration(
-    val shouldShowOnboardingAtFirstRun: Boolean = true,
-    val onboardingPages: List<OnboardingPage> = emptyList(),
-    val shouldShowOnboarding: Boolean = false,
-    val multiPageEnabled: Boolean = false,
-    val giniCaptureNetworkService: GiniCaptureNetworkService,
-    val giniCaptureNetworkApi: GiniCaptureNetworkApi,
-    val documentImportEnabledFileTypes: DocumentImportEnabledFileTypes = DocumentImportEnabledFileTypes.NONE,
-    val fileImportEnabled: Boolean = false,
-    val qrCodeScanningEnabled: Boolean = false,
-    val mIsSupportedFormatsHelpScreenEnabled: Boolean = true,
-    val mFlashButtonEnabled: Boolean = false,
-    val mBackButtonsEnabled: Boolean = true,
-    val mIsFlashOnByDefault: Boolean = true,
-    val eventTracker: EventTracker = object : EventTracker {
-        override fun onOnboardingScreenEvent(event: Event<OnboardingScreenEvent>?) {
-        }
-
-        override fun onCameraScreenEvent(event: Event<CameraScreenEvent>?) {
-        }
-
-        override fun onReviewScreenEvent(event: Event<ReviewScreenEvent>?) {
-        }
-
-        override fun onAnalysisScreenEvent(event: Event<AnalysisScreenEvent>?) {
-        }
-    }
-)
+import net.gini.android.capture.requirements.GiniCaptureRequirements
+import net.gini.android.capture.requirements.RequirementsReport
+import net.gini.android.capture.util.CancellationToken
+import net.gini.pay.bank.capture.CaptureConfiguration
+import net.gini.pay.bank.capture.CaptureImportInput
+import net.gini.pay.bank.capture.applyConfiguration
+import net.gini.pay.bank.capture.util.getImportFileCallback
 
 object GiniBank {
 
     private var giniCapture: GiniCapture? = null
 
     fun setCaptureConfiguration(captureConfiguration: CaptureConfiguration) {
-        check(giniCapture != null) { "Gini Capture already configured. Call releaseCapture() before setting a new configuration" }
+        check(giniCapture == null) { "Gini Capture already configured. Call releaseCapture() before setting a new configuration" }
         GiniCapture.newInstance()
-                // TODO apply configuration
+            .applyConfiguration(captureConfiguration)
             .build()
         giniCapture = GiniCapture.getInstance()
     }
 
     fun releaseCapture(context: Context) {
         GiniCapture.cleanup(context)
+        giniCapture = null
     }
+
+    fun checkCaptureRequirements(context: Context): RequirementsReport = GiniCaptureRequirements.checkRequirements(context)
+
+    fun startCaptureFlow(resultLauncher: ActivityResultLauncher<Unit>) {
+        resultLauncher.launch(Unit)
+    }
+
+    fun startCaptureFlowForIntent(resultLauncher: ActivityResultLauncher<CaptureImportInput>, context: Context, intent: Intent): CancellationToken =
+        GiniCapture.getInstance()
+            .createIntentForImportedFiles(intent, context, getImportFileCallback(resultLauncher))
 }
