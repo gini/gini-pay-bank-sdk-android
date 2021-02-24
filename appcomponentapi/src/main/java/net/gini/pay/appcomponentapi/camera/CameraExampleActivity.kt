@@ -236,8 +236,7 @@ class CameraExampleActivity : AppCompatActivity(), CameraFragmentListener, Onboa
 
         // As an example we allow only documents smaller than 5MB
         val customCheck = false
-        @Suppress("ConstantConditionIf")
-        if (false) {
+        if (customCheck) {
             // Use the Intent with which the document was imported to access its contents (document.getData() may be null)
             val intent = document.intent
             if (intent == null) {

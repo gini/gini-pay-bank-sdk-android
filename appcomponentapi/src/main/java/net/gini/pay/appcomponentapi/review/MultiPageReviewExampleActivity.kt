@@ -9,7 +9,6 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.commit
-import net.gini.android.capture.Document
 import net.gini.android.capture.document.GiniCaptureMultiPageDocument
 import net.gini.android.capture.review.multipage.MultiPageReviewFragment
 import net.gini.android.capture.review.multipage.MultiPageReviewFragmentListener
@@ -19,7 +18,7 @@ import net.gini.pay.appcomponentapi.analysis.AnalysisInput
 
 class MultiPageReviewExampleActivity : AppCompatActivity(), MultiPageReviewFragmentListener {
 
-    private var mMultiPageReviewFragment: MultiPageReviewFragment? = null
+    private var multiPageReviewFragment: MultiPageReviewFragment? = null
     private val analysisLauncher = registerForActivityResult(AnalysisContract()) { ok ->
         if (ok) {
             setResult(Activity.RESULT_OK)
@@ -53,11 +52,11 @@ class MultiPageReviewExampleActivity : AppCompatActivity(), MultiPageReviewFragm
     }
 
     private fun createMultiPageReviewFragment() {
-        mMultiPageReviewFragment = MultiPageReviewFragment.createInstance()
+        multiPageReviewFragment = MultiPageReviewFragment.createInstance()
     }
 
     private fun showMultiPageReviewFragment() {
-        mMultiPageReviewFragment?.let { fragment ->
+        multiPageReviewFragment?.let { fragment ->
             supportFragmentManager.commit {
                 replace(R.id.multi_page_review_screen_container, fragment)
             }
@@ -65,7 +64,7 @@ class MultiPageReviewExampleActivity : AppCompatActivity(), MultiPageReviewFragm
     }
 
     private fun retrieveMultiPageReviewFragment() {
-        mMultiPageReviewFragment = supportFragmentManager.findFragmentById(R.id.multi_page_review_screen_container) as MultiPageReviewFragment?
+        multiPageReviewFragment = supportFragmentManager.findFragmentById(R.id.multi_page_review_screen_container) as MultiPageReviewFragment?
     }
 
     private fun setUpActionBar() {

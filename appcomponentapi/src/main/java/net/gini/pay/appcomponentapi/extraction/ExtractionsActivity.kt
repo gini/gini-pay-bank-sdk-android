@@ -26,8 +26,8 @@ import net.gini.pay.appcomponentapi.databinding.ActivityExtractionsBinding
 class ExtractionsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityExtractionsBinding
 
-    private var mExtractions: MutableMap<String, GiniCaptureSpecificExtraction> = hashMapOf()
-    private lateinit var mExtractionsAdapter: ExtractionsAdapter
+    private var extractions: MutableMap<String, GiniCaptureSpecificExtraction> = hashMapOf()
+    private lateinit var extractionsAdapter: ExtractionsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +54,7 @@ class ExtractionsActivity : AppCompatActivity() {
     private fun readExtras() {
         intent.extras?.getParcelable<Bundle>(EXTRA_IN_EXTRACTIONS)?.run {
             keySet().forEach { name ->
-                getParcelable<GiniCaptureSpecificExtraction>(name)?.let { mExtractions[name] = it }
+                getParcelable<GiniCaptureSpecificExtraction>(name)?.let { extractions[name] = it }
             }
         }
     }
@@ -63,8 +63,8 @@ class ExtractionsActivity : AppCompatActivity() {
         binding.recyclerviewExtractions.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@ExtractionsActivity)
-            adapter = ExtractionsAdapter(getSortedExtractions(mExtractions)).also {
-                mExtractionsAdapter = it
+            adapter = ExtractionsAdapter(getSortedExtractions(extractions)).also {
+                extractionsAdapter = it
             }
         }
     }
@@ -76,16 +76,16 @@ class ExtractionsActivity : AppCompatActivity() {
         // Feedback should be sent only for the user visible fields. Non-visible fields should be filtered out.
         // In a real application the user input should be used as the new value.
 
-        val amount = mExtractions["amountToPay"]
+        val amount = extractions["amountToPay"]
         if (amount != null) { // Let's assume the amount was wrong and change it
             amount.value = "10.00:EUR"
             Toast.makeText(this, "Amount changed to 10.00:EUR", Toast.LENGTH_SHORT).show()
         } else { // Amount was missing, let's add it
-            mExtractions["amountToPay"] = GiniCaptureSpecificExtraction("amountToPay", "10.00:EUR", "amount", null, emptyList())
-            mExtractionsAdapter.extractions = getSortedExtractions(mExtractions)
+            extractions["amountToPay"] = GiniCaptureSpecificExtraction("amountToPay", "10.00:EUR", "amount", null, emptyList())
+            extractionsAdapter.extractions = getSortedExtractions(extractions)
             Toast.makeText(this, "Added amount of 10.00:EUR", Toast.LENGTH_SHORT).show()
         }
-        mExtractionsAdapter.notifyDataSetChanged()
+        extractionsAdapter.notifyDataSetChanged()
         showProgressIndicator(binding)
         val giniCaptureNetworkApi = GiniCapture.getInstance().giniCaptureNetworkApi
         if (giniCaptureNetworkApi == null) {
@@ -95,7 +95,7 @@ class ExtractionsActivity : AppCompatActivity() {
             ).show()
             return
         }
-        giniCaptureNetworkApi.sendFeedback(mExtractions, object : GiniCaptureNetworkCallback<Void, Error> {
+        giniCaptureNetworkApi.sendFeedback(extractions, object : GiniCaptureNetworkCallback<Void, Error> {
             override fun failure(error: Error) {
                 hideProgressIndicator(binding)
                 Toast.makeText(
@@ -149,15 +149,15 @@ private class ExtractionsAdapter(var extractions: List<GiniCaptureSpecificExtrac
 
     override fun onBindViewHolder(holder: ExtractionsViewHolder, position: Int) {
         extractions.getOrNull(position)?.run {
-            holder.mTextName.text = name
-            holder.mTextValue.text = value
+            holder.textName.text = name
+            holder.textValue.text = value
         }
     }
 
     override fun getItemCount(): Int = extractions.size
 
     private class ExtractionsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var mTextName: TextView = itemView.findViewById<View>(R.id.text_name) as TextView
-        var mTextValue: TextView = itemView.findViewById<View>(R.id.text_value) as TextView
+        var textName: TextView = itemView.findViewById<View>(R.id.text_name) as TextView
+        var textValue: TextView = itemView.findViewById<View>(R.id.text_value) as TextView
     }
 }
