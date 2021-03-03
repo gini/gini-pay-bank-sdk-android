@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Component API Example</string>
+    <string name="gini_api_type_label">Gini API Type</string>
+    <string name="start_gini_capture_sdk">Start Gini Capture SDK</string>
+    <string-array name="gini_api_types">
+        <item>DEFAULT</item>
+        <item>ACCOUNTING</item>
+    </string-array>
+
+    <string name="camera_screen_title">Seite abfotografieren</string>
+    <string name="camera_screen_subtitle">Vollständig in den Rahmen einpassen</string>
+    <string name="ok">OK</string>
+    <string name="document_size_too_large">Diese Datei ist leider größer als 5MB.</string>
+    <string name="gini_capture_error">Error: %1$s - %2$s</string>
+    <string name="multi_page_review_screen_title">Seiten überprüfen</string>
+    <string name="multi_page_review_screen_subtitle">Vollständig und Seiten geordnet?</string>
+    <string name="review_screen_title">Seite überprüfen</string>
+    <string name="review_screen_subtitle">Vollständig, scharf und in Leserichtung?</string>
+    <string name="one_moment_please">Einen Moment bitte …</string>
+    <string name="no_results_screen_title">Keine Ergebnisse</string>
+    <string name="no_results_screen_subtitle">Wir haben ein paar Tipps für Sie</string>
+
+</resources>

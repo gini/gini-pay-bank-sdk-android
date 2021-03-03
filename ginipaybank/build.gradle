@@ -1,23 +1,34 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'com.hiya.jacoco-android'
+    id 'org.jetbrains.dokka'
+}
+
+jacoco {
+    toolVersion = "0.8.3"
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion versions.compileSdk
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode libVersionCode
+        versionName libVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField 'int', 'VERSION_CODE', "$libVersionCode"
+        buildConfigField 'String', 'VERSION_NAME', "\"$libVersionName\""
     }
 
     buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -32,10 +43,71 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url 'https://repo.gini.net/nexus/content/repositories/open'
+    }
+}
+
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    testImplementation 'junit:junit:4.13.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+
+    api "net.gini:gini-capture-sdk:${versions.capture}"
+    api "net.gini:gini-capture-network-lib:${versions.capture}"
+    api "net.gini:gini-capture-accounting-network-lib:${versions.capture}"
+    api "net.gini:gini-pay-api-lib-android:${versions.payapi}"
+
+    implementation "androidx.activity:activity-ktx:${versions.activity}"
+
+    dokkaHtmlPlugin "org.jetbrains.dokka:kotlin-as-java-plugin:${versions.dokka}"
+
+    testImplementation "junit:junit:${versions.junit}"
+    androidTestImplementation "androidx.test.ext:junit:${versions.androidxTestJunit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.androidxTestEspresso}"
+}
+
+
+apply from: rootProject.file('gradle/codequality.gradle')
+apply from: rootProject.file('gradle/maven.gradle')
+apply from: rootProject.file('gradle/multidex_for_tests.gradle')
+
+dokkaHtml {
+    outputDirectory.set(file("$buildDir/dokka"))
+    dokkaSourceSets {
+        named("main") {
+            noAndroidSdkLink.set(false)
+
+            includes.from(files("module.md", packageDocumentationPaths(android.sourceSets.main.java.srcDirs[0])))
+        }
+    }
+}
+
+dokkaJavadoc {
+    outputDirectory.set(file("$buildDir/dokka-javadoc"))
+}
+
+static def packageDocumentationPaths(srcDir) {
+    def packageDocs = []
+    srcDir.eachFileRecurse {
+        if (it.name == 'package.md') {
+            packageDocs.add(it.getAbsolutePath())
+        }
+    }
+    return packageDocs
+}
+
+task sourcesJar(type: Jar, dependsOn: 'assembleRelease') {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+
+task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
+    archiveClassifier.set('javadoc')
+    from dokkaJavadoc.outputDirectory
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
 }
