@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-parcelize'
     id 'com.hiya.jacoco-android'
     id 'org.jetbrains.dokka'
 }
@@ -23,6 +24,10 @@ android {
 
         buildConfigField 'int', 'VERSION_CODE', "$libVersionCode"
         buildConfigField 'String', 'VERSION_NAME', "\"$libVersionName\""
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     buildTypes {
@@ -58,7 +63,12 @@ dependencies {
     api "net.gini:gini-capture-accounting-network-lib:${versions.capture}"
     api "net.gini:gini-pay-api-lib-android:${versions.payapi}"
 
+    implementation "androidx.core:core-ktx:${versions.core}"
     implementation "androidx.activity:activity-ktx:${versions.activity}"
+    implementation "androidx.fragment:fragment-ktx:${versions.fragment}"
+    implementation "androidx.lifecycle:lifecycle-common-java8:${versions.lifecycle}"
+    implementation "androidx.recyclerview:recyclerview:${versions.recyclerview}"
+    implementation "com.google.android.material:material:${versions.material}"
 
     dokkaHtmlPlugin "org.jetbrains.dokka:kotlin-as-java-plugin:${versions.dokka}"
 
