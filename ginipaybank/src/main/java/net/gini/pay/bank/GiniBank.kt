@@ -18,9 +18,13 @@ import net.gini.pay.bank.capture.util.getImportFileCallback
 object GiniBank {
 
     private var giniCapture: GiniCapture? = null
+    private var captureConfiguration: CaptureConfiguration? = null
+
+    internal fun getCaptureConfiguration() = captureConfiguration
 
     fun setCaptureConfiguration(captureConfiguration: CaptureConfiguration) {
         check(giniCapture == null) { "Gini Capture already configured. Call releaseCapture() before setting a new configuration." }
+        this.captureConfiguration = captureConfiguration
         GiniCapture.newInstance()
             .applyConfiguration(captureConfiguration)
             .build()
@@ -29,6 +33,7 @@ object GiniBank {
 
     fun releaseCapture(context: Context) {
         GiniCapture.cleanup(context)
+        captureConfiguration = null
         giniCapture = null
     }
 

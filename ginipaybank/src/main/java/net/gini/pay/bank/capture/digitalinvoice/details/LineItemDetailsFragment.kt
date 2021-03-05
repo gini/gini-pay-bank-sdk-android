@@ -3,7 +3,6 @@ package net.gini.pay.bank.capture.digitalinvoice.details
 
 import android.app.Activity
 import android.os.Bundle
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,10 +68,6 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
 
     private lateinit var lineItem: SelectableLineItem
     private lateinit var returnReasons: List<GiniCaptureReturnReason>
-
-    private var descriptionTextWatcher: TextWatcher? = null
-    private var quantityTextWatcher: TextWatcher? = null
-    private var grossPriceTextWatcher: TextWatcher? = null
 
     companion object {
 
@@ -168,10 +163,10 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
                 }
             }
         }
-        descriptionTextWatcher = binding.gpbDescription.doAfterTextChanged {
+        binding.gpbDescription.doAfterTextChanged {
             presenter?.setDescription(it)
         }
-        quantityTextWatcher = binding.gpbQuantity.doAfterTextChanged {
+        binding.gpbQuantity.doAfterTextChanged {
             presenter?.setQuantity(
                 try {
                     it.toInt()
@@ -180,24 +175,12 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
                 }
             )
         }
-        grossPriceTextWatcher = binding.gpbGrossPrice.doAfterTextChanged {
+        binding.gpbGrossPrice.doAfterTextChanged {
             presenter?.setGrossPrice(it)
         }
         binding.gpbSaveButton.setOnClickListener {
             presenter?.save()
         }
-    }
-
-    /**
-     * Internal use only.
-     *
-     * @suppress
-     */
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding.gpbDescription.removeTextChangedListener(descriptionTextWatcher)
-        binding.gpbQuantity.removeTextChangedListener(quantityTextWatcher)
-        binding.gpbGrossPrice.removeTextChangedListener(grossPriceTextWatcher)
     }
 
     /**

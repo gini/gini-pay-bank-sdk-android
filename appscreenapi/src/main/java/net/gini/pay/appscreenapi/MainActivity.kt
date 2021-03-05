@@ -21,9 +21,10 @@ import net.gini.pay.appscreenapi.util.PermissionHandler
 import net.gini.pay.appscreenapi.util.SimpleSpinnerSelectListener
 import net.gini.pay.bank.GiniBank
 import net.gini.pay.bank.capture.CaptureConfiguration
-import net.gini.pay.bank.capture.CaptureContract
-import net.gini.pay.bank.capture.CaptureImportContract
+import net.gini.pay.bank.capture.CaptureFlowContract
+import net.gini.pay.bank.capture.CaptureFlowImportContract
 import net.gini.pay.bank.capture.CaptureResult
+import net.gini.pay.bank.capture.ResultError
 import net.gini.pay.bank.network.getAccountingNetworkApi
 import net.gini.pay.bank.network.getAccountingNetworkService
 import net.gini.pay.bank.network.getDefaultNetworkApi
@@ -32,8 +33,8 @@ import net.gini.pay.bank.network.getDefaultNetworkService
 class MainActivity : AppCompatActivity() {
 
     private val permissionHandler = PermissionHandler(this)
-    private val captureLauncher = registerForActivityResult(CaptureContract(), ::onCaptureResult)
-    private val captureImportLauncher = registerForActivityResult(CaptureImportContract(), ::onCaptureResult)
+    private val captureLauncher = registerForActivityResult(CaptureFlowContract(), ::onCaptureResult)
+    private val captureImportLauncher = registerForActivityResult(CaptureFlowImportContract(), ::onCaptureResult)
     private val noExtractionsLauncher = registerForActivityResult(StartCaptureContract(), ::onStartAgainResult)
 
     private var apiType: GiniApiType = GiniApiType.DEFAULT
@@ -113,15 +114,21 @@ class MainActivity : AppCompatActivity() {
     private fun onCaptureResult(result: CaptureResult) {
         when (result) {
             is CaptureResult.Success -> {
-                startActivity(ExtractionsActivity.getStartIntent(this, result.extractions))
+                startActivity(ExtractionsActivity.getStartIntent(this, result.specificExtractions))
             }
             is CaptureResult.Error -> {
-                Toast.makeText(this, "Error: ${result.code} ${result.message}", Toast.LENGTH_LONG).show()
+                when (result.value) {
+                    is ResultError.Capture ->
+                        Toast.makeText(this, "Error: ${(result.value as ResultError.Capture).giniCaptureError.errorCode} ${(result.value as ResultError.Capture).giniCaptureError.message}", Toast.LENGTH_LONG).show()
+                    is ResultError.FileImport ->
+                        Toast.makeText(this, "Error: ${(result.value as ResultError.FileImport).code} ${(result.value as ResultError.FileImport).message}", Toast.LENGTH_LONG).show()
+                }
             }
             CaptureResult.Empty -> {
                 noExtractionsLauncher.launch(Unit)
             }
-            CaptureResult.Cancel -> {}
+            CaptureResult.Cancel -> {
+            }
         }
     }
 

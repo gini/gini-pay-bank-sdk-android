@@ -1,9 +1,11 @@
 package net.gini.pay.bank.capture.digitalinvoice
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import net.gini.android.capture.camera.CameraActivity
 import net.gini.android.capture.internal.util.ActivityHelper.enableHomeAsUp
@@ -11,7 +13,9 @@ import net.gini.android.capture.network.model.GiniCaptureCompoundExtraction
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
 import net.gini.android.capture.network.model.GiniCaptureSpecificExtraction
 import net.gini.pay.bank.R
+import net.gini.pay.bank.capture.CaptureResult
 import net.gini.pay.bank.capture.digitalinvoice.details.LineItemDetailsActivity
+import net.gini.pay.bank.capture.internalParseResult
 
 /**
  * Created by Alpar Szotyori on 05.12.2019.
@@ -79,18 +83,20 @@ class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragmentListen
          * @suppress
          */
         @JvmStatic
-        fun createIntent(activity: Activity, extractions: Map<String, GiniCaptureSpecificExtraction>,
-                         compoundExtractions: Map<String, GiniCaptureCompoundExtraction>,
-                         returnReasons: List<GiniCaptureReturnReason>) =
-                Intent(activity, DigitalInvoiceActivity::class.java).apply {
-                    putExtra(EXTRA_IN_EXTRACTIONS, Bundle().apply {
-                        extractions.forEach { putParcelable(it.key, it.value) }
-                    })
-                    putExtra(EXTRA_IN_COMPOUND_EXTRACTIONS, Bundle().apply {
-                        compoundExtractions.forEach { putParcelable(it.key, it.value) }
-                    })
-                    putParcelableArrayListExtra(EXTRA_IN_RETURN_REASONS, ArrayList(returnReasons))
-                }
+        fun createIntent(
+            activity: Activity, extractions: Map<String, GiniCaptureSpecificExtraction>,
+            compoundExtractions: Map<String, GiniCaptureCompoundExtraction>,
+            returnReasons: List<GiniCaptureReturnReason>
+        ) =
+            Intent(activity, DigitalInvoiceActivity::class.java).apply {
+                putExtra(EXTRA_IN_EXTRACTIONS, Bundle().apply {
+                    extractions.forEach { putParcelable(it.key, it.value) }
+                })
+                putExtra(EXTRA_IN_COMPOUND_EXTRACTIONS, Bundle().apply {
+                    compoundExtractions.forEach { putParcelable(it.key, it.value) }
+                })
+                putParcelableArrayListExtra(EXTRA_IN_RETURN_REASONS, ArrayList(returnReasons))
+            }
     }
 
     /**
@@ -141,7 +147,8 @@ class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragmentListen
     }
 
     private fun isFragmentShown() = supportFragmentManager.findFragmentByTag(
-            RETURN_ASSISTANT_FRAGMENT) != null
+        RETURN_ASSISTANT_FRAGMENT
+    ) != null
 
     private fun createFragment() {
         fragment = DigitalInvoiceFragment.createInstance(extractions, compoundExtractions, returnReasons)
@@ -149,14 +156,15 @@ class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragmentListen
 
     private fun showFragment() = fragment?.let {
         supportFragmentManager
-                .beginTransaction()
-                .add(R.id.gpb_fragment_digital_invoice, it, RETURN_ASSISTANT_FRAGMENT)
-                .commit()
+            .beginTransaction()
+            .add(R.id.gpb_fragment_digital_invoice, it, RETURN_ASSISTANT_FRAGMENT)
+            .commit()
     }
 
     private fun retainFragment() {
         fragment = supportFragmentManager.findFragmentByTag(
-                RETURN_ASSISTANT_FRAGMENT) as DigitalInvoiceFragment?
+            RETURN_ASSISTANT_FRAGMENT
+        ) as DigitalInvoiceFragment?
     }
 
     /**
@@ -165,8 +173,10 @@ class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragmentListen
      * @suppress
      */
     override fun onEditLineItem(selectableLineItem: SelectableLineItem) {
-        startActivityForResult(LineItemDetailsActivity.createIntent(this, selectableLineItem, returnReasons),
-                EDIT_LINE_ITEM_REQUEST)
+        startActivityForResult(
+            LineItemDetailsActivity.createIntent(this, selectableLineItem, returnReasons),
+            EDIT_LINE_ITEM_REQUEST
+        )
     }
 
     /**
@@ -174,8 +184,10 @@ class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragmentListen
      *
      * @suppress
      */
-    override fun onPayInvoice(specificExtractions: Map<String, GiniCaptureSpecificExtraction>,
-                              compoundExtractions: Map<String, GiniCaptureCompoundExtraction>) {
+    override fun onPayInvoice(
+        specificExtractions: Map<String, GiniCaptureSpecificExtraction>,
+        compoundExtractions: Map<String, GiniCaptureCompoundExtraction>
+    ) {
         setResult(Activity.RESULT_OK, Intent().apply {
             putExtra(CameraActivity.EXTRA_OUT_EXTRACTIONS, Bundle().apply {
                 specificExtractions.forEach { putParcelable(it.key, it.value) }
@@ -199,12 +211,40 @@ class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragmentListen
                 when (resultCode) {
                     Activity.RESULT_OK -> {
                         data?.getParcelableExtra<SelectableLineItem>(
-                                LineItemDetailsActivity.EXTRA_OUT_SELECTABLE_LINE_ITEM)?.let {
+                            LineItemDetailsActivity.EXTRA_OUT_SELECTABLE_LINE_ITEM
+                        )?.let {
                             fragment?.updateLineItem(it)
                         }
                     }
                 }
             }
         }
+    }
+}
+
+data class DigitalInvoiceInput(
+    val extractions: Map<String, GiniCaptureSpecificExtraction>,
+    val compoundExtractions: Map<String, GiniCaptureCompoundExtraction>,
+    val returnReasons: List<GiniCaptureReturnReason>,
+)
+
+internal fun CaptureResult.Success.toDigitalInvoiceInput() = DigitalInvoiceInput(
+    specificExtractions, compoundExtractions, returnReasons
+)
+
+class DigitalInvoiceContract : ActivityResultContract<DigitalInvoiceInput, CaptureResult>() {
+    override fun createIntent(context: Context, input: DigitalInvoiceInput) =
+        Intent(context, DigitalInvoiceActivity::class.java).apply {
+            putExtra(EXTRA_IN_EXTRACTIONS, Bundle().apply {
+                input.extractions.forEach { putParcelable(it.key, it.value) }
+            })
+            putExtra(EXTRA_IN_COMPOUND_EXTRACTIONS, Bundle().apply {
+                input.compoundExtractions.forEach { putParcelable(it.key, it.value) }
+            })
+            putParcelableArrayListExtra(EXTRA_IN_RETURN_REASONS, ArrayList(input.returnReasons))
+        }
+
+    override fun parseResult(resultCode: Int, result: Intent?): CaptureResult {
+        return internalParseResult(resultCode, result)
     }
 }

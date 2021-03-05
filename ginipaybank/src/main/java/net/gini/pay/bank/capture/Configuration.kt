@@ -21,6 +21,7 @@ data class CaptureConfiguration(
     val flashButtonEnabled: Boolean = false,
     val backButtonsEnabled: Boolean = true,
     val flashOnByDefault: Boolean = true,
+    val returnAssistantEnabled: Boolean = true,
     val eventTracker: EventTracker? = null,
 )
 
