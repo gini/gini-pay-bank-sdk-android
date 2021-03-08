@@ -13,6 +13,7 @@ import java.util.*
 import net.gini.android.capture.GiniCapture
 import net.gini.android.capture.network.Error
 import net.gini.android.capture.network.GiniCaptureNetworkCallback
+import net.gini.android.capture.network.model.GiniCaptureCompoundExtraction
 import net.gini.android.capture.network.model.GiniCaptureSpecificExtraction
 import net.gini.pay.appcomponentapi.R
 import net.gini.pay.appcomponentapi.databinding.ActivityExtractionsBinding
@@ -131,12 +132,20 @@ class ExtractionsActivity : AppCompatActivity() {
     }
 
     companion object {
+        private const val EXTRA_IN_COMPOUND_EXTRACTIONS = "EXTRA_IN_COMPOUND_EXTRACTIONS"
         private const val EXTRA_IN_EXTRACTIONS = "EXTRA_IN_EXTRACTIONS"
 
-        fun getStartIntent(context: Context, extractionsBundle: Map<String, GiniCaptureSpecificExtraction>): Intent =
+        fun getStartIntent(
+            context: Context,
+            extractions: Map<String, GiniCaptureSpecificExtraction>,
+            compoundExtractions: Map<String, GiniCaptureCompoundExtraction> = emptyMap()
+        ): Intent =
             Intent(context, ExtractionsActivity::class.java).apply {
                 putExtra(EXTRA_IN_EXTRACTIONS, Bundle().apply {
-                    extractionsBundle.map { putParcelable(it.key, it.value) }
+                    extractions.map { putParcelable(it.key, it.value) }
+                })
+                putExtra(EXTRA_IN_COMPOUND_EXTRACTIONS, Bundle().apply {
+                    compoundExtractions.map { putParcelable(it.key, it.value) }
                 })
             }
     }

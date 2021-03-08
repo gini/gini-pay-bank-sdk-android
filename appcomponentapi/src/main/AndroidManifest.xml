@@ -53,6 +53,12 @@
             android:name=".noresult.NoResultsExampleActivity"
             android:theme="@style/Theme.GiniPayBank.NoActionBar"/>
         <activity
+            android:name=".digitalinvoice.DigitalInvoiceExampleActivity"
+            android:theme="@style/Theme.GiniPayBank.NoActionBar"/>
+        <activity
+            android:name=".digitalinvoice.LineItemDetailsExampleActivity"
+            android:theme="@style/Theme.GiniPayBank.NoActionBar"/>
+        <activity
             android:name=".extraction.ExtractionsActivity" />
     </application>
 

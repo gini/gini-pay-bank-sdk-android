@@ -20,4 +20,10 @@
     <string name="no_results_screen_title">Keine Ergebnisse</string>
     <string name="no_results_screen_subtitle">Wir haben ein paar Tipps für Sie</string>
 
+    <string name="digital_invoice_screen_title">Digitale Rechnung</string>
+    <string name="digital_invoice_screen_subtitle">Zahlen Sie nur was Sie behalten</string>
+
+    <string name="line_item_details_screen_title">Details</string>
+    <string name="line_item_details_screen_subtitle">Korrigieren Sie falsche Werte</string>
+
 </resources>
