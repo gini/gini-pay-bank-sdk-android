@@ -121,7 +121,7 @@ class CameraExampleActivity : AppCompatActivity(), CameraFragmentListener, Onboa
 
 
     private fun startGiniCaptureSdkForImportedFile(intent: Intent) {
-        val cancelToken = GiniBank.createDocumentForImportedFiles(intent, this, object : AsyncCallback<Document, ImportedFileValidationException> {
+        GiniBank.createDocumentForImportedFiles(intent, this, object : AsyncCallback<Document, ImportedFileValidationException> {
             override fun onSuccess(result: Document) {
                 if (result.isReviewable) {
                     launchMultiPageReviewScreen()

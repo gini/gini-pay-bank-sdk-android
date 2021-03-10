@@ -10,6 +10,10 @@ import net.gini.android.capture.ImportedFileValidationException
 import net.gini.android.capture.requirements.GiniCaptureRequirements
 import net.gini.android.capture.requirements.RequirementsReport
 import net.gini.android.capture.util.CancellationToken
+import net.gini.pay.bank.GiniBank.releaseCapture
+import net.gini.pay.bank.GiniBank.setCaptureConfiguration
+import net.gini.pay.bank.GiniBank.startCaptureFlow
+import net.gini.pay.bank.GiniBank.startCaptureFlowForIntent
 import net.gini.pay.bank.capture.CaptureConfiguration
 import net.gini.pay.bank.capture.CaptureImportInput
 import net.gini.pay.bank.capture.applyConfiguration

@@ -16,6 +16,7 @@ import net.gini.android.capture.DocumentImportEnabledFileTypes
 import net.gini.android.capture.network.GiniCaptureNetworkApi
 import net.gini.android.capture.network.GiniCaptureNetworkService
 import net.gini.android.capture.requirements.RequirementsReport
+import net.gini.android.capture.util.CancellationToken
 import net.gini.pay.appscreenapi.databinding.ActivityMainBinding
 import net.gini.pay.appscreenapi.util.PermissionHandler
 import net.gini.pay.appscreenapi.util.SimpleSpinnerSelectListener
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     private val captureLauncher = registerForActivityResult(CaptureFlowContract(), ::onCaptureResult)
     private val captureImportLauncher = registerForActivityResult(CaptureFlowImportContract(), ::onCaptureResult)
     private val noExtractionsLauncher = registerForActivityResult(NoExtractionContract(), ::onStartAgainResult)
+    private var cancellationToken: CancellationToken? = null // should be kept across configuration changes
 
     private var apiType: GiniApiType = GiniApiType.DEFAULT
 
@@ -99,7 +101,7 @@ class MainActivity : AppCompatActivity() {
                 configureGiniCapture()
 
                 if (intent != null) {
-                    GiniBank.startCaptureFlowForIntent(captureImportLauncher, this@MainActivity, intent)
+                    cancellationToken = GiniBank.startCaptureFlowForIntent(captureImportLauncher, this@MainActivity, intent)
                 } else {
                     GiniBank.startCaptureFlow(captureLauncher)
                 }
@@ -171,4 +173,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun isIntentActionViewOrSend(intent: Intent): Boolean =
         Intent.ACTION_VIEW == intent.action || Intent.ACTION_SEND == intent.action || Intent.ACTION_SEND_MULTIPLE == intent.action
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // cancellationToken shouldn't be canceled when activity is recreated.
+        // For example cancel in ViewModel's onCleared() instead.
+        cancellationToken?.cancel()
+    }
 }
