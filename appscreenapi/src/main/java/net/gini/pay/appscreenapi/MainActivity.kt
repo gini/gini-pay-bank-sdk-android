@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     private val permissionHandler = PermissionHandler(this)
     private val captureLauncher = registerForActivityResult(CaptureFlowContract(), ::onCaptureResult)
     private val captureImportLauncher = registerForActivityResult(CaptureFlowImportContract(), ::onCaptureResult)
-    private val noExtractionsLauncher = registerForActivityResult(StartCaptureContract(), ::onStartAgainResult)
+    private val noExtractionsLauncher = registerForActivityResult(NoExtractionContract(), ::onStartAgainResult)
 
     private var apiType: GiniApiType = GiniApiType.DEFAULT
 

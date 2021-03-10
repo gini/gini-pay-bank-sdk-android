@@ -43,7 +43,7 @@ private const val EXTRA_IN_RETURN_REASONS = "EXTRA_IN_RETURN_REASONS"
  * - "amountToPay" is updated to contain the sum of the selected line items' prices,
  * - the line items are updated according to the user's modifications.
  *
- * The `DigitalInvoiceActivity` is started by the [AnalysisActivity] if the following are true:
+ * The `DigitalInvoiceActivity` is started if the following are true:
  * - analysis completed successfully
  * - line item extractions have been enabled for your client id
  * - the analysis result contains line item extractions
@@ -51,9 +51,6 @@ private const val EXTRA_IN_RETURN_REASONS = "EXTRA_IN_RETURN_REASONS"
  * ### Customizing the Digital Invoice Screen
  *
  * Customizing the look of the Digital Invoice Screen is done via overriding of app resources.
- *
- * Detailed description of the customization options is available in the
- * [customization guide](http://developer.gini.net/gini-vision-lib-android/html/customization-guide.html#digital-invoice-screen).
  *
  * **Important:** All overriden styles must have their respective `Root.` prefixed style as their parent. Ex.: the parent of
  * `GiniCaptureTheme.Snackbar.Error.TextStyle` must be `Root.GiniCaptureTheme.Snackbar.Error.TextStyle`.
@@ -68,36 +65,12 @@ private const val EXTRA_IN_RETURN_REASONS = "EXTRA_IN_RETURN_REASONS"
  * via `gpb_status_bar`)
  * - **Back button:** via images for mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi named {@code gpb_action_bar_back}
  */
-class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragmentListener {
+internal class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragmentListener {
 
     private var fragment: DigitalInvoiceFragment? = null
     private lateinit var extractions: Map<String, GiniCaptureSpecificExtraction>
     private lateinit var compoundExtractions: Map<String, GiniCaptureCompoundExtraction>
     private lateinit var returnReasons: List<GiniCaptureReturnReason>
-
-    companion object {
-
-        /**
-         * Internal use only.
-         *
-         * @suppress
-         */
-        @JvmStatic
-        fun createIntent(
-            activity: Activity, extractions: Map<String, GiniCaptureSpecificExtraction>,
-            compoundExtractions: Map<String, GiniCaptureCompoundExtraction>,
-            returnReasons: List<GiniCaptureReturnReason>
-        ) =
-            Intent(activity, DigitalInvoiceActivity::class.java).apply {
-                putExtra(EXTRA_IN_EXTRACTIONS, Bundle().apply {
-                    extractions.forEach { putParcelable(it.key, it.value) }
-                })
-                putExtra(EXTRA_IN_COMPOUND_EXTRACTIONS, Bundle().apply {
-                    compoundExtractions.forEach { putParcelable(it.key, it.value) }
-                })
-                putParcelableArrayListExtra(EXTRA_IN_RETURN_REASONS, ArrayList(returnReasons))
-            }
-    }
 
     /**
      * Internal use only.
@@ -222,7 +195,7 @@ class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragmentListen
     }
 }
 
-data class DigitalInvoiceInput(
+internal data class DigitalInvoiceInput(
     val extractions: Map<String, GiniCaptureSpecificExtraction>,
     val compoundExtractions: Map<String, GiniCaptureCompoundExtraction>,
     val returnReasons: List<GiniCaptureReturnReason>,
@@ -232,7 +205,7 @@ internal fun CaptureResult.Success.toDigitalInvoiceInput() = DigitalInvoiceInput
     specificExtractions, compoundExtractions, returnReasons
 )
 
-class DigitalInvoiceContract : ActivityResultContract<DigitalInvoiceInput, CaptureResult>() {
+internal class DigitalInvoiceContract : ActivityResultContract<DigitalInvoiceInput, CaptureResult>() {
     override fun createIntent(context: Context, input: DigitalInvoiceInput) =
         Intent(context, DigitalInvoiceActivity::class.java).apply {
             putExtra(EXTRA_IN_EXTRACTIONS, Bundle().apply {

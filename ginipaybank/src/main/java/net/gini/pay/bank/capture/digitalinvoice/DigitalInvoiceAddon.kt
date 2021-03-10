@@ -21,32 +21,34 @@ internal enum class AddonExtraction(val extractionName: String, @StringRes val a
 
     companion object {
         fun createFromOrNull(extraction: GiniCaptureSpecificExtraction): AddonExtraction? =
-                values().firstOrNull { addonExtraction ->
-                    addonExtraction.extractionName == extraction.name
-                }
+            values().firstOrNull { addonExtraction ->
+                addonExtraction.extractionName == extraction.name
+            }
     }
 }
 
-class DigitalInvoiceAddon private constructor(val price: BigDecimal,
-                                                       val currency: Currency?,
-                                                       private val addonExtraction: AddonExtraction) {
+class DigitalInvoiceAddon private constructor(
+    val price: BigDecimal,
+    val currency: Currency?,
+    private val addonExtraction: AddonExtraction
+) {
 
     val nameStringRes: Int
         get() = addonExtraction.addonNameStringRes
 
     companion object {
         fun createFromOrNull(extraction: GiniCaptureSpecificExtraction): DigitalInvoiceAddon? =
-                AddonExtraction.createFromOrNull(extraction)?.let { addonExtraction ->
-                    val (price: BigDecimal?, currency: Currency?) = try {
-                        val (price, _, currency) = parsePriceString(extraction.value)
-                        Pair(price, currency)
-                    } catch (e: Exception) {
-                        Pair(null, null)
-                    }
-                    price?.let {
-                        DigitalInvoiceAddon(price, currency, addonExtraction)
-                    }
+            AddonExtraction.createFromOrNull(extraction)?.let { addonExtraction ->
+                val (price: BigDecimal?, currency: Currency?) = try {
+                    val (price, _, currency) = parsePriceString(extraction.value)
+                    Pair(price, currency)
+                } catch (e: Exception) {
+                    Pair(null, null)
                 }
+                price?.let {
+                    DigitalInvoiceAddon(price, currency, addonExtraction)
+                }
+            }
     }
 
 }

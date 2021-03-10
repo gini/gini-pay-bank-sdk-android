@@ -10,7 +10,10 @@ import net.gini.pay.bank.capture.digitalinvoice.DigitalInvoiceException
 import net.gini.pay.bank.capture.digitalinvoice.LineItemsValidator
 import net.gini.pay.bank.capture.digitalinvoice.toDigitalInvoiceInput
 
-class CaptureFlowActivity : AppCompatActivity(), CaptureFlowImportContract.Contract {
+/**
+ * Entry point for Screen API. It exists for the purpose of communication between Capture SDK's Screen API and Return Assistant.
+ */
+internal class CaptureFlowActivity : AppCompatActivity(), CaptureFlowImportContract.Contract {
 
     private val cameraLauncher = registerForActivityResult(CameraContract(), ::onCameraResult)
     private val cameraImportLauncher = registerForActivityResult(CaptureImportContract(), ::onCameraResult)

@@ -6,7 +6,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.core.content.edit
 import org.slf4j.LoggerFactory
 
-class OncePerInstallEventStore(context: Context) {
+internal class OncePerInstallEventStore(context: Context) {
     private val mSharedPreferences: SharedPreferences = context.getSharedPreferences(ONCE_PER_INSTALL_EVENTS, Context.MODE_PRIVATE)
 
     fun containsEvent(event: OncePerInstallEvent): Boolean = mSharedPreferences.contains(event.name)
@@ -32,6 +32,6 @@ class OncePerInstallEventStore(context: Context) {
     }
 }
 
-enum class OncePerInstallEvent {
+internal enum class OncePerInstallEvent {
     SHOW_DIGITAL_INVOICE_ONBOARDING
 }
