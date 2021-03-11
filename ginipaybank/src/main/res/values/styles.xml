@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.Title.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_title_text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.SelectedAndTotalItems.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_selected_and_total_items_text
+        </item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.WhatIsThis.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_what_is_this_button_text</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.LineItem.Description.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_line_item_description_text</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.LineItem.Quantity.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_line_item_quantity_text</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.LineItem.Edit.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_line_item_edit_text</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.LineItem.GrossPrice.Integral.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_line_item_gross_price_text</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.LineItem.GrossPrice.Fractional.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_line_item_gross_price_text</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.TotalGrossPrice.Integral.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_footer_gross_price_text</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.TotalGrossPrice.Fractional.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_footer_gross_price_text</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.Footer.Notice.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_footer_notice_text</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.LineItemDetails.Checkbox.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_line_item_details_checkbox_label
+        </item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.LineItemDetails.InputField.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_line_item_details_input_field_text</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.LineItemDetails.Total.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_line_item_details_total_label
+        </item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.ReturnReasonDialog.Title.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_return_reason_dialog_title</item>
+    </style>
+
+    <style name="GiniCaptureTheme.BottomSheet.Style" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/gpb_bottom_sheet_background</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.BottomSheetDialog" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/GiniCaptureTheme.BottomSheet.Style</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.ReturnReasonDialog.Item.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_return_reason_dialog_item_text
+        </item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.WhatIsThisDialog.Message.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_what_is_this_dialog_message</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.WhatIsThisDialog.Title.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_what_is_this_dialog_title
+        </item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.WhatIsThisDialog.Response.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_what_is_this_dialog_response_text
+        </item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.Addon.Name.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_addon_name_text</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.Addon.Price.Integral.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_addon_price_text</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.Addon.Price.Fractional.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_addon_price_text</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.Onboarding.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_onboarding_text</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.Help.ReturnAssistant.Section.Title.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/gpb_return_assistant_help_section_title</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.Help.ReturnAssistant.Section.Body.TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/gpb_return_assistant_help_section_body</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="GiniCaptureTheme.DigitalInvoice.Title.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.Title.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.SelectedAndTotalItems.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.SelectedAndTotalItems.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.WhatIsThis.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.WhatIsThis.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.LineItem.Description.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.LineItem.Description.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.LineItem.Quantity.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.LineItem.Quantity.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.LineItem.Edit.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.LineItem.Edit.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.LineItem.GrossPrice.Integral.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.LineItem.GrossPrice.Integral.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.LineItem.GrossPrice.Fractional.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.LineItem.GrossPrice.Fractional.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.TotalGrossPrice.Integral.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.TotalGrossPrice.Integral.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.TotalGrossPrice.Fractional.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.TotalGrossPrice.Fractional.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.Footer.Notice.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.Footer.Notice.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.LineItemDetails.Checkbox.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.LineItemDetails.Checkbox.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.LineItemDetails.InputField.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.LineItemDetails.InputField.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.LineItemDetails.Total.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.LineItemDetails.Total.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.ReturnReasonDialog.Title.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.ReturnReasonDialog.Title.TextStyle" />
+
+    <style name="GiniCaptureTheme.BottomSheetDialog" parent="Root.GiniCaptureTheme.BottomSheetDialog" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.ReturnReasonDialog.Item.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.ReturnReasonDialog.Item.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.WhatIsThisDialog.Message.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.WhatIsThisDialog.Message.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.WhatIsThisDialog.Title.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.WhatIsThisDialog.Title.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.WhatIsThisDialog.Response.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.WhatIsThisDialog.Response.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.Addon.Name.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.Addon.Name.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.Addon.Price.Integral.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.Addon.Price.Integral.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.Addon.Price.Fractional.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.Addon.Price.Fractional.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.Onboarding.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.Onboarding.TextStyle" />
+
+    <style name="GiniCaptureTheme.Help.ReturnAssistant.Section.Title.TextStyle" parent="Root.GiniCaptureTheme.Help.ReturnAssistant.Section.Title.TextStyle" />
+
+    <style name="GiniCaptureTheme.Help.ReturnAssistant.Section.Body.TextStyle" parent="Root.GiniCaptureTheme.Help.ReturnAssistant.Section.Body.TextStyle" />
+
+</resources>

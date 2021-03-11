@@ -2,4 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.gini.pay.bank">
 
+    <application>
+        <activity android:name=".capture.CaptureFlowActivity" />
+        <activity
+            android:name=".capture.digitalinvoice.DigitalInvoiceActivity"
+            android:exported="false"
+            android:label="@string/gpb_title_digital_invoice"
+            android:theme="@style/GiniCaptureTheme" />
+        <activity
+            android:name=".capture.digitalinvoice.details.LineItemDetailsActivity"
+            android:exported="false"
+            android:label="@string/gpb_title_line_item_details"
+            android:theme="@style/GiniCaptureTheme" />
+    </application>
 </manifest>

@@ -54,7 +54,7 @@ class CameraExampleActivity : AppCompatActivity(), CameraFragmentListener, Onboa
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpActionBar(binding)
-        setTitlesForCamera(binding.toolbar)
+        setTitlesForCamera()
 
         setupGiniCaptureCoordinator()
 
@@ -89,7 +89,7 @@ class CameraExampleActivity : AppCompatActivity(), CameraFragmentListener, Onboa
 
     override fun onBackPressed() {
         if (isOnboardingVisible()) {
-            removeOnboarding(binding)
+            removeOnboarding()
         } else {
             super.onBackPressed()
         }
@@ -97,11 +97,11 @@ class CameraExampleActivity : AppCompatActivity(), CameraFragmentListener, Onboa
 
     private fun isOnboardingVisible(): Boolean = supportFragmentManager.findFragmentById(R.id.onboarding_container) != null
 
-    private fun removeOnboarding(binding: ActivityCameraBinding) {
+    private fun removeOnboarding() {
         LOG.debug("Remove the Onboarding Screen")
         menu?.setGroupVisible(R.id.group, true)
         mCameraFragmentInterface?.showInterface()
-        setTitlesForCamera(binding.toolbar)
+        setTitlesForCamera()
         removeOnboardingFragment()
     }
 
@@ -121,7 +121,7 @@ class CameraExampleActivity : AppCompatActivity(), CameraFragmentListener, Onboa
 
 
     private fun startGiniCaptureSdkForImportedFile(intent: Intent) {
-        val cancelToken = GiniBank.createDocumentForImportedFiles(intent, this, object : AsyncCallback<Document, ImportedFileValidationException> {
+        GiniBank.createDocumentForImportedFiles(intent, this, object : AsyncCallback<Document, ImportedFileValidationException> {
             override fun onSuccess(result: Document) {
                 if (result.isReviewable) {
                     launchMultiPageReviewScreen()
@@ -208,9 +208,9 @@ class CameraExampleActivity : AppCompatActivity(), CameraFragmentListener, Onboa
         setSupportActionBar(binding.toolbar)
     }
 
-    private fun setTitlesForCamera(toolbar: Toolbar) {
-        toolbar.title = getString(R.string.camera_screen_title)
-        toolbar.subtitle = getString(R.string.camera_screen_subtitle)
+    private fun setTitlesForCamera() {
+        supportActionBar?.title = getString(R.string.camera_screen_title)
+        supportActionBar?.subtitle = getString(R.string.camera_screen_subtitle)
     }
 
     private fun setTitlesForOnboarding(toolbar: Toolbar) {
@@ -261,7 +261,7 @@ class CameraExampleActivity : AppCompatActivity(), CameraFragmentListener, Onboa
     }
 
     override fun onCloseOnboarding() {
-        removeOnboarding(binding)
+        removeOnboarding()
     }
 
     override fun onError(error: GiniCaptureError) {

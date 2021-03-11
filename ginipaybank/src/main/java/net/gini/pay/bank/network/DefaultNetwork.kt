@@ -7,6 +7,10 @@ import net.gini.android.capture.accounting.network.GiniCaptureAccountingNetworkS
 import net.gini.android.capture.network.GiniCaptureDefaultNetworkApi
 import net.gini.android.capture.network.GiniCaptureDefaultNetworkService
 
+/**
+ * Utility method to create a basic Default Network Service.
+ * For more control see [GiniCaptureDefaultNetworkService].
+ */
 fun getDefaultNetworkService(
     context: Context,
     clientId: String,
@@ -19,11 +23,19 @@ fun getDefaultNetworkService(
         .setDocumentMetadata(documentMetadata)
         .build()
 
+/**
+ * Utility method to create a basic Default Network Api.
+ * For more details see [GiniCaptureDefaultNetworkApi].
+ */
 fun getDefaultNetworkApi(service: GiniCaptureDefaultNetworkService): GiniCaptureDefaultNetworkApi =
     GiniCaptureDefaultNetworkApi.builder()
         .withGiniCaptureDefaultNetworkService(service)
         .build()
 
+/**
+ * Utility method to create a basic Default Accounting Network Service.
+ * For more control see [GiniCaptureAccountingNetworkService].
+ */
 fun getAccountingNetworkService(
     context: Context,
     clientId: String,
@@ -36,6 +48,10 @@ fun getAccountingNetworkService(
         .setDocumentMetadata(documentMetadata)
         .build()
 
+/**
+ * Utility method to create a basic Default Accounting Network Api.
+ * For more details see [GiniCaptureAccountingNetworkApi].
+ */
 fun getAccountingNetworkApi(service: GiniCaptureAccountingNetworkService): GiniCaptureAccountingNetworkApi =
     GiniCaptureAccountingNetworkApi.builder()
         .withGiniCaptureAccountingNetworkService(service)

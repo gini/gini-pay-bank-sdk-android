@@ -6,7 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
-import net.gini.pay.appscreenapi.StartCaptureContract.Companion.RESULT_START_GINI_CAPTURE
+import net.gini.pay.appscreenapi.NoExtractionContract.Companion.RESULT_START_GINI_CAPTURE
 import net.gini.pay.appscreenapi.databinding.ActivityNoExtractionsBinding
 
 /**
@@ -31,7 +31,7 @@ class NoExtractionsActivity : AppCompatActivity() {
     }
 }
 
-class StartCaptureContract : ActivityResultContract<Unit, Boolean>() {
+class NoExtractionContract : ActivityResultContract<Unit, Boolean>() {
     override fun createIntent(context: Context, input: Unit) = Intent(
         context, NoExtractionsActivity::class.java
     )

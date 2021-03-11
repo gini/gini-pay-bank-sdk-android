@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gpb_title_return_assistant_help">Retourenassistent</string>
+    <string name="gpb_select_from_camera_roll">Eigenes Bild auswählen</string>
+    <string name="gpb_help_item_return_assistant_title">Retourenassistent</string>
+
+    <string name="gpb_title_digital_invoice">Digitale Rechnung</string>
+    <string name="gpb_title_line_item_details" />
+
+    <string name="gpb_digital_invoice_scan_success">Scan war erfolgreich!\nDu kannst nun die Artikel abwählen, die du zurückschicken willst.</string>
+    <string name="gpb_digital_invoice_items">Artikel</string>
+    <string name="gpb_digital_invoice_what_is_this_button">Was ist das?</string>
+    <string name="gpb_digital_invoice_line_item_edit">Bearbeiten</string>
+    <string name="gpb_digital_invoice_line_item_quantity">Anzahl:</string>
+    <string name="gpb_digital_invoice_footer_notice">Überprüfe, ob so alles in Ordnung ist und editiere, bevor du bezahlst.</string>
+    <string name="gpb_digital_invoice_pay">Bezahlen %1$d/%2$d</string>
+    <string name="gpb_digital_invoice_return_reason_dialog_title">Der Grund der Rücksendung</string>
+    <string name="gpb_digital_invoice_what_is_this_dialog_title">Was ist das?</string>
+    <string name="gpb_digital_invoice_what_is_this_dialog_message">Wir haben die Artikel aus deiner Rechnung extrahiert. Wenn du einige Artikel zurückschicken oder du deine Rechnung nur teilweise bezahlen möchtest, kannst du einzelne Artikel abwählen und der zu bezahlende Betrag wird automatisch neu berechnet.</string>
+    <string name="gpb_digital_invoice_what_is_this_dialog_positive_response">Ja, das ist hilfreich</string>
+    <string name="gpb_digital_invoice_what_is_this_dialog_negative_response">Nein, nicht mehr angezeigen</string>
+
+    <string name="gpb_digital_invoice_line_item_details_description_label">Artikelname</string>
+    <string name="gpb_digital_invoice_line_item_details_quantity_label">Anzahl</string>
+    <string name="gpb_digital_invoice_line_item_details_gross_price_label">Artikelpreis</string>
+    <string name="gpb_digital_invoice_line_item_details_total_label">Total:</string>
+    <string name="gpb_digital_invoice_line_item_details_save">Speichern</string>
+    <plurals name="gpb_digital_invoice_line_item_details_selected_line_items">
+        <item quantity="other">%1$d Artikel %2$s</item>
+    </plurals>
+    <string name="gpb_digital_invoice_line_item_details_selected">ausgewählt</string>
+
+    <string name="gpb_digital_invoice_addon_discount">Rabatt</string>
+    <string name="gpb_digital_invoice_addon_giftcard">Gutschein</string>
+    <string name="gpb_digital_invoice_addon_other_discounts">Weitere Abzüge</string>
+    <string name="gpb_digital_invoice_addon_other_charges">Weitere Kosten</string>
+    <string name="gpb_digital_invoice_addon_shipment">Versandkosten</string>
+
+    <string name="gpb_digital_invoice_onboarding_text_1">Wähle ab, welche Artikel du nicht bezahlen und zurückschicken möchtest.</string>
+    <string name="gpb_digital_invoice_onboarding_text_2">Hier kannst du die Anzahl der einzelnen Artikel bearbeiten.</string>
+    <string name="gpb_digital_invoice_onboarding_done_button_title">Ich hab\'s!</string>
+
+    <string name="gpb_return_assistant_help_title">Der neue Retourenassistent</string>
+    <string name="gpb_return_assistant_help_section_1_body_1">Nachdem Sie eine Rechnung abfotografiert haben, können Sie nun Rechnungsposten abwählen die Sie nicht möchten. Sie bezahlen nur für die Dinge die Sie behalten und können den Rest retournieren.</string>
+    <string name="gpb_return_assistant_help_section_1_body_2">Wenn Sie auf die Edit Schaltfläche des Rechnungspostens drücken, können Sie die Anzahl verändern, sowie den Preis korrigieren.</string>
+    <string name="gpb_return_assistant_help_section_2_title">Anzahl ändern</string>
+    <string name="gpb_return_assistant_help_section_2_body">Wenn Sie auf die Edit Schaltfläche des Rechnungspostens drücken, können Sie die Anzahl verändern, sowie den Preis korrigieren.</string>
+    <string name="gpb_return_assistant_help_section_3_body">Sollte der Preis mal nicht perfekt ausgelesen worden sein, können Sie diesen einfach manuell korrigieren. Der Gesamtpreis aktualisiert sich automatisch.</string>
+    <string name="gpb_return_assistant_help_section_3_title">Preis korrigieren</string>
+    <string name="gpb_return_assistant_help_back_button_title">Zurück</string>
+</resources>

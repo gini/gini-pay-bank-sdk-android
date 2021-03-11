@@ -17,10 +17,15 @@ import net.gini.android.capture.analysis.AnalysisActivity
 import net.gini.android.capture.analysis.AnalysisFragmentCompat
 import net.gini.android.capture.analysis.AnalysisFragmentInterface
 import net.gini.android.capture.analysis.AnalysisFragmentListener
+import net.gini.android.capture.network.model.GiniCaptureCompoundExtraction
+import net.gini.android.capture.network.model.GiniCaptureReturnReason
 import net.gini.android.capture.network.model.GiniCaptureSpecificExtraction
 import net.gini.pay.appcomponentapi.R
+import net.gini.pay.appcomponentapi.digitalinvoice.DigitalInvoiceExampleActivity
 import net.gini.pay.appcomponentapi.extraction.ExtractionsActivity
 import net.gini.pay.appcomponentapi.noresult.NoResultsExampleActivity
+import net.gini.pay.bank.capture.digitalinvoice.DigitalInvoiceException
+import net.gini.pay.bank.capture.digitalinvoice.LineItemsValidator
 import org.slf4j.LoggerFactory
 
 class AnalysisExampleActivity : AppCompatActivity(), AnalysisFragmentListener {
@@ -45,9 +50,19 @@ class AnalysisExampleActivity : AppCompatActivity(), AnalysisFragmentListener {
         analysisFragmentInterface?.showError(getString(R.string.gini_capture_error, error.errorCode, error.message), Toast.LENGTH_LONG)
     }
 
-    override fun onExtractionsAvailable(extractions: Map<String, GiniCaptureSpecificExtraction>) {
+    override fun onExtractionsAvailable(
+        extractions: Map<String, GiniCaptureSpecificExtraction>,
+        compoundExtractions: Map<String, GiniCaptureCompoundExtraction>,
+        returnReasons: List<GiniCaptureReturnReason>
+    ) {
         LOG.debug("Show extractions")
-        startActivity(ExtractionsActivity.getStartIntent(this, extractions))
+        try {
+            LineItemsValidator.validate(compoundExtractions)
+            startActivity(DigitalInvoiceExampleActivity.getStartIntent(this, extractions, compoundExtractions, returnReasons))
+
+        } catch (notUsed: DigitalInvoiceException) {
+            startActivity(ExtractionsActivity.getStartIntent(this, extractions, compoundExtractions))
+        }
         setResult(RESULT_OK)
         finish()
     }
@@ -91,9 +106,7 @@ class AnalysisExampleActivity : AppCompatActivity(), AnalysisFragmentListener {
     }
 
     private fun setUpActionBar() {
-        setSupportActionBar(
-            findViewById<View>(R.id.toolbar) as Toolbar?
-        )
+        setSupportActionBar(findViewById<View>(R.id.toolbar) as Toolbar?)
     }
 
     companion object {
