@@ -106,9 +106,7 @@ class AnalysisExampleActivity : AppCompatActivity(), AnalysisFragmentListener {
     }
 
     private fun setUpActionBar() {
-        setSupportActionBar(
-            findViewById<View>(R.id.toolbar) as Toolbar?
-        )
+        setSupportActionBar(findViewById<View>(R.id.toolbar) as Toolbar?)
     }
 
     companion object {
