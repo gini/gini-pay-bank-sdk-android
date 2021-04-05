@@ -141,6 +141,7 @@ internal class LineItemDetailsScreenPresenter(activity: Activity, view: View,
                 showTotalGrossPrice(this)
             }
             updateCheckboxAndSaveButton()
+            clearFocus()
         }
     }
 

@@ -1,90 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gpb_digital_invoice_onboarding_fragment_background"
+    android:orientation="vertical"
     tools:context=".digitalinvoice.onboarding.DigitalInvoiceOnboardingFragment">
 
-    <ScrollView
+    <!--    <ScrollView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_weight="1">-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/gpb_onboarding_text_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/gpb_digital_invoice_onboarding_text_1_horiztonal_margin"
+            android:layout_marginTop="@dimen/gpb_digital_invoice_onboarding_text_1_vertical_margin"
+            android:layout_marginEnd="@dimen/gpb_digital_invoice_onboarding_text_1_horiztonal_margin"
+            android:gravity="center"
+            android:text="@string/gpb_digital_invoice_onboarding_text_1"
+            android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.Onboarding.Title.TextStyle"
+            app:layout_constraintBottom_toTopOf="@id/gpb_digital_invoice_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
 
-            <ImageView
-                android:id="@+id/gpb_digital_invoice_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/gpb_digital_invoice_onboarding_hero_image_vertical_margin"
-                android:src="@drawable/gpb_digital_invoice_image"
-                tools:ignore="ContentDescription" />
+        <ImageView
+            android:id="@+id/gpb_digital_invoice_image"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/gpb_digital_invoice_onboarding_hero_image_vertical_margin"
+            android:src="@drawable/gpb_digital_invoice_list_image"
+            app:layout_constraintBottom_toTopOf="@id/gpb_onboarding_text_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gpb_onboarding_text_1"
+            tools:ignore="ContentDescription" />
 
-            <ImageView
-                android:id="@+id/gpb_new_badge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/gpb_digital_invoice_image"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/gpb_digital_invoice_onboarding_new_badge_vertical_margin"
-                android:src="@drawable/gpb_new_badge"
-                tools:ignore="ContentDescription" />
+        <TextView
+            android:id="@+id/gpb_onboarding_text_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/gpb_digital_invoice_onboarding_text_2_horiztonal_margin"
+            android:layout_marginTop="@dimen/gpb_digital_invoice_onboarding_text_2_vertical_margin"
+            android:layout_marginEnd="@dimen/gpb_digital_invoice_onboarding_text_2_horiztonal_margin"
+            android:layout_marginBottom="@dimen/gpb_digital_invoice_onboarding_text_2_vertical_margin_bottom"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.3"
+            android:text="@string/gpb_digital_invoice_onboarding_text_2"
+            android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.Onboarding.TextStyle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gpb_digital_invoice_image" />
 
-            <TextView
-                android:id="@+id/gpb_onboarding_text_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/gpb_new_badge"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="@dimen/gpb_digital_invoice_onboarding_text_1_horiztonal_margin"
-                android:layout_marginTop="@dimen/gpb_digital_invoice_onboarding_help_1_vertical_margin"
-                android:layout_marginEnd="@dimen/gpb_digital_invoice_onboarding_text_1_horiztonal_margin"
-                android:gravity="center"
-                android:lineSpacingMultiplier="1.3"
-                android:text="@string/gpb_digital_invoice_onboarding_text_1"
-                android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.Onboarding.TextStyle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/gpb_digital_invoice_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/gpb_onboarding_text_1"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/gpb_digital_invoice_item_help"
-                tools:ignore="ContentDescription" />
+    <!--    </ScrollView>-->
 
-            <TextView
-                android:id="@+id/gpb_onboarding_text_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/gpb_digital_invoice_item"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="@dimen/gpb_digital_invoice_onboarding_text_2_horiztonal_margin"
-                android:layout_marginEnd="@dimen/gpb_digital_invoice_onboarding_text_2_horiztonal_margin"
-                android:layout_marginBottom="@dimen/gpb_digital_invoice_onboarding_text_2_vertical_margin"
-                android:gravity="center"
-                android:lineSpacingMultiplier="1.3"
-                android:text="@string/gpb_digital_invoice_onboarding_text_2"
-                android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.Onboarding.TextStyle" />
-
-        </RelativeLayout>
-
-    </ScrollView>
-
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/gpb_done_button"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/gpb_digital_invoice_onboarding_done_button_height"
-        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/gpb_digital_invoice_onboarding_done_button_margin"
+        android:layout_marginRight="@dimen/gpb_digital_invoice_onboarding_done_button_margin"
+        android:layout_marginBottom="@dimen/gpb_digital_invoice_onboarding_done_button_margin_bottom"
+        android:text="@string/gpb_digital_invoice_onboarding_done_button_title"
+        android:textColor="@color/gpb_digital_invoice_onboarding_done_button_text"
+        app:backgroundTint="@color/gpb_digital_invoice_onboarding_done_button" />
+
+    <Button
+        android:id="@+id/gbp_do_not_show_button"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/gpb_digital_invoice_onboarding_done_button_margin"
         android:layout_marginRight="@dimen/gpb_digital_invoice_onboarding_done_button_margin"
         android:layout_marginBottom="@dimen/gpb_digital_invoice_onboarding_done_button_margin"
-        android:backgroundTint="@color/gpb_digital_invoice_onboarding_done_button"
-        android:textColor="@color/gpb_digital_invoice_onboarding_done_button_text"
-        android:text="@string/gpb_digital_invoice_onboarding_done_button_title" />
+        android:minHeight="0dp"
+        android:text="@string/gpb_digital_invoice_onboarding_do_not_show_button_title"
+        android:textAllCaps="false"
+        android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.Onboarding.TextStyle"
+        android:textColor="@color/gpb_digital_invoice_onboarding_do_not_sho_button_text" />
 
-</RelativeLayout>
+</LinearLayout>

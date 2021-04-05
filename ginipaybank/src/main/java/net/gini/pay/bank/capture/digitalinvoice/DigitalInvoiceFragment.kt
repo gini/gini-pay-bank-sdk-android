@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import net.gini.android.capture.internal.util.ActivityHelper.forcePortraitOrientationOnPhones
@@ -13,6 +15,8 @@ import net.gini.android.capture.network.model.GiniCaptureCompoundExtraction
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
 import net.gini.android.capture.network.model.GiniCaptureSpecificExtraction
 import net.gini.pay.bank.R
+import net.gini.pay.bank.capture.digitalinvoice.info.DigitalInvoiceInfoFragment
+import net.gini.pay.bank.capture.digitalinvoice.info.DigitalInvoiceInfoFragmentListener
 import net.gini.pay.bank.capture.digitalinvoice.onboarding.DigitalInvoiceOnboardingFragment
 import net.gini.pay.bank.capture.digitalinvoice.onboarding.DigitalInvoiceOnboardingFragmentListener
 import net.gini.pay.bank.capture.util.autoCleared
@@ -28,10 +32,12 @@ import net.gini.pay.bank.databinding.GpbFragmentDigitalInvoiceBinding
 private const val ARGS_EXTRACTIONS = "GPB_ARGS_EXTRACTIONS"
 private const val ARGS_COMPOUND_EXTRACTIONS = "GPB_ARGS_COMPOUND_EXTRACTIONS"
 private const val ARGS_RETURN_REASONS = "GPB_ARGS_RETURN_REASONS"
+private const val ARGS_INACCURATE_EXTRACTION = "GPB_ARGS_INACCURATE_EXTRACTION"
 
 private const val TAG_RETURN_REASON_DIALOG = "TAG_RETURN_REASON_DIALOG"
 private const val TAG_WHAT_IS_THIS_DIALOG = "TAG_WHAT_IS_THIS_DIALOG"
 private const val TAG_ONBOARDING = "TAG_ONBOARDING"
+private const val TAG_INFO = "TAG_INFO"
 
 /**
  * When you use the Component API the `DigitalInvoiceFragment` displays the line items extracted from an invoice document and their total
@@ -59,7 +65,8 @@ private const val TAG_ONBOARDING = "TAG_ONBOARDING"
  * See the [DigitalInvoiceActivity] for details.
  */
 class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
-    DigitalInvoiceFragmentInterface, LineItemsAdapterListener, DigitalInvoiceOnboardingFragmentListener {
+    DigitalInvoiceFragmentInterface, LineItemsAdapterListener,
+    DigitalInvoiceOnboardingFragmentListener, DigitalInvoiceInfoFragmentListener {
 
     private var binding by autoCleared<GpbFragmentDigitalInvoiceBinding>()
 
@@ -74,6 +81,7 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
     private var extractions: Map<String, GiniCaptureSpecificExtraction> = emptyMap()
     private var compoundExtractions: Map<String, GiniCaptureCompoundExtraction> = emptyMap()
     private var returnReasons: List<GiniCaptureReturnReason> = emptyList()
+    private var isInaccurateExtraction: Boolean = false
 
     companion object {
 
@@ -90,7 +98,8 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
         fun createInstance(
             extractions: Map<String, GiniCaptureSpecificExtraction>,
             compoundExtractions: Map<String, GiniCaptureCompoundExtraction>,
-            returnReasons: List<GiniCaptureReturnReason>
+            returnReasons: List<GiniCaptureReturnReason>,
+            isInaccurateExtraction: Boolean = false
         ) = DigitalInvoiceFragment().apply {
             arguments = Bundle().apply {
                 putBundle(ARGS_EXTRACTIONS, Bundle().apply {
@@ -100,6 +109,7 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
                     compoundExtractions.forEach { putParcelable(it.key, it.value) }
                 })
                 putParcelableArrayList(ARGS_RETURN_REASONS, ArrayList(returnReasons))
+                putBoolean(ARGS_INACCURATE_EXTRACTION, isInaccurateExtraction)
             }
         }
     }
@@ -112,6 +122,7 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val activity = this.activity
+        setHasOptionsMenu(true)
         checkNotNull(activity) {
             "Missing activity for fragment."
         }
@@ -124,24 +135,41 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
     private fun readArguments() {
         arguments?.run {
             getBundle(ARGS_EXTRACTIONS)?.run {
-                extractions = keySet().map { it to getParcelable<GiniCaptureSpecificExtraction>(it)!! }.toMap()
+                extractions =
+                    keySet().map { it to getParcelable<GiniCaptureSpecificExtraction>(it)!! }
+                        .toMap()
             }
             getBundle(ARGS_COMPOUND_EXTRACTIONS)?.run {
-                compoundExtractions = keySet().map { it to getParcelable<GiniCaptureCompoundExtraction>(it)!! }.toMap()
+                compoundExtractions =
+                    keySet().map { it to getParcelable<GiniCaptureCompoundExtraction>(it)!! }
+                        .toMap()
             }
             returnReasons = getParcelableArrayList(ARGS_RETURN_REASONS) ?: emptyList()
+
+            isInaccurateExtraction = getBoolean(ARGS_INACCURATE_EXTRACTION, false)
         }
     }
 
     private fun createPresenter(activity: Activity) =
-        DigitalInvoiceScreenPresenter(activity, this, extractions, compoundExtractions, returnReasons)
+        DigitalInvoiceScreenPresenter(
+            activity,
+            this,
+            extractions,
+            compoundExtractions,
+            returnReasons,
+            isInaccurateExtraction
+        )
 
     /**
      * Internal use only.
      *
      * @suppress
      */
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = GpbFragmentDigitalInvoiceBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -155,6 +183,14 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
         setInputHandlers()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.help) {
+            showInfo()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun initListener() {
@@ -172,23 +208,39 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
             binding.gpbLineItems.apply {
                 layoutManager = LinearLayoutManager(it)
                 adapter = LineItemsAdapter(it, this@DigitalInvoiceFragment)
+                setHasFixedSize(true)
             }
         }
     }
 
     private fun setInputHandlers() {
-        binding.gpbPayButton.setOnClickListener {
-            presenter?.pay()
+    }
+
+    override fun payButtonClicked() {
+        presenter?.pay()
+    }
+
+    override fun skipButtonClicked() {
+        presenter?.skip()
+    }
+
+    /**
+     * Internal use only.
+     *
+     * @suppress
+     */
+    override fun showLineItems(
+        lineItems: List<SelectableLineItem>,
+        isInaccurateExtraction: Boolean
+    ) {
+        (binding.gpbLineItems.adapter as LineItemsAdapter?)?.apply {
+            this.isInaccurateExtraction = isInaccurateExtraction
+            this.lineItems = lineItems
         }
     }
 
-    /**
-     * Internal use only.
-     *
-     * @suppress
-     */
-    override fun showLineItems(lineItems: List<SelectableLineItem>) {
-        (binding.gpbLineItems.adapter as LineItemsAdapter?)?.lineItems = lineItems
+    override fun updateFooterDetails(data: DigitalInvoiceScreenContract.FooterDetails) {
+        (binding.gpbLineItems.adapter as LineItemsAdapter?)?.footerDetails = data
     }
 
     /**
@@ -196,43 +248,10 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
      *
      * @suppress
      */
-    override fun showSelectedAndTotalLineItems(selected: Int, total: Int) {
-        (binding.gpbLineItems.adapter as LineItemsAdapter?)?.selectedAndTotalItems = "${selected}/${total}"
-    }
-
     override fun showAddons(addons: List<DigitalInvoiceAddon>) {
         (binding.gpbLineItems.adapter as LineItemsAdapter?)?.addons = addons
     }
 
-    /**
-     * Internal use only.
-     *
-     * @suppress
-     */
-    override fun enablePayButton(selected: Int, total: Int) {
-        binding.gpbPayButton.isEnabled = true
-        updatePayButtonTitle(selected, total)
-    }
-
-    /**
-     * Internal use only.
-     *
-     * @suppress
-     */
-    override fun disablePayButton(selected: Int, total: Int) {
-        binding.gpbPayButton.isEnabled = false
-        updatePayButtonTitle(selected, total)
-    }
-
-    /**
-     * Internal use only.
-     *
-     * @suppress
-     */
-    override fun showSelectedLineItemsSum(integralPart: String, fractionalPart: String) {
-        (binding.gpbLineItems.adapter as LineItemsAdapter?)?.totalGrossPriceIntegralAndFractionalParts =
-            Pair(integralPart, fractionalPart)
-    }
 
     /**
      * Internal use only.
@@ -265,9 +284,34 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
         }
     }
 
-    private fun updatePayButtonTitle(selected: Int, total: Int) {
-        @SuppressLint("SetTextI18n")
-        binding.gpbPayButton.text = resources.getString(R.string.gpb_digital_invoice_pay, selected, total)
+    override fun showInfo() {
+        (view?.parent as? View)?.let { container ->
+            parentFragmentManagerOrNull()?.let { fm ->
+                if (fm.findFragmentByTag(TAG_INFO) != null) {
+                    return
+                }
+
+                fm.beginTransaction().run {
+                    val onboarding = DigitalInvoiceInfoFragment.createInstance().apply {
+                        listener = this@DigitalInvoiceFragment
+                    }
+                    add(container.id, onboarding, TAG_INFO)
+                    commit()
+                }
+            }
+        }
+    }
+
+    override fun onCloseInfo() {
+        parentFragmentManagerOrNull()?.let { fm ->
+            (fm.findFragmentByTag(TAG_INFO) as? DigitalInvoiceInfoFragment)?.let { infoFragment ->
+                infoFragment.listener = null
+                fm.beginTransaction().run {
+                    remove(infoFragment)
+                    commit()
+                }
+            }
+        }
     }
 
     /**
@@ -348,7 +392,10 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
         presenter?.updateLineItem(selectableLineItem)
     }
 
-    override fun onCloseOnboarding() {
+    override fun onCloseOnboarding(doNotShowAnymore: Boolean) {
+        if (doNotShowAnymore) {
+            presenter?.disableOnboarding()
+        }
         parentFragmentManagerOrNull()?.let { fm ->
             (fm.findFragmentByTag(TAG_ONBOARDING) as? DigitalInvoiceOnboardingFragment)?.let { onboardingFragment ->
                 onboardingFragment.listener = null

@@ -4,10 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import net.gini.android.capture.camera.CameraActivity
+import net.gini.android.capture.help.HelpActivity
 import net.gini.android.capture.internal.util.ActivityHelper.enableHomeAsUp
 import net.gini.android.capture.network.model.GiniCaptureCompoundExtraction
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
@@ -99,7 +101,21 @@ internal class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragm
             onBackPressed()
             return true
         }
+
+        if (item.itemId == R.id.help) {
+//            showHelp()
+            return false
+        }
+
         return super.onOptionsItemSelected(item)
+    }
+
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.gpb_menu_digital_invoice, menu)
+        return true
     }
 
     private fun readExtras() {
@@ -150,6 +166,10 @@ internal class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragm
             LineItemDetailsActivity.createIntent(this, selectableLineItem, returnReasons),
             EDIT_LINE_ITEM_REQUEST
         )
+    }
+
+    private fun showHelp() {
+        startActivity(Intent(this, HelpActivity::class.java))
     }
 
     /**

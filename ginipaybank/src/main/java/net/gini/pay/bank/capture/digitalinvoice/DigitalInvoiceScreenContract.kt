@@ -24,15 +24,16 @@ interface DigitalInvoiceScreenContract {
      * @suppress
      */
     interface View : GiniCaptureBaseView<Presenter> {
-        fun showLineItems(lineItems: List<SelectableLineItem>)
-        fun showSelectedAndTotalLineItems(selected: Int, total: Int)
+        fun showLineItems(lineItems: List<SelectableLineItem>, isInaccurateExtraction: Boolean)
         fun showAddons(addons: List<DigitalInvoiceAddon>)
-        fun enablePayButton(selected: Int, total: Int)
-        fun disablePayButton(selected: Int, total: Int)
-        fun showSelectedLineItemsSum(integralPart: String, fractionalPart: String)
+        fun updateFooterDetails(data: FooterDetails)
+//        fun enablePayButton(selected: Int, total: Int)
+//        fun disablePayButton(selected: Int, total: Int)
+//        fun showSelectedLineItemsSum(integralPart: String, fractionalPart: String)
         fun showReturnReasonDialog(reasons: List<GiniCaptureReturnReason>,
                                    resultCallback: ReturnReasonDialogResultCallback)
         fun showOnboarding()
+        fun showInfo()
     }
 
     /**
@@ -48,5 +49,15 @@ interface DigitalInvoiceScreenContract {
         abstract fun editLineItem(lineItem: SelectableLineItem)
         abstract fun userFeedbackReceived(helpful: Boolean)
         abstract fun pay()
+        abstract fun disableOnboarding()
+        abstract fun skip()
     }
+
+    data class FooterDetails(
+        val totalGrossPriceIntegralAndFractionalParts: Pair<String, String> = Pair("", ""),
+        val buttonEnabled: Boolean = true,
+        val count: Int = 0,
+        val total: Int = 0,
+        val inaccurateExtraction: Boolean
+    )
 }

@@ -6,64 +6,95 @@
     <dimen name="gpb_photo_tips_header_padding">16dp</dimen>
     <dimen name="gpb_photo_tips_header_drawable_padding">16dp</dimen>
 
-    <dimen name="gpb_digital_invoice_header_padding_left">16dp</dimen>
-    <dimen name="gpb_digital_invoice_header_padding_right">16dp</dimen>
-    <dimen name="gpb_digital_invoice_header_padding_top">16dp</dimen>
-    <dimen name="gpb_digital_invoice_header_padding_bottom">0dp</dimen>
-    <dimen name="gpb_digital_invoice_header_title_horizontal_margin">32dp</dimen>
-    <dimen name="gpb_digital_invoice_header_title_margin_top">8dp</dimen>
+    <dimen name="gpb_digital_invoice_header_margin_left">16dp</dimen>
+    <dimen name="gpb_digital_invoice_header_margin_right">16dp</dimen>
+    <dimen name="gpb_digital_invoice_header_margin_top">16dp</dimen>
+    <dimen name="gpb_digital_invoice_header_margin_bottom">0dp</dimen>
+    <dimen name="gpb_digital_invoice_header_title_margin_top">16dp</dimen>
+    <dimen name="gpb_digital_invoice_header_text_1_margin_top">16dp</dimen>
+    <dimen name="gpb_digital_invoice_header_text_2_margin_top">-20dp</dimen>
+    <dimen name="gpb_digital_invoice_header_text_1_margin">16dp</dimen>
+    <dimen name="gpb_digital_invoice_header_text_2_margin">24dp</dimen>
     <dimen name="gpb_digital_invoice_header_hero_image_margin_top">16dp</dimen>
-    <dimen name="gpb_digital_invoice_header_hero_image_margin_bottom">8dp</dimen>
-    <dimen name="gpb_digital_invoice_header_help_margin_right">-8dp</dimen>
-    <dimen name="gpb_digital_invoice_header_help_button_padding">4dp</dimen>
+    <dimen name="gpb_digital_invoice_header_button_height">64dp</dimen>
+    <dimen name="gpb_digital_invoice_header_button_margin">16dp</dimen>
+    <dimen name="gpb_digital_invoice_header_button_stroke">2dp</dimen>
+    <dimen name="gpb_digital_invoice_header_button_corners">13dp</dimen>
+    <dimen name="gpb_digital_invoice_header_image_margin_top">-20dp</dimen>
+    <dimen name="gpb_digital_invoice_header_title_margin">16dp</dimen>
+    <dimen name="gpb_digital_invoice_header_title_margin_left">32dp</dimen>
+    <dimen name="gpb_digital_invoice_header_corners_expanded">4dp</dimen>
+    <dimen name="gpb_digital_invoice_header_corners_collapsed">10dp</dimen>
 
     <dimen name="gpb_digital_invoice_line_item_horizontal_margin">16dp</dimen>
-    <dimen name="gpb_digital_invoice_line_item_vertical_margin">4dp</dimen>
-    <dimen name="gpb_digital_invoice_line_item_corner_radius">10dp</dimen>
-    <dimen name="gpb_digital_invoice_line_item_card_elevation">4dp</dimen>
-    <dimen name="gpb_digital_invoice_line_item_padding">16dp</dimen>
-    <dimen name="gpb_digital_invoice_line_item_padding_left">8dp</dimen>
-    <dimen name="gpb_digital_invoice_line_item_stroke_width">1dp</dimen>
-    <dimen name="gpb_digital_invoice_line_item_checkbox_margin_right">16dp</dimen>
-    <dimen name="gpb_digital_invoice_line_item_description_margin_bottom">16dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_vertical_margin">16dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_corner_radius">5dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_stroke_width">2dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_switch_margin_left">16dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_switch_margin_top">16dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_description_margin_top">16dp</dimen>
     <dimen name="gpb_digital_invoice_line_item_description_margin_right">16dp</dimen>
-    <dimen name="gpb_digital_invoice_line_item_edit_drawable_padding">8dp</dimen>
-    <dimen name="gpb_digital_invoice_line_item_edit_margin_right">0dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_price_margin_top">16dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_price_margin_bottom">16dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_price_margin_right">16dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_quantity_margin_left">16dp</dimen>
 
     <dimen name="gpb_digital_invoice_footer_horizontal_padding">16dp</dimen>
     <dimen name="gpb_digital_invoice_footer_padding_top">16dp</dimen>
-    <dimen name="gpb_digital_invoice_footer_padding_bottom">0dp</dimen>
-    <dimen name="gpb_digital_invoice_footer_gross_price_margin_bottom">32dp</dimen>
-    <dimen name="gpb_digital_invoice_footer_notice_horizontal_margin">60dp</dimen>
-    <dimen name="gpb_digital_invoice_footer_notice_margin_bottom">96dp</dimen>
+    <dimen name="gpb_digital_invoice_footer_padding_bottom">16dp</dimen>
+    <dimen name="gpb_digital_invoice_footer_gross_price_margin_top">32dp</dimen>
+    <dimen name="gpb_digital_invoice_footer_notice_horizontal_margin">32dp</dimen>
+    <dimen name="gpb_digital_invoice_footer_notice_margin_top">96dp</dimen>
+    <dimen name="gpb_digital_invoice_footer_total_price_margin_top">16dp</dimen>
+    <dimen name="gpb_digital_invoice_footer_total_price_margin_right">16dp</dimen>
+    <dimen name="gpb_digital_invoice_footer_total_label_margin_left">0dp</dimen>
+    <dimen name="gpb_digital_invoice_header_collapse_martin_right">16dp</dimen>
+    <dimen name="gpb_digital_invoice_footer_gross_price_margin_right">16dp</dimen>
+    <dimen name="gpb_digital_invoice_footer_skip_button_margin_top">8dp</dimen>
+    <dimen name="gpb_digital_invoice_pay_button_margin_top">48dp</dimen>
+
 
     <dimen name="gpb_digital_invoice_pay_button_height">56dp</dimen>
-    <dimen name="gpb_digital_invoice_pay_button_margin">16dp</dimen>
+    <dimen name="gpb_digital_invoice_pay_button_margin">0dp</dimen>
     <dimen name="gpb_digital_invoice_return_reason_dialog_item_horizontal_padding">32dp</dimen>
     <dimen name="gpb_digital_invoice_return_reason_dialog_item_vertical_padding">16dp</dimen>
     <dimen name="gpb_digital_invoice_what_is_this_dialog_item_horizontal_padding">32dp</dimen>
     <dimen name="gpb_digital_invoice_what_is_this_dialog_item_vertical_padding">16dp</dimen>
 
     <dimen name="gpb_digital_invoice_line_item_details_padding">16dp</dimen>
-    <dimen name="gpb_digital_invoice_line_item_details_checkbox_margin_bottom">16dp</dimen>
-    <dimen name="gpb_digital_invoice_line_item_details_description_margin_bottom">16dp</dimen>
-    <dimen name="gpb_digital_invoice_line_item_details_quantity_and_gross_price_margin_bottom">16dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_details_description_margin_top">16dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_details_quantity_and_gross_price_margin_top">16dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_details_gross_price_margin_top">0dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_details_gross_price_label_margin_top">16dp</dimen>
     <dimen name="gpb_digital_invoice_line_item_details_total_label_margin_end">24dp</dimen>
     <dimen name="gpb_digital_invoice_line_item_details_gross_price_margin_bottom">32dp</dimen>
     <dimen name="gpb_digital_invoice_line_item_details_save_button_height">56dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_content_margin_top">0dp</dimen>
 
     <dimen name="gpb_digital_invoice_addon_horizontal_padding">16dp</dimen>
     <dimen name="gpb_digital_invoice_addon_vertical_padding">8dp</dimen>
     <dimen name="gpb_digital_invoice_addon_name_margin_right">72dp</dimen>
 
-    <dimen name="gpb_digital_invoice_onboarding_hero_image_vertical_margin">32dp</dimen>
+    <dimen name="gpb_digital_invoice_onboarding_hero_image_vertical_margin">0dp</dimen>
     <dimen name="gpb_digital_invoice_onboarding_new_badge_vertical_margin">32dp</dimen>
     <dimen name="gpb_digital_invoice_onboarding_text_1_horiztonal_margin">40dp</dimen>
-    <dimen name="gpb_digital_invoice_onboarding_help_1_vertical_margin">32dp</dimen>
+    <dimen name="gpb_digital_invoice_onboarding_text_1_vertical_margin">16dp</dimen>
     <dimen name="gpb_digital_invoice_onboarding_text_2_horiztonal_margin">40dp</dimen>
-    <dimen name="gpb_digital_invoice_onboarding_text_2_vertical_margin">96dp</dimen>
+    <dimen name="gpb_digital_invoice_onboarding_text_2_vertical_margin">0dp</dimen>
+    <dimen name="gpb_digital_invoice_onboarding_text_2_vertical_margin_bottom">16dp</dimen>
     <dimen name="gpb_digital_invoice_onboarding_done_button_height">56dp</dimen>
     <dimen name="gpb_digital_invoice_onboarding_done_button_margin">16dp</dimen>
+    <dimen name="gpb_digital_invoice_onboarding_done_button_margin_bottom">0dp</dimen>
+    <dimen name="gpb_digital_invoice_onboarding_do_not_show_button_margin">16dp</dimen>
+
+    <dimen name="gpb_digital_invoice_info_text_1_horiztonal_margin">40dp</dimen>
+    <dimen name="gpb_digital_invoice_info_text_1_vertical_margin">16dp</dimen>
+    <dimen name="gpb_digital_invoice_info_text_2_horiztonal_margin">40dp</dimen>
+    <dimen name="gpb_digital_invoice_info_text_2_vertical_margin">0dp</dimen>
+    <dimen name="gpb_digital_invoice_info_text_2_vertical_margin_bottom">16dp</dimen>
+    <dimen name="gpb_digital_invoice_info_close_button_height">56dp</dimen>
+    <dimen name="gpb_digital_invoice_info_close_button_margin">16dp</dimen>
+    <dimen name="gpb_digital_invoice_info_close_button_margin_bottom">16dp</dimen>
 
     <dimen name="gpb_return_assistant_help_title_horizontal_margin">32dp</dimen>
     <dimen name="gpb_return_assistant_help_title_vertical_margin">32dp</dimen>
@@ -74,4 +105,5 @@
     <dimen name="gpb_return_assistant_help_back_button_margin">16dp</dimen>
     <dimen name="gpb_return_assistant_help_illustration_vertical_margin">32dp</dimen>
     <dimen name="gpb_return_assistant_help_back_button_vertical_margin">48dp</dimen>
+
 </resources>

@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     private fun getNetworkService(): Pair<GiniCaptureNetworkService, GiniCaptureNetworkApi> {
         val clientId = getString(R.string.gini_api_client_id)
         val clientSecret = getString(R.string.gini_api_client_secret)
-        val domain = "example.com"
+        val domain = "user.gini.net"
         val documentMetadata = DocumentMetadata().apply {
             setBranchId("GiniBankExampleAndroid")
             add("AppFlow", "ScreenAPI")

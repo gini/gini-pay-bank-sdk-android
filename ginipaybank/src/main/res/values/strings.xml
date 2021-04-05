@@ -11,8 +11,10 @@
     <string name="gpb_digital_invoice_items">Artikel</string>
     <string name="gpb_digital_invoice_what_is_this_button">Was ist das?</string>
     <string name="gpb_digital_invoice_line_item_edit">Bearbeiten</string>
-    <string name="gpb_digital_invoice_line_item_quantity">Anzahl:</string>
-    <string name="gpb_digital_invoice_footer_notice">Überprüfe, ob so alles in Ordnung ist und editiere, bevor du bezahlst.</string>
+    <string name="gpb_digital_invoice_line_item_quantity">%1$dx</string>
+    <string name="gpb_digital_invoice_line_item_index">Artikel %1$d/%2$d</string>
+
+    <string name="gpb_digital_invoice_footer_notice">Bitte überprüfe vor der Zahlung, ob alles in Ordnung ist und bearbeite eventuell die Gesamtsumme.</string>
     <string name="gpb_digital_invoice_pay">Bezahlen %1$d/%2$d</string>
     <string name="gpb_digital_invoice_return_reason_dialog_title">Der Grund der Rücksendung</string>
     <string name="gpb_digital_invoice_what_is_this_dialog_title">Was ist das?</string>
@@ -23,12 +25,25 @@
     <string name="gpb_digital_invoice_line_item_details_description_label">Artikelname</string>
     <string name="gpb_digital_invoice_line_item_details_quantity_label">Anzahl</string>
     <string name="gpb_digital_invoice_line_item_details_gross_price_label">Artikelpreis</string>
-    <string name="gpb_digital_invoice_line_item_details_total_label">Total:</string>
+    <string name="gpb_digital_invoice_line_item_details_total_label">Gesamt</string>
     <string name="gpb_digital_invoice_line_item_details_save">Speichern</string>
     <plurals name="gpb_digital_invoice_line_item_details_selected_line_items">
         <item quantity="other">%1$d Artikel %2$s</item>
     </plurals>
     <string name="gpb_digital_invoice_line_item_details_selected">ausgewählt</string>
+    <string name="gpb_digital_invoice_line_item_total_label">Inkl. MwSt</string>
+
+    <string name="gpb_digital_header_title">Info</string>
+    <string name="gpb_digital_header_text_1">Diese neue Funktion kann Fehler enthalten. Bitte überprüfe noch einmal die Artikel und den Gesamtbetrag und bearbeite diese gegebenenfalls.</string>
+    <string name="gpb_digital_header_text_2">Du kannst die neue Funktion jederzeit überspringen.</string>
+    <string name="gpb_digital_header_button_1">OK</string>
+    <string name="gpb_digital_header_button_2">Überspringen</string>
+    <string name="gpb_digital_invoice_header_button_1">OK</string>
+    <string name="gpb_digital_invoice_header_button_2">Überspringen</string>
+
+    <string name="gpb_digital_invoice_footer_total_label">Gesamt</string>
+    <string name="gpb_digital_invoice_footer_total_expl">Inkl. Versandkosten, Rabatt usw.</string>
+    <string name="gpb_digital_invoice_footer_skip">Funktion überspringen</string>
 
     <string name="gpb_digital_invoice_addon_discount">Rabatt</string>
     <string name="gpb_digital_invoice_addon_giftcard">Gutschein</string>
@@ -36,9 +51,15 @@
     <string name="gpb_digital_invoice_addon_other_charges">Weitere Kosten</string>
     <string name="gpb_digital_invoice_addon_shipment">Versandkosten</string>
 
-    <string name="gpb_digital_invoice_onboarding_text_1">Wähle ab, welche Artikel du nicht bezahlen und zurückschicken möchtest.</string>
-    <string name="gpb_digital_invoice_onboarding_text_2">Hier kannst du die Anzahl der einzelnen Artikel bearbeiten.</string>
-    <string name="gpb_digital_invoice_onboarding_done_button_title">Ich hab\'s!</string>
+    <string name="gpb_digital_invoice_help_info">Hilfe</string>
+    <string name="gpb_digital_invoice_info_close_button_title">Schließen</string>
+    <string name="gpb_digital_invoice_info_text_1">Was ist das?</string>
+    <string name="gpb_digital_invoice_info_text_2">Wir haben die Artikel aus deiner Rechnung extrahiert. Wenn du einige Artikel zurückschicken oder du deine Rechnung nur teilweise bezahlen möchtest, kannst du einzelne Artikel abwählen und der zu bezahlende Betrag wird automatisch  neu berechnet.</string>
+
+    <string name="gpb_digital_invoice_onboarding_text_1">Dein neuer\nRetouren Assistent!</string>
+    <string name="gpb_digital_invoice_onboarding_text_2">Du kannst jetzt Artikel abwählen, die du zurückschicken möchtest. Bezahle nur, was du behälst.</string>
+    <string name="gpb_digital_invoice_onboarding_done_button_title">Weiter</string>
+    <string name="gpb_digital_invoice_onboarding_do_not_show_button_title">Bitte nicht mehr anzeigen</string>
 
     <string name="gpb_return_assistant_help_title">Der neue Retourenassistent</string>
     <string name="gpb_return_assistant_help_section_1_body_1">Nachdem Sie eine Rechnung abfotografiert haben, können Sie nun Rechnungsposten abwählen die Sie nicht möchten. Sie bezahlen nur für die Dinge die Sie behalten und können den Rest retournieren.</string>
@@ -48,4 +69,8 @@
     <string name="gpb_return_assistant_help_section_3_body">Sollte der Preis mal nicht perfekt ausgelesen worden sein, können Sie diesen einfach manuell korrigieren. Der Gesamtpreis aktualisiert sich automatisch.</string>
     <string name="gpb_return_assistant_help_section_3_title">Preis korrigieren</string>
     <string name="gpb_return_assistant_help_back_button_title">Zurück</string>
+
+
+
+
 </resources>

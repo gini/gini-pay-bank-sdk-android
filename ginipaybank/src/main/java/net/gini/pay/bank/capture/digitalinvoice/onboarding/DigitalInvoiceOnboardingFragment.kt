@@ -33,7 +33,7 @@ internal class DigitalInvoiceOnboardingFragment : Fragment() {
     private var binding by autoCleared<GpbFragmentDigitalInvoiceOnboardingBinding>()
     var listener: DigitalInvoiceOnboardingFragmentListener? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = GpbFragmentDigitalInvoiceOnboardingBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -72,6 +72,10 @@ internal class DigitalInvoiceOnboardingFragment : Fragment() {
     private fun setInputHandlers() {
         binding.gpbDoneButton.setOnClickListener {
             listener?.onCloseOnboarding()
+        }
+
+        binding.gbpDoNotShowButton.setOnClickListener {
+            listener?.onCloseOnboarding(true)
         }
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,11 +14,11 @@
         android:id="@+id/gpb_gross_price_total_integral_part"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="@dimen/gpb_digital_invoice_footer_gross_price_margin_bottom"
         android:layout_toStartOf="@+id/gpb_gross_price_total_fractional_part"
         android:includeFontPadding="false"
         android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.TotalGrossPrice.Integral.TextStyle"
+        app:layout_constraintEnd_toStartOf="@id/gpb_gross_price_total_fractional_part"
+        app:layout_constraintTop_toTopOf="@id/gpb_gross_price_total_fractional_part"
         tools:text="€242" />
 
     <TextView
@@ -25,21 +26,79 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/gpb_gross_price_total_integral_part"
-        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/gpb_digital_invoice_footer_gross_price_margin_top"
+        android:layout_marginEnd="@dimen/gpb_digital_invoice_footer_gross_price_margin_right"
         android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.TotalGrossPrice.Fractional.TextStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text=".90" />
 
     <TextView
-        android:id="@+id/gpb_bottom_message"
+        android:id="@+id/gpb_total_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/gpb_gross_price_total_integral_part"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="@dimen/gpb_digital_invoice_footer_notice_horizontal_margin"
-        android:layout_marginEnd="@dimen/gpb_digital_invoice_footer_notice_horizontal_margin"
-        android:layout_marginBottom="@dimen/gpb_digital_invoice_footer_notice_margin_bottom"
-        android:gravity="center_horizontal"
-        android:text="@string/gpb_digital_invoice_footer_notice"
-        android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.Footer.Notice.TextStyle" />
+        android:layout_marginStart="@dimen/gpb_digital_invoice_footer_total_label_margin_left"
+        android:text="@string/gpb_digital_invoice_footer_total_label"
+        android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.TotalGrossPrice.Label.TextStyle"
+        app:layout_constraintBottom_toBottomOf="@id/gpb_gross_price_total_integral_part"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/gpb_total_label_expl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/gpb_digital_invoice_footer_total_label_margin_left"
+        android:text="@string/gpb_digital_invoice_footer_total_expl"
+        android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.TotalGrossPrice.Expl.TextStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gpb_total_label" />
+
+    <TextView
+        android:id="@+id/gpb_bottom_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gpb_gross_price_total_integral_part"
+        android:layout_marginStart="@dimen/gpb_digital_invoice_footer_notice_horizontal_margin"
+        android:layout_marginTop="@dimen/gpb_digital_invoice_footer_notice_margin_top"
+        android:layout_marginEnd="@dimen/gpb_digital_invoice_footer_notice_horizontal_margin"
+        android:gravity="center"
+        android:text="@string/gpb_digital_invoice_footer_notice"
+        android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.Footer.Notice.TextStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gpb_gross_price_total_integral_part" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gpb_pay_button"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/gpb_digital_invoice_pay_button_height"
+        android:layout_marginStart="@dimen/gpb_digital_invoice_pay_button_margin"
+        android:layout_marginTop="@dimen/gpb_digital_invoice_pay_button_margin_top"
+        android:layout_marginEnd="@dimen/gpb_digital_invoice_pay_button_margin"
+        android:insetTop="0dp"
+        android:textColor="@color/gpb_digital_invoice_pay_button_text"
+        app:backgroundTint="@color/gpb_digital_invoice_pay_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gpb_bottom_message"
+        tools:text="Pay 2/2" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gpb_skip_button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/gpb_digital_invoice_pay_button_height"
+        android:layout_marginStart="@dimen/gpb_digital_invoice_pay_button_margin"
+        android:layout_marginTop="@dimen/gpb_digital_invoice_footer_skip_button_margin_top"
+        android:layout_marginEnd="@dimen/gpb_digital_invoice_pay_button_margin"
+        android:insetTop="0dp"
+        android:textColor="@color/gpb_digital_invoice_footer_skip_button_text"
+        android:text="@string/gpb_digital_invoice_footer_skip"
+        app:backgroundTint="@color/gpb_digital_invoice_footer_skip_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gpb_pay_button"
+        app:strokeColor="@color/gpb_digital_invoice_footer_skip_button_stroke"
+        app:strokeWidth="1dp"
+        tools:text="Pay 2/2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
