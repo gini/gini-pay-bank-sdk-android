@@ -9,7 +9,6 @@ import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import net.gini.android.capture.camera.CameraActivity
-import net.gini.android.capture.help.HelpActivity
 import net.gini.android.capture.internal.util.ActivityHelper.enableHomeAsUp
 import net.gini.android.capture.network.model.GiniCaptureCompoundExtraction
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
@@ -103,7 +102,6 @@ internal class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragm
         }
 
         if (item.itemId == R.id.help) {
-//            showHelp()
             return false
         }
 
@@ -166,10 +164,6 @@ internal class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragm
             LineItemDetailsActivity.createIntent(this, selectableLineItem, returnReasons),
             EDIT_LINE_ITEM_REQUEST
         )
-    }
-
-    private fun showHelp() {
-        startActivity(Intent(this, HelpActivity::class.java))
     }
 
     /**
