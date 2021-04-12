@@ -13,5 +13,5 @@ package net.gini.pay.bank.capture.digitalinvoice.onboarding
  */
 interface DigitalInvoiceOnboardingFragmentListener {
 
-    fun onCloseOnboarding(doNotShowAnymore: Boolean = false)
+    fun onCloseOnboarding()
 }

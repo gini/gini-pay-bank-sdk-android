@@ -36,7 +36,6 @@ interface LineItemDetailsScreenContract {
         fun disableInput()
         fun showReturnReasonDialog(reasons: List<GiniCaptureReturnReason>,
                                    resultCallback: ReturnReasonDialogResultCallback)
-        fun clearFocus()
     }
 
     /**

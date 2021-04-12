@@ -70,35 +70,29 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/gpb_pay_button"
-        style="@style/Widget.MaterialComponents.Button"
+        style="@style/GiniCaptureTheme.DigitalInvoice.Pay.Button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/gpb_digital_invoice_pay_button_height"
         android:layout_marginStart="@dimen/gpb_digital_invoice_pay_button_margin"
         android:layout_marginTop="@dimen/gpb_digital_invoice_pay_button_margin_top"
         android:layout_marginEnd="@dimen/gpb_digital_invoice_pay_button_margin"
         android:insetTop="0dp"
-        android:textColor="@color/gpb_digital_invoice_pay_button_text"
-        app:backgroundTint="@color/gpb_digital_invoice_pay_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gpb_bottom_message"
         tools:text="Pay 2/2" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/gpb_skip_button"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        style="@style/GiniCaptureTheme.DigitalInvoice.Skip.Button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/gpb_digital_invoice_pay_button_height"
         android:layout_marginStart="@dimen/gpb_digital_invoice_pay_button_margin"
         android:layout_marginTop="@dimen/gpb_digital_invoice_footer_skip_button_margin_top"
         android:layout_marginEnd="@dimen/gpb_digital_invoice_pay_button_margin"
         android:insetTop="0dp"
-        android:textColor="@color/gpb_digital_invoice_footer_skip_button_text"
         android:text="@string/gpb_digital_invoice_footer_skip"
-        app:backgroundTint="@color/gpb_digital_invoice_footer_skip_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gpb_pay_button"
-        app:strokeColor="@color/gpb_digital_invoice_footer_skip_button_stroke"
-        app:strokeWidth="1dp"
         tools:text="Pay 2/2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

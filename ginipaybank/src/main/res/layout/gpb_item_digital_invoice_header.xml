@@ -50,12 +50,12 @@
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:padding="0dp"
-        app:layout_constraintStart_toStartOf="@id/gpb_header_title"
         app:icon="@drawable/gpb_digital_header_arrow_up"
         app:iconGravity="end"
         app:iconPadding="0dp"
         app:iconTint="@color/gpb_digital_invoice_header_collapse_tint"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/gpb_header_title"
         app:layout_constraintTop_toBottomOf="@id/gpb_header_title"
         app:layout_constraintTop_toTopOf="@id/gpb_header_title"
         app:strokeColor="@android:color/transparent"
@@ -103,26 +103,14 @@
 
     </LinearLayout>
 
-
-    <!--    <Space-->
-    <!--        android:id="@+id/gpb_header_space_2"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="20dp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@id/gpb_header_image"-->
-    <!--        app:layout_constraintStart_toStartOf="parent" />-->
-
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/gpb_header_button_1"
-        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        style="@style/GiniCaptureTheme.DigitalInvoice.Header.Button1"
         android:layout_width="0dp"
         android:layout_height="@dimen/gpb_digital_invoice_header_button_height"
         android:layout_marginStart="@dimen/gpb_digital_invoice_header_button_margin"
         android:layout_marginTop="@dimen/gpb_digital_invoice_header_button_margin"
         android:text="@string/gpb_digital_invoice_header_button_1"
-        android:textColor="@color/gpb_digital_invoice_header_button_1_text_color"
-        app:backgroundTint="@color/gpb_digital_invoice_header_button_1_background_color"
-        app:cornerRadius="@dimen/gpb_digital_invoice_header_button_corners"
         app:layout_constraintEnd_toStartOf="@id/gpb_space_buttons"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gpb_header_content" />
@@ -137,19 +125,15 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/gpb_header_button_2"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        style="@style/GiniCaptureTheme.DigitalInvoice.Header.Button2"
         android:layout_width="0dp"
         android:layout_height="@dimen/gpb_digital_invoice_header_button_height"
         android:layout_marginTop="@dimen/gpb_digital_invoice_header_button_margin"
         android:layout_marginEnd="@dimen/gpb_digital_invoice_header_button_margin"
         android:text="@string/gpb_digital_invoice_header_button_2"
-        android:textColor="@color/gpb_digital_invoice_header_button_2_text_color"
-        app:cornerRadius="@dimen/gpb_digital_invoice_header_button_corners"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/gpb_space_buttons"
-        app:layout_constraintTop_toBottomOf="@id/gpb_header_content"
-        app:strokeColor="@color/gpb_digital_invoice_header_button_2_stroke_color"
-        app:strokeWidth="@dimen/gpb_digital_invoice_header_button_stroke" />
+        app:layout_constraintTop_toBottomOf="@id/gpb_header_content" />
 
     <Space
         android:id="@+id/gpb_space_padding_bottom"

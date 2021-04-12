@@ -29,11 +29,13 @@
     <color name="gpb_digital_invoice_what_is_this_dialog_title">#696969</color>
     <color name="gpb_digital_invoice_what_is_this_dialog_divider">#d8d8d8</color>
     <color name="gpb_digital_invoice_what_is_this_dialog_response_text">#000</color>
-    <color name="gpb_digital_invoice_header_collapse_tint">#fff</color>
     <color name="gpb_digital_invoice_help_icon_tint">#fff</color>
     <color name="gpb_digital_invoice_switch_thumb">#fff</color>
     <color name="gpb_digital_invoice_switch_track_checked">#009edc</color>
     <color name="gpb_digital_invoice_switch_track_disabled">#9B9B9B</color>
+
+    <color name="gpb_digital_invoice_header_collapse_tint">#fff</color>
+    <color name="gpb_digital_invoice_header_description_text">#fff</color>
 
     <color name="gpb_digital_invoice_footer_expl_text">#9B9B9B</color>
     <color name="gpb_digital_invoice_footer_gross_price_text">#333333</color>
@@ -46,6 +48,7 @@
     <color name="gpb_digital_invoice_line_item_details_checkbox_label">#9B9B9B</color>
     <color name="gpb_digital_invoice_line_item_details_input_field_text">#222222</color>
     <color name="gpb_digital_invoice_line_item_details_input_field_hint_text">#9B9B9B</color>
+    <color name="gpb_digital_invoice_line_item_details_input_line">#F1F2F4</color>
     <color name="gpb_digital_invoice_line_item_details_multiplication_symbol">#9B9B9B</color>
     <color name="gpb_digital_invoice_line_item_details_total_label">#000</color>
     <color name="gpb_digital_invoice_line_item_details_save_button">#009edc</color>
@@ -68,7 +71,7 @@
     <color name="gpb_digital_invoice_onboarding_text">#fff</color>
     <color name="gpb_digital_invoice_onboarding_done_button">#fff</color>
     <color name="gpb_digital_invoice_onboarding_done_button_text">#009EDC</color>
-    <color name="gpb_digital_invoice_onboarding_do_not_sho_button_text">#fff</color>
+    <color name="gpb_digital_invoice_onboarding_do_not_show_button_text">#fff</color>
     <color name="gpb_digital_invoice_info_text">#fff</color>
     <color name="gpb_digital_invoice_info_close_button">#fff</color>
     <color name="gpb_digital_invoice_info_close_button_text">#009EDC</color>

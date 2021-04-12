@@ -1,6 +1,5 @@
 package net.gini.pay.bank.capture.digitalinvoice.details
 
-
 import android.app.Activity
 import android.os.Bundle
 import android.text.InputFilter
@@ -10,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputLayout
 import net.gini.android.capture.internal.util.ActivityHelper.forcePortraitOrientationOnPhones
@@ -22,9 +22,6 @@ import net.gini.pay.bank.capture.digitalinvoice.SelectableLineItem
 import net.gini.pay.bank.capture.util.autoCleared
 import net.gini.pay.bank.capture.util.parentFragmentManagerOrNull
 import net.gini.pay.bank.databinding.GpbFragmentLineItemDetailsBinding
-import java.util.regex.Matcher
-import java.util.regex.Pattern
-
 
 /**
  * Created by Alpar Szotyori on 17.12.2019.
@@ -269,6 +266,9 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View,
      */
     override fun showDescription(description: String) {
         binding.gpbDescription.setText(description)
+        binding.gpbDescriptionContainer.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
+        binding.gpbDescriptionContainer.endIconDrawable =
+            ResourcesCompat.getDrawable(resources, R.drawable.gpb_digital_invoice_input_clear_icon, null)
     }
 
     /**
@@ -278,6 +278,9 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View,
      */
     override fun showQuantity(quantity: Int) {
         binding.gpbQuantity.setText(quantity.toString())
+        binding.gpbQuantityContainer.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
+        binding.gpbQuantityContainer.endIconDrawable =
+            ResourcesCompat.getDrawable(resources, R.drawable.gpb_digital_invoice_input_clear_icon, null)
     }
 
     /**
@@ -287,6 +290,9 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View,
      */
     override fun showGrossPrice(displayedGrossPrice: String, currency: String) {
         binding.gpbGrossPrice.setText(displayedGrossPrice)
+        binding.gpbGrossPriceContainer.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
+        binding.gpbGrossPriceContainer.endIconDrawable =
+            ResourcesCompat.getDrawable(resources, R.drawable.gpb_digital_invoice_input_clear_icon, null)
         binding.gpbCurrency.text = currency
     }
 
@@ -316,15 +322,6 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View,
      */
     override fun disableSaveButton() {
         binding.gpbSaveButton.isEnabled = false
-    }
-
-    override fun clearFocus() {
-        binding.gpbDescription.clearFocus()
-        binding.gpbQuantity.clearFocus()
-        binding.gpbGrossPrice.clearFocus()
-        binding.gpbDescriptionContainer.clearFocus()
-        binding.gpbQuantityContainer.clearFocus()
-        binding.gpbGrossPriceContainer.clearFocus()
     }
 
     /**

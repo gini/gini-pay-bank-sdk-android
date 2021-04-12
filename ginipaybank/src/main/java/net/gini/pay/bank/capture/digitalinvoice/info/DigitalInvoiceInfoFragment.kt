@@ -14,9 +14,9 @@ import net.gini.pay.bank.databinding.GpbFragmentDigitalInvoiceOnboardingBinding
 import net.gini.pay.bank.databinding.GpbFragmentLineItemDetailsBinding
 
 /**
- * Created by Alpar Szotyori on 14.10.2020.
+ * Created by Sergiu Ciuperca.
  *
- * Copyright (c) 2020 Gini GmbH.
+ * Copyright (c) 2021 Gini GmbH.
  */
 
 /**
@@ -65,9 +65,9 @@ internal class DigitalInvoiceInfoFragment : Fragment() {
      *
      * @suppress
      */
-    override fun onDestroy() {
+    override fun onDestroyView() {
         listener = null
-        super.onDestroy()
+        super.onDestroyView()
     }
 
     private fun setInputHandlers() {

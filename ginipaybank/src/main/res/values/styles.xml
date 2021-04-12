@@ -112,6 +112,47 @@
     <style name="Root.GiniCaptureTheme.DigitalInvoice.LineItemDetails.InputField.Hint.TextStyle" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:textColor">
+            @color/gpb_digital_invoice_line_item_details_input_field_hint_text
+        </item>
+    </style>
+
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.LineItemDetails.InputField.Style" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="materialThemeOverlay">
+            @style/Root.GiniCaptureTheme.ThemeOverlay.App.TextInputLayout
+        </item>
+        <item name="shapeAppearance">@style/ShapeAppearance.MaterialComponents.SmallComponent</item>
+        <item name="hintTextColor">
+            @color/gpb_digital_invoice_line_item_details_input_field_hint_text
+        </item>
+        <item name="boxBackgroundColor">@color/gpb_digital_invoice_box_background_color</item>
+        <item name="boxStrokeColor">@color/gpb_digital_invoice_line_item_details_input_stroke</item>
+        <item name="endIconTint">@color/gpb_digital_invoice_line_item_details_input_field_text
+        </item>
+        <item name="hintEnabled">false</item>
+        <item name="errorEnabled">false</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="helperTextEnabled">false</item>
+        <item name="endIconDrawable">@drawable/gpb_digital_invoice_input_clear_icon</item>
+        <item name="endIconMode">none</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.ThemeOverlay.App.TextInputLayout" parent="">
+        <item name="colorPrimary">
+            @color/gpb_digital_invoice_line_item_details_input_field_hint_text
+        </item>
+        <item name="colorOnSurface">
+            @color/gpb_digital_invoice_line_item_details_input_field_hint_text
+        </item>
+        <item name="colorError">@color/gpb_digital_invoice_line_item_details_input_field_hint_text
+        </item>
+        <item name="textAppearanceSubtitle1">
+            @style/Root.GiniCaptureTheme.DigitalInvoice.LineItemDetails.InputField.TextStyle
+        </item>
+        <item name="textAppearanceCaption">@style/Root.GiniCaptureTheme.Analysis.Hint.TextStyle
+        </item>
+        <item name="editTextStyle">@style/Widget.MaterialComponents.TextInputLayout.FilledBox</item>
     </style>
 
     <style name="Root.GiniCaptureTheme.DigitalInvoice.LineItemDetails.Total.TextStyle" parent="TextAppearance.AppCompat">
@@ -223,6 +264,57 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.Pay.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/gpb_digital_invoice_pay_button_text</item>
+        <item name="backgroundTint">@color/gpb_digital_invoice_pay_button</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.Info.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/gpb_digital_invoice_info_close_button_text</item>
+        <item name="backgroundTint">@color/gpb_digital_invoice_info_close_button</item>
+        <item name="rippleColor">?attr/colorAccent</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.Onboarding.Done.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/gpb_digital_invoice_onboarding_done_button_text</item>
+        <item name="backgroundTint">@color/gpb_digital_invoice_onboarding_done_button</item>
+        <item name="rippleColor">?attr/colorAccent</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.Onboarding.Dismiss.Button" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">
+            @color/gpb_digital_invoice_onboarding_do_not_show_button_text
+        </item>
+        <item name="android:textAppearance">
+            @style/GiniCaptureTheme.DigitalInvoice.Onboarding.TextStyle
+        </item>
+        <item name="rippleColor">#fff</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.Skip.Button" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@color/gpb_digital_invoice_footer_skip_button_text</item>
+        <item name="backgroundTint">@color/gpb_digital_invoice_footer_skip_button</item>
+        <item name="strokeColor">@color/gpb_digital_invoice_footer_skip_button_stroke</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.Header.Button2" parent="Root.GiniCaptureTheme.DigitalInvoice.Skip.Button">
+        <item name="cornerRadius">@dimen/gpb_digital_invoice_header_button_corners</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_header_button_2_text_color</item>
+        <item name="strokeColor">@color/gpb_digital_invoice_header_button_2_stroke_color</item>
+        <item name="strokeWidth">@dimen/gpb_digital_invoice_header_button_stroke</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="rippleColor">#fff</item>
+    </style>
+
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.Header.Button1" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="cornerRadius">@dimen/gpb_digital_invoice_header_button_corners</item>
+        <item name="android:textColor">@color/gpb_digital_invoice_header_button_1_text_color</item>
+        <item name="backgroundTint">@color/gpb_digital_invoice_header_button_1_background_color
+        </item>
+        <item name="rippleColor">?attr/colorAccent</item>
+    </style>
+
     <style name="GiniCaptureTheme.DigitalInvoice.Title.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.Title.TextStyle" />
 
     <style name="GiniCaptureTheme.DigitalInvoice.SelectedAndTotalItems.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.SelectedAndTotalItems.TextStyle" />
@@ -256,6 +348,8 @@
     <style name="GiniCaptureTheme.DigitalInvoice.LineItemDetails.Checkbox.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.LineItemDetails.Checkbox.TextStyle" />
 
     <style name="GiniCaptureTheme.DigitalInvoice.LineItemDetails.InputField.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.LineItemDetails.InputField.TextStyle" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.LineItemDetails.InputField.Style" parent="Root.GiniCaptureTheme.DigitalInvoice.LineItemDetails.InputField.Style" />
 
     <style name="GiniCaptureTheme.DigitalInvoice.LineItemDetails.InputField.Hint.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.LineItemDetails.InputField.Hint.TextStyle" />
 
@@ -291,5 +385,17 @@
 
     <style name="GiniCaptureTheme.Help.ReturnAssistant.Section.Body.TextStyle" parent="Root.GiniCaptureTheme.Help.ReturnAssistant.Section.Body.TextStyle" />
 
-    <color name="gpb_digital_invoice_header_description_text">#fff</color>
+    <style name="GiniCaptureTheme.DigitalInvoice.Skip.Button" parent="Root.GiniCaptureTheme.DigitalInvoice.Skip.Button" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.Pay.Button" parent="Root.GiniCaptureTheme.DigitalInvoice.Pay.Button" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.Header.Button2" parent="Root.GiniCaptureTheme.DigitalInvoice.Header.Button2" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.Header.Button1" parent="Root.GiniCaptureTheme.DigitalInvoice.Header.Button1" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.Info.Button" parent="Root.GiniCaptureTheme.DigitalInvoice.Info.Button" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.Onboarding.Done.Button" parent="Root.GiniCaptureTheme.DigitalInvoice.Onboarding.Done.Button" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.Onboarding.Dismiss.Button" parent="Root.GiniCaptureTheme.DigitalInvoice.Onboarding.Dismiss.Button" />
 </resources>

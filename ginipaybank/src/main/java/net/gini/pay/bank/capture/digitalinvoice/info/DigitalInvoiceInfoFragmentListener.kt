@@ -1,9 +1,9 @@
 package net.gini.pay.bank.capture.digitalinvoice.info
 
 /**
- * Created by Alpar Szotyori on 15.10.2020.
+ * Created by Sergiu Ciuperca.
  *
- * Copyright (c) 2020 Gini GmbH.
+ * Copyright (c) 2021 Gini GmbH.
  */
 
 /**

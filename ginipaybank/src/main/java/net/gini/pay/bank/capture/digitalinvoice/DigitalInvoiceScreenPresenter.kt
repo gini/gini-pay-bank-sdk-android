@@ -22,12 +22,13 @@ internal open class DigitalInvoiceScreenPresenter(
     val compoundExtractions: Map<String, GiniCaptureCompoundExtraction> = emptyMap(),
     val returnReasons: List<GiniCaptureReturnReason> = emptyList(),
     private val isInaccurateExtraction: Boolean = false,
-    val oncePerInstallEventStore: OncePerInstallEventStore = OncePerInstallEventStore(activity)
+    private var onboardingDisplayed: Boolean = false,
+    private val oncePerInstallEventStore: OncePerInstallEventStore = OncePerInstallEventStore(activity)
 ) :
     DigitalInvoiceScreenContract.Presenter(activity, view) {
 
     override var listener: DigitalInvoiceFragmentListener? = null
-    private var onboardingDisplayed: Boolean = false
+
     private var footerDetails = DigitalInvoiceScreenContract.FooterDetails(inaccurateExtraction = isInaccurateExtraction)
 
     @VisibleForTesting
@@ -90,13 +91,8 @@ internal open class DigitalInvoiceScreenPresenter(
     override fun start() {
         updateView()
         if (!onboardingDisplayed && !oncePerInstallEventStore.containsEvent(OncePerInstallEvent.SHOW_DIGITAL_INVOICE_ONBOARDING)) {
-            onboardingDisplayed = true
-            view.showOnboarding()
+            listener?.showOnboarding()
         }
-    }
-
-    override fun disableOnboarding() {
-        oncePerInstallEventStore.saveEvent(OncePerInstallEvent.SHOW_DIGITAL_INVOICE_ONBOARDING)
     }
 
     override fun stop() {

@@ -3,6 +3,7 @@ package net.gini.pay.bank.capture.digitalinvoice
 import net.gini.android.capture.network.model.GiniCaptureCompoundExtraction
 import net.gini.android.capture.network.model.GiniCaptureSpecificExtraction
 import net.gini.pay.bank.capture.digitalinvoice.details.LineItemDetailsFragment
+import net.gini.pay.bank.capture.digitalinvoice.onboarding.DigitalInvoiceOnboardingFragment
 
 /**
  * Created by Alpar Szotyori on 05.12.2019.
@@ -36,4 +37,12 @@ interface DigitalInvoiceFragmentListener {
      */
     fun onPayInvoice(specificExtractions: Map<String, GiniCaptureSpecificExtraction>,
                      compoundExtractions: Map<String, GiniCaptureCompoundExtraction>)
+
+
+    /**
+     * Called before displaying [DigitalInvoiceFragmenta] so the user can see the onboarding view.
+     *
+     * You should display [DigitalInvoiceOnboardingFragment]
+     */
+    fun showOnboarding()
 }
