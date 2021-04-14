@@ -189,7 +189,7 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
     private fun initRecyclerView() {
         lineItemsAdapter = LineItemsAdapter(this)
         activity?.let {
-            binding.gpbLineItems.apply {
+            binding.lineItems.apply {
                 layoutManager = LinearLayoutManager(it)
                 adapter = lineItemsAdapter
                 setHasFixedSize(true)

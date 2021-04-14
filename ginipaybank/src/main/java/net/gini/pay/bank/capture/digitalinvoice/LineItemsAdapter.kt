@@ -1,11 +1,16 @@
 package net.gini.pay.bank.capture.digitalinvoice
 
+import android.animation.Animator
+import android.animation.AnimatorSet
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.core.content.ContextCompat
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import net.gini.pay.bank.R
@@ -76,12 +81,12 @@ internal class LineItemsAdapter(private val listener: LineItemsAdapterListener) 
         val viewHolder =
             ViewHolder.forViewTypeId(viewTypeId, layoutInflater, parent)
         if (viewHolder is ViewHolder.FooterViewHolder) {
-            viewHolder.binding.gpbPayButton.setOnClickListener(footerButtonClickListener)
-            viewHolder.binding.gpbSkipButton.setOnClickListener(footerSkipButtonClickListener)
+            viewHolder.binding.payButton.setOnClickListener(footerButtonClickListener)
+            viewHolder.binding.skipButton.setOnClickListener(footerSkipButtonClickListener)
         }
 
         if (viewHolder is ViewHolder.HeaderViewHolder) {
-            viewHolder.binding.gpbHeaderButton2.setOnClickListener(footerSkipButtonClickListener)
+            viewHolder.binding.headerButton2.setOnClickListener(footerSkipButtonClickListener)
         }
 
         return viewHolder
@@ -220,25 +225,123 @@ internal sealed class ViewHolder<in T>(itemView: View, val viewType: ViewType) :
     ) :
         ViewHolder<Unit>(binding.root, Header) {
         internal var listener: LineItemsAdapterListener? = null
+        private val collapsedHeight =
+            binding.root.resources.getDimensionPixelSize(R.dimen.gpb_digital_invoice_header_collapsed_height)
+        private val collapsedWidth =
+            binding.root.resources.getDimensionPixelSize(R.dimen.gpb_digital_invoice_header_collapsed_width)
+        private val collapsedMarginRight =
+            binding.root.resources.getDimensionPixelSize(R.dimen.gpb_digital_invoice_header_title_collapsed_margin)
+
+        private val collapsedCardRadius =
+            binding.root.resources.getDimensionPixelSize(R.dimen.gpb_digital_invoice_header_corners_collapsed)
+                .toFloat()
+
+        private val expandedCardRadius =
+            binding.root.resources.getDimensionPixelSize(R.dimen.gpb_digital_invoice_header_corners_expanded)
+                .toFloat()
+
+        private var expandedHeight: Int = -1
+        private var expandedWidth: Int = -1
+
+        private var animatorSet: AnimatorSet? = null
 
         private val toggleClickListener = View.OnClickListener {
-            when (binding.root.currentState) {
-                R.id.end -> {
-                    binding.root.transitionToState(R.id.start)
-                }
-                else -> {
-                    binding.root.transitionToState(R.id.end)
-                }
-            }
+            animateView()
         }
 
         override fun bind(data: Unit, allData: List<Unit>?, dataIndex: Int?) {
-            binding.gpbCollapseButton.setOnClickListener(toggleClickListener)
-            binding.gpbHeaderButton1.setOnClickListener(toggleClickListener)
-            binding.gpbHeaderTitle.setOnClickListener(toggleClickListener)
+            binding.collapseButton.setOnClickListener(toggleClickListener)
+            binding.headerButton1.setOnClickListener(toggleClickListener)
+            binding.headerTitle.setOnClickListener(toggleClickListener)
         }
 
         override fun unbind() {
+        }
+
+        private fun animateView() {
+            animatorSet?.cancel()
+            if (expandedHeight == -1) {
+                expandedHeight = binding.headerBackgroundView.height
+                expandedWidth = binding.headerBackgroundView.width
+            }
+
+            val isExpandingAnimation = binding.headerBackgroundView.height <= collapsedHeight
+            val wDiff = (expandedWidth - collapsedWidth).toFloat()
+            val hDiff = (expandedHeight - collapsedHeight).toFloat()
+            val cornerDiff = collapsedCardRadius - expandedCardRadius
+
+            val animator = ValueAnimator.ofFloat(0f, 1f)
+                .setDuration(300)
+
+            animator.addListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator?) {
+                    if (!isExpandingAnimation) {
+                        binding.headerText1.isVisible = false
+                        binding.headerText2.isVisible = false
+                        binding.headerImage.isVisible = false
+                        binding.containerButtons.isVisible = false
+                    }
+                }
+
+                override fun onAnimationEnd(animation: Animator?) {
+                    if (isExpandingAnimation) {
+                        binding.headerText1.isVisible = true
+                        binding.headerText2.isVisible = true
+                        binding.headerImage.isVisible = true
+                        binding.containerButtons.isVisible = true
+                    }
+                }
+
+                override fun onAnimationCancel(animation: Animator?) {
+                }
+
+                override fun onAnimationRepeat(animation: Animator?) {
+                }
+
+            })
+
+            animator.addUpdateListener(object : ValueAnimator.AnimatorUpdateListener {
+                override fun onAnimationUpdate(animation: ValueAnimator?) {
+                    val updateVal = (animation?.animatedValue as? Float)?.let {
+                        if (!isExpandingAnimation) 1 - it else it
+                    } ?: return
+
+                    val backgroundLp = binding.headerBackgroundView.layoutParams
+                    val containerLp = binding.headerContent.layoutParams
+                    val infoLp =
+                        binding.headerTitle.layoutParams as ConstraintLayout.LayoutParams
+
+
+                    backgroundLp.width = collapsedWidth + (updateVal * wDiff).toInt()
+                    containerLp.width = collapsedWidth + (updateVal * wDiff).toInt()
+                    backgroundLp.height = collapsedHeight + (updateVal * hDiff).toInt()
+                    containerLp.height = collapsedHeight + (updateVal * hDiff).toInt()
+                    infoLp.marginEnd = ((1f - updateVal) * collapsedMarginRight).toInt()
+
+                    binding.collapseButton.alpha = 0.7f + updateVal * 0.3f
+                    binding.collapseButton.rotation = 180f - updateVal * 180f
+                    binding.collapseButton.alpha = 0.7f + updateVal * 0.3f
+                    binding.collapseButton.scaleX = 0.8f + updateVal * 0.2f
+                    binding.collapseButton.scaleY = 0.8f + updateVal * 0.2f
+
+                    binding.headerTitle.alpha = 0.7f + updateVal * 0.3f
+                    binding.headerTitle.scaleX = 1.25f - updateVal * 0.25f
+                    binding.headerTitle.scaleY = 1.25f - updateVal * 0.25f
+
+                    binding.headerBackgroundView.radius =
+                        collapsedCardRadius - updateVal * cornerDiff
+
+                    binding.headerBackgroundView.layoutParams = backgroundLp
+                    binding.headerContent.layoutParams = containerLp
+                    binding.headerTitle.layoutParams = infoLp
+                }
+            })
+
+            animatorSet = AnimatorSet()
+            animatorSet?.interpolator = AccelerateDecelerateInterpolator()
+            animatorSet?.play(animator)
+            animatorSet?.start()
+
         }
     }
 
@@ -262,27 +365,27 @@ internal sealed class ViewHolder<in T>(itemView: View, val viewType: ViewType) :
                 disable()
             }
             val articleIndex = (dataIndex ?: 0) + 1
-            binding.gpbItemIndexLabel.text = binding.gpbItemIndexLabel.resources.getString(
+            binding.itemIndexLabel.text = binding.itemIndexLabel.resources.getString(
                 R.string.gpb_digital_invoice_line_item_index,
                 articleIndex,
                 allData?.size ?: 0
             )
-            binding.gbpSwitch.isChecked = data.selected
+            binding.enableSwitch.isChecked = data.selected
 
             data.lineItem.let { li ->
-                binding.gpbDescription.text = li.description
-                binding.gpbQuantity.text = when {
+                binding.description.text = li.description
+                binding.quantity.text = when {
                     data.reason != null -> data.reason!!.labelInLocalLanguageOrGerman
-                    else -> binding.gpbQuantity.resources.getString(
+                    else -> binding.quantity.resources.getString(
                         R.string.gpb_digital_invoice_line_item_quantity,
                         li.quantity
                     )
                 }
                 DigitalInvoice.lineItemTotalGrossPriceIntegralAndFractionalParts(li)
                     .let { (integral, fractional) ->
-                        binding.gpbGrossPriceIntegralPart.text = integral
+                        binding.grossPriceIntegralPart.text = integral
                         @SuppressLint("SetTextI18n")
-                        binding.gpbGrossPriceFractionalPart.text = fractional
+                        binding.grossPriceFractionalPart.text = fractional
                     }
             }
             itemView.setOnClickListener {
@@ -291,7 +394,7 @@ internal sealed class ViewHolder<in T>(itemView: View, val viewType: ViewType) :
                 }
 
             }
-            binding.gbpSwitch.setOnCheckedChangeListener { _, isChecked ->
+            binding.enableSwitch.setOnCheckedChangeListener { _, isChecked ->
                 allData?.getOrNull(dataIndex ?: -1)?.let {
                     if (it.selected != isChecked) {
                         listener?.apply {
@@ -309,36 +412,36 @@ internal sealed class ViewHolder<in T>(itemView: View, val viewType: ViewType) :
         override fun unbind() {
             listener = null
             itemView.setOnClickListener(null)
-            binding.gbpSwitch.setOnCheckedChangeListener(null)
+            binding.enableSwitch.setOnCheckedChangeListener(null)
         }
 
         fun enable() {
             itemView.isEnabled = true
-            binding.gbpStrokeBackgroundView.background = ContextCompat.getDrawable(
+            binding.strokeBackgroundView.background = ContextCompat.getDrawable(
                 itemView.context,
                 R.drawable.gpb_digital_invoice_line_item_stroke_background
             )
-            binding.gpbDescription.setTextColor(
+            binding.description.setTextColor(
                 ContextCompat.getColor(
                     itemView.context,
                     R.color.gpb_digital_invoice_line_item_description_text
                 )
             )
-            binding.gpbEdit.isEnabled = true
+            binding.editButton.isEnabled = true
 
-            binding.gpbQuantity.setTextColor(
+            binding.quantity.setTextColor(
                 ContextCompat.getColor(
                     itemView.context,
                     R.color.gpb_digital_invoice_line_item_quantity_text
                 )
             )
-            binding.gpbGrossPriceIntegralPart.setTextColor(
+            binding.grossPriceIntegralPart.setTextColor(
                 ContextCompat.getColor(
                     itemView.context,
                     R.color.gpb_digital_invoice_line_item_gross_price_text
                 )
             )
-            binding.gpbGrossPriceFractionalPart.setTextColor(
+            binding.grossPriceFractionalPart.setTextColor(
                 ContextCompat.getColor(
                     itemView.context,
                     R.color.gpb_digital_invoice_line_item_gross_price_text
@@ -353,15 +456,15 @@ internal sealed class ViewHolder<in T>(itemView: View, val viewType: ViewType) :
                 itemView.context,
                 R.color.gpb_digital_invoice_line_item_disabled
             )
-            binding.gbpStrokeBackgroundView.background = ContextCompat.getDrawable(
+            binding.strokeBackgroundView.background = ContextCompat.getDrawable(
                 itemView.context,
                 R.drawable.gpb_digital_invoice_line_item_stroke_background_disabled
             )
-            binding.gpbDescription.setTextColor(disabledColor)
-            binding.gpbEdit.isEnabled = false
-            binding.gpbQuantity.setTextColor(disabledColor)
-            binding.gpbGrossPriceIntegralPart.setTextColor(disabledColor)
-            binding.gpbGrossPriceFractionalPart.setTextColor(disabledColor)
+            binding.description.setTextColor(disabledColor)
+            binding.editButton.isEnabled = false
+            binding.quantity.setTextColor(disabledColor)
+            binding.grossPriceIntegralPart.setTextColor(disabledColor)
+            binding.grossPriceFractionalPart.setTextColor(disabledColor)
         }
     }
 
@@ -408,18 +511,18 @@ internal sealed class ViewHolder<in T>(itemView: View, val viewType: ViewType) :
             allData: List<DigitalInvoiceScreenContract.FooterDetails>?,
             dataIndex: Int?
         ) {
-            binding.gpbSkipButton.isVisible = data.inaccurateExtraction
-            binding.gpbPayButton.isEnabled = data.buttonEnabled
-            binding.gpbPayButton.text =
-                binding.gpbPayButton.resources.getString(
+            binding.skipButton.isVisible = data.inaccurateExtraction
+            binding.payButton.isEnabled = data.buttonEnabled
+            binding.payButton.text =
+                binding.payButton.resources.getString(
                     R.string.gpb_digital_invoice_pay,
                     data.count,
                     data.total
                 )
 
             val (integral, fractional) = data.totalGrossPriceIntegralAndFractionalParts
-            binding.gpbGrossPriceTotalIntegralPart.text = integral
-            binding.gpbGrossPriceTotalFractionalPart.text = fractional
+            binding.grossPriceTotalIntegralPart.text = integral
+            binding.grossPriceTotalFractionalPart.text = fractional
         }
 
         override fun unbind() {

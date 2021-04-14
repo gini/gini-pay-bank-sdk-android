@@ -315,6 +315,8 @@
         <item name="rippleColor">?attr/colorAccent</item>
     </style>
 
+    <style name="Root.GiniCaptureTheme.DigitalInvoice.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch"/>
+
     <style name="GiniCaptureTheme.DigitalInvoice.Title.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.Title.TextStyle" />
 
     <style name="GiniCaptureTheme.DigitalInvoice.SelectedAndTotalItems.TextStyle" parent="Root.GiniCaptureTheme.DigitalInvoice.SelectedAndTotalItems.TextStyle" />
@@ -398,4 +400,6 @@
     <style name="GiniCaptureTheme.DigitalInvoice.Onboarding.Done.Button" parent="Root.GiniCaptureTheme.DigitalInvoice.Onboarding.Done.Button" />
 
     <style name="GiniCaptureTheme.DigitalInvoice.Onboarding.Dismiss.Button" parent="Root.GiniCaptureTheme.DigitalInvoice.Onboarding.Dismiss.Button" />
+
+    <style name="GiniCaptureTheme.DigitalInvoice.Switch" parent="Root.GiniCaptureTheme.DigitalInvoice.Switch" />
 </resources>

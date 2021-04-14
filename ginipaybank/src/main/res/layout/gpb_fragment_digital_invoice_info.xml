@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/gpb_digital_invoice_onboarding_fragment_background"
     android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
     tools:context=".digitalinvoice.info.DigitalInvoiceInfoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +16,7 @@
         android:layout_weight="1">
 
         <TextView
-            android:id="@+id/gpb_info_text_1"
+            android:id="@+id/info_text_1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -24,27 +26,27 @@
             android:gravity="center"
             android:text="@string/gpb_digital_invoice_info_text_1"
             android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.Info.Title.TextStyle"
-            app:layout_constraintBottom_toTopOf="@id/gpb_digital_invoice_image"
+            app:layout_constraintBottom_toTopOf="@id/digital_invoice_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="spread_inside" />
 
         <ImageView
-            android:id="@+id/gpb_digital_invoice_image"
+            android:id="@+id/digital_invoice_image"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/gpb_digital_invoice_onboarding_hero_image_vertical_margin"
             android:src="@drawable/gpb_digital_invoice_list_image"
-            app:layout_constraintBottom_toTopOf="@id/gpb_info_text_2"
+            app:layout_constraintBottom_toTopOf="@id/info_text_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/gpb_info_text_1"
+            app:layout_constraintTop_toBottomOf="@id/info_text_1"
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/gpb_info_text_2"
+            android:id="@+id/info_text_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -58,12 +60,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/gpb_digital_invoice_image" />
+            app:layout_constraintTop_toBottomOf="@id/digital_invoice_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/gpb_close_button"
+        android:id="@+id/close_button"
         style="@style/GiniCaptureTheme.DigitalInvoice.Info.Button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/gpb_digital_invoice_info_close_button_height"

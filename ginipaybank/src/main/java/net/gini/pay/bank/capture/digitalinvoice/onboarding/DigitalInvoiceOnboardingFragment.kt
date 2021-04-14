@@ -22,7 +22,8 @@ import net.gini.pay.bank.databinding.GpbFragmentDigitalInvoiceOnboardingBinding
  *
  * @suppress
  */
-internal class DigitalInvoiceOnboardingFragment : Fragment(), DigitalOnboardingScreenContract.View, DigitalOnboardingFragmentInterface {
+class DigitalInvoiceOnboardingFragment : Fragment(), DigitalOnboardingScreenContract.View,
+    DigitalOnboardingFragmentInterface {
 
     companion object {
         @JvmStatic
@@ -38,7 +39,11 @@ internal class DigitalInvoiceOnboardingFragment : Fragment(), DigitalOnboardingS
             this.presenter?.listener = value
         }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = GpbFragmentDigitalInvoiceOnboardingBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -124,11 +129,11 @@ internal class DigitalInvoiceOnboardingFragment : Fragment(), DigitalOnboardingS
     }
 
     private fun setInputHandlers() {
-        binding.gpbDoneButton.setOnClickListener {
+        binding.doneButton.setOnClickListener {
             presenter?.dismisOnboarding(false)
         }
 
-        binding.gbpDoNotShowButton.setOnClickListener {
+        binding.doNotShowButton.setOnClickListener {
             presenter?.dismisOnboarding(true)
         }
     }

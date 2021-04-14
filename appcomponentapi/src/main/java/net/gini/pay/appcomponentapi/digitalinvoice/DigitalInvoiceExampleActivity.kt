@@ -18,13 +18,19 @@ import net.gini.pay.appcomponentapi.util.toMap
 import net.gini.pay.bank.capture.digitalinvoice.DigitalInvoiceFragment
 import net.gini.pay.bank.capture.digitalinvoice.DigitalInvoiceFragmentListener
 import net.gini.pay.bank.capture.digitalinvoice.SelectableLineItem
+import net.gini.pay.bank.capture.digitalinvoice.onboarding.DigitalInvoiceOnboardingFragment
+import net.gini.pay.bank.capture.digitalinvoice.onboarding.DigitalInvoiceOnboardingFragmentListener
 import org.slf4j.LoggerFactory
 
-class DigitalInvoiceExampleActivity : AppCompatActivity(), DigitalInvoiceFragmentListener {
+private const val TAG_ONBOARDING = "TAG_ONBOARDING"
 
-    private val lineItemDetailsLauncher = registerForActivityResult(LineItemDetailsContract()) { item ->
-        item?.let { digitalInvoiceFragment.updateLineItem(item) }
-    }
+class DigitalInvoiceExampleActivity : AppCompatActivity(), DigitalInvoiceFragmentListener,
+    DigitalInvoiceOnboardingFragmentListener {
+
+    private val lineItemDetailsLauncher =
+        registerForActivityResult(LineItemDetailsContract()) { item ->
+            item?.let { digitalInvoiceFragment.updateLineItem(item) }
+        }
     private lateinit var digitalInvoiceFragment: DigitalInvoiceFragment
     private var extractions: Map<String, GiniCaptureSpecificExtraction> = emptyMap()
     private var compoundExtractions: Map<String, GiniCaptureCompoundExtraction> = emptyMap()
@@ -46,7 +52,8 @@ class DigitalInvoiceExampleActivity : AppCompatActivity(), DigitalInvoiceFragmen
     }
 
     private fun createDigitalInvoiceFragment() {
-        digitalInvoiceFragment = DigitalInvoiceFragment.createInstance(extractions, compoundExtractions, returnReasons)
+        digitalInvoiceFragment =
+            DigitalInvoiceFragment.createInstance(extractions, compoundExtractions, returnReasons)
     }
 
     private fun showDigitalInvoiceFragment() {
@@ -56,7 +63,8 @@ class DigitalInvoiceExampleActivity : AppCompatActivity(), DigitalInvoiceFragmen
     }
 
     private fun retrieveDigitalInvoiceFragment() {
-        digitalInvoiceFragment = supportFragmentManager.findFragmentById(R.id.digital_invoice_screen_container) as DigitalInvoiceFragment
+        digitalInvoiceFragment =
+            supportFragmentManager.findFragmentById(R.id.digital_invoice_screen_container) as DigitalInvoiceFragment
     }
 
     private fun setTitles() {
@@ -69,13 +77,32 @@ class DigitalInvoiceExampleActivity : AppCompatActivity(), DigitalInvoiceFragmen
 
     private fun readExtras() {
         extractions = intent.getBundleExtra(EXTRA_IN_EXTRACTIONS)?.toMap() ?: emptyMap()
-        compoundExtractions = intent.getBundleExtra(EXTRA_IN_COMPOUND_EXTRACTIONS)?.toMap() ?: emptyMap()
+        compoundExtractions =
+            intent.getBundleExtra(EXTRA_IN_COMPOUND_EXTRACTIONS)?.toMap() ?: emptyMap()
         returnReasons = intent.getParcelableArrayListExtra(EXTRA_IN_RETURN_REASONS) ?: emptyList()
     }
 
 
     override fun onEditLineItem(selectableLineItem: SelectableLineItem) {
         lineItemDetailsLauncher.launch(LineItemDetailsInput(selectableLineItem, returnReasons))
+    }
+
+    override fun showOnboarding() {
+        supportFragmentManager.commit {
+            val onboardingFragment = DigitalInvoiceOnboardingFragment.createInstance().apply {
+                listener = this@DigitalInvoiceExampleActivity
+            }
+            add(R.id.digital_invoice_screen_container, onboardingFragment, TAG_ONBOARDING)
+        }
+    }
+
+    override fun onCloseOnboarding() {
+        (supportFragmentManager.findFragmentByTag(TAG_ONBOARDING) as? DigitalInvoiceOnboardingFragment)?.let { infoFragment ->
+            infoFragment.listener = null
+            supportFragmentManager.commit {
+                remove(infoFragment)
+            }
+        }
     }
 
     override fun onPayInvoice(
@@ -102,7 +129,10 @@ class DigitalInvoiceExampleActivity : AppCompatActivity(), DigitalInvoiceFragmen
         ): Intent = Intent(context, DigitalInvoiceExampleActivity::class.java).apply {
             putExtra(EXTRA_IN_EXTRACTIONS, extractions.toBundle())
             putExtra(EXTRA_IN_COMPOUND_EXTRACTIONS, compoundExtractions.toBundle())
-            putParcelableArrayListExtra(EXTRA_IN_RETURN_REASONS, ArrayList<Parcelable>(returnReasons))
+            putParcelableArrayListExtra(
+                EXTRA_IN_RETURN_REASONS,
+                ArrayList<Parcelable>(returnReasons)
+            )
         }
     }
 }

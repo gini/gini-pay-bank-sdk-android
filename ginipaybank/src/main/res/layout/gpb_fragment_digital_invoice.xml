@@ -8,7 +8,7 @@
     tools:context=".digitalinvoice.DigitalInvoiceFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/gpb_line_items"
+        android:id="@+id/line_items"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scrollbars="vertical"
@@ -16,21 +16,5 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="5"
         tools:listitem="@layout/gpb_item_digital_invoice_line_item" />
-
-    <!--    <com.google.android.material.button.MaterialButton-->
-    <!--        android:id="@+id/gpb_pay_button"-->
-    <!--        style="@style/Widget.MaterialComponents.Button"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="@dimen/gpb_digital_invoice_pay_button_height"-->
-    <!--        android:insetTop="0dp"-->
-    <!--        android:layout_marginStart="@dimen/gpb_digital_invoice_pay_button_margin"-->
-    <!--        android:layout_marginEnd="@dimen/gpb_digital_invoice_pay_button_margin"-->
-    <!--        android:layout_marginBottom="@dimen/gpb_digital_invoice_pay_button_margin"-->
-    <!--        android:textColor="@color/gpb_digital_invoice_pay_button_text"-->
-    <!--        app:backgroundTint="@color/gpb_digital_invoice_pay_button"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        tools:text="Pay 2/2" />-->
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

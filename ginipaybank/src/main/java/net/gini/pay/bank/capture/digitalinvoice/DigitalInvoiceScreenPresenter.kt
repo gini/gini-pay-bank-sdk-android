@@ -91,6 +91,7 @@ internal open class DigitalInvoiceScreenPresenter(
     override fun start() {
         updateView()
         if (!onboardingDisplayed && !oncePerInstallEventStore.containsEvent(OncePerInstallEvent.SHOW_DIGITAL_INVOICE_ONBOARDING)) {
+            onboardingDisplayed = true
             listener?.showOnboarding()
         }
     }

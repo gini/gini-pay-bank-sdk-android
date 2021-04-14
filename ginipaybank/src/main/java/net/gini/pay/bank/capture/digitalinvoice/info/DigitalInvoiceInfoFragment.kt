@@ -71,7 +71,7 @@ internal class DigitalInvoiceInfoFragment : Fragment() {
     }
 
     private fun setInputHandlers() {
-        binding.gpbCloseButton.setOnClickListener {
+        binding.closeButton.setOnClickListener {
             listener?.onCloseInfo()
         }
     }

@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/gpb_line_item"
+    android:id="@+id/line_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/gpb_digital_invoice_line_item_horizontal_margin"
@@ -13,17 +13,17 @@
     android:focusable="true">
 
     <TextView
-        android:id="@+id/gpb_item_index_label"
+        android:id="@+id/item_index_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/gpb_digital_invoice_line_item_index"
         android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.LineItem.Index.TextStyle"
-        app:layout_constraintBottom_toBottomOf="@id/gpb_edit"
+        app:layout_constraintBottom_toBottomOf="@id/edit_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/gpb_edit" />
+        app:layout_constraintTop_toTopOf="@id/edit_button" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/gpb_edit"
+        android:id="@+id/edit_button"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,13 +42,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/gbp_stroke_background_view"
+        android:id="@+id/stroke_background_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/gpb_digital_invoice_line_item_content_margin_top"
         android:background="@drawable/gpb_digital_invoice_line_item_stroke_background"
-        app:layout_constraintBottom_toBottomOf="@id/gbp_price_bottom_space"
-        app:layout_constraintTop_toBottomOf="@id/gpb_edit" />
+        app:layout_constraintBottom_toBottomOf="@id/price_bottom_space"
+        app:layout_constraintTop_toBottomOf="@id/edit_button" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -57,109 +57,73 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.3" />
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/gbp_switch"
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/enable_switch"
+        style="@style/GiniCaptureTheme.DigitalInvoice.Switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/gpb_digital_invoice_line_item_switch_margin_left"
         android:layout_marginTop="@dimen/gpb_digital_invoice_line_item_switch_margin_top"
         android:minWidth="0dp"
         android:minHeight="0dp"
-        android:text=""
-        android:thumb="@drawable/gbp_digital_invoice_switch_thumb"
+        android:padding="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/gbp_stroke_background_view"
+        app:layout_constraintTop_toTopOf="@id/stroke_background_view"
         app:showText="false"
-        app:switchPadding="0dp"
-        app:track="@drawable/gbp_digital_invoice_switch_track" />
+        app:switchPadding="0dp" />
 
 
     <TextView
-        android:id="@+id/gpb_description"
+        android:id="@+id/description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/gpb_digital_invoice_line_item_description_margin_top"
         android:layout_marginEnd="@dimen/gpb_digital_invoice_line_item_description_margin_right"
-        android:layout_toStartOf="@id/gpb_edit"
+        android:layout_toStartOf="@id/edit_button"
         android:minLines="2"
         android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.LineItem.Description.TextStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/guideline2"
-        app:layout_constraintTop_toTopOf="@id/gbp_stroke_background_view"
+        app:layout_constraintTop_toTopOf="@id/stroke_background_view"
         tools:text="Nike Sportswear Air Max 97 - Sneaker Low" />
 
     <TextView
-        android:id="@+id/gpb_gross_price_fractional_part"
+        android:id="@+id/gross_price_fractional_part"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/gpb_digital_invoice_line_item_price_margin_top"
         android:layout_marginEnd="@dimen/gpb_digital_invoice_line_item_price_margin_right"
         android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.LineItem.GrossPrice.Fractional.TextStyle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gpb_description"
+        app:layout_constraintTop_toBottomOf="@id/description"
         tools:text=".48" />
 
     <TextView
-        android:id="@+id/gpb_gross_price_integral_part"
+        android:id="@+id/gross_price_integral_part"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
         android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.LineItem.GrossPrice.Integral.TextStyle"
-        app:layout_constraintEnd_toStartOf="@id/gpb_gross_price_fractional_part"
-        app:layout_constraintTop_toBottomOf="@id/gpb_description"
-        app:layout_constraintTop_toTopOf="@id/gpb_gross_price_fractional_part"
+        app:layout_constraintEnd_toStartOf="@id/gross_price_fractional_part"
+        app:layout_constraintTop_toBottomOf="@id/description"
+        app:layout_constraintTop_toTopOf="@id/gross_price_fractional_part"
         tools:text="€76" />
 
     <TextView
-        android:id="@+id/gpb_quantity"
+        android:id="@+id/quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/gpb_digital_invoice_line_item_quantity_margin_left"
         android:text="@string/gpb_digital_invoice_line_item_quantity"
         android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.LineItem.Quantity.TextStyle"
-        app:layout_constraintBottom_toBottomOf="@id/gpb_gross_price_integral_part"
+        app:layout_constraintBottom_toBottomOf="@id/gross_price_integral_part"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Space
-        android:id="@+id/gbp_price_bottom_space"
+        android:id="@+id/price_bottom_space"
         android:layout_width="match_parent"
         android:layout_height="@dimen/gpb_digital_invoice_line_item_price_margin_bottom"
-        app:layout_constraintTop_toBottomOf="@id/gpb_gross_price_integral_part" />
+        app:layout_constraintTop_toBottomOf="@id/gross_price_integral_part" />
 
-
-    <!--    <RelativeLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:foreground="?attr/selectableItemBackground"-->
-    <!--        android:paddingStart="@dimen/gpb_digital_invoice_line_item_padding_left"-->
-    <!--        android:paddingEnd="@dimen/gpb_digital_invoice_line_item_padding"-->
-    <!--        android:paddingBottom="@dimen/gpb_digital_invoice_line_item_padding">-->
-
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/gpb_description"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_alignBaseline="@id/gpb_checkbox"-->
-    <!--            android:layout_marginEnd="@dimen/gpb_digital_invoice_line_item_description_margin_right"-->
-    <!--            android:layout_marginBottom="@dimen/gpb_digital_invoice_line_item_description_margin_bottom"-->
-    <!--            android:layout_toStartOf="@id/gpb_edit"-->
-    <!--            android:layout_toEndOf="@id/gpb_checkbox"-->
-    <!--            android:minLines="2"-->
-    <!--            android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.LineItem.Description.TextStyle"-->
-    <!--            tools:text="Nike Sportswear Air Max 97 - Sneaker Low" />-->
-
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/gpb_quantity"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_alignBaseline="@id/gpb_quantity_label"-->
-    <!--            android:layout_toEndOf="@id/gpb_quantity_label"-->
-    <!--            android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.LineItem.Quantity.TextStyle"-->
-    <!--            tools:text=" 1" />-->
-
-
-    <!--    </RelativeLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

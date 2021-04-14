@@ -154,7 +154,7 @@ internal class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragm
     private fun showFragment() = fragment?.let { digitalInvoiceFragment ->
         supportFragmentManager.commit {
             add(
-                R.id.gpb_fragment_digital_invoice,
+                R.id.fragment_digital_invoice,
                 digitalInvoiceFragment,
                 RETURN_ASSISTANT_FRAGMENT
             )
@@ -175,7 +175,7 @@ internal class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragm
             val infoFragment = DigitalInvoiceInfoFragment.createInstance().apply {
                 listener = this@DigitalInvoiceActivity
             }
-            add(R.id.gpb_fragment_digital_invoice, infoFragment, TAG_INFO)
+            add(R.id.fragment_digital_invoice, infoFragment, TAG_INFO)
         }
     }
 
@@ -193,7 +193,7 @@ internal class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragm
             val onboardingFragment = DigitalInvoiceOnboardingFragment.createInstance().apply {
                 listener = this@DigitalInvoiceActivity
             }
-            add(R.id.gpb_fragment_digital_invoice, onboardingFragment, TAG_ONBOARDING)
+            add(R.id.fragment_digital_invoice, onboardingFragment, TAG_ONBOARDING)
         }
     }
 
