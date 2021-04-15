@@ -44,6 +44,7 @@
     <string name="gpb_digital_invoice_footer_total_label">Gesamt</string>
     <string name="gpb_digital_invoice_footer_total_expl">Inkl. Versandkosten, Rabatt usw.</string>
     <string name="gpb_digital_invoice_footer_skip">Funktion überspringen</string>
+    <string name="gpb_digital_invoice_footer_add">Artikel hinzufügen </string>
 
     <string name="gpb_digital_invoice_addon_discount">Rabatt</string>
     <string name="gpb_digital_invoice_addon_giftcard">Gutschein</string>
@@ -69,7 +70,6 @@
     <string name="gpb_return_assistant_help_section_3_body">Sollte der Preis mal nicht perfekt ausgelesen worden sein, können Sie diesen einfach manuell korrigieren. Der Gesamtpreis aktualisiert sich automatisch.</string>
     <string name="gpb_return_assistant_help_section_3_title">Preis korrigieren</string>
     <string name="gpb_return_assistant_help_back_button_title">Zurück</string>
-
 
 
 

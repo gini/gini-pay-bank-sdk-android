@@ -10,6 +10,7 @@ import java.math.BigDecimal
 import java.text.DecimalFormat
 import java.text.ParseException
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
+import java.util.*
 
 /**
  * Created by Alpar Szotyori on 17.12.2019.
@@ -25,11 +26,13 @@ internal val GROSS_PRICE_FORMAT = DecimalFormat("#,##0.00").apply { isParseBigDe
  *
  * @suppress
  */
-internal class LineItemDetailsScreenPresenter(activity: Activity, view: View,
-                                              var selectableLineItem: SelectableLineItem,
-                                              val returnReasons: List<GiniCaptureReturnReason> = emptyList(),
-                                              private val grossPriceFormat: DecimalFormat = GROSS_PRICE_FORMAT) :
-        Presenter(activity, view) {
+internal class LineItemDetailsScreenPresenter(
+    activity: Activity, view: View,
+    var selectableLineItem: SelectableLineItem,
+    val returnReasons: List<GiniCaptureReturnReason> = emptyList(),
+    private val grossPriceFormat: DecimalFormat = GROSS_PRICE_FORMAT
+) :
+    Presenter(activity, view) {
 
     override var listener: LineItemDetailsFragmentListener? = null
 
@@ -78,7 +81,7 @@ internal class LineItemDetailsScreenPresenter(activity: Activity, view: View,
 
     private fun updateCheckboxAndSaveButton() = selectableLineItem.let {
         view.apply {
-            showCheckbox(it.selected, it.lineItem.quantity)
+            showCheckbox(it.selected, it.lineItem.quantity, !it.addedByUser)
             updateSaveButton(it, originalLineItem)
         }
     }
@@ -88,7 +91,7 @@ internal class LineItemDetailsScreenPresenter(activity: Activity, view: View,
             return
         }
         selectableLineItem = selectableLineItem.copy(
-                lineItem = selectableLineItem.lineItem.copy(description = description)
+            lineItem = selectableLineItem.lineItem.copy(description = description)
         ).also {
             view.updateSaveButton(it, originalLineItem)
         }
@@ -99,7 +102,7 @@ internal class LineItemDetailsScreenPresenter(activity: Activity, view: View,
             return
         }
         selectableLineItem = selectableLineItem.copy(
-                lineItem = selectableLineItem.lineItem.copy(quantity = quantity)
+            lineItem = selectableLineItem.lineItem.copy(quantity = quantity)
         )
         view.showTotalGrossPrice(selectableLineItem)
         updateCheckboxAndSaveButton()
@@ -115,9 +118,9 @@ internal class LineItemDetailsScreenPresenter(activity: Activity, view: View,
             return
         }
         selectableLineItem = selectableLineItem.copy(
-                lineItem = selectableLineItem.lineItem.copy(
-                        rawGrossPrice = grossPrice.toPriceString(selectableLineItem.lineItem.rawCurrency)
-                )
+            lineItem = selectableLineItem.lineItem.copy(
+                rawGrossPrice = grossPrice.toPriceString(selectableLineItem.lineItem.rawCurrency)
+            )
         ).also {
             view.apply {
                 showTotalGrossPrice(it)
@@ -126,8 +129,20 @@ internal class LineItemDetailsScreenPresenter(activity: Activity, view: View,
         }
     }
 
-    override fun save() {
-        listener?.onSave(selectableLineItem)
+    override fun save(isBack: Boolean) {
+        when {
+            isBack && selectableLineItem.lineItem.id.isBlank() -> {
+                view.dismiss()
+            }
+            selectableLineItem.lineItem.id.isBlank() -> {
+                val lineItem = selectableLineItem.lineItem.copy(UUID.randomUUID().toString())
+                listener?.onSave(selectableLineItem.copy(lineItem = lineItem))
+            }
+
+            else -> {
+                listener?.onSave(selectableLineItem)
+            }
+        }
     }
 
     override fun start() {
@@ -150,7 +165,8 @@ internal class LineItemDetailsScreenPresenter(activity: Activity, view: View,
 
 private fun View.showTotalGrossPrice(selectableLineItem: SelectableLineItem) {
     DigitalInvoice.lineItemTotalGrossPriceIntegralAndFractionalParts(
-            selectableLineItem.lineItem).let { (integral, fractional) ->
+        selectableLineItem.lineItem
+    ).let { (integral, fractional) ->
         showTotalGrossPrice(integral, fractional)
     }
 }

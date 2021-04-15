@@ -1,12 +1,15 @@
 package net.gini.pay.bank.capture.digitalinvoice
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
 import net.gini.android.capture.internal.util.ActivityHelper.forcePortraitOrientationOnPhones
 import net.gini.android.capture.network.model.GiniCaptureCompoundExtraction
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
@@ -14,6 +17,7 @@ import net.gini.android.capture.network.model.GiniCaptureSpecificExtraction
 import net.gini.pay.bank.capture.util.autoCleared
 import net.gini.pay.bank.capture.util.parentFragmentManagerOrNull
 import net.gini.pay.bank.databinding.GpbFragmentDigitalInvoiceBinding
+
 
 /**
  * Created by Alpar Szotyori on 05.12.2019.
@@ -54,7 +58,7 @@ private const val TAG_WHAT_IS_THIS_DIALOG = "TAG_WHAT_IS_THIS_DIALOG"
  *
  * See the [DigitalInvoiceActivity] for details.
  */
-class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
+open class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
     DigitalInvoiceFragmentInterface, LineItemsAdapterListener {
 
 
@@ -90,7 +94,7 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
             extractions: Map<String, GiniCaptureSpecificExtraction>,
             compoundExtractions: Map<String, GiniCaptureCompoundExtraction>,
             returnReasons: List<GiniCaptureReturnReason>,
-            isInaccurateExtraction: Boolean = true
+            isInaccurateExtraction: Boolean = false
         ) = DigitalInvoiceFragment().apply {
             arguments = Bundle().apply {
                 putBundle(ARGS_EXTRACTIONS, Bundle().apply {
@@ -148,7 +152,7 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
             compoundExtractions,
             returnReasons,
             isInaccurateExtraction,
-            isRetainedFragment
+            isRetainedFragment,
         )
 
     /**
@@ -208,6 +212,14 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
         presenter?.skip()
     }
 
+    override fun addNewArticle() {
+        presenter?.addNewArticle()
+    }
+
+    override fun removeLineItem(lineItem: SelectableLineItem) {
+        presenter?.removeLineItem(lineItem)
+    }
+
     /**
      * Internal use only.
      *
@@ -221,6 +233,62 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
             this.isInaccurateExtraction = isInaccurateExtraction
             this.lineItems = lineItems
         }
+    }
+
+    private lateinit var smoothScroller: SmoothScroller
+    private val scrollListener = object : SmoothScroller.SmoothScrollerListener {
+        override fun didStop() {
+            scrollList(true)
+        }
+
+    }
+
+    /**
+     * header and footer are counted as aprox. 3 items
+     * in order to have same time spent on scrolling different size views
+     */
+    override fun animateListScroll() {
+        val itemCount = 3 + (if (lineItemsAdapter.isInaccurateExtraction) 3 else 0) + lineItemsAdapter.lineItems.size
+        smoothScroller = SmoothScroller(
+            requireContext(),
+            itemCount,
+            scrollListener
+        )
+        scrollList(false)
+    }
+
+    private fun scrollList(toTop: Boolean) {
+        val delay: Long = if (toTop) 350 else 200
+        binding.lineItems.postDelayed(Runnable {
+            smoothScroller.targetPosition = if (toTop) 0 else lineItemsAdapter.itemCount
+            (binding.lineItems.layoutManager as? LinearLayoutManager)?.startSmoothScroll(
+                smoothScroller
+            )
+        }, delay)
+
+    }
+
+    internal class SmoothScroller(
+        context: Context,
+        private val itemsCount: Int,
+        private val listener: SmoothScrollerListener
+    ) : LinearSmoothScroller(context) {
+        private val totalScrollTime = 2400f
+        interface SmoothScrollerListener {
+            fun didStop()
+        }
+
+        override fun onStop() {
+            super.onStop()
+            if (targetPosition > 0) {
+                listener.didStop()
+            }
+        }
+
+        override fun calculateSpeedPerPixel(displayMetrics: DisplayMetrics): Float {
+            return totalScrollTime / (itemsCount * displayMetrics.densityDpi)
+        }
+
     }
 
     override fun updateFooterDetails(data: DigitalInvoiceScreenContract.FooterDetails) {
@@ -281,6 +349,11 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
     override fun onStop() {
         super.onStop()
         presenter?.stop()
+    }
+
+    override fun onDestroyView() {
+        presenter?.onDestroyView()
+        super.onDestroyView()
     }
 
     /**

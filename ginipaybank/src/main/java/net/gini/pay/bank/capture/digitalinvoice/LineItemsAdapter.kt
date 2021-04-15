@@ -11,7 +11,9 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.core.content.ContextCompat
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.RecyclerView
 import net.gini.pay.bank.R
 import java.util.Collections.emptyList
@@ -37,9 +39,11 @@ internal interface LineItemsAdapterListener {
     fun onLineItemClicked(lineItem: SelectableLineItem)
     fun onLineItemSelected(lineItem: SelectableLineItem)
     fun onLineItemDeselected(lineItem: SelectableLineItem)
+    fun removeLineItem(lineItem: SelectableLineItem)
     fun onWhatIsThisButtonClicked()
     fun payButtonClicked()
     fun skipButtonClicked()
+    fun addNewArticle()
 }
 
 /**
@@ -76,6 +80,11 @@ internal class LineItemsAdapter(private val listener: LineItemsAdapterListener) 
         listener.skipButtonClicked()
     }
 
+    private val footerAddButtonClickListener = View.OnClickListener {
+        listener.addNewArticle()
+    }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewTypeId: Int): ViewHolder<*> {
         val layoutInflater = LayoutInflater.from(parent.context)
         val viewHolder =
@@ -83,6 +92,7 @@ internal class LineItemsAdapter(private val listener: LineItemsAdapterListener) 
         if (viewHolder is ViewHolder.FooterViewHolder) {
             viewHolder.binding.payButton.setOnClickListener(footerButtonClickListener)
             viewHolder.binding.skipButton.setOnClickListener(footerSkipButtonClickListener)
+            viewHolder.binding.addButton.setOnClickListener(footerAddButtonClickListener)
         }
 
         if (viewHolder is ViewHolder.HeaderViewHolder) {
@@ -308,15 +318,12 @@ internal sealed class ViewHolder<in T>(itemView: View, val viewType: ViewType) :
 
                     val backgroundLp = binding.headerBackgroundView.layoutParams
                     val containerLp = binding.headerContent.layoutParams
-                    val infoLp =
-                        binding.headerTitle.layoutParams as ConstraintLayout.LayoutParams
-
 
                     backgroundLp.width = collapsedWidth + (updateVal * wDiff).toInt()
                     containerLp.width = collapsedWidth + (updateVal * wDiff).toInt()
                     backgroundLp.height = collapsedHeight + (updateVal * hDiff).toInt()
                     containerLp.height = collapsedHeight + (updateVal * hDiff).toInt()
-                    infoLp.marginEnd = ((1f - updateVal) * collapsedMarginRight).toInt()
+                    binding.headerTitle.updatePadding(right = ((1f - updateVal) * collapsedMarginRight).toInt())
 
                     binding.collapseButton.alpha = 0.7f + updateVal * 0.3f
                     binding.collapseButton.rotation = 180f - updateVal * 180f
@@ -333,7 +340,6 @@ internal sealed class ViewHolder<in T>(itemView: View, val viewType: ViewType) :
 
                     binding.headerBackgroundView.layoutParams = backgroundLp
                     binding.headerContent.layoutParams = containerLp
-                    binding.headerTitle.layoutParams = infoLp
                 }
             })
 
@@ -372,15 +378,16 @@ internal sealed class ViewHolder<in T>(itemView: View, val viewType: ViewType) :
             )
             binding.enableSwitch.isChecked = data.selected
 
+            binding.removeButton.isVisible = data.addedByUser
+            binding.enableSwitch.isInvisible = data.addedByUser
+
+
             data.lineItem.let { li ->
                 binding.description.text = li.description
-                binding.quantity.text = when {
-                    data.reason != null -> data.reason!!.labelInLocalLanguageOrGerman
-                    else -> binding.quantity.resources.getString(
-                        R.string.gpb_digital_invoice_line_item_quantity,
-                        li.quantity
-                    )
-                }
+                binding.quantity.text = binding.quantity.resources.getString(
+                    R.string.gpb_digital_invoice_line_item_quantity,
+                    li.quantity
+                )
                 DigitalInvoice.lineItemTotalGrossPriceIntegralAndFractionalParts(li)
                     .let { (integral, fractional) ->
                         binding.grossPriceIntegralPart.text = integral
@@ -392,8 +399,14 @@ internal sealed class ViewHolder<in T>(itemView: View, val viewType: ViewType) :
                 allData?.getOrNull(dataIndex ?: -1)?.let {
                     listener?.onLineItemClicked(it)
                 }
-
             }
+
+            binding.removeButton.setOnClickListener {
+                allData?.getOrNull(dataIndex ?: -1)?.let {
+                    listener?.removeLineItem(it)
+                }
+            }
+
             binding.enableSwitch.setOnCheckedChangeListener { _, isChecked ->
                 allData?.getOrNull(dataIndex ?: -1)?.let {
                     if (it.selected != isChecked) {

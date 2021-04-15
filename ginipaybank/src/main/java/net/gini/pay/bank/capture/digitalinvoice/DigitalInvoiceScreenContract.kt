@@ -29,6 +29,7 @@ interface DigitalInvoiceScreenContract {
         fun updateFooterDetails(data: FooterDetails)
         fun showReturnReasonDialog(reasons: List<GiniCaptureReturnReason>,
                                    resultCallback: ReturnReasonDialogResultCallback)
+        fun animateListScroll()
     }
 
     /**
@@ -42,9 +43,12 @@ interface DigitalInvoiceScreenContract {
         abstract fun selectLineItem(lineItem: SelectableLineItem)
         abstract fun deselectLineItem(lineItem: SelectableLineItem)
         abstract fun editLineItem(lineItem: SelectableLineItem)
+        abstract fun removeLineItem(lineItem: SelectableLineItem)
         abstract fun userFeedbackReceived(helpful: Boolean)
         abstract fun pay()
         abstract fun skip()
+        abstract fun addNewArticle()
+        abstract fun onDestroyView()
     }
 
     data class FooterDetails(

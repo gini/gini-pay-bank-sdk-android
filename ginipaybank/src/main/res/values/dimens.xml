@@ -45,7 +45,8 @@
     <dimen name="gpb_digital_invoice_footer_horizontal_padding">16dp</dimen>
     <dimen name="gpb_digital_invoice_footer_padding_top">16dp</dimen>
     <dimen name="gpb_digital_invoice_footer_padding_bottom">16dp</dimen>
-    <dimen name="gpb_digital_invoice_footer_gross_price_margin_top">32dp</dimen>
+    <dimen name="gpb_digital_invoice_footer_gross_price_margin_top">16dp</dimen>
+    <dimen name="gpb_digital_invoice_footer_add_button_margin_top">16dp</dimen>
     <dimen name="gpb_digital_invoice_footer_notice_horizontal_margin">32dp</dimen>
     <dimen name="gpb_digital_invoice_footer_notice_margin_top">96dp</dimen>
     <dimen name="gpb_digital_invoice_footer_total_price_margin_top">16dp</dimen>
@@ -112,5 +113,6 @@
     <dimen name="gpb_digital_invoice_line_item_details_input_height">48dp</dimen>
     <dimen name="gpb_digital_invoice_line_currency_margin_bottom">2dp</dimen>
     <dimen name="gpb_digital_invoice_line_item_details_price_padding">24dp</dimen>
+    <dimen name="gpb_digital_invoice_line_item_remove_margin_top">10dp</dimen>
 
 </resources>

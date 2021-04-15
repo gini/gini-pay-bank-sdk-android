@@ -87,6 +87,10 @@ class DigitalInvoiceExampleActivity : AppCompatActivity(), DigitalInvoiceFragmen
         lineItemDetailsLauncher.launch(LineItemDetailsInput(selectableLineItem, returnReasons))
     }
 
+    override fun onAddLineItem(selectableLineItem: SelectableLineItem) {
+        lineItemDetailsLauncher.launch(LineItemDetailsInput(selectableLineItem, returnReasons))
+    }
+
     override fun showOnboarding() {
         supportFragmentManager.commit {
             val onboardingFragment = DigitalInvoiceOnboardingFragment.createInstance().apply {

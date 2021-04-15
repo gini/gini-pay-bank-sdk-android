@@ -10,6 +10,17 @@
     android:paddingEnd="@dimen/gpb_digital_invoice_footer_horizontal_padding"
     android:paddingBottom="@dimen/gpb_digital_invoice_footer_padding_bottom">
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add_button"
+        style="@style/GiniCaptureTheme.DigitalInvoice.Add.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gpb_digital_invoice_footer_add_button_margin_top"
+        android:layout_marginEnd="@dimen/gpb_digital_invoice_footer_gross_price_margin_right"
+        android:text="@string/gpb_digital_invoice_footer_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/gross_price_total_integral_part"
         android:layout_width="wrap_content"
@@ -30,7 +41,7 @@
         android:layout_marginEnd="@dimen/gpb_digital_invoice_footer_gross_price_margin_right"
         android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.TotalGrossPrice.Fractional.TextStyle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_button"
         tools:text=".90" />
 
     <TextView

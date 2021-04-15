@@ -35,6 +35,7 @@
     <string name="gpb_digital_header_button_2">Skip</string>
 
     <string name="gpb_digital_invoice_footer_total_label">Total</string>
+    <string name="gpb_digital_invoice_footer_add">Add article</string>
 
     <string name="gpb_digital_invoice_return_reason_dialog_title">Your reasons to return this item</string>
     <string name="gpb_digital_invoice_what_is_this_dialog_title">What is this?</string>

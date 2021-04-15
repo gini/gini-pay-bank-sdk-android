@@ -218,6 +218,13 @@ internal class DigitalInvoiceActivity : AppCompatActivity(), DigitalInvoiceFragm
         )
     }
 
+    override fun onAddLineItem(selectableLineItem: SelectableLineItem) {
+        startActivityForResult(
+            LineItemDetailsActivity.createIntent(this, selectableLineItem, returnReasons),
+            EDIT_LINE_ITEM_REQUEST
+        )
+    }
+
     /**
      * Internal use only.
      *

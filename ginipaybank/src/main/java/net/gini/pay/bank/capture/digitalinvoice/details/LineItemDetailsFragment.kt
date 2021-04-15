@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputLayout
 import net.gini.android.capture.internal.util.ActivityHelper.forcePortraitOrientationOnPhones
@@ -144,7 +145,7 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View,
             this,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    presenter?.save()
+                    presenter?.save(true)
                 }
             })
     }
@@ -226,7 +227,7 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View,
             presenter?.setGrossPrice(it)
         }
         binding.saveButton.setOnClickListener {
-            presenter?.save()
+            presenter?.save(false)
         }
     }
 
@@ -268,7 +269,11 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View,
         binding.description.setText(description)
         binding.descriptionContainer.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
         binding.descriptionContainer.endIconDrawable =
-            ResourcesCompat.getDrawable(resources, R.drawable.gpb_digital_invoice_input_clear_icon, null)
+            ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.gpb_digital_invoice_input_clear_icon,
+                null
+            )
     }
 
     /**
@@ -280,7 +285,11 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View,
         binding.quantity.setText(quantity.toString())
         binding.quantityContainer.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
         binding.quantityContainer.endIconDrawable =
-            ResourcesCompat.getDrawable(resources, R.drawable.gpb_digital_invoice_input_clear_icon, null)
+            ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.gpb_digital_invoice_input_clear_icon,
+                null
+            )
     }
 
     /**
@@ -292,7 +301,11 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View,
         binding.grossPrice.setText(displayedGrossPrice)
         binding.grossPriceContainer.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
         binding.grossPriceContainer.endIconDrawable =
-            ResourcesCompat.getDrawable(resources, R.drawable.gpb_digital_invoice_input_clear_icon, null)
+            ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.gpb_digital_invoice_input_clear_icon,
+                null
+            )
         binding.currency.text = currency
     }
 
@@ -406,7 +419,10 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View,
      *
      * @suppress
      */
-    override fun showCheckbox(selected: Boolean, quantity: Int) {
+    override fun showCheckbox(selected: Boolean, quantity: Int, visible: Boolean) {
+        binding.checkboxLabel.isVisible = visible
+        binding.checkbox.isVisible = visible
+
         binding.checkbox.isChecked = selected
         binding.checkboxLabel.text =
             resources.getQuantityString(
@@ -415,6 +431,10 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View,
                     R.string.gpb_digital_invoice_line_item_details_selected
                 ) else ""
             )
+    }
+
+    override fun dismiss() {
+        requireActivity().finish()
     }
 
 }

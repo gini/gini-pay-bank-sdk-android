@@ -42,6 +42,7 @@
     <color name="gpb_digital_invoice_footer_notice_text">#333333</color>
     <color name="gpb_digital_invoice_footer_skip_button">#fff</color>
     <color name="gpb_digital_invoice_footer_skip_button_text">#009EDC</color>
+    <color name="gpb_digital_invoice_footer_add_button_text">#009EDC</color>
     <color name="gpb_digital_invoice_footer_skip_button_stroke">#009EDC</color>
 
     <color name="gpb_digital_invoice_line_item_details_background">#fff</color>
@@ -54,6 +55,7 @@
     <color name="gpb_digital_invoice_line_item_details_save_button">#009edc</color>
     <color name="gpb_digital_invoice_line_item_details_save_button_text">#fff</color>
     <color name="gpb_digital_invoice_line_item_details_disabled">#9B9B9B</color>
+    <color name="gpb_digital_invoice_line_item_remove_button_text">#009EDC</color>
 
 
 

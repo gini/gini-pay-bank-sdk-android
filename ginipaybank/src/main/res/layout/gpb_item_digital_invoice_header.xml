@@ -22,9 +22,8 @@
         android:id="@+id/header_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/gpb_digital_invoice_header_button_margin"
-        android:layout_gravity="end|top">
+        android:layout_gravity="end|top"
+        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,11 +31,13 @@
 
             <TextView
                 android:id="@+id/header_title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/gpb_digital_invoice_header_title_margin_top"
+                android:paddingTop="@dimen/gpb_digital_invoice_header_title_margin_top"
+                android:paddingBottom="@dimen/gpb_digital_invoice_header_text_1_margin_top"
                 android:text="@string/gpb_digital_header_title"
+                android:textAlignment="center"
                 android:textAppearance="@style/GiniCaptureTheme.DigitalInvoice.Header.TextStyle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -47,11 +48,12 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="@dimen/gpb_digital_invoice_header_button_margin"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:padding="0dp"
+                android:paddingStart="@dimen/gpb_digital_invoice_header_button_margin"
+                android:paddingTop="0dp"
+                android:paddingEnd="@dimen/gpb_digital_invoice_header_button_margin"
+                android:paddingBottom="0dp"
                 app:icon="@drawable/gpb_digital_header_arrow_up"
                 app:iconGravity="end"
                 app:iconPadding="0dp"
@@ -68,7 +70,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/gpb_digital_invoice_header_text_1_margin"
-            android:layout_marginTop="@dimen/gpb_digital_invoice_header_text_1_margin_top"
             android:layout_marginEnd="@dimen/gpb_digital_invoice_header_text_1_margin"
             android:gravity="center"
             android:text="@string/gpb_digital_header_text_1"
@@ -97,7 +98,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_buttons"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/gpb_digital_invoice_header_button_margin">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/header_button_1"
