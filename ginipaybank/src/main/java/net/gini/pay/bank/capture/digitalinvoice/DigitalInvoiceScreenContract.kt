@@ -1,6 +1,7 @@
 package net.gini.pay.bank.capture.digitalinvoice
 
 import android.app.Activity
+import kotlinx.coroutines.CoroutineScope
 import net.gini.android.capture.GiniCaptureBasePresenter
 import net.gini.android.capture.GiniCaptureBaseView
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
@@ -24,6 +25,7 @@ interface DigitalInvoiceScreenContract {
      * @suppress
      */
     interface View : GiniCaptureBaseView<Presenter> {
+        val viewLifecycleScope: CoroutineScope
         fun showLineItems(lineItems: List<SelectableLineItem>, isInaccurateExtraction: Boolean)
         fun showAddons(addons: List<DigitalInvoiceAddon>)
         fun updateFooterDetails(data: FooterDetails)
@@ -48,7 +50,7 @@ interface DigitalInvoiceScreenContract {
         abstract fun pay()
         abstract fun skip()
         abstract fun addNewArticle()
-        abstract fun onDestroyView()
+        abstract fun onViewCreated()
     }
 
     data class FooterDetails(

@@ -47,7 +47,9 @@
         <activity android:name=".analysis.AnalysisExampleActivity" />
         <activity android:name=".noresult.NoResultsExampleActivity" />
         <activity android:name=".digitalinvoice.DigitalInvoiceExampleActivity" />
-        <activity android:name=".digitalinvoice.LineItemDetailsExampleActivity" />
+        <activity
+            android:name=".digitalinvoice.LineItemDetailsExampleActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".extraction.ExtractionsActivity"
             android:theme="@style/AppTheme" />

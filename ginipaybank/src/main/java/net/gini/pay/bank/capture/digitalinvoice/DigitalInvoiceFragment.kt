@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
+import kotlinx.coroutines.CoroutineScope
 import net.gini.android.capture.internal.util.ActivityHelper.forcePortraitOrientationOnPhones
 import net.gini.android.capture.network.model.GiniCaptureCompoundExtraction
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
@@ -70,6 +72,9 @@ open class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.Vie
         set(value) {
             this.presenter?.listener = value
         }
+
+    override val viewLifecycleScope: CoroutineScope
+        get() = viewLifecycleOwner.lifecycleScope
 
     private var presenter: DigitalInvoiceScreenContract.Presenter? = null
 
@@ -178,6 +183,7 @@ open class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.Vie
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
         setInputHandlers()
+        presenter?.onViewCreated()
     }
 
     private fun initListener() {
@@ -248,7 +254,8 @@ open class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.Vie
      * in order to have same time spent on scrolling different size views
      */
     override fun animateListScroll() {
-        val itemCount = 3 + (if (lineItemsAdapter.isInaccurateExtraction) 3 else 0) + lineItemsAdapter.lineItems.size
+        val itemCount =
+            3 + (if (lineItemsAdapter.isInaccurateExtraction) 3 else 0) + lineItemsAdapter.lineItems.size
         smoothScroller = SmoothScroller(
             requireContext(),
             itemCount,
@@ -274,6 +281,7 @@ open class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.Vie
         private val listener: SmoothScrollerListener
     ) : LinearSmoothScroller(context) {
         private val totalScrollTime = 2400f
+
         interface SmoothScrollerListener {
             fun didStop()
         }
@@ -351,10 +359,6 @@ open class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.Vie
         presenter?.stop()
     }
 
-    override fun onDestroyView() {
-        presenter?.onDestroyView()
-        super.onDestroyView()
-    }
 
     /**
      * Internal use only.

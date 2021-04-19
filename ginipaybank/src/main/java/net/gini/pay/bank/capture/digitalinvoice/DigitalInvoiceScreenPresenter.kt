@@ -2,6 +2,8 @@ package net.gini.pay.bank.capture.digitalinvoice
 
 import android.app.Activity
 import androidx.annotation.VisibleForTesting
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import net.gini.android.capture.GiniCapture
 import net.gini.android.capture.network.model.GiniCaptureCompoundExtraction
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
@@ -37,17 +39,6 @@ internal class DigitalInvoiceScreenPresenter(
     private var footerDetails =
         DigitalInvoiceScreenContract.FooterDetails(inaccurateExtraction = isInaccurateExtraction)
 
-    private val onAppEventsChangeListener = object : SimpleBusEventStore.EventChangeListener {
-
-        override val key: BusEvent = BusEvent.DISMISS_ONBOARDING_FRAGMENT
-        override fun valueChanged(value: Boolean) {
-            if (value) {
-                updateView()
-            }
-        }
-
-    }
-
     private fun shouldDisplayOnboarding(): Boolean = !onboardingDisplayed &&
             !oncePerInstallEventStore.containsEvent(OncePerInstallEvent.SHOW_DIGITAL_INVOICE_ONBOARDING)
 
@@ -56,7 +47,6 @@ internal class DigitalInvoiceScreenPresenter(
 
     init {
         view.setPresenter(this)
-        simpleBusEventStore.registerChangeListener(onAppEventsChangeListener)
         digitalInvoice = DigitalInvoice(extractions, compoundExtractions)
     }
 
@@ -123,6 +113,16 @@ internal class DigitalInvoiceScreenPresenter(
         updateView()
     }
 
+    override fun onViewCreated() {
+        simpleBusEventStore.observeChange(BusEvent.DISMISS_ONBOARDING_FRAGMENT)
+            .onEach {
+                if (it) {
+                    updateView()
+                }
+            }
+            .launchIn(view.viewLifecycleScope)
+    }
+
     override fun start() {
         updateView()
         if (shouldDisplayOnboarding()) {
@@ -133,10 +133,6 @@ internal class DigitalInvoiceScreenPresenter(
     }
 
     override fun stop() {
-    }
-
-    override fun onDestroyView() {
-        simpleBusEventStore.unregisterChangeListener(onAppEventsChangeListener)
     }
 
     @VisibleForTesting
