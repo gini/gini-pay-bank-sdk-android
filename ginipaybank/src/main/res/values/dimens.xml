@@ -21,7 +21,7 @@
     <dimen name="gpb_digital_invoice_header_title_collapsed_margin">24dp</dimen>
     <dimen name="gpb_digital_invoice_header_button_stroke">2dp</dimen>
     <dimen name="gpb_digital_invoice_header_button_corners">13dp</dimen>
-    <dimen name="gpb_digital_invoice_header_image_margin_top">-20dp</dimen>
+    <dimen name="gpb_digital_invoice_header_image_margin_top">0dp</dimen>
     <dimen name="gpb_digital_invoice_header_title_margin">16dp</dimen>
     <dimen name="gpb_digital_invoice_header_title_margin_left">32dp</dimen>
     <dimen name="gpb_digital_invoice_header_corners_expanded">4dp</dimen>

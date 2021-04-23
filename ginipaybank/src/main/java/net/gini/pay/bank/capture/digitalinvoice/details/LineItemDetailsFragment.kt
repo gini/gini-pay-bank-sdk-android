@@ -23,6 +23,10 @@ import net.gini.pay.bank.capture.digitalinvoice.SelectableLineItem
 import net.gini.pay.bank.capture.util.autoCleared
 import net.gini.pay.bank.capture.util.parentFragmentManagerOrNull
 import net.gini.pay.bank.databinding.GpbFragmentLineItemDetailsBinding
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by Alpar Szotyori on 17.12.2019.
@@ -63,7 +67,9 @@ private const val TAG_RETURN_REASON_DIALOG = "TAG_RETURN_REASON_DIALOG"
 class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View,
     LineItemDetailsFragmentInterface {
 
-    internal class DecimalDigitsInputFilter : InputFilter {
+    internal class DecimalDigitsInputFilter(private val priceFormat: DecimalFormat = GROSS_PRICE_FORMAT) :
+        InputFilter {
+        private val decimalFormatSymbols = DecimalFormatSymbols(Locale.ROOT)
 
         override fun filter(
             source: CharSequence,
@@ -74,19 +80,42 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View,
             dend: Int
         ): CharSequence? {
 
-            val indexOf = dest.indexOf(',')
-            if (indexOf >= 0) {
-                if (source.contains(",") ||
-                    (dstart > indexOf && source.contains("."))
-                ) {
-                    return ""
-                }
-                if (dstart > indexOf && dest.length - indexOf >= 3) {
+            val finalPriceString =
+                "${dest.subSequence(0, dstart)}${source.subSequence(start, end)}${
+                    dest.subSequence(
+                        dend,
+                        dest.length
+                    )
+                }"
+
+            val separatorsCount = finalPriceString.count { it == decimalFormatSymbols.decimalSeparator }
+            if (separatorsCount > 1) {
+                return ""
+            }
+
+            val separatorIndex = finalPriceString.indexOf(decimalFormatSymbols.decimalSeparator)
+            if (separatorIndex >= 0 && finalPriceString.length - separatorIndex > 3 ) {
+                return  ""
+            }
+
+            val groupingIndex = finalPriceString.indexOfLast { it == decimalFormatSymbols.groupingSeparator }
+            if (groupingIndex >= 0 && separatorsCount > 0) {
+                if (groupingIndex > separatorIndex) {
                     return ""
                 }
             }
 
-            return null
+            try {
+                val finalPrice = priceFormat.parse(finalPriceString).toDouble()
+                if (finalPrice !in 0.0..25000.0) {
+                    return ""
+                }
+                return null
+            } catch (ignore: Throwable) {
+            }
+
+            return ""
+
         }
 
     }
