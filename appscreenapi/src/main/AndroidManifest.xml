@@ -37,6 +37,18 @@
                 <data android:mimeType="application/pdf" />
             </intent-filter>
         </activity>
+        <activity android:name=".pay.PayActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="payment"
+                    android:scheme="ginipay" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ExtractionsActivity" />
         <activity android:name=".NoExtractionsActivity" />
     </application>

@@ -1,4 +1,4 @@
-package net.gini.pay.bank
+package net.gini.pay.bank.capture
 
 import android.content.Context
 import android.content.Intent
@@ -10,13 +10,10 @@ import net.gini.android.capture.ImportedFileValidationException
 import net.gini.android.capture.requirements.GiniCaptureRequirements
 import net.gini.android.capture.requirements.RequirementsReport
 import net.gini.android.capture.util.CancellationToken
-import net.gini.pay.bank.GiniBank.releaseCapture
-import net.gini.pay.bank.GiniBank.setCaptureConfiguration
-import net.gini.pay.bank.GiniBank.startCaptureFlow
-import net.gini.pay.bank.GiniBank.startCaptureFlowForIntent
-import net.gini.pay.bank.capture.CaptureConfiguration
-import net.gini.pay.bank.capture.CaptureImportInput
-import net.gini.pay.bank.capture.applyConfiguration
+import net.gini.pay.bank.capture.GiniBankCapture.releaseCapture
+import net.gini.pay.bank.capture.GiniBankCapture.setCaptureConfiguration
+import net.gini.pay.bank.capture.GiniBankCapture.startCaptureFlow
+import net.gini.pay.bank.capture.GiniBankCapture.startCaptureFlowForIntent
 import net.gini.pay.bank.capture.util.getImportFileCallback
 
 /**
@@ -32,7 +29,7 @@ import net.gini.pay.bank.capture.util.getImportFileCallback
  * Note that configuration is immutable. [releaseCapture] needs to be called before passing a new configuration.
  *
  */
-object GiniBank {
+object GiniBankCapture {
 
     private var giniCapture: GiniCapture? = null
     private var captureConfiguration: CaptureConfiguration? = null
@@ -47,7 +44,7 @@ object GiniBank {
      */
     fun setCaptureConfiguration(captureConfiguration: CaptureConfiguration) {
         check(giniCapture == null) { "Gini Capture already configured. Call releaseCapture() before setting a new configuration." }
-        this.captureConfiguration = captureConfiguration
+        GiniBankCapture.captureConfiguration = captureConfiguration
         GiniCapture.newInstance()
             .applyConfiguration(captureConfiguration)
             .build()
