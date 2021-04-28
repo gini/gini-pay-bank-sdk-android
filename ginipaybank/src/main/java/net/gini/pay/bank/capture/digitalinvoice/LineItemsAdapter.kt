@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -110,13 +111,15 @@ internal class LineItemsAdapter(private val listener: LineItemsAdapterListener) 
         lineItems.size + addons.size + if (isInaccurateExtraction) 1 else 0
 
     private fun addonsRange() =
-        (lineItems.size + 1)..(lineItems.size + addons.size + if (isInaccurateExtraction) 1 else 0)
+        (lineItems.size + if (isInaccurateExtraction) 1 else 0)..(lineItems.size + addons.size + if (isInaccurateExtraction) 1 else 0)
 
-    override fun getItemViewType(position: Int): Int = when (position) {
-        0 -> if (isInaccurateExtraction) Header.id else LineItem.id
-        footerPosition() -> Footer.id
-        in addonsRange() -> Addon.id
-        else -> LineItem.id
+    override fun getItemViewType(position: Int): Int {
+       return when (position) {
+            0 -> if (isInaccurateExtraction) Header.id else LineItem.id
+            footerPosition() -> Footer.id
+            in addonsRange() -> Addon.id
+            else -> LineItem.id
+        }
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder<*>, position: Int) {
@@ -133,7 +136,8 @@ internal class LineItemsAdapter(private val listener: LineItemsAdapterListener) 
                 }
             }
             is ViewHolder.AddonViewHolder -> {
-                addonForPosition(position, addons, lineItems)?.let {
+                val index = if (isInaccurateExtraction) position - 1 - lineItems.size else position - lineItems.size
+                addons.getOrNull(index)?.let {
                     viewHolder.bind(it, addons)
                 }
             }

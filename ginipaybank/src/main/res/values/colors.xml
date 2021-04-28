@@ -66,8 +66,8 @@
     <color name="gpb_digital_invoice_header_button_2_text_color">#fff</color>
 
 
-    <color name="gpb_digital_invoice_addon_name_text">#000</color>
-    <color name="gpb_digital_invoice_addon_price_text">#000</color>
+    <color name="gpb_digital_invoice_addon_name_text">#222222</color>
+    <color name="gpb_digital_invoice_addon_price_text">#333333</color>
 
     <color name="gpb_digital_invoice_onboarding_fragment_background">#009EDC</color>
     <color name="gpb_digital_invoice_onboarding_text">#fff</color>

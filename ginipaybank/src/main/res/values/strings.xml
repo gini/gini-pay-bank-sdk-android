@@ -14,7 +14,7 @@
     <string name="gpb_digital_invoice_line_item_quantity">%1$dx</string>
     <string name="gpb_digital_invoice_line_item_index">Artikel %1$d/%2$d</string>
 
-    <string name="gpb_digital_invoice_footer_notice">Bitte überprüfe vor der Zahlung, ob alles in Ordnung ist und bearbeite eventuell die Gesamtsumme.</string>
+    <string name="gpb_digital_invoice_footer_notice">Bitte überprüfe vor der Zahlung, ob alles in Ordnung ist und füge eventuell fehlende Artikel hinzu.</string>
     <string name="gpb_digital_invoice_pay">Bezahlen %1$d/%2$d</string>
     <string name="gpb_digital_invoice_return_reason_dialog_title">Der Grund der Rücksendung</string>
     <string name="gpb_digital_invoice_what_is_this_dialog_title">Was ist das?</string>
@@ -32,6 +32,7 @@
     </plurals>
     <string name="gpb_digital_invoice_line_item_details_selected">ausgewählt</string>
     <string name="gpb_digital_invoice_line_item_total_label">Inkl. MwSt</string>
+    <string name="gpb_digital_invoice_line_item_description_additional">Sonstiges</string>
 
     <string name="gpb_digital_header_title">Info</string>
     <string name="gpb_digital_header_text_1">Diese neue Funktion kann Fehler enthalten. Bitte überprüfe noch einmal die Artikel und den Gesamtbetrag und bearbeite diese gegebenenfalls.</string>
@@ -70,7 +71,5 @@
     <string name="gpb_return_assistant_help_section_3_body">Sollte der Preis mal nicht perfekt ausgelesen worden sein, können Sie diesen einfach manuell korrigieren. Der Gesamtpreis aktualisiert sich automatisch.</string>
     <string name="gpb_return_assistant_help_section_3_title">Preis korrigieren</string>
     <string name="gpb_return_assistant_help_back_button_title">Zurück</string>
-
-
 
 </resources>

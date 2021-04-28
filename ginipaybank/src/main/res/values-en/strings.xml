@@ -13,7 +13,7 @@
     <string name="gpb_digital_invoice_line_item_edit">Edit</string>
     <string name="gpb_digital_invoice_line_item_quantity">%1$dx</string>
     <string name="gpb_digital_invoice_line_item_index">Article %1$d/%2$d</string>
-    <string name="gpb_digital_invoice_footer_notice">Please double check if the amount is correct and edit total if necessary.</string>
+    <string name="gpb_digital_invoice_footer_notice">Please double check if the amount is correct and add further articles if necessary.</string>
     <string name="gpb_digital_invoice_pay">Pay %1$d/%2$d</string>
     <string name="gpb_digital_invoice_line_item_details_description_label">Item Name</string>
     <string name="gpb_digital_invoice_line_item_details_quantity_label">Quantity</string>
@@ -25,6 +25,7 @@
         <item quantity="other">%1$d items %2$s</item>
     </plurals>
     <string name="gpb_digital_invoice_line_item_details_selected">selected</string>
+    <string name="gpb_digital_invoice_line_item_description_additional">Additional</string>
 
     <string name="gpb_digital_invoice_help_info">Help</string>
 
@@ -70,6 +71,7 @@
     <string name="gpb_digital_invoice_header_button_1">OK</string>
     <string name="gpb_digital_invoice_header_button_2">Skip</string>
     <string name="gpb_digital_invoice_footer_skip">Skip feature</string>
+
 
 
 </resources>

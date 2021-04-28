@@ -24,7 +24,7 @@ import net.gini.pay.bank.databinding.GpbFragmentLineItemDetailsBinding
  *
  * @suppress
  */
-internal class DigitalInvoiceInfoFragment : Fragment() {
+class DigitalInvoiceInfoFragment : Fragment() {
 
     companion object {
         @JvmStatic
@@ -34,7 +34,11 @@ internal class DigitalInvoiceInfoFragment : Fragment() {
     private var binding by autoCleared<GpbFragmentDigitalInvoiceInfoBinding>()
     var listener: DigitalInvoiceInfoFragmentListener? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = GpbFragmentDigitalInvoiceInfoBinding.inflate(inflater, container, false)
         return binding.root
     }

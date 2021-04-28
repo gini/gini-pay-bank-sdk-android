@@ -10,6 +10,7 @@ import java.math.BigDecimal
 import java.text.DecimalFormat
 import java.text.ParseException
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
+import net.gini.pay.bank.R
 import java.util.*
 
 /**
@@ -130,10 +131,16 @@ internal class LineItemDetailsScreenPresenter(
     }
 
     override fun save(isBack: Boolean) {
+        if (selectableLineItem.addedByUser && selectableLineItem.lineItem.description.isBlank()) {
+            selectableLineItem = selectableLineItem.copy(
+                lineItem = selectableLineItem.lineItem.copy(description = activity.getString(R.string.gpb_digital_invoice_line_item_description_additional))
+            )
+        }
         when {
             isBack && selectableLineItem.lineItem.id.isBlank() -> {
                 view.dismiss()
             }
+
             selectableLineItem.lineItem.id.isBlank() -> {
                 val lineItem = selectableLineItem.lineItem.copy(UUID.randomUUID().toString())
                 listener?.onSave(selectableLineItem.copy(lineItem = lineItem))

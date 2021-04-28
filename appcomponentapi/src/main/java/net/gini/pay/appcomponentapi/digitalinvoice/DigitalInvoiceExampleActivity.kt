@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import java.util.*
@@ -18,14 +20,17 @@ import net.gini.pay.appcomponentapi.util.toMap
 import net.gini.pay.bank.capture.digitalinvoice.DigitalInvoiceFragment
 import net.gini.pay.bank.capture.digitalinvoice.DigitalInvoiceFragmentListener
 import net.gini.pay.bank.capture.digitalinvoice.SelectableLineItem
+import net.gini.pay.bank.capture.digitalinvoice.info.DigitalInvoiceInfoFragment
+import net.gini.pay.bank.capture.digitalinvoice.info.DigitalInvoiceInfoFragmentListener
 import net.gini.pay.bank.capture.digitalinvoice.onboarding.DigitalInvoiceOnboardingFragment
 import net.gini.pay.bank.capture.digitalinvoice.onboarding.DigitalInvoiceOnboardingFragmentListener
 import org.slf4j.LoggerFactory
 
 private const val TAG_ONBOARDING = "TAG_ONBOARDING"
+private const val TAG_INFO = "TAG_INFO"
 
 class DigitalInvoiceExampleActivity : AppCompatActivity(), DigitalInvoiceFragmentListener,
-    DigitalInvoiceOnboardingFragmentListener {
+    DigitalInvoiceOnboardingFragmentListener, DigitalInvoiceInfoFragmentListener {
 
     private val lineItemDetailsLauncher =
         registerForActivityResult(LineItemDetailsContract()) { item ->
@@ -41,6 +46,7 @@ class DigitalInvoiceExampleActivity : AppCompatActivity(), DigitalInvoiceFragmen
         val binding = ActivityDigitalInvoiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setTitles()
         readExtras()
         if (savedInstanceState == null) {
@@ -49,6 +55,26 @@ class DigitalInvoiceExampleActivity : AppCompatActivity(), DigitalInvoiceFragmen
         } else {
             retrieveDigitalInvoiceFragment()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+            return true
+        }
+
+        if (item.itemId == net.gini.pay.bank.R.id.help) {
+            showInfo()
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(net.gini.pay.bank.R.menu.gpb_menu_digital_invoice, menu)
+        return true
     }
 
     private fun createDigitalInvoiceFragment() {
@@ -82,6 +108,26 @@ class DigitalInvoiceExampleActivity : AppCompatActivity(), DigitalInvoiceFragmen
         returnReasons = intent.getParcelableArrayListExtra(EXTRA_IN_RETURN_REASONS) ?: emptyList()
     }
 
+    private fun showInfo() {
+        if (supportFragmentManager.findFragmentByTag(TAG_INFO) != null) {
+            return
+        }
+        supportFragmentManager.commit {
+            val infoFragment = DigitalInvoiceInfoFragment.createInstance().apply {
+                listener = this@DigitalInvoiceExampleActivity
+            }
+            add(R.id.digital_invoice_screen_container, infoFragment, TAG_INFO)
+        }
+    }
+
+    override fun onCloseInfo() {
+        (supportFragmentManager.findFragmentByTag(TAG_INFO) as? DigitalInvoiceInfoFragment)?.let { infoFragment ->
+            infoFragment.listener = null
+            supportFragmentManager.commit {
+                remove(infoFragment)
+            }
+        }
+    }
 
     override fun onEditLineItem(selectableLineItem: SelectableLineItem) {
         lineItemDetailsLauncher.launch(LineItemDetailsInput(selectableLineItem, returnReasons))

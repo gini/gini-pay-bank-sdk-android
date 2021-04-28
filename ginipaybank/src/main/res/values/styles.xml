@@ -207,20 +207,20 @@
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/gpb_digital_invoice_addon_name_text</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="Root.GiniCaptureTheme.DigitalInvoice.Addon.Price.Integral.TextStyle" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/gpb_digital_invoice_addon_price_text</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">32sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Root.GiniCaptureTheme.DigitalInvoice.Addon.Price.Fractional.TextStyle" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/gpb_digital_invoice_addon_price_text</item>
-        <item name="android:textSize">9sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
