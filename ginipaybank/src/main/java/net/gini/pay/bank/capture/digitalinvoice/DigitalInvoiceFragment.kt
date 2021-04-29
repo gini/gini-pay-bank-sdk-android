@@ -127,7 +127,7 @@ open class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.Vie
         }
         forcePortraitOrientationOnPhones(activity)
         readArguments()
-        createPresenter(activity, savedInstanceState != null)
+        createPresenter(activity, savedInstanceState)
         initListener()
     }
 
@@ -149,7 +149,7 @@ open class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.Vie
         }
     }
 
-    private fun createPresenter(activity: Activity, isRetainedFragment: Boolean) =
+    private fun createPresenter(activity: Activity, savedInstanceState: Bundle?) =
         DigitalInvoiceScreenPresenter(
             activity,
             this,
@@ -157,8 +157,13 @@ open class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.Vie
             compoundExtractions,
             returnReasons,
             isInaccurateExtraction,
-            isRetainedFragment,
+            savedInstanceState,
         )
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        presenter?.saveState(outState)
+        super.onSaveInstanceState(outState)
+    }
 
     /**
      * Internal use only.

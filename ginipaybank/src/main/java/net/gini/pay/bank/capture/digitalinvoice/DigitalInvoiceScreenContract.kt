@@ -1,6 +1,7 @@
 package net.gini.pay.bank.capture.digitalinvoice
 
 import android.app.Activity
+import android.os.Bundle
 import kotlinx.coroutines.CoroutineScope
 import net.gini.android.capture.GiniCaptureBasePresenter
 import net.gini.android.capture.GiniCaptureBaseView
@@ -51,6 +52,7 @@ interface DigitalInvoiceScreenContract {
         abstract fun skip()
         abstract fun addNewArticle()
         abstract fun onViewCreated()
+        abstract fun saveState(outState: Bundle)
     }
 
     data class FooterDetails(

@@ -28,7 +28,8 @@ internal val FRACTION_FORMAT = DecimalFormat(".00").apply { roundingMode = Round
  */
 internal class DigitalInvoice(
     extractions: Map<String, GiniCaptureSpecificExtraction>,
-    compoundExtractions: Map<String, GiniCaptureCompoundExtraction>
+    compoundExtractions: Map<String, GiniCaptureCompoundExtraction>,
+    savedSelectableItems: List<SelectableLineItem>? = null
 ) {
 
     private var _extractions: Map<String, GiniCaptureSpecificExtraction> = extractions
@@ -49,8 +50,19 @@ internal class DigitalInvoice(
         get() = _addons
 
     init {
-        _selectableLineItems =
-            lineItemsFromCompoundExtractions(compoundExtractions).map { SelectableLineItem(lineItem = it) }
+        _selectableLineItems = when (savedSelectableItems) {
+            null -> {
+                lineItemsFromCompoundExtractions(compoundExtractions).map {
+                    SelectableLineItem(
+                        lineItem = it
+                    )
+                }
+            }
+            else -> {
+                savedSelectableItems
+            }
+        }
+
 
         _addons = extractions.mapNotNull { (_, extraction) ->
             DigitalInvoiceAddon.createFromOrNull(extraction)
@@ -169,8 +181,14 @@ internal class DigitalInvoice(
             sum.add(addon.price)
         }
 
-    private fun totalPrice(): BigDecimal =
-        selectedLineItemsTotalGrossPriceSum().add(addonsPriceSum()).max(BigDecimal.ZERO)
+    private fun totalPrice(): BigDecimal {
+        val itemsPrice = selectedLineItemsTotalGrossPriceSum()
+        if (itemsPrice > BigDecimal.ZERO) {
+            return itemsPrice.add(addonsPriceSum()).max(BigDecimal.ZERO)
+        }
+
+        return BigDecimal.ZERO
+    }
 
     fun selectedAndTotalLineItemsCount(): Pair<Int, Int> =
         Pair(selectedLineItemsCount(), totalLineItemsCount())

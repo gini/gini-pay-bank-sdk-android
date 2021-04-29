@@ -137,8 +137,9 @@ internal class LineItemsAdapter(private val listener: LineItemsAdapterListener) 
             }
             is ViewHolder.AddonViewHolder -> {
                 val index = if (isInaccurateExtraction) position - 1 - lineItems.size else position - lineItems.size
+                val enabled = footerDetails?.buttonEnabled ?: true
                 addons.getOrNull(index)?.let {
-                    viewHolder.bind(it, addons)
+                    viewHolder.bind(Pair(it, enabled), null)
                 }
             }
             is ViewHolder.FooterViewHolder -> {
@@ -491,24 +492,50 @@ internal sealed class ViewHolder<in T>(itemView: View, val viewType: ViewType) :
      * @suppress
      */
     internal class AddonViewHolder(binding: GpbItemDigitalInvoiceAddonBinding) :
-        ViewHolder<DigitalInvoiceAddon>(binding.root, Addon) {
+        ViewHolder<Pair<DigitalInvoiceAddon, Boolean>>(binding.root, Addon) {
         private val addonName = binding.gpbAddonName
         private val priceIntegralPart: TextView = binding.gpbAddonPriceTotalIntegralPart
         private val priceFractionalPart: TextView = binding.gpbAddonPriceTotalFractionalPart
 
         override fun bind(
-            data: DigitalInvoiceAddon,
-            allData: List<DigitalInvoiceAddon>?,
+            data: Pair<DigitalInvoiceAddon, Boolean>,
+            allData: List< Pair<DigitalInvoiceAddon, Boolean>>?,
             dataIndex: Int?
         ) {
             @SuppressLint("SetTextI18n")
-            addonName.text = "${itemView.context.getString(data.nameStringRes)}:"
-            DigitalInvoice.addonPriceIntegralAndFractionalParts(data)
+            addonName.text = "${itemView.context.getString(data.first.nameStringRes)}:"
+            DigitalInvoice.addonPriceIntegralAndFractionalParts(data.first)
                 .let { (integral, fractional) ->
                     priceIntegralPart.text = integral
                     @SuppressLint("SetTextI18n")
                     priceFractionalPart.text = fractional
                 }
+
+            when (data.second) {
+                true -> {
+                    addonName.setTextColor(ContextCompat.getColor(
+                        itemView.context,
+                        R.color.gpb_digital_invoice_addon_name_text
+                    ))
+
+                    val enabledColor = ContextCompat.getColor(
+                        itemView.context,
+                        R.color.gpb_digital_invoice_addon_price_text
+                    )
+                    priceIntegralPart.setTextColor(enabledColor)
+                    priceFractionalPart.setTextColor(enabledColor)
+                }
+
+                else -> {
+                    val disabledColor = ContextCompat.getColor(
+                        itemView.context,
+                        R.color.gpb_digital_invoice_line_item_disabled
+                    )
+                    addonName.setTextColor(disabledColor)
+                    priceIntegralPart.setTextColor(disabledColor)
+                    priceFractionalPart.setTextColor(disabledColor)
+                }
+            }
         }
 
         override fun unbind() {
@@ -528,6 +555,7 @@ internal sealed class ViewHolder<in T>(itemView: View, val viewType: ViewType) :
             allData: List<DigitalInvoiceScreenContract.FooterDetails>?,
             dataIndex: Int?
         ) {
+            binding.skipButton.isEnabled = data.buttonEnabled
             binding.skipButton.isVisible = data.inaccurateExtraction
             binding.payButton.isEnabled = data.buttonEnabled
             binding.payButton.text =

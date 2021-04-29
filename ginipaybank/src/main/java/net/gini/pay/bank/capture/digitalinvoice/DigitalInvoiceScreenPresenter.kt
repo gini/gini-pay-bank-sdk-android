@@ -1,6 +1,7 @@
 package net.gini.pay.bank.capture.digitalinvoice
 
 import android.app.Activity
+import android.os.Bundle
 import androidx.annotation.VisibleForTesting
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -19,6 +20,8 @@ import net.gini.pay.bank.capture.util.BusEvent
  * Copyright (c) 2019 Gini GmbH.
  */
 
+private const val KEY_SELECTABLE_ITEMS = "SELECTABLE_ITEMS"
+
 internal class DigitalInvoiceScreenPresenter(
     activity: Activity,
     view: DigitalInvoiceScreenContract.View,
@@ -26,13 +29,15 @@ internal class DigitalInvoiceScreenPresenter(
     val compoundExtractions: Map<String, GiniCaptureCompoundExtraction> = emptyMap(),
     val returnReasons: List<GiniCaptureReturnReason> = emptyList(),
     private val isInaccurateExtraction: Boolean = false,
-    private var onboardingDisplayed: Boolean = false,
+    savedInstanceBundle: Bundle?,
     private val oncePerInstallEventStore: OncePerInstallEventStore = OncePerInstallEventStore(
         activity
     ),
     private val simpleBusEventStore: SimpleBusEventStore = SimpleBusEventStore(activity)
 ) :
     DigitalInvoiceScreenContract.Presenter(activity, view) {
+
+    private var onboardingDisplayed: Boolean = savedInstanceBundle != null
 
     override var listener: DigitalInvoiceFragmentListener? = null
 
@@ -47,7 +52,18 @@ internal class DigitalInvoiceScreenPresenter(
 
     init {
         view.setPresenter(this)
-        digitalInvoice = DigitalInvoice(extractions, compoundExtractions)
+        digitalInvoice = DigitalInvoice(
+            extractions, compoundExtractions, savedInstanceBundle?.getParcelableArray(
+                KEY_SELECTABLE_ITEMS
+            )?.filterIsInstance<SelectableLineItem>()?.toList()
+        )
+    }
+
+    override fun saveState(outState: Bundle) {
+        outState.putParcelableArray(
+            KEY_SELECTABLE_ITEMS,
+            digitalInvoice.selectableLineItems.toTypedArray()
+        )
     }
 
     override fun selectLineItem(lineItem: SelectableLineItem) {
