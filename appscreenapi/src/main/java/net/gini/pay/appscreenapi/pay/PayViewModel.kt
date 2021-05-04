@@ -10,10 +10,10 @@ import net.gini.android.models.PaymentRequest
 import net.gini.android.models.ResolvePaymentInput
 import net.gini.pay.appscreenapi.util.ResultWrapper
 import net.gini.pay.appscreenapi.util.wrapToResult
-import net.gini.pay.bank.pay.GiniBank
+import net.gini.pay.bank.pay.GiniBankPay
 
 class PayViewModel(
-    private val giniBank: GiniBank
+    private val giniBank: GiniBankPay
 ) : ViewModel() {
 
     private val _paymentRequest = MutableStateFlow<ResultWrapper<PaymentRequest>>(ResultWrapper.Loading())

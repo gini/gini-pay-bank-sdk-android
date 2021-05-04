@@ -5,7 +5,7 @@ import net.gini.android.Gini
 import net.gini.android.models.PaymentRequest
 import net.gini.android.models.ResolvePaymentInput
 
-class GiniBank(
+class GiniBankPay(
     val giniApi: Gini,
 ) {
     private val documentManager = giniApi.documentManager
