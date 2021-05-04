@@ -2,6 +2,12 @@
     <string name="app_name">Screen API Example</string>
     <string name="gini_api_type_label">Gini API Type</string>
     <string name="start_gini_capture_sdk">Start Gini Capture SDK</string>
+    <string name="recipient_hint">recipient</string>
+    <string name="iban_hint">IBAN</string>
+    <string name="amount_hint">Amount</string>
+    <string name="purpose_hint">Purpose</string>
+    <string name="return_to_business">Return to Business</string>
+    <string name="resolve_payment">Pay</string>
     <string-array name="gini_api_types">
         <item>DEFAULT</item>
         <item>ACCOUNTING</item>
