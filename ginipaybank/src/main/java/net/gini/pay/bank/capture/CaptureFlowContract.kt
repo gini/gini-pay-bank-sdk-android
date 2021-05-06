@@ -12,6 +12,7 @@ import net.gini.android.capture.network.model.GiniCaptureCompoundExtraction
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
 import net.gini.android.capture.network.model.GiniCaptureSpecificExtraction
 import net.gini.pay.bank.GiniBank
+import net.gini.pay.bank.capture.CaptureFlowImportContract.Companion.EXTRA_OUT_ERROR_MESSAGE
 import net.gini.pay.bank.capture.CaptureFlowImportContract.Companion.EXTRA_OUT_IMPORT_ERROR
 
 /**
@@ -110,7 +111,7 @@ internal fun internalParseResult(resultCode: Int, result: Intent?): CaptureResul
     if (resultCode != Activity.RESULT_OK) {
         val captureError: GiniCaptureError? = result?.getParcelableExtra(CameraActivity.EXTRA_OUT_ERROR)
         val importError: FileImportValidator.Error? = result?.getParcelableExtra(EXTRA_OUT_IMPORT_ERROR)
-        val importErrorMessage: String? = result?.getParcelableExtra(EXTRA_OUT_IMPORT_ERROR)
+        val importErrorMessage: String? = result?.getStringExtra(EXTRA_OUT_ERROR_MESSAGE)
         return if (captureError != null) {
             CaptureResult.Error(ResultError.Capture(captureError))
         } else if (importError != null || importErrorMessage != null) {

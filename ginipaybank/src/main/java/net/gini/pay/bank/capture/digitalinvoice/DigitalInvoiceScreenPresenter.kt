@@ -13,6 +13,7 @@ import net.gini.pay.bank.capture.util.SimpleBusEventStore
 import net.gini.pay.bank.capture.util.OncePerInstallEvent
 import net.gini.pay.bank.capture.util.OncePerInstallEventStore
 import net.gini.pay.bank.capture.util.BusEvent
+import java.math.BigDecimal
 
 /**
  * Created by Alpar Szotyori on 05.12.2019.
@@ -160,7 +161,7 @@ internal class DigitalInvoiceScreenPresenter(
                 footerDetails = footerDetails
                     .copy(
                         totalGrossPriceIntegralAndFractionalParts = digitalInvoice.totalPriceIntegralAndFractionalParts(),
-                        buttonEnabled = selected > 0,
+                        buttonEnabled = selected > 0 && digitalInvoice.totalPrice() > BigDecimal.ZERO,
                         count = selected,
                         total = total
                     )

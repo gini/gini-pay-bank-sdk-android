@@ -181,7 +181,7 @@ internal class DigitalInvoice(
             sum.add(addon.price)
         }
 
-    private fun totalPrice(): BigDecimal {
+    fun totalPrice(): BigDecimal {
         val itemsPrice = selectedLineItemsTotalGrossPriceSum()
         if (itemsPrice > BigDecimal.ZERO) {
             return itemsPrice.add(addonsPriceSum()).max(BigDecimal.ZERO)
