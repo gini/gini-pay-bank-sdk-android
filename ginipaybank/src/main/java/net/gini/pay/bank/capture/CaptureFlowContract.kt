@@ -122,7 +122,7 @@ internal fun internalParseResult(resultCode: Int, result: Intent?): CaptureResul
     }
     val specificExtractionsBundle: Bundle? = result?.getBundleExtra(CameraActivity.EXTRA_OUT_EXTRACTIONS)
     val compoundExtractionsBundle: Bundle? = result?.getBundleExtra(CameraActivity.EXTRA_OUT_COMPOUND_EXTRACTIONS)
-    val returnReasons: List<GiniCaptureReturnReason>? = result?.getParcelableArrayListExtra(CameraActivity.EXTRA_OUT_COMPOUND_EXTRACTIONS)
+    val returnReasons: List<GiniCaptureReturnReason>? = result?.getParcelableArrayListExtra(CameraActivity.EXTRA_OUT_RETURN_REASONS)
     return if (specificExtractionsBundle == null ||
         !pay5ExtractionsAvailable(specificExtractionsBundle) &&
         !epsPaymentAvailable(specificExtractionsBundle)

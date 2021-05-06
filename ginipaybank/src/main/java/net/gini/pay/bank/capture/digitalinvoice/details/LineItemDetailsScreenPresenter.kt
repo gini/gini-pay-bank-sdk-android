@@ -83,7 +83,7 @@ internal class LineItemDetailsScreenPresenter(
     private fun updateCheckboxAndSaveButton() = selectableLineItem.let {
         view.apply {
             showCheckbox(it.selected, it.lineItem.quantity, !it.addedByUser)
-            updateSaveButton(it, originalLineItem)
+            updateSaveButton(it, originalLineItem, it.lineItem.grossPrice > BigDecimal.ZERO)
         }
     }
 
@@ -94,7 +94,7 @@ internal class LineItemDetailsScreenPresenter(
         selectableLineItem = selectableLineItem.copy(
             lineItem = selectableLineItem.lineItem.copy(description = description)
         ).also {
-            view.updateSaveButton(it, originalLineItem)
+            view.updateSaveButton(it, originalLineItem, it.lineItem.grossPrice > BigDecimal.ZERO)
         }
     }
 
@@ -113,6 +113,9 @@ internal class LineItemDetailsScreenPresenter(
         val grossPrice = try {
             grossPriceFormat.parse(displayedGrossPrice) as BigDecimal
         } catch (_: ParseException) {
+            view.apply {
+                updateSaveButton(selectableLineItem, originalLineItem, false)
+            }
             return
         }
         if (selectableLineItem.lineItem.grossPrice == grossPrice) {
@@ -125,7 +128,7 @@ internal class LineItemDetailsScreenPresenter(
         ).also {
             view.apply {
                 showTotalGrossPrice(it)
-                updateSaveButton(it, originalLineItem)
+                updateSaveButton(it, originalLineItem, grossPrice > BigDecimal.ZERO)
             }
         }
     }
@@ -178,8 +181,8 @@ private fun View.showTotalGrossPrice(selectableLineItem: SelectableLineItem) {
     }
 }
 
-private fun View.updateSaveButton(new: SelectableLineItem, old: SelectableLineItem) {
-    if (new == old) {
+private fun View.updateSaveButton(new: SelectableLineItem, old: SelectableLineItem, isPriceValid: Boolean) {
+    if (new == old || !isPriceValid) {
         disableSaveButton()
     } else {
         enableSaveButton()
