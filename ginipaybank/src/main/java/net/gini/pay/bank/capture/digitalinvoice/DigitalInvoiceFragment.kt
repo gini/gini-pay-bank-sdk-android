@@ -99,7 +99,7 @@ open class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.Vie
             extractions: Map<String, GiniCaptureSpecificExtraction>,
             compoundExtractions: Map<String, GiniCaptureCompoundExtraction>,
             returnReasons: List<GiniCaptureReturnReason>,
-            isInaccurateExtraction: Boolean = false
+            isInaccurateExtraction: Boolean = true
         ) = DigitalInvoiceFragment().apply {
             arguments = Bundle().apply {
                 putBundle(ARGS_EXTRACTIONS, Bundle().apply {

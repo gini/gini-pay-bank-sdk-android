@@ -126,7 +126,7 @@ internal class LineItemsAdapter(private val listener: LineItemsAdapterListener) 
         when (viewHolder) {
             is ViewHolder.HeaderViewHolder -> {
                 viewHolder.listener = listener
-                viewHolder.bind(Unit)
+                viewHolder.bind(footerDetails?.buttonEnabled ?: false)
             }
             is ViewHolder.LineItemViewHolder -> {
                 val index = if (isInaccurateExtraction) position - 1 else position
@@ -238,7 +238,7 @@ internal sealed class ViewHolder<in T>(itemView: View, val viewType: ViewType) :
     internal class HeaderViewHolder(
         val binding: GpbItemDigitalInvoiceHeaderBinding
     ) :
-        ViewHolder<Unit>(binding.root, Header) {
+        ViewHolder<Boolean>(binding.root, Header) {
         internal var listener: LineItemsAdapterListener? = null
         private val collapsedHeight =
             binding.root.resources.getDimensionPixelSize(R.dimen.gpb_digital_invoice_header_collapsed_height)
@@ -264,7 +264,8 @@ internal sealed class ViewHolder<in T>(itemView: View, val viewType: ViewType) :
             animateView()
         }
 
-        override fun bind(data: Unit, allData: List<Unit>?, dataIndex: Int?) {
+        override fun bind(data: Boolean, allData: List<Boolean>?, dataIndex: Int?) {
+            binding.headerButton2.isEnabled = data
             binding.collapseButton.setOnClickListener(toggleClickListener)
             binding.headerButton1.setOnClickListener(toggleClickListener)
             binding.headerTitle.setOnClickListener(toggleClickListener)

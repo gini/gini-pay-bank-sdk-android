@@ -111,6 +111,14 @@ internal class DigitalInvoiceScreenPresenter(
     }
 
     override fun pay() {
+        skipOrPay()
+    }
+
+    override fun skip() {
+        skipOrPay()
+    }
+
+    private fun skipOrPay() {
         digitalInvoice.updateLineItemExtractionsWithReviewedLineItems()
         digitalInvoice.updateAmountToPayExtractionWithTotalPrice()
         if (GiniCapture.hasInstance()) {
@@ -119,10 +127,6 @@ internal class DigitalInvoiceScreenPresenter(
             )
         }
         listener?.onPayInvoice(digitalInvoice.extractions, digitalInvoice.compoundExtractions)
-    }
-
-    override fun skip() {
-        listener?.onPayInvoice(emptyMap(), emptyMap())
     }
 
     override fun updateLineItem(selectableLineItem: SelectableLineItem) {
