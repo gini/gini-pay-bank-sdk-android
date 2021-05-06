@@ -20,7 +20,7 @@ import net.gini.android.capture.util.CancellationToken
 import net.gini.pay.appscreenapi.databinding.ActivityMainBinding
 import net.gini.pay.appscreenapi.util.PermissionHandler
 import net.gini.pay.appscreenapi.util.SimpleSpinnerSelectListener
-import net.gini.pay.bank.capture.GiniBankCapture
+import net.gini.pay.bank.capture.GiniPayBank
 import net.gini.pay.bank.capture.CaptureConfiguration
 import net.gini.pay.bank.capture.CaptureFlowContract
 import net.gini.pay.bank.capture.CaptureFlowImportContract
@@ -55,9 +55,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configureGiniCapture() {
-        GiniBankCapture.releaseCapture(this)
+        GiniPayBank.releaseCapture(this)
         val (networkService, networkApi) = getNetworkService()
-        GiniBankCapture.setCaptureConfiguration(
+        GiniPayBank.setCaptureConfiguration(
             CaptureConfiguration(
                 networkService = networkService,
                 networkApi = networkApi,
@@ -94,16 +94,16 @@ class MainActivity : AppCompatActivity() {
     private fun startGiniCaptureSdk(intent: Intent? = null) {
         lifecycleScope.launch {
             if (permissionHandler.grantPermission(Manifest.permission.CAMERA)) {
-                val report = GiniBankCapture.checkCaptureRequirements(this@MainActivity)
+                val report = GiniPayBank.checkCaptureRequirements(this@MainActivity)
                 if (!report.isFulfilled) {
                     showUnfulfilledRequirementsToast(report)
                 }
                 configureGiniCapture()
 
                 if (intent != null) {
-                    cancellationToken = GiniBankCapture.startCaptureFlowForIntent(captureImportLauncher, this@MainActivity, intent)
+                    cancellationToken = GiniPayBank.startCaptureFlowForIntent(captureImportLauncher, this@MainActivity, intent)
                 } else {
-                    GiniBankCapture.startCaptureFlow(captureLauncher)
+                    GiniPayBank.startCaptureFlow(captureLauncher)
                 }
             } else {
                 if (intent != null) {
@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun onStartAgainResult(startAgain: Boolean) {
         if (startAgain) {
-            GiniBankCapture.startCaptureFlow(captureLauncher)
+            GiniPayBank.startCaptureFlow(captureLauncher)
         }
     }
 

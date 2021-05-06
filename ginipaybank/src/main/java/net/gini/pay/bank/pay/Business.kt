@@ -2,7 +2,7 @@ package net.gini.pay.bank.pay
 
 import android.content.Intent
 import android.net.Uri
-import net.gini.android.models.PaymentRequest
+import net.gini.android.models.ResolvedPayment
 
 internal const val Scheme = "ginipay" // It has to match the scheme in query tag in manifest
 private const val PaymentPath = "payment"
@@ -17,7 +17,7 @@ fun getRequestId(intent: Intent): String {
     return path[0]
 }
 
-fun PaymentRequest.getBusinessIntent() = Intent().apply {
+fun ResolvedPayment.getBusinessIntent() = Intent().apply {
     action = Intent.ACTION_VIEW
     data = Uri.parse(this@getBusinessIntent.requesterUri)
 }

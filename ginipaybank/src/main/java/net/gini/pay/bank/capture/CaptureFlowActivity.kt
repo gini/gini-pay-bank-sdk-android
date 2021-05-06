@@ -34,7 +34,7 @@ internal class CaptureFlowActivity : AppCompatActivity(), CaptureFlowImportContr
     private fun onCameraResult(result: CaptureResult) {
         when (result) {
             is CaptureResult.Success -> {
-                if (GiniBankCapture.getCaptureConfiguration()?.returnAssistantEnabled == true) {
+                if (GiniPayBank.getCaptureConfiguration()?.returnAssistantEnabled == true) {
                     try {
                         LineItemsValidator.validate(result.compoundExtractions)
                         digitalInvoiceLauncher.launch(result.toDigitalInvoiceInput())

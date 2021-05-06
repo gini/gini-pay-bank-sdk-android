@@ -8,19 +8,20 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import net.gini.android.models.PaymentRequest
 import net.gini.android.models.ResolvePaymentInput
+import net.gini.android.models.ResolvedPayment
 import net.gini.pay.appscreenapi.util.ResultWrapper
 import net.gini.pay.appscreenapi.util.wrapToResult
-import net.gini.pay.bank.pay.GiniBankPay
+import net.gini.pay.bank.capture.GiniPayBank
 
 class PayViewModel(
-    private val giniBank: GiniBankPay
+    private val giniBank: GiniPayBank
 ) : ViewModel() {
 
     private val _paymentRequest = MutableStateFlow<ResultWrapper<PaymentRequest>>(ResultWrapper.Loading())
     val paymentRequest: StateFlow<ResultWrapper<PaymentRequest>> = _paymentRequest
 
-    private val _paymentState = MutableStateFlow<ResultWrapper<Unit>>(ResultWrapper.Loading())
-    val paymentState: StateFlow<ResultWrapper<Unit>> = _paymentState
+    private val _paymentState = MutableStateFlow<ResultWrapper<ResolvedPayment>>(ResultWrapper.Loading())
+    val paymentState: StateFlow<ResultWrapper<ResolvedPayment>> = _paymentState
 
     private var requestId: String? = null
 
@@ -42,8 +43,8 @@ class PayViewModel(
     }
 
     fun returnToBusiness(context: Context) {
-        val request = paymentRequest.value
-        if (request is ResultWrapper.Success)
-        giniBank.returnToBusiness(context, request.value)
+        val payment = paymentState.value
+        if (payment is ResultWrapper.Success)
+        giniBank.returnToBusiness(context, payment.value)
     }
 }
