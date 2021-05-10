@@ -17,7 +17,6 @@ the ginipay URI so that it is discoverable by the business apps:
         <action android:name="android.intent.action.VIEW" />
 
         <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="android.intent.category.BROWSABLE" />
 
         <data
             android:host="payment"

@@ -47,7 +47,6 @@ To use the pay feature you need to add to your manifest an intent filter for the
         <action android:name="android.intent.action.VIEW" />
 
         <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="android.intent.category.BROWSABLE" />
 
         <data
             android:host="payment"
