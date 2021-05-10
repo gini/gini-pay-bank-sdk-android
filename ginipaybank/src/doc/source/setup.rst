@@ -41,15 +41,15 @@ Note that configuration is immutable. ``releaseCapture`` needs to be called befo
 
 To use the pay feature you need to add to your manifest an intent filter for the ginipay URI:
 
-```
-<intent-filter>
-    <action android:name="android.intent.action.VIEW" />
+.. code-block:: kotlin
 
-    <category android:name="android.intent.category.DEFAULT" />
-    <category android:name="android.intent.category.BROWSABLE" />
+    <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
 
-    <data
-        android:host="payment"
-        android:scheme="ginipay" />
-</intent-filter>
-```
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+
+        <data
+            android:host="payment"
+            android:scheme="ginipay" />
+    </intent-filter>

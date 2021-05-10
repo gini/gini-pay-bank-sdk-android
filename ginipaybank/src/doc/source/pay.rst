@@ -10,18 +10,19 @@ See authentication sections for more details.
 
 To use the pay feature you need to add to your manifest an intent filter for
 the ginipay URI so that it is discoverable by the business apps:
-```
-<intent-filter>
-    <action android:name="android.intent.action.VIEW" />
 
-    <category android:name="android.intent.category.DEFAULT" />
-    <category android:name="android.intent.category.BROWSABLE" />
+.. code-block:: kotlin
 
-    <data
-        android:host="payment"
-        android:scheme="ginipay" />
-</intent-filter>
-```
+    <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+
+        <data
+            android:host="payment"
+            android:scheme="ginipay" />
+    </intent-filter>
 
 The intent filter can be added to the activity which will handle the payment flow of
 that payment request.
