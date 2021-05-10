@@ -11,5 +11,6 @@ Some attributes are set inside the library (styles that start with
 ``Root.``) to provide the basic UI, but you can hook into the other
 styles to customize the screen further.
 
-`See styles file <https://github.com/gini/gini-pay-bank-sdk-android/blob/main/ginipaybank/src/main/res/values/styles.xml>`_
-`See styles file <https://github.com/gini/gini-capture-sdk-android/blob/main/ginicapture/src/main/res/values/styles.xml>`_
+`See styles file in Gini Bank SDK <https://github.com/gini/gini-pay-bank-sdk-android/blob/main/ginipaybank/src/main/res/values/styles.xml>`_
+
+`See styles file in Gini Capture SDK <https://github.com/gini/gini-capture-sdk-android/blob/main/ginicapture/src/main/res/values/styles.xml>`_
