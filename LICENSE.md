@@ -7,7 +7,7 @@ integrates several third party libraries.
 *Important: Always make sure to ship all license notices and permissions with your application.*
 
 ```
-   Copyright (c) 2014-2018, Gini GmbH
+   Copyright (c) 2014-2021, Gini GmbH
    All rights reserved.
    
    The Gini Pay Bank SDK is licensed through Gini GmbH ("Gini") and may not be

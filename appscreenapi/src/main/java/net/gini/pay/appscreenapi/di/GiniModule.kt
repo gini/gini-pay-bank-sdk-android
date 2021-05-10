@@ -1,10 +1,10 @@
 package net.gini.pay.appscreenapi.di
 
-import net.gini.android.GiniBuilder
-import net.gini.pay.bank.capture.GiniPayBank
+import net.gini.pay.bank.GiniPayBank
+import net.gini.pay.bank.ginipayapi.getGiniApi
 import org.koin.dsl.module
 
 val giniModule = module {
-    single { GiniBuilder(get(), getProperty("clientId"), getProperty("clientSecret"), "example.com").build() }
+    single { getGiniApi(get(), getProperty("clientId"), getProperty("clientSecret"), "example.com") }
     single { GiniPayBank.apply { setGiniApi(get()) } }
 }

@@ -1,4 +1,4 @@
-package net.gini.pay.bank.capture
+package net.gini.pay.bank
 
 import android.content.Context
 import android.content.Intent
@@ -14,10 +14,13 @@ import net.gini.android.capture.util.CancellationToken
 import net.gini.android.models.PaymentRequest
 import net.gini.android.models.ResolvePaymentInput
 import net.gini.android.models.ResolvedPayment
-import net.gini.pay.bank.capture.GiniPayBank.releaseCapture
-import net.gini.pay.bank.capture.GiniPayBank.setCaptureConfiguration
-import net.gini.pay.bank.capture.GiniPayBank.startCaptureFlow
-import net.gini.pay.bank.capture.GiniPayBank.startCaptureFlowForIntent
+import net.gini.pay.bank.GiniPayBank.releaseCapture
+import net.gini.pay.bank.GiniPayBank.setCaptureConfiguration
+import net.gini.pay.bank.GiniPayBank.startCaptureFlow
+import net.gini.pay.bank.GiniPayBank.startCaptureFlowForIntent
+import net.gini.pay.bank.capture.CaptureConfiguration
+import net.gini.pay.bank.capture.CaptureImportInput
+import net.gini.pay.bank.capture.applyConfiguration
 import net.gini.pay.bank.capture.util.getImportFileCallback
 import net.gini.pay.bank.pay.getBusinessIntent
 import net.gini.pay.bank.pay.getRequestId

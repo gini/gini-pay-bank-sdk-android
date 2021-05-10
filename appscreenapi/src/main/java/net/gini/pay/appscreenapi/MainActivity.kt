@@ -20,7 +20,7 @@ import net.gini.android.capture.util.CancellationToken
 import net.gini.pay.appscreenapi.databinding.ActivityMainBinding
 import net.gini.pay.appscreenapi.util.PermissionHandler
 import net.gini.pay.appscreenapi.util.SimpleSpinnerSelectListener
-import net.gini.pay.bank.capture.GiniPayBank
+import net.gini.pay.bank.GiniPayBank
 import net.gini.pay.bank.capture.CaptureConfiguration
 import net.gini.pay.bank.capture.CaptureFlowContract
 import net.gini.pay.bank.capture.CaptureFlowImportContract

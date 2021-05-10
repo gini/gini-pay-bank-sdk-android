@@ -11,7 +11,7 @@ import net.gini.android.models.ResolvePaymentInput
 import net.gini.android.models.ResolvedPayment
 import net.gini.pay.appscreenapi.util.ResultWrapper
 import net.gini.pay.appscreenapi.util.wrapToResult
-import net.gini.pay.bank.capture.GiniPayBank
+import net.gini.pay.bank.GiniPayBank
 
 class PayViewModel(
     private val giniBank: GiniPayBank

@@ -22,7 +22,7 @@ import net.gini.pay.appcomponentapi.util.PermissionHandler
 import net.gini.pay.appcomponentapi.util.SimpleSpinnerSelectListener
 import net.gini.pay.appcomponentapi.util.isIntentActionViewOrSend
 import net.gini.pay.bank.BuildConfig
-import net.gini.pay.bank.capture.GiniPayBank
+import net.gini.pay.bank.GiniPayBank
 import net.gini.pay.bank.capture.CaptureConfiguration
 import net.gini.pay.bank.network.getAccountingNetworkApi
 import net.gini.pay.bank.network.getAccountingNetworkService
