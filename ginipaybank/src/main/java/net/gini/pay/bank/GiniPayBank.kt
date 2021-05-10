@@ -131,7 +131,7 @@ object GiniPayBank {
      * Set the [Gini] instance to be used for the Pay feature.
      */
     fun setGiniApi(giniApi: Gini) {
-        GiniPayBank.giniApi = giniApi
+        this.giniApi = giniApi
     }
 
     /**
