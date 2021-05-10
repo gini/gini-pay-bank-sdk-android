@@ -1,7 +1,7 @@
 package net.gini.pay.appscreenapi.di
 
 import net.gini.android.GiniBuilder
-import net.gini.pay.bank.capture.GiniPayBank
+import net.gini.pay.bank.GiniPayBank
 import org.koin.dsl.module
 
 val giniModule = module {

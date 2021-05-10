@@ -34,7 +34,7 @@ import net.gini.pay.appcomponentapi.review.MultiPageReviewContract
 import net.gini.pay.appcomponentapi.review.ReviewContract
 import net.gini.pay.appcomponentapi.util.hasLessThan5MB
 import net.gini.pay.appcomponentapi.util.isIntentActionViewOrSend
-import net.gini.pay.bank.capture.GiniPayBank
+import net.gini.pay.bank.GiniPayBank
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
