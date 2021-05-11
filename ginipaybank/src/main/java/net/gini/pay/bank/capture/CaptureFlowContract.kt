@@ -10,7 +10,7 @@ import net.gini.android.capture.camera.CameraActivity
 import net.gini.android.capture.internal.util.FileImportValidator
 import net.gini.android.capture.network.model.GiniCaptureCompoundExtraction
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
-import net.gini.android.capture.network.model.GiniCaptureSpecificExtractionl
+import net.gini.android.capture.network.model.GiniCaptureSpecificExtraction
 import net.gini.pay.bank.capture.CaptureFlowImportContract.Companion.EXTRA_OUT_ERROR_MESSAGE
 import net.gini.pay.bank.capture.CaptureFlowImportContract.Companion.EXTRA_OUT_IMPORT_ERROR
 
