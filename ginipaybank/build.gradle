@@ -16,14 +16,14 @@ android {
     defaultConfig {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
-        versionCode libVersionCode
-        versionName libVersionName
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        buildConfigField 'int', 'VERSION_CODE', "$libVersionCode"
-        buildConfigField 'String', 'VERSION_NAME', "\"$libVersionName\""
+        buildConfigField 'int', 'VERSION_CODE', "${rootProject.ext.versionCode}"
+        buildConfigField 'String', 'VERSION_NAME', "\"${rootProject.ext.versionName}\""
     }
 
     buildFeatures {
