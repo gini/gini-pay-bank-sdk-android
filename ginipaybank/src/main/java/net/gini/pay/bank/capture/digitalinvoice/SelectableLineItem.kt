@@ -20,21 +20,27 @@ import net.gini.android.capture.network.model.GiniCaptureReturnReason
 class SelectableLineItem(
     var selected: Boolean = true,
     var reason: GiniCaptureReturnReason? = null,
+    var addedByUser: Boolean = false,
     val lineItem: LineItem
 ) : Parcelable {
 
-    override fun toString() = "LineItem(selected=$selected, reason=$reason, lineItem=$lineItem)"
+    override fun toString() = "LineItem(selected=$selected, reason=$reason, addedByUser=$addedByUser, lineItem=$lineItem)"
 
     override fun equals(other: Any?) = other is SelectableLineItem
             && selected == other.selected
             && reason == other.reason
+            && addedByUser == other.addedByUser
             && lineItem == other.lineItem
 
-    override fun hashCode() = Objects.hash(selected, lineItem)
+    override fun hashCode() = Objects.hash(selected, addedByUser, lineItem)
 
     @JvmSynthetic
-    fun copy(selected: Boolean = this.selected,
-             reason: GiniCaptureReturnReason? = this.reason,
-             lineItem: LineItem = this.lineItem) = SelectableLineItem(selected, reason,
-            lineItem.copy())
+    fun copy(
+        selected: Boolean = this.selected,
+        reason: GiniCaptureReturnReason? = this.reason,
+        lineItem: LineItem = this.lineItem
+    ) = SelectableLineItem(
+        selected, reason, addedByUser,
+        lineItem.copy()
+    )
 }

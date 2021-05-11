@@ -28,7 +28,7 @@ interface LineItemDetailsScreenContract {
         fun showDescription(description: String)
         fun showQuantity(quantity: Int)
         fun showGrossPrice(displayedGrossPrice: String, currency: String)
-        fun showCheckbox(selected: Boolean, quantity: Int)
+        fun showCheckbox(selected: Boolean, quantity: Int, visible: Boolean)
         fun showTotalGrossPrice(integralPart: String, fractionalPart: String)
         fun enableSaveButton()
         fun disableSaveButton()
@@ -36,6 +36,7 @@ interface LineItemDetailsScreenContract {
         fun disableInput()
         fun showReturnReasonDialog(reasons: List<GiniCaptureReturnReason>,
                                    resultCallback: ReturnReasonDialogResultCallback)
+        fun dismiss()
     }
 
     /**
@@ -51,6 +52,6 @@ interface LineItemDetailsScreenContract {
         abstract fun setDescription(description: String)
         abstract fun setQuantity(quantity: Int)
         abstract fun setGrossPrice(displayedGrossPrice: String)
-        abstract fun save()
+        abstract fun save(isBack: Boolean)
     }
 }

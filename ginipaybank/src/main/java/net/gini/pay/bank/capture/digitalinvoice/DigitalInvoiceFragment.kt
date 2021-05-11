@@ -1,23 +1,25 @@
 package net.gini.pay.bank.capture.digitalinvoice
 
-import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
+import kotlinx.coroutines.CoroutineScope
 import net.gini.android.capture.internal.util.ActivityHelper.forcePortraitOrientationOnPhones
 import net.gini.android.capture.network.model.GiniCaptureCompoundExtraction
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
 import net.gini.android.capture.network.model.GiniCaptureSpecificExtraction
-import net.gini.pay.bank.R
-import net.gini.pay.bank.capture.digitalinvoice.onboarding.DigitalInvoiceOnboardingFragment
-import net.gini.pay.bank.capture.digitalinvoice.onboarding.DigitalInvoiceOnboardingFragmentListener
 import net.gini.pay.bank.capture.util.autoCleared
 import net.gini.pay.bank.capture.util.parentFragmentManagerOrNull
 import net.gini.pay.bank.databinding.GpbFragmentDigitalInvoiceBinding
+
 
 /**
  * Created by Alpar Szotyori on 05.12.2019.
@@ -28,10 +30,10 @@ import net.gini.pay.bank.databinding.GpbFragmentDigitalInvoiceBinding
 private const val ARGS_EXTRACTIONS = "GPB_ARGS_EXTRACTIONS"
 private const val ARGS_COMPOUND_EXTRACTIONS = "GPB_ARGS_COMPOUND_EXTRACTIONS"
 private const val ARGS_RETURN_REASONS = "GPB_ARGS_RETURN_REASONS"
+private const val ARGS_INACCURATE_EXTRACTION = "GPB_ARGS_INACCURATE_EXTRACTION"
 
 private const val TAG_RETURN_REASON_DIALOG = "TAG_RETURN_REASON_DIALOG"
 private const val TAG_WHAT_IS_THIS_DIALOG = "TAG_WHAT_IS_THIS_DIALOG"
-private const val TAG_ONBOARDING = "TAG_ONBOARDING"
 
 /**
  * When you use the Component API the `DigitalInvoiceFragment` displays the line items extracted from an invoice document and their total
@@ -58,10 +60,12 @@ private const val TAG_ONBOARDING = "TAG_ONBOARDING"
  *
  * See the [DigitalInvoiceActivity] for details.
  */
-class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
-    DigitalInvoiceFragmentInterface, LineItemsAdapterListener, DigitalInvoiceOnboardingFragmentListener {
+open class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
+    DigitalInvoiceFragmentInterface, LineItemsAdapterListener {
+
 
     private var binding by autoCleared<GpbFragmentDigitalInvoiceBinding>()
+    private var lineItemsAdapter by autoCleared<LineItemsAdapter>()
 
     override var listener: DigitalInvoiceFragmentListener?
         get() = this.presenter?.listener
@@ -69,11 +73,15 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
             this.presenter?.listener = value
         }
 
+    override val viewLifecycleScope: CoroutineScope
+        get() = viewLifecycleOwner.lifecycleScope
+
     private var presenter: DigitalInvoiceScreenContract.Presenter? = null
 
     private var extractions: Map<String, GiniCaptureSpecificExtraction> = emptyMap()
     private var compoundExtractions: Map<String, GiniCaptureCompoundExtraction> = emptyMap()
     private var returnReasons: List<GiniCaptureReturnReason> = emptyList()
+    private var isInaccurateExtraction: Boolean = false
 
     companion object {
 
@@ -90,7 +98,8 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
         fun createInstance(
             extractions: Map<String, GiniCaptureSpecificExtraction>,
             compoundExtractions: Map<String, GiniCaptureCompoundExtraction>,
-            returnReasons: List<GiniCaptureReturnReason>
+            returnReasons: List<GiniCaptureReturnReason>,
+            isInaccurateExtraction: Boolean = true
         ) = DigitalInvoiceFragment().apply {
             arguments = Bundle().apply {
                 putBundle(ARGS_EXTRACTIONS, Bundle().apply {
@@ -100,6 +109,7 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
                     compoundExtractions.forEach { putParcelable(it.key, it.value) }
                 })
                 putParcelableArrayList(ARGS_RETURN_REASONS, ArrayList(returnReasons))
+                putBoolean(ARGS_INACCURATE_EXTRACTION, isInaccurateExtraction)
             }
         }
     }
@@ -117,31 +127,54 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
         }
         forcePortraitOrientationOnPhones(activity)
         readArguments()
-        createPresenter(activity)
+        createPresenter(activity, savedInstanceState)
         initListener()
     }
 
     private fun readArguments() {
         arguments?.run {
             getBundle(ARGS_EXTRACTIONS)?.run {
-                extractions = keySet().map { it to getParcelable<GiniCaptureSpecificExtraction>(it)!! }.toMap()
+                extractions =
+                    keySet().map { it to getParcelable<GiniCaptureSpecificExtraction>(it)!! }
+                        .toMap()
             }
             getBundle(ARGS_COMPOUND_EXTRACTIONS)?.run {
-                compoundExtractions = keySet().map { it to getParcelable<GiniCaptureCompoundExtraction>(it)!! }.toMap()
+                compoundExtractions =
+                    keySet().map { it to getParcelable<GiniCaptureCompoundExtraction>(it)!! }
+                        .toMap()
             }
             returnReasons = getParcelableArrayList(ARGS_RETURN_REASONS) ?: emptyList()
+
+            isInaccurateExtraction = getBoolean(ARGS_INACCURATE_EXTRACTION, false)
         }
     }
 
-    private fun createPresenter(activity: Activity) =
-        DigitalInvoiceScreenPresenter(activity, this, extractions, compoundExtractions, returnReasons)
+    private fun createPresenter(activity: Activity, savedInstanceState: Bundle?) =
+        DigitalInvoiceScreenPresenter(
+            activity,
+            this,
+            extractions,
+            compoundExtractions,
+            returnReasons,
+            isInaccurateExtraction,
+            savedInstanceState,
+        )
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        presenter?.saveState(outState)
+        super.onSaveInstanceState(outState)
+    }
 
     /**
      * Internal use only.
      *
      * @suppress
      */
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = GpbFragmentDigitalInvoiceBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -155,6 +188,7 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
         setInputHandlers()
+        presenter?.onViewCreated()
     }
 
     private fun initListener() {
@@ -168,27 +202,110 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
     }
 
     private fun initRecyclerView() {
+        lineItemsAdapter = LineItemsAdapter(this)
         activity?.let {
-            binding.gpbLineItems.apply {
+            binding.lineItems.apply {
                 layoutManager = LinearLayoutManager(it)
-                adapter = LineItemsAdapter(it, this@DigitalInvoiceFragment)
+                adapter = lineItemsAdapter
+                setHasFixedSize(true)
             }
         }
     }
 
     private fun setInputHandlers() {
-        binding.gpbPayButton.setOnClickListener {
-            presenter?.pay()
+    }
+
+    override fun payButtonClicked() {
+        presenter?.pay()
+    }
+
+    override fun skipButtonClicked() {
+        presenter?.skip()
+    }
+
+    override fun addNewArticle() {
+        presenter?.addNewArticle()
+    }
+
+    override fun removeLineItem(lineItem: SelectableLineItem) {
+        presenter?.removeLineItem(lineItem)
+    }
+
+    /**
+     * Internal use only.
+     *
+     * @suppress
+     */
+    override fun showLineItems(
+        lineItems: List<SelectableLineItem>,
+        isInaccurateExtraction: Boolean
+    ) {
+        lineItemsAdapter.apply {
+            this.isInaccurateExtraction = isInaccurateExtraction
+            this.lineItems = lineItems
         }
     }
 
+    private lateinit var smoothScroller: SmoothScroller
+    private val scrollListener = object : SmoothScroller.SmoothScrollerListener {
+        override fun didStop() {
+            scrollList(true)
+        }
+
+    }
+
     /**
-     * Internal use only.
-     *
-     * @suppress
+     * header and footer are counted as aprox. 3 items
+     * in order to have same time spent on scrolling different size views
      */
-    override fun showLineItems(lineItems: List<SelectableLineItem>) {
-        (binding.gpbLineItems.adapter as LineItemsAdapter?)?.lineItems = lineItems
+    override fun animateListScroll() {
+        val itemCount =
+            3 + (if (lineItemsAdapter.isInaccurateExtraction) 3 else 0) + lineItemsAdapter.lineItems.size
+        smoothScroller = SmoothScroller(
+            requireContext(),
+            itemCount,
+            scrollListener
+        )
+        scrollList(false)
+    }
+
+    private fun scrollList(toTop: Boolean) {
+        val delay: Long = if (toTop) 350 else 200
+        binding.lineItems.postDelayed(Runnable {
+            smoothScroller.targetPosition = if (toTop) 0 else lineItemsAdapter.itemCount
+            (binding.lineItems.layoutManager as? LinearLayoutManager)?.startSmoothScroll(
+                smoothScroller
+            )
+        }, delay)
+
+    }
+
+    internal class SmoothScroller(
+        context: Context,
+        private val itemsCount: Int,
+        private val listener: SmoothScrollerListener
+    ) : LinearSmoothScroller(context) {
+        private val totalScrollTime = 2400f
+
+        interface SmoothScrollerListener {
+            fun didStop()
+        }
+
+        override fun onStop() {
+            super.onStop()
+            if (targetPosition > 0) {
+                listener.didStop()
+            }
+        }
+
+        override fun calculateSpeedPerPixel(displayMetrics: DisplayMetrics): Float {
+            return totalScrollTime / (itemsCount * displayMetrics.densityDpi)
+        }
+
+    }
+
+    override fun updateFooterDetails(data: DigitalInvoiceScreenContract.FooterDetails) {
+        lineItemsAdapter.footerDetails = data
     }
 
     /**
@@ -196,43 +313,10 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
      *
      * @suppress
      */
-    override fun showSelectedAndTotalLineItems(selected: Int, total: Int) {
-        (binding.gpbLineItems.adapter as LineItemsAdapter?)?.selectedAndTotalItems = "${selected}/${total}"
-    }
-
     override fun showAddons(addons: List<DigitalInvoiceAddon>) {
-        (binding.gpbLineItems.adapter as LineItemsAdapter?)?.addons = addons
+        lineItemsAdapter.addons = addons
     }
 
-    /**
-     * Internal use only.
-     *
-     * @suppress
-     */
-    override fun enablePayButton(selected: Int, total: Int) {
-        binding.gpbPayButton.isEnabled = true
-        updatePayButtonTitle(selected, total)
-    }
-
-    /**
-     * Internal use only.
-     *
-     * @suppress
-     */
-    override fun disablePayButton(selected: Int, total: Int) {
-        binding.gpbPayButton.isEnabled = false
-        updatePayButtonTitle(selected, total)
-    }
-
-    /**
-     * Internal use only.
-     *
-     * @suppress
-     */
-    override fun showSelectedLineItemsSum(integralPart: String, fractionalPart: String) {
-        (binding.gpbLineItems.adapter as LineItemsAdapter?)?.totalGrossPriceIntegralAndFractionalParts =
-            Pair(integralPart, fractionalPart)
-    }
 
     /**
      * Internal use only.
@@ -243,31 +327,12 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
         reasons: List<GiniCaptureReturnReason>,
         resultCallback: ReturnReasonDialogResultCallback
     ) {
-        parentFragmentManagerOrNull()?.let { fm ->
+        parentFragmentManagerOrNull()?.let { fragmentManager ->
             ReturnReasonDialog.createInstance(reasons).run {
                 callback = resultCallback
-                show(fm, TAG_RETURN_REASON_DIALOG)
+                show(fragmentManager, TAG_RETURN_REASON_DIALOG)
             }
         }
-    }
-
-    override fun showOnboarding() {
-        (view?.parent as? View)?.let { container ->
-            parentFragmentManagerOrNull()?.let { fm ->
-                fm.beginTransaction().run {
-                    val onboarding = DigitalInvoiceOnboardingFragment.createInstance().apply {
-                        listener = this@DigitalInvoiceFragment
-                    }
-                    add(container.id, onboarding, TAG_ONBOARDING)
-                    commit()
-                }
-            }
-        }
-    }
-
-    private fun updatePayButtonTitle(selected: Int, total: Int) {
-        @SuppressLint("SetTextI18n")
-        binding.gpbPayButton.text = resources.getString(R.string.gpb_digital_invoice_pay, selected, total)
     }
 
     /**
@@ -298,6 +363,7 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
         super.onStop()
         presenter?.stop()
     }
+
 
     /**
      * Internal use only.
@@ -332,14 +398,14 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
      * @suppress
      */
     override fun onWhatIsThisButtonClicked() {
-        parentFragmentManagerOrNull()?.let { fm ->
+        parentFragmentManagerOrNull()?.let { fragmentManager ->
             WhatIsThisDialog.createInstance().run {
                 callback = { isHelpful ->
                     if (isHelpful != null) {
                         presenter?.userFeedbackReceived(isHelpful)
                     }
                 }
-                show(fm, TAG_WHAT_IS_THIS_DIALOG)
+                show(fragmentManager, TAG_WHAT_IS_THIS_DIALOG)
             }
         }
     }
@@ -347,17 +413,4 @@ class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.View,
     override fun updateLineItem(selectableLineItem: SelectableLineItem) {
         presenter?.updateLineItem(selectableLineItem)
     }
-
-    override fun onCloseOnboarding() {
-        parentFragmentManagerOrNull()?.let { fm ->
-            (fm.findFragmentByTag(TAG_ONBOARDING) as? DigitalInvoiceOnboardingFragment)?.let { onboardingFragment ->
-                onboardingFragment.listener = null
-                fm.beginTransaction().run {
-                    remove(onboardingFragment)
-                    commit()
-                }
-            }
-        }
-    }
-
 }

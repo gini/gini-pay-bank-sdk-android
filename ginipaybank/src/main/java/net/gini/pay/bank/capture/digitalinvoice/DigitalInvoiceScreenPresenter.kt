@@ -1,13 +1,19 @@
 package net.gini.pay.bank.capture.digitalinvoice
 
 import android.app.Activity
+import android.os.Bundle
 import androidx.annotation.VisibleForTesting
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import net.gini.android.capture.GiniCapture
 import net.gini.android.capture.network.model.GiniCaptureCompoundExtraction
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
 import net.gini.android.capture.network.model.GiniCaptureSpecificExtraction
+import net.gini.pay.bank.capture.util.SimpleBusEventStore
 import net.gini.pay.bank.capture.util.OncePerInstallEvent
 import net.gini.pay.bank.capture.util.OncePerInstallEventStore
+import net.gini.pay.bank.capture.util.BusEvent
+import java.math.BigDecimal
 
 /**
  * Created by Alpar Szotyori on 05.12.2019.
@@ -15,24 +21,50 @@ import net.gini.pay.bank.capture.util.OncePerInstallEventStore
  * Copyright (c) 2019 Gini GmbH.
  */
 
-internal open class DigitalInvoiceScreenPresenter(
+private const val KEY_SELECTABLE_ITEMS = "SELECTABLE_ITEMS"
+
+internal class DigitalInvoiceScreenPresenter(
     activity: Activity,
     view: DigitalInvoiceScreenContract.View,
     val extractions: Map<String, GiniCaptureSpecificExtraction> = emptyMap(),
     val compoundExtractions: Map<String, GiniCaptureCompoundExtraction> = emptyMap(),
     val returnReasons: List<GiniCaptureReturnReason> = emptyList(),
-    val oncePerInstallEventStore: OncePerInstallEventStore = OncePerInstallEventStore(activity)
+    private val isInaccurateExtraction: Boolean = false,
+    savedInstanceBundle: Bundle?,
+    private val oncePerInstallEventStore: OncePerInstallEventStore = OncePerInstallEventStore(
+        activity
+    ),
+    private val simpleBusEventStore: SimpleBusEventStore = SimpleBusEventStore(activity)
 ) :
     DigitalInvoiceScreenContract.Presenter(activity, view) {
 
+    private var onboardingDisplayed: Boolean = savedInstanceBundle != null
+
     override var listener: DigitalInvoiceFragmentListener? = null
+
+    private var footerDetails =
+        DigitalInvoiceScreenContract.FooterDetails(inaccurateExtraction = isInaccurateExtraction)
+
+    private fun shouldDisplayOnboarding(): Boolean = !onboardingDisplayed &&
+            !oncePerInstallEventStore.containsEvent(OncePerInstallEvent.SHOW_DIGITAL_INVOICE_ONBOARDING)
 
     @VisibleForTesting
     val digitalInvoice: DigitalInvoice
 
     init {
         view.setPresenter(this)
-        digitalInvoice = DigitalInvoice(extractions, compoundExtractions)
+        digitalInvoice = DigitalInvoice(
+            extractions, compoundExtractions, savedInstanceBundle?.getParcelableArray(
+                KEY_SELECTABLE_ITEMS
+            )?.filterIsInstance<SelectableLineItem>()?.toList()
+        )
+    }
+
+    override fun saveState(outState: Bundle) {
+        outState.putParcelableArray(
+            KEY_SELECTABLE_ITEMS,
+            digitalInvoice.selectableLineItems.toTypedArray()
+        )
     }
 
     override fun selectLineItem(lineItem: SelectableLineItem) {
@@ -60,15 +92,39 @@ internal open class DigitalInvoiceScreenPresenter(
         listener?.onEditLineItem(lineItem)
     }
 
+    override fun addNewArticle() {
+        listener?.onAddLineItem(
+            SelectableLineItem(
+                addedByUser = true,
+                lineItem = digitalInvoice.newLineItem()
+            )
+        )
+    }
+
+    override fun removeLineItem(lineItem: SelectableLineItem) {
+        digitalInvoice.removeLineItem(lineItem)
+        updateView()
+    }
+
     override fun userFeedbackReceived(helpful: Boolean) {
         // TODO
     }
 
     override fun pay() {
+        skipOrPay()
+    }
+
+    override fun skip() {
+        skipOrPay()
+    }
+
+    private fun skipOrPay() {
         digitalInvoice.updateLineItemExtractionsWithReviewedLineItems()
         digitalInvoice.updateAmountToPayExtractionWithTotalPrice()
         if (GiniCapture.hasInstance()) {
-            GiniCapture.getInstance().giniCaptureNetworkApi?.setUpdatedCompoundExtractions(digitalInvoice.compoundExtractions)
+            GiniCapture.getInstance().giniCaptureNetworkApi?.setUpdatedCompoundExtractions(
+                digitalInvoice.compoundExtractions
+            )
         }
         listener?.onPayInvoice(digitalInvoice.extractions, digitalInvoice.compoundExtractions)
     }
@@ -78,11 +134,22 @@ internal open class DigitalInvoiceScreenPresenter(
         updateView()
     }
 
+    override fun onViewCreated() {
+        simpleBusEventStore.observeChange(BusEvent.DISMISS_ONBOARDING_FRAGMENT)
+            .onEach {
+                if (it) {
+                    updateView()
+                }
+            }
+            .launchIn(view.viewLifecycleScope)
+    }
+
     override fun start() {
         updateView()
-        if (!oncePerInstallEventStore.containsEvent(OncePerInstallEvent.SHOW_DIGITAL_INVOICE_ONBOARDING)) {
-            oncePerInstallEventStore.saveEvent(OncePerInstallEvent.SHOW_DIGITAL_INVOICE_ONBOARDING)
-            view.showOnboarding()
+        if (shouldDisplayOnboarding()) {
+            simpleBusEventStore.saveEvent(BusEvent.DISMISS_ONBOARDING_FRAGMENT, false)
+            onboardingDisplayed = true
+            listener?.showOnboarding()
         }
     }
 
@@ -92,18 +159,25 @@ internal open class DigitalInvoiceScreenPresenter(
     @VisibleForTesting
     internal fun updateView() {
         view.apply {
-            showLineItems(digitalInvoice.selectableLineItems)
+            showLineItems(digitalInvoice.selectableLineItems, isInaccurateExtraction)
             showAddons(digitalInvoice.addons)
             digitalInvoice.selectedAndTotalLineItemsCount().let { (selected, total) ->
-                showSelectedAndTotalLineItems(selected, total)
-                if (selected > 0) {
-                    enablePayButton(selected, total)
-                } else {
-                    disablePayButton(0, total)
-                }
+                footerDetails = footerDetails
+                    .copy(
+                        totalGrossPriceIntegralAndFractionalParts = digitalInvoice.totalPriceIntegralAndFractionalParts(),
+                        buttonEnabled = selected > 0 && digitalInvoice.totalPrice() > BigDecimal.ZERO,
+                        count = selected,
+                        total = total
+                    )
+                updateFooterDetails(footerDetails)
             }
-            digitalInvoice.totalPriceIntegralAndFractionalParts().let { (integral, fractional) ->
-                showSelectedLineItemsSum(integral, fractional)
+
+            val animateList = !shouldDisplayOnboarding() && !oncePerInstallEventStore.containsEvent(
+                OncePerInstallEvent.SCROLL_DIGITAL_INVOICE
+            )
+            if (animateList) {
+                oncePerInstallEventStore.saveEvent(OncePerInstallEvent.SCROLL_DIGITAL_INVOICE)
+                animateListScroll()
             }
         }
     }
