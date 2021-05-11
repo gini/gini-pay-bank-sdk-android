@@ -13,6 +13,7 @@
             android:name=".capture.digitalinvoice.details.LineItemDetailsActivity"
             android:exported="false"
             android:label="@string/gpb_title_line_item_details"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/GiniCaptureTheme" />
     </application>
 </manifest>

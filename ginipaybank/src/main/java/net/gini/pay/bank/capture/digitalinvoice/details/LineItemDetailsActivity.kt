@@ -128,7 +128,7 @@ class LineItemDetailsActivity : AppCompatActivity(), LineItemDetailsFragmentList
     private fun showFragment() = fragment?.let {
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.gpb_fragment_line_item_details, it, LINE_ITEM_DETAILS_FRAGMENT)
+            .add(R.id.fragment_line_item_details, it, LINE_ITEM_DETAILS_FRAGMENT)
             .commit()
     }
 

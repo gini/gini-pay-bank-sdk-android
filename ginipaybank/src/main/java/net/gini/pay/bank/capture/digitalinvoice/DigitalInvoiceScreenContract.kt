@@ -1,6 +1,8 @@
 package net.gini.pay.bank.capture.digitalinvoice
 
 import android.app.Activity
+import android.os.Bundle
+import kotlinx.coroutines.CoroutineScope
 import net.gini.android.capture.GiniCaptureBasePresenter
 import net.gini.android.capture.GiniCaptureBaseView
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
@@ -24,15 +26,13 @@ interface DigitalInvoiceScreenContract {
      * @suppress
      */
     interface View : GiniCaptureBaseView<Presenter> {
-        fun showLineItems(lineItems: List<SelectableLineItem>)
-        fun showSelectedAndTotalLineItems(selected: Int, total: Int)
+        val viewLifecycleScope: CoroutineScope
+        fun showLineItems(lineItems: List<SelectableLineItem>, isInaccurateExtraction: Boolean)
         fun showAddons(addons: List<DigitalInvoiceAddon>)
-        fun enablePayButton(selected: Int, total: Int)
-        fun disablePayButton(selected: Int, total: Int)
-        fun showSelectedLineItemsSum(integralPart: String, fractionalPart: String)
+        fun updateFooterDetails(data: FooterDetails)
         fun showReturnReasonDialog(reasons: List<GiniCaptureReturnReason>,
                                    resultCallback: ReturnReasonDialogResultCallback)
-        fun showOnboarding()
+        fun animateListScroll()
     }
 
     /**
@@ -46,7 +46,20 @@ interface DigitalInvoiceScreenContract {
         abstract fun selectLineItem(lineItem: SelectableLineItem)
         abstract fun deselectLineItem(lineItem: SelectableLineItem)
         abstract fun editLineItem(lineItem: SelectableLineItem)
+        abstract fun removeLineItem(lineItem: SelectableLineItem)
         abstract fun userFeedbackReceived(helpful: Boolean)
         abstract fun pay()
+        abstract fun skip()
+        abstract fun addNewArticle()
+        abstract fun onViewCreated()
+        abstract fun saveState(outState: Bundle)
     }
+
+    data class FooterDetails(
+        val totalGrossPriceIntegralAndFractionalParts: Pair<String, String> = Pair("", ""),
+        val buttonEnabled: Boolean = true,
+        val count: Int = 0,
+        val total: Int = 0,
+        val inaccurateExtraction: Boolean
+    )
 }

@@ -26,14 +26,18 @@ internal val FRACTION_FORMAT = DecimalFormat(".00").apply { roundingMode = Round
  *
  * @suppress
  */
-internal class DigitalInvoice(extractions: Map<String, GiniCaptureSpecificExtraction>,
-                              compoundExtractions: Map<String, GiniCaptureCompoundExtraction>) {
+internal class DigitalInvoice(
+    extractions: Map<String, GiniCaptureSpecificExtraction>,
+    compoundExtractions: Map<String, GiniCaptureCompoundExtraction>,
+    savedSelectableItems: List<SelectableLineItem>? = null
+) {
 
     private var _extractions: Map<String, GiniCaptureSpecificExtraction> = extractions
     val extractions
         get() = _extractions
 
-    private var _compoundExtractions: Map<String, GiniCaptureCompoundExtraction> = compoundExtractions
+    private var _compoundExtractions: Map<String, GiniCaptureCompoundExtraction> =
+        compoundExtractions
     val compoundExtractions
         get() = _compoundExtractions
 
@@ -46,128 +50,222 @@ internal class DigitalInvoice(extractions: Map<String, GiniCaptureSpecificExtrac
         get() = _addons
 
     init {
-        _selectableLineItems = lineItemsFromCompoundExtractions(compoundExtractions).map { SelectableLineItem(lineItem = it) }
+        _selectableLineItems = when (savedSelectableItems) {
+            null -> {
+                lineItemsFromCompoundExtractions(compoundExtractions).map {
+                    SelectableLineItem(
+                        lineItem = it
+                    )
+                }
+            }
+            else -> {
+                savedSelectableItems
+            }
+        }
 
-        _addons = extractions.mapNotNull { (_, extraction) -> DigitalInvoiceAddon.createFromOrNull(extraction) }
+
+        _addons = extractions.mapNotNull { (_, extraction) ->
+            DigitalInvoiceAddon.createFromOrNull(extraction)
+        }
     }
 
     companion object {
         fun lineItemTotalGrossPriceIntegralAndFractionalParts(lineItem: LineItem): Pair<String, String> {
             return lineItem.run {
-                Pair(priceIntegralPartWithCurrencySymbol(totalGrossPrice, currency),
-                        totalGrossPrice.fractionalPart(FRACTION_FORMAT))
+                Pair(
+                    priceIntegralPartWithCurrencySymbol(totalGrossPrice, currency),
+                    totalGrossPrice.fractionalPart(FRACTION_FORMAT)
+                )
             }
         }
 
         fun addonPriceIntegralAndFractionalParts(addon: DigitalInvoiceAddon): Pair<String, String> {
             return addon.run {
-                Pair(priceIntegralPartWithCurrencySymbol(price, currency),
-                        price.fractionalPart(FRACTION_FORMAT))
+                Pair(
+                    priceIntegralPartWithCurrencySymbol(price, currency),
+                    price.fractionalPart(FRACTION_FORMAT)
+                )
             }
         }
 
         @VisibleForTesting
         fun priceIntegralPartWithCurrencySymbol(price: BigDecimal, currency: Currency?) =
-                currency?.let { c ->
-                    price.integralPartWithCurrency(c, INTEGRAL_FORMAT)
-                } ?: price.integralPart(INTEGRAL_FORMAT)
+            currency?.let { c ->
+                price.integralPartWithCurrency(c, INTEGRAL_FORMAT)
+            } ?: price.integralPart(INTEGRAL_FORMAT)
     }
 
     private fun lineItemsFromCompoundExtractions(compoundExtractions: Map<String, GiniCaptureCompoundExtraction>): List<LineItem> =
-            compoundExtractions["lineItems"]?.run {
-                specificExtractionMaps.mapIndexed { index, lineItem ->
-                    LineItem(index.toString(),
-                            lineItem["description"]?.value ?: "",
-                            lineItem["quantity"]?.value?.toIntOrNull() ?: 0,
-                            lineItem["baseGross"]?.value ?: "0.00:EUR")
-                }
-            } ?: emptyList()
+        compoundExtractions["lineItems"]?.run {
+            specificExtractionMaps.mapIndexed { index, lineItem ->
+                LineItem(
+                    index.toString(),
+                    lineItem["description"]?.value ?: "",
+                    lineItem["quantity"]?.value?.toIntOrNull() ?: 0,
+                    lineItem["baseGross"]?.value ?: "0.00:EUR"
+                )
+            }
+        } ?: emptyList()
 
     fun updateLineItem(selectableLineItem: SelectableLineItem) {
-        _selectableLineItems =
+        val index =
+            selectableLineItems.indexOfFirst { it.lineItem.id == selectableLineItem.lineItem.id }
+        _selectableLineItems = when {
+            index >= 0 -> {
                 selectableLineItems.map { sli -> if (sli.lineItem.id == selectableLineItem.lineItem.id) selectableLineItem else sli }
+            }
+            else -> {
+                selectableLineItems.toMutableList().apply {
+                    add(selectableLineItem)
+                }
+            }
+        }
+    }
+
+    fun removeLineItem(selectableLineItem: SelectableLineItem) {
+        val index =
+            selectableLineItems.indexOfFirst { it.lineItem.id == selectableLineItem.lineItem.id }
+        if (index >= 0) {
+            _selectableLineItems = selectableLineItems.toMutableList().apply {
+                removeAt(index)
+            }
+        }
     }
 
     fun selectLineItem(selectableLineItem: SelectableLineItem) {
-        selectableLineItems.find { sli -> sli.lineItem.id == selectableLineItem.lineItem.id }?.let { sli ->
-            sli.selected = true
-            sli.reason = null
-        }
+        selectableLineItems.find { sli -> sli.lineItem.id == selectableLineItem.lineItem.id }
+            ?.let { sli ->
+                sli.selected = true
+                sli.reason = null
+            }
     }
 
     fun deselectLineItem(selectableLineItem: SelectableLineItem, reason: GiniCaptureReturnReason?) {
-        selectableLineItems.find { sli -> sli.lineItem.id == selectableLineItem.lineItem.id }?.let { sli ->
-            sli.selected = false
-            sli.reason = reason
-        }
+        selectableLineItems.find { sli -> sli.lineItem.id == selectableLineItem.lineItem.id }
+            ?.let { sli ->
+                sli.selected = false
+                sli.reason = reason
+            }
     }
 
     fun totalPriceIntegralAndFractionalParts(): Pair<String, String> {
         val price = totalPrice()
         val currency = lineItemsCurency()
-        return Pair(priceIntegralPartWithCurrencySymbol(price, currency),
-                price.fractionalPart(FRACTION_FORMAT))
+        return Pair(
+            priceIntegralPartWithCurrencySymbol(price, currency),
+            price.fractionalPart(FRACTION_FORMAT)
+        )
     }
 
     @VisibleForTesting
     fun lineItemsCurency(): Currency? =
-            selectableLineItems.firstOrNull()?.lineItem?.currency
+        selectableLineItems.firstOrNull()?.lineItem?.currency
 
     fun selectedLineItemsTotalGrossPriceSum(): BigDecimal =
-            selectableLineItems.fold<SelectableLineItem, BigDecimal>(BigDecimal.ZERO) { sum, sli ->
-                if (sli.selected) sum.add(sli.lineItem.totalGrossPrice) else sum
-            }
+        selectableLineItems.fold<SelectableLineItem, BigDecimal>(BigDecimal.ZERO) { sum, sli ->
+            if (sli.selected) sum.add(sli.lineItem.totalGrossPrice) else sum
+        }
+
+    fun newLineItem(): LineItem {
+        val currency = lineItemsCurency() ?: Currency.getInstance("EUR")
+        return LineItem(
+            "",
+            "",
+            0,
+            "0.00:${currency.currencyCode}"
+        )
+    }
 
     private fun addonsPriceSum(): BigDecimal =
-            addons.fold<DigitalInvoiceAddon, BigDecimal>(BigDecimal.ZERO) { sum, addon ->
-                sum.add(addon.price)
-            }
+        addons.fold<DigitalInvoiceAddon, BigDecimal>(BigDecimal.ZERO) { sum, addon ->
+            sum.add(addon.price)
+        }
 
-    private fun totalPrice(): BigDecimal =
-            selectedLineItemsTotalGrossPriceSum().add(addonsPriceSum()).max(BigDecimal.ZERO)
+    fun totalPrice(): BigDecimal {
+        val itemsPrice = selectedLineItemsTotalGrossPriceSum()
+        if (itemsPrice > BigDecimal.ZERO) {
+            return itemsPrice.add(addonsPriceSum()).max(BigDecimal.ZERO)
+        }
+
+        return BigDecimal.ZERO
+    }
 
     fun selectedAndTotalLineItemsCount(): Pair<Int, Int> =
-            Pair(selectedLineItemsCount(), totalLineItemsCount())
+        Pair(selectedLineItemsCount(), totalLineItemsCount())
 
     private fun selectedLineItemsCount(): Int =
-            selectableLineItems.fold(0) { c, sli -> if (sli.selected) c + sli.lineItem.quantity else c }
+        selectableLineItems.fold(0) { c, sli -> if (sli.selected) c + sli.lineItem.quantity else c }
 
     private fun totalLineItemsCount(): Int =
-            selectableLineItems.fold(0) { c, sli -> c + sli.lineItem.quantity }
+        selectableLineItems.fold(0) { c, sli -> c + sli.lineItem.quantity }
 
     fun updateLineItemExtractionsWithReviewedLineItems() {
         _compoundExtractions = compoundExtractions.mapValues { (name, extraction) ->
             when (name) {
-                "lineItems" -> GiniCaptureCompoundExtraction(name,
+                "lineItems" -> {
+                    val cameraExtractions =
                         extraction.specificExtractionMaps.mapIndexed { index, lineItemExtractions ->
-                            selectableLineItems.find { it.lineItem.id.toInt() == index }?.let { sli ->
-                                var extractions = lineItemExtractions.mapValues { (name, lineItemExtraction) ->
-                                    when (name) {
-                                        "description" -> copyGiniCaptureSpecificExtraction(lineItemExtraction, sli.lineItem.description)
-                                        "baseGross" -> copyGiniCaptureSpecificExtraction(lineItemExtraction, sli.lineItem.rawGrossPrice)
-                                        "quantity" -> copyGiniCaptureSpecificExtraction(lineItemExtraction,
-                                                if (sli.selected) {
-                                                    sli.lineItem.quantity.toString()
-                                                } else {
-                                                    "0"
-                                                })
-                                        else -> lineItemExtraction
+                            selectableLineItems.find { it.lineItem.id.toInt() == index }
+                                ?.let { sli ->
+                                    val extractions =
+                                        lineItemExtractions.mapValues { (name, lineItemExtraction) ->
+                                            when (name) {
+                                                "description" -> copyGiniCaptureSpecificExtraction(
+                                                    lineItemExtraction,
+                                                    sli.lineItem.description
+                                                )
+                                                "baseGross" -> copyGiniCaptureSpecificExtraction(
+                                                    lineItemExtraction,
+                                                    sli.lineItem.rawGrossPrice
+                                                )
+                                                "quantity" -> copyGiniCaptureSpecificExtraction(
+                                                    lineItemExtraction,
+                                                    if (sli.selected) {
+                                                        sli.lineItem.quantity.toString()
+                                                    } else {
+                                                        "0"
+                                                    }
+                                                )
+                                                else -> lineItemExtraction
+                                            }
+                                        }.toMutableMap()
+                                    sli.reason?.let { returnReason ->
+                                        extractions.put(
+                                            "returnReason", GiniCaptureSpecificExtraction(
+                                                "returnReason",
+                                                returnReason.id,
+                                                "",
+                                                null,
+                                                emptyList()
+                                            )
+                                        )
                                     }
-                                }.toMutableMap()
-                                sli.reason?.let { returnReason ->
-                                    extractions.put("returnReason", GiniCaptureSpecificExtraction(
-                                            "returnReason", returnReason.id, "", null, emptyList()))
+                                    extractions
                                 }
-                                extractions
-                            }
-                        }.filterNotNull())
-                else -> extraction
+                        }.filterNotNull().toMutableList()
+
+
+                    val userAddedExtractions = selectableLineItems.filter { it.addedByUser }
+                        .map {
+                            it.lineItem.asGiniExtractionMap()
+                        }
+                    cameraExtractions.addAll(userAddedExtractions)
+
+
+                    return@mapValues GiniCaptureCompoundExtraction(
+                        name,
+                        cameraExtractions
+                    )
+                }
+                else -> return@mapValues extraction
             }
         }
     }
 
     fun updateAmountToPayExtractionWithTotalPrice() {
-        val totalPrice = totalPrice().toPriceString(selectableLineItems.firstOrNull()?.lineItem?.rawCurrency ?: "EUR")
+        val totalPrice = totalPrice().toPriceString(
+            selectableLineItems.firstOrNull()?.lineItem?.rawCurrency ?: "EUR"
+        )
 
         _extractions = if (extractions.containsKey("amountToPay")) {
             extractions.mapValues { (name, extraction) ->
@@ -178,12 +276,50 @@ internal class DigitalInvoice(extractions: Map<String, GiniCaptureSpecificExtrac
             }
         } else {
             extractions.toMutableMap().apply {
-                put("amountToPay", GiniCaptureSpecificExtraction("amountToPay", totalPrice, "amount", null, emptyList()))
+                put(
+                    "amountToPay",
+                    GiniCaptureSpecificExtraction(
+                        "amountToPay",
+                        totalPrice,
+                        "amount",
+                        null,
+                        emptyList()
+                    )
+                )
             }
         }
     }
 
     @JvmSynthetic
-    private fun copyGiniCaptureSpecificExtraction(other: GiniCaptureSpecificExtraction, value: String) =
-            GiniCaptureSpecificExtraction(other.name, value, other.entity, other.box, other.candidates)
+    private fun copyGiniCaptureSpecificExtraction(
+        other: GiniCaptureSpecificExtraction,
+        value: String
+    ) =
+        GiniCaptureSpecificExtraction(other.name, value, other.entity, other.box, other.candidates)
+}
+
+fun LineItem.asGiniExtractionMap(): MutableMap<String, GiniCaptureSpecificExtraction> {
+    return mutableMapOf(
+        "description" to GiniCaptureSpecificExtraction(
+            "description",
+            this.description,
+            "",
+            null,
+            emptyList()
+        ),
+        "baseGross" to GiniCaptureSpecificExtraction(
+            "baseGross",
+            this.rawGrossPrice,
+            "",
+            null,
+            emptyList()
+        ),
+        "quantity" to GiniCaptureSpecificExtraction(
+            "quantity",
+            this.quantity.toString(),
+            "",
+            null,
+            emptyList()
+        ),
+    )
 }

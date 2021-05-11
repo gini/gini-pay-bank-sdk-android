@@ -6,8 +6,8 @@
     android:background="@color/gpb_digital_invoice_activity_background"
     tools:context=".digitalinvoice.details.LineItemDetailsActivity">
 
-    <FrameLayout
-        android:id="@+id/gpb_fragment_line_item_details"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_line_item_details"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

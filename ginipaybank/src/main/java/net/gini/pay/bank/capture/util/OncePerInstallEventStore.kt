@@ -33,5 +33,6 @@ internal class OncePerInstallEventStore(context: Context) {
 }
 
 internal enum class OncePerInstallEvent {
-    SHOW_DIGITAL_INVOICE_ONBOARDING
+    SHOW_DIGITAL_INVOICE_ONBOARDING,
+    SCROLL_DIGITAL_INVOICE
 }

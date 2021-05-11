@@ -10,7 +10,7 @@ import net.gini.android.capture.camera.CameraActivity
 import net.gini.android.capture.internal.util.FileImportValidator
 import net.gini.android.capture.network.model.GiniCaptureCompoundExtraction
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
-import net.gini.android.capture.network.model.GiniCaptureSpecificExtraction
+import net.gini.android.capture.network.model.GiniCaptureSpecificExtractionl
 import net.gini.pay.bank.capture.CaptureFlowImportContract.Companion.EXTRA_OUT_ERROR_MESSAGE
 import net.gini.pay.bank.capture.CaptureFlowImportContract.Companion.EXTRA_OUT_IMPORT_ERROR
 
@@ -121,7 +121,7 @@ internal fun internalParseResult(resultCode: Int, result: Intent?): CaptureResul
     }
     val specificExtractionsBundle: Bundle? = result?.getBundleExtra(CameraActivity.EXTRA_OUT_EXTRACTIONS)
     val compoundExtractionsBundle: Bundle? = result?.getBundleExtra(CameraActivity.EXTRA_OUT_COMPOUND_EXTRACTIONS)
-    val returnReasons: List<GiniCaptureReturnReason>? = result?.getParcelableArrayListExtra(CameraActivity.EXTRA_OUT_COMPOUND_EXTRACTIONS)
+    val returnReasons: List<GiniCaptureReturnReason>? = result?.getParcelableArrayListExtra(CameraActivity.EXTRA_OUT_RETURN_REASONS)
     return if (specificExtractionsBundle == null ||
         !pay5ExtractionsAvailable(specificExtractionsBundle) &&
         !epsPaymentAvailable(specificExtractionsBundle)

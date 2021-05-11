@@ -1,12 +1,18 @@
 package net.gini.pay.bank.capture.digitalinvoice.details
 
-
 import android.app.Activity
 import android.os.Bundle
+import android.text.InputFilter
+import android.text.Spanned
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.google.android.material.textfield.TextInputLayout
 import net.gini.android.capture.internal.util.ActivityHelper.forcePortraitOrientationOnPhones
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
 import net.gini.pay.bank.R
@@ -17,6 +23,10 @@ import net.gini.pay.bank.capture.digitalinvoice.SelectableLineItem
 import net.gini.pay.bank.capture.util.autoCleared
 import net.gini.pay.bank.capture.util.parentFragmentManagerOrNull
 import net.gini.pay.bank.databinding.GpbFragmentLineItemDetailsBinding
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by Alpar Szotyori on 17.12.2019.
@@ -54,7 +64,61 @@ private const val TAG_RETURN_REASON_DIALOG = "TAG_RETURN_REASON_DIALOG"
  *
  * See the [LineItemDetailsActivity] for details.
  */
-class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, LineItemDetailsFragmentInterface {
+class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View,
+    LineItemDetailsFragmentInterface {
+
+    internal class DecimalDigitsInputFilter(private val priceFormat: DecimalFormat = GROSS_PRICE_FORMAT) :
+        InputFilter {
+        private val decimalFormatSymbols = DecimalFormatSymbols(Locale.ROOT)
+
+        override fun filter(
+            source: CharSequence,
+            start: Int,
+            end: Int,
+            dest: Spanned,
+            dstart: Int,
+            dend: Int
+        ): CharSequence? {
+
+            val finalPriceString =
+                "${dest.subSequence(0, dstart)}${source.subSequence(start, end)}${
+                    dest.subSequence(
+                        dend,
+                        dest.length
+                    )
+                }"
+
+            val separatorsCount = finalPriceString.count { it == decimalFormatSymbols.decimalSeparator }
+            if (separatorsCount > 1) {
+                return ""
+            }
+
+            val separatorIndex = finalPriceString.indexOf(decimalFormatSymbols.decimalSeparator)
+            if (separatorIndex >= 0 && finalPriceString.length - separatorIndex > 3 ) {
+                return  ""
+            }
+
+            val groupingIndex = finalPriceString.indexOfLast { it == decimalFormatSymbols.groupingSeparator }
+            if (groupingIndex >= 0 && separatorsCount > 0) {
+                if (groupingIndex > separatorIndex) {
+                    return ""
+                }
+            }
+
+            try {
+                val finalPrice = priceFormat.parse(finalPriceString).toDouble()
+                if (finalPrice !in 0.0..25000.0) {
+                    return ""
+                }
+                return null
+            } catch (ignore: Throwable) {
+            }
+
+            return ""
+
+        }
+
+    }
 
     private var binding by autoCleared<GpbFragmentLineItemDetailsBinding>()
 
@@ -106,6 +170,13 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
         readArguments()
         createPresenter(activity)
         initListener()
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    presenter?.save(true)
+                }
+            })
     }
 
     private fun readArguments() {
@@ -138,7 +209,11 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
      *
      * @suppress
      */
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = GpbFragmentLineItemDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -154,7 +229,8 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
     }
 
     private fun setInputHandlers() {
-        binding.gpbCheckbox.setOnCheckedChangeListener { _, isChecked ->
+
+        binding.checkbox.setOnCheckedChangeListener { _, isChecked ->
             presenter?.let {
                 if (isChecked) {
                     it.selectLineItem()
@@ -163,10 +239,10 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
                 }
             }
         }
-        binding.gpbDescription.doAfterTextChanged {
+        binding.description.doAfterTextChanged {
             presenter?.setDescription(it)
         }
-        binding.gpbQuantity.doAfterTextChanged {
+        binding.quantity.doAfterTextChanged {
             presenter?.setQuantity(
                 try {
                     it.toInt()
@@ -175,11 +251,12 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
                 }
             )
         }
-        binding.gpbGrossPrice.doAfterTextChanged {
+        binding.grossPrice.filters = arrayOf(DecimalDigitsInputFilter())
+        binding.grossPrice.doAfterTextChanged {
             presenter?.setGrossPrice(it)
         }
-        binding.gpbSaveButton.setOnClickListener {
-            presenter?.save()
+        binding.saveButton.setOnClickListener {
+            presenter?.save(false)
         }
     }
 
@@ -218,7 +295,14 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
      * @suppress
      */
     override fun showDescription(description: String) {
-        binding.gpbDescription.setText(description)
+        binding.description.setText(description)
+        binding.descriptionContainer.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
+        binding.descriptionContainer.endIconDrawable =
+            ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.gpb_digital_invoice_input_clear_icon,
+                null
+            )
     }
 
     /**
@@ -227,7 +311,14 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
      * @suppress
      */
     override fun showQuantity(quantity: Int) {
-        binding.gpbQuantity.setText(quantity.toString())
+        binding.quantity.setText(quantity.toString())
+        binding.quantityContainer.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
+        binding.quantityContainer.endIconDrawable =
+            ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.gpb_digital_invoice_input_clear_icon,
+                null
+            )
     }
 
     /**
@@ -236,8 +327,15 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
      * @suppress
      */
     override fun showGrossPrice(displayedGrossPrice: String, currency: String) {
-        binding.gpbGrossPrice.setText(displayedGrossPrice)
-        binding.gpbCurrency.text = currency
+        binding.grossPrice.setText(displayedGrossPrice)
+        binding.grossPriceContainer.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
+        binding.grossPriceContainer.endIconDrawable =
+            ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.gpb_digital_invoice_input_clear_icon,
+                null
+            )
+        binding.currency.text = currency
     }
 
     /**
@@ -246,8 +344,8 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
      * @suppress
      */
     override fun showTotalGrossPrice(integralPart: String, fractionalPart: String) {
-        binding.gpbGrossPriceTotalIntegralPart.text = integralPart
-        binding.gpbGrossPriceTotalFractionalPart.text = fractionalPart
+        binding.grossPriceTotalIntegralPart.text = integralPart
+        binding.grossPriceTotalFractionalPart.text = fractionalPart
     }
 
     /**
@@ -256,7 +354,7 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
      * @suppress
      */
     override fun enableSaveButton() {
-        binding.gpbSaveButton.isEnabled = true
+        binding.saveButton.isEnabled = true
     }
 
     /**
@@ -265,7 +363,7 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
      * @suppress
      */
     override fun disableSaveButton() {
-        binding.gpbSaveButton.isEnabled = false
+        binding.saveButton.isEnabled = false
     }
 
     /**
@@ -274,10 +372,33 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
      * @suppress
      */
     override fun enableInput() {
-        binding.gpbDescription.isEnabled = true
-        binding.gpbQuantity.isEnabled = true
-        binding.gpbGrossPrice.isEnabled = true
-        binding.gpbCurrency.isEnabled = true
+        val enabledColor = ContextCompat.getColor(
+            requireContext(),
+            R.color.gpb_digital_invoice_line_item_details_input_field_text
+        )
+        binding.descriptionContainer.isEnabled = true
+        binding.quantityContainer.isEnabled = true
+        binding.grossPriceContainer.isEnabled = true
+        binding.currency.setTextColor(enabledColor)
+
+        binding.totalLabel.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.gpb_digital_invoice_line_item_details_total_label
+            )
+        )
+        binding.grossPriceTotalFractionalPart.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.gpb_digital_invoice_footer_gross_price_text
+            )
+        )
+        binding.grossPriceTotalIntegralPart.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.gpb_digital_invoice_footer_gross_price_text
+            )
+        )
     }
 
     /**
@@ -286,10 +407,23 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
      * @suppress
      */
     override fun disableInput() {
-        binding.gpbDescription.isEnabled = false
-        binding.gpbQuantity.isEnabled = false
-        binding.gpbGrossPrice.isEnabled = false
-        binding.gpbCurrency.isEnabled = false
+        val disabledColor = ContextCompat.getColor(
+            requireContext(),
+            R.color.gpb_digital_invoice_line_item_details_disabled
+        )
+        binding.description.clearFocus()
+        binding.quantity.clearFocus()
+        binding.grossPrice.clearFocus()
+        binding.descriptionContainer.clearFocus()
+        binding.quantityContainer.clearFocus()
+        binding.grossPriceContainer.clearFocus()
+        binding.descriptionContainer.isEnabled = false
+        binding.quantityContainer.isEnabled = false
+        binding.grossPriceContainer.isEnabled = false
+        binding.currency.setTextColor(disabledColor)
+        binding.totalLabel.setTextColor(disabledColor)
+        binding.grossPriceTotalFractionalPart.setTextColor(disabledColor)
+        binding.grossPriceTotalIntegralPart.setTextColor(disabledColor)
     }
 
     /**
@@ -314,15 +448,22 @@ class LineItemDetailsFragment : Fragment(), LineItemDetailsScreenContract.View, 
      *
      * @suppress
      */
-    override fun showCheckbox(selected: Boolean, quantity: Int) {
-        binding.gpbCheckbox.isChecked = selected
-        binding.gpbCheckbox.text =
+    override fun showCheckbox(selected: Boolean, quantity: Int, visible: Boolean) {
+        binding.checkboxLabel.isVisible = visible
+        binding.checkbox.isVisible = visible
+
+        binding.checkbox.isChecked = selected
+        binding.checkboxLabel.text =
             resources.getQuantityString(
                 R.plurals.gpb_digital_invoice_line_item_details_selected_line_items,
                 quantity, quantity, if (selected) resources.getString(
                     R.string.gpb_digital_invoice_line_item_details_selected
                 ) else ""
             )
+    }
+
+    override fun dismiss() {
+        requireActivity().finish()
     }
 
 }

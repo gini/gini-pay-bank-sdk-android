@@ -10,6 +10,8 @@ import java.math.BigDecimal
 import java.text.DecimalFormat
 import java.text.ParseException
 import net.gini.android.capture.network.model.GiniCaptureReturnReason
+import net.gini.pay.bank.R
+import java.util.*
 
 /**
  * Created by Alpar Szotyori on 17.12.2019.
@@ -25,11 +27,13 @@ internal val GROSS_PRICE_FORMAT = DecimalFormat("#,##0.00").apply { isParseBigDe
  *
  * @suppress
  */
-internal class LineItemDetailsScreenPresenter(activity: Activity, view: View,
-                                              var selectableLineItem: SelectableLineItem,
-                                              val returnReasons: List<GiniCaptureReturnReason> = emptyList(),
-                                              private val grossPriceFormat: DecimalFormat = GROSS_PRICE_FORMAT) :
-        Presenter(activity, view) {
+internal class LineItemDetailsScreenPresenter(
+    activity: Activity, view: View,
+    var selectableLineItem: SelectableLineItem,
+    val returnReasons: List<GiniCaptureReturnReason> = emptyList(),
+    private val grossPriceFormat: DecimalFormat = GROSS_PRICE_FORMAT
+) :
+    Presenter(activity, view) {
 
     override var listener: LineItemDetailsFragmentListener? = null
 
@@ -78,8 +82,8 @@ internal class LineItemDetailsScreenPresenter(activity: Activity, view: View,
 
     private fun updateCheckboxAndSaveButton() = selectableLineItem.let {
         view.apply {
-            showCheckbox(it.selected, it.lineItem.quantity)
-            updateSaveButton(it, originalLineItem)
+            showCheckbox(it.selected, it.lineItem.quantity, !it.addedByUser)
+            updateSaveButton(it, originalLineItem, it.lineItem.grossPrice > BigDecimal.ZERO)
         }
     }
 
@@ -88,9 +92,9 @@ internal class LineItemDetailsScreenPresenter(activity: Activity, view: View,
             return
         }
         selectableLineItem = selectableLineItem.copy(
-                lineItem = selectableLineItem.lineItem.copy(description = description)
+            lineItem = selectableLineItem.lineItem.copy(description = description)
         ).also {
-            view.updateSaveButton(it, originalLineItem)
+            view.updateSaveButton(it, originalLineItem, it.lineItem.grossPrice > BigDecimal.ZERO)
         }
     }
 
@@ -99,7 +103,7 @@ internal class LineItemDetailsScreenPresenter(activity: Activity, view: View,
             return
         }
         selectableLineItem = selectableLineItem.copy(
-                lineItem = selectableLineItem.lineItem.copy(quantity = quantity)
+            lineItem = selectableLineItem.lineItem.copy(quantity = quantity)
         )
         view.showTotalGrossPrice(selectableLineItem)
         updateCheckboxAndSaveButton()
@@ -109,25 +113,46 @@ internal class LineItemDetailsScreenPresenter(activity: Activity, view: View,
         val grossPrice = try {
             grossPriceFormat.parse(displayedGrossPrice) as BigDecimal
         } catch (_: ParseException) {
+            view.apply {
+                updateSaveButton(selectableLineItem, originalLineItem, false)
+            }
             return
         }
         if (selectableLineItem.lineItem.grossPrice == grossPrice) {
             return
         }
         selectableLineItem = selectableLineItem.copy(
-                lineItem = selectableLineItem.lineItem.copy(
-                        rawGrossPrice = grossPrice.toPriceString(selectableLineItem.lineItem.rawCurrency)
-                )
+            lineItem = selectableLineItem.lineItem.copy(
+                rawGrossPrice = grossPrice.toPriceString(selectableLineItem.lineItem.rawCurrency)
+            )
         ).also {
             view.apply {
                 showTotalGrossPrice(it)
-                updateSaveButton(it, originalLineItem)
+                updateSaveButton(it, originalLineItem, grossPrice > BigDecimal.ZERO)
             }
         }
     }
 
-    override fun save() {
-        listener?.onSave(selectableLineItem)
+    override fun save(isBack: Boolean) {
+        if (selectableLineItem.addedByUser && selectableLineItem.lineItem.description.isBlank()) {
+            selectableLineItem = selectableLineItem.copy(
+                lineItem = selectableLineItem.lineItem.copy(description = activity.getString(R.string.gpb_digital_invoice_line_item_description_additional))
+            )
+        }
+        when {
+            isBack && selectableLineItem.lineItem.id.isBlank() -> {
+                view.dismiss()
+            }
+
+            selectableLineItem.lineItem.id.isBlank() -> {
+                val lineItem = selectableLineItem.lineItem.copy(UUID.randomUUID().toString())
+                listener?.onSave(selectableLineItem.copy(lineItem = lineItem))
+            }
+
+            else -> {
+                listener?.onSave(selectableLineItem)
+            }
+        }
     }
 
     override fun start() {
@@ -150,13 +175,14 @@ internal class LineItemDetailsScreenPresenter(activity: Activity, view: View,
 
 private fun View.showTotalGrossPrice(selectableLineItem: SelectableLineItem) {
     DigitalInvoice.lineItemTotalGrossPriceIntegralAndFractionalParts(
-            selectableLineItem.lineItem).let { (integral, fractional) ->
+        selectableLineItem.lineItem
+    ).let { (integral, fractional) ->
         showTotalGrossPrice(integral, fractional)
     }
 }
 
-private fun View.updateSaveButton(new: SelectableLineItem, old: SelectableLineItem) {
-    if (new == old) {
+private fun View.updateSaveButton(new: SelectableLineItem, old: SelectableLineItem, isPriceValid: Boolean) {
+    if (new == old || !isPriceValid) {
         disableSaveButton()
     } else {
         enableSaveButton()
