@@ -58,13 +58,16 @@ task clean(type: Delete) {
 }
 apply from: rootProject.file('gradle/git_utils.gradle')
 
+def libVersionCode = gitTagCount()
+def libVersionName = "${gitDescribe()} (${libVersionCode})"
+
 ext {
-    libVersionCode = gitTagCount()
-    libVersionName = "${gitDescribe()} (${libVersionCode})"
+    versionCode = libVersionCode
+    versionName = libVersionName
 }
 
 task printLibraryVersion {
     doLast {
-        println "${ext.libVersionName}"
+        println "$libVersionName"
     }
 }
