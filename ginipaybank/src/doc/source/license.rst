@@ -10,7 +10,7 @@ also integrate several third party libraries.
 
 ::
 
-   Copyright (c) 2014-2018, Gini GmbH
+   Copyright (c) 2014-2021, Gini GmbH
    All rights reserved.
    
    The Gini Pay Bank SDK is licensed through Gini GmbH ("Gini") and may not be
@@ -322,7 +322,7 @@ Gini Android SDK
 
     The MIT License (MIT)
 
-    Copyright (c) 2018 Gini GmbH
+    Copyright (c) 2021 Gini GmbH
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal

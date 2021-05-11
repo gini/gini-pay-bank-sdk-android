@@ -22,7 +22,7 @@ import net.gini.pay.appcomponentapi.util.PermissionHandler
 import net.gini.pay.appcomponentapi.util.SimpleSpinnerSelectListener
 import net.gini.pay.appcomponentapi.util.isIntentActionViewOrSend
 import net.gini.pay.bank.BuildConfig
-import net.gini.pay.bank.GiniBank
+import net.gini.pay.bank.GiniPayBank
 import net.gini.pay.bank.capture.CaptureConfiguration
 import net.gini.pay.bank.network.getAccountingNetworkApi
 import net.gini.pay.bank.network.getAccountingNetworkService
@@ -49,9 +49,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configureGiniCapture() {
-        GiniBank.releaseCapture(this)
+        GiniPayBank.releaseCapture(this)
         val (networkService, networkApi) = getNetworkService()
-        GiniBank.setCaptureConfiguration(
+        GiniPayBank.setCaptureConfiguration(
             CaptureConfiguration(
                 networkService = networkService,
                 networkApi = networkApi,
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     private fun startGiniCaptureSdk(intent: Intent? = null) {
         lifecycleScope.launch {
             if (permissionHandler.grantPermission(Manifest.permission.CAMERA)) {
-                val report = GiniBank.checkCaptureRequirements(this@MainActivity)
+                val report = GiniPayBank.checkCaptureRequirements(this@MainActivity)
                 if (!report.isFulfilled) {
                     showUnfulfilledRequirementsToast(report)
                 }
