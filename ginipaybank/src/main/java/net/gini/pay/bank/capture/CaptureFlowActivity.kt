@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import net.gini.android.capture.camera.CameraActivity
-import net.gini.pay.bank.GiniBank
+import net.gini.pay.bank.GiniPayBank
 import net.gini.pay.bank.capture.digitalinvoice.DigitalInvoiceContract
 import net.gini.pay.bank.capture.digitalinvoice.DigitalInvoiceException
 import net.gini.pay.bank.capture.digitalinvoice.LineItemsValidator
@@ -35,7 +35,7 @@ internal class CaptureFlowActivity : AppCompatActivity(), CaptureFlowImportContr
     private fun onCameraResult(result: CaptureResult) {
         when (result) {
             is CaptureResult.Success -> {
-                if (GiniBank.getCaptureConfiguration()?.returnAssistantEnabled == true) {
+                if (GiniPayBank.getCaptureConfiguration()?.returnAssistantEnabled == true) {
                     try {
                         LineItemsValidator.validate(result.compoundExtractions)
                         digitalInvoiceLauncher.launch(result.toDigitalInvoiceInput())

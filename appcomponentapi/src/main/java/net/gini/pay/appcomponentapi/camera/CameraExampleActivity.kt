@@ -34,7 +34,7 @@ import net.gini.pay.appcomponentapi.review.MultiPageReviewContract
 import net.gini.pay.appcomponentapi.review.ReviewContract
 import net.gini.pay.appcomponentapi.util.hasLessThan5MB
 import net.gini.pay.appcomponentapi.util.isIntentActionViewOrSend
-import net.gini.pay.bank.GiniBank
+import net.gini.pay.bank.GiniPayBank
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -121,7 +121,7 @@ class CameraExampleActivity : AppCompatActivity(), CameraFragmentListener, Onboa
 
 
     private fun startGiniCaptureSdkForImportedFile(intent: Intent) {
-        GiniBank.createDocumentForImportedFiles(intent, this, object : AsyncCallback<Document, ImportedFileValidationException> {
+        GiniPayBank.createDocumentForImportedFiles(intent, this, object : AsyncCallback<Document, ImportedFileValidationException> {
             override fun onSuccess(result: Document) {
                 if (result.isReviewable) {
                     launchMultiPageReviewScreen()

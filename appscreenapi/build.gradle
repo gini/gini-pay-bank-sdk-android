@@ -58,6 +58,10 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:${versions.fragment}"
     implementation "com.google.android.material:material:${versions.material}"
 
+    def koinVersion = '2.2.2'
+    implementation "org.koin:koin-androidx-scope:$koinVersion"
+    implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
+    implementation "org.koin:koin-androidx-fragment:$koinVersion"
 
     testImplementation "junit:junit:${versions.junit}"
     androidTestImplementation "androidx.test.ext:junit:${versions.androidxTestJunit}"
