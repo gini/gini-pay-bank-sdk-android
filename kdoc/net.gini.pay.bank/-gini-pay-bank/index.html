@@ -1,0 +1,351 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>GiniPayBank</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+    <link href="../../../styles/style.css" rel="Stylesheet">
+    <link href="../../../styles/logo-styles.css" rel="Stylesheet">
+    <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+    <link href="../../../styles/main.css" rel="Stylesheet">
+    <script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/main.js" async="async"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn">
+        <div id="logo"></div>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+        <script type="text/javascript" src="../../../scripts/pages.js"></script>
+        <script type="text/javascript" src="../../../scripts/main.js"></script>
+        <div class="main-content" id="content" pageIds="net.gini.pay.bank/GiniPayBank///PointingToDeclaration//2121603250">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../index.html">ginipaybank</a>/<a href="../index.html">net.gini.pay.bank</a>/<a href="index.html">GiniPayBank</a></div>
+            <div class="pull-right d-flex">
+              <div class="filter-section" id="filter-section"><button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":ginipaybank:dokkaHtml/release">androidJvm</button></div>
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span>Gini</span><wbr></wbr><span>Pay</span><wbr></wbr><span>Bank</span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><div class="symbol monospace">public class <a href="index.html">GiniPayBank</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Api for interacting with Capture and Payment features.</p><p class="paragraph">The Capture feature is a layer of abstraction above Gini Capture SDK and the Return Assistant feature. Capture feature can be used with:</p><ul><li><p class="paragraph">the Screen API by calling <a href="start-capture-flow.html">startCaptureFlow</a> or <a href="start-capture-flow-for-intent.html">startCaptureFlowForIntent</a>.</p></li><li><p class="paragraph">the Component API by building everything around the provided fragments. See example apps for more details about usage of Screen and Component APIs.</p></li></ul><p class="paragraph">To use capture features, they need to be configured with <a href="set-capture-configuration.html">setCaptureConfiguration</a>. Note that configuration is immutable. <a href="release-capture.html">releaseCapture</a> needs to be called before passing a new configuration.</p><p class="paragraph">To use the pay feature, first <a href="set-gini-api.html">setGiniApi</a> needs to be called. The flow for this feature would be:</p><ul><li><p class="paragraph"><a href="../../net.gini.pay.bank.pay/-business-kt/get-request-id.html">getRequestId</a> to extract the id from the <a href="https://developer.android.com/reference/kotlin/android/content/Intent.html">Intent</a></p></li><li><p class="paragraph"><a href="get-payment-request.html">getPaymentRequest</a> to get payment details set by the business app.</p></li><li><p class="paragraph"><a href="resolve-payment-request.html">resolvePaymentRequest</a> to mark the <span data-unresolved-link="net.gini.android.models/PaymentRequest///PointingToDeclaration/">PaymentRequest</span> as paid.</p></li><li><p class="paragraph"><a href="return-to-business.html">returnToBusiness</a> to return to the business app that started the flow.</p></li></ul></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
+            <div class="tabs-section-body">
+              <h2 class="">Functions</h2>
+              <div class="table" data-togglable="Functions"><a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FcheckCaptureRequirements%2F%23android.content.Context%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="checkCaptureRequirements" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FcheckCaptureRequirements%2F%23android.content.Context%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="check-capture-requirements.html">checkCaptureRequirements</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bnet.gini.pay.bank%2FGiniPayBank%2FcheckCaptureRequirements%2F%23android.content.Context%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag jvm-like">androidJvm</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><div class="symbol monospace block">final <span data-unresolved-link="net.gini.android.capture.requirements/RequirementsReport///PointingToDeclaration/">RequirementsReport</span> <a href="check-capture-requirements.html">checkCaptureRequirements</a>(<a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a> <a href="check-capture-requirements.html">context</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FcheckCaptureRequirements%2F%23android.content.Context%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="checkCaptureRequirements" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FcheckCaptureRequirements%2F%23android.content.Context%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a><div class="brief "><a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FcheckCaptureRequirements%2F%23android.content.Context%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="checkCaptureRequirements" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FcheckCaptureRequirements%2F%23android.content.Context%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>Checks hardware requirements for Capture feature.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FcreateDocumentForImportedFiles%2F%23android.content.Intent%23android.content.Context%23net.gini.android.capture.AsyncCallback%5Bnet.gini.android.capture.Document%2Cnet.gini.android.capture.ImportedFileValidationException%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="createDocumentForImportedFiles" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FcreateDocumentForImportedFiles%2F%23android.content.Intent%23android.content.Context%23net.gini.android.capture.AsyncCallback%5Bnet.gini.android.capture.Document%2Cnet.gini.android.capture.ImportedFileValidationException%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="create-document-for-imported-files.html">createDocumentForImportedFiles</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bnet.gini.pay.bank%2FGiniPayBank%2FcreateDocumentForImportedFiles%2F%23android.content.Intent%23android.content.Context%23net.gini.android.capture.AsyncCallback%5Bnet.gini.android.capture.Document%2Cnet.gini.android.capture.ImportedFileValidationException%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag jvm-like">androidJvm</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><div class="symbol monospace block">final <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="create-document-for-imported-files.html">createDocumentForImportedFiles</a>(<a href="https://developer.android.com/reference/kotlin/android/content/Intent.html">Intent</a> <a href="create-document-for-imported-files.html">intent</a>, <a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a> <a href="create-document-for-imported-files.html">context</a>, <span data-unresolved-link="net.gini.android.capture/AsyncCallback///PointingToDeclaration/">AsyncCallback</span>&lt;<span data-unresolved-link="net.gini.android.capture/Document///PointingToDeclaration/">Document</span>, <span data-unresolved-link="net.gini.android.capture/ImportedFileValidationException///PointingToDeclaration/">ImportedFileValidationException</span>&gt; <a href="create-document-for-imported-files.html">callback</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FcreateDocumentForImportedFiles%2F%23android.content.Intent%23android.content.Context%23net.gini.android.capture.AsyncCallback%5Bnet.gini.android.capture.Document%2Cnet.gini.android.capture.ImportedFileValidationException%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="createDocumentForImportedFiles" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FcreateDocumentForImportedFiles%2F%23android.content.Intent%23android.content.Context%23net.gini.android.capture.AsyncCallback%5Bnet.gini.android.capture.Document%2Cnet.gini.android.capture.ImportedFileValidationException%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a><div class="brief "><a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FcreateDocumentForImportedFiles%2F%23android.content.Intent%23android.content.Context%23net.gini.android.capture.AsyncCallback%5Bnet.gini.android.capture.Document%2Cnet.gini.android.capture.ImportedFileValidationException%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="createDocumentForImportedFiles" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FcreateDocumentForImportedFiles%2F%23android.content.Intent%23android.content.Context%23net.gini.android.capture.AsyncCallback%5Bnet.gini.android.capture.Document%2Cnet.gini.android.capture.ImportedFileValidationException%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>Component APICreates an <span data-unresolved-link="net.gini.android.capture/Document///PointingToDeclaration/">Document</span> for a pdf or image that was shared from another app.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="equals" id="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../net.gini.pay.bank.capture.digitalinvoice.onboarding/-digital-onboarding-screen-contract/-presenter/index.html#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250">equals</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag jvm-like">androidJvm</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><div class="symbol monospace block"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html">Boolean</a> <a href="../../net.gini.pay.bank.capture.digitalinvoice.onboarding/-digital-onboarding-screen-contract/-presenter/index.html#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250">equals</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html">Object</a> <a href="../../net.gini.pay.bank.capture.digitalinvoice.onboarding/-digital-onboarding-screen-contract/-presenter/index.html#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250">other</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FgetPaymentRequest%2F%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="getPaymentRequest" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FgetPaymentRequest%2F%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="get-payment-request.html">getPaymentRequest</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bnet.gini.pay.bank%2FGiniPayBank%2FgetPaymentRequest%2F%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag jvm-like">androidJvm</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><div class="symbol monospace block">final <span data-unresolved-link="net.gini.android.models/PaymentRequest///PointingToDeclaration/">PaymentRequest</span> <a href="get-payment-request.html">getPaymentRequest</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="get-payment-request.html">id</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FgetPaymentRequest%2F%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="getPaymentRequest" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FgetPaymentRequest%2F%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a><div class="brief "><a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FgetPaymentRequest%2F%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="getPaymentRequest" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FgetPaymentRequest%2F%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>Get the payment details for the request created by a business.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="hashCode" id="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../net.gini.pay.bank.capture.digitalinvoice.onboarding/-digital-onboarding-screen-contract/-presenter/index.html#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250">hashCode</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag jvm-like">androidJvm</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><div class="symbol monospace block"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a> <a href="../../net.gini.pay.bank.capture.digitalinvoice.onboarding/-digital-onboarding-screen-contract/-presenter/index.html#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250">hashCode</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreleaseCapture%2F%23android.content.Context%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="releaseCapture" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreleaseCapture%2F%23android.content.Context%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="release-capture.html">releaseCapture</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreleaseCapture%2F%23android.content.Context%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag jvm-like">androidJvm</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><div class="symbol monospace block">final <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="release-capture.html">releaseCapture</a>(<a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a> <a href="release-capture.html">context</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreleaseCapture%2F%23android.content.Context%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="releaseCapture" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreleaseCapture%2F%23android.content.Context%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a><div class="brief "><a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreleaseCapture%2F%23android.content.Context%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="releaseCapture" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreleaseCapture%2F%23android.content.Context%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>Frees up resources used by Capture.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreleaseGiniApi%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="releaseGiniApi" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreleaseGiniApi%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="release-gini-api.html">releaseGiniApi</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreleaseGiniApi%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag jvm-like">androidJvm</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><div class="symbol monospace block">final <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="release-gini-api.html">releaseGiniApi</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreleaseGiniApi%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="releaseGiniApi" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreleaseGiniApi%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a><div class="brief "><a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreleaseGiniApi%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="releaseGiniApi" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreleaseGiniApi%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>Clears the reference to giniApi set by <a href="set-gini-api.html">setGiniApi</a>.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FresolvePaymentRequest%2F%23kotlin.String%23net.gini.android.models.ResolvePaymentInput%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="resolvePaymentRequest" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FresolvePaymentRequest%2F%23kotlin.String%23net.gini.android.models.ResolvePaymentInput%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="resolve-payment-request.html">resolvePaymentRequest</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bnet.gini.pay.bank%2FGiniPayBank%2FresolvePaymentRequest%2F%23kotlin.String%23net.gini.android.models.ResolvePaymentInput%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag jvm-like">androidJvm</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><div class="symbol monospace block">final <span data-unresolved-link="net.gini.android.models/ResolvedPayment///PointingToDeclaration/">ResolvedPayment</span> <a href="resolve-payment-request.html">resolvePaymentRequest</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="resolve-payment-request.html">requestId</a>, <span data-unresolved-link="net.gini.android.models/ResolvePaymentInput///PointingToDeclaration/">ResolvePaymentInput</span> <a href="resolve-payment-request.html">resolvePaymentInput</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FresolvePaymentRequest%2F%23kotlin.String%23net.gini.android.models.ResolvePaymentInput%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="resolvePaymentRequest" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FresolvePaymentRequest%2F%23kotlin.String%23net.gini.android.models.ResolvePaymentInput%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a><div class="brief "><a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FresolvePaymentRequest%2F%23kotlin.String%23net.gini.android.models.ResolvePaymentInput%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="resolvePaymentRequest" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FresolvePaymentRequest%2F%23kotlin.String%23net.gini.android.models.ResolvePaymentInput%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>Marks the a <span data-unresolved-link="net.gini.android.models/PaymentRequest///PointingToDeclaration/">PaymentRequest</span> as paid.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreturnToBusiness%2F%23android.content.Context%23net.gini.android.models.ResolvedPayment%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="returnToBusiness" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreturnToBusiness%2F%23android.content.Context%23net.gini.android.models.ResolvedPayment%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="return-to-business.html">returnToBusiness</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreturnToBusiness%2F%23android.content.Context%23net.gini.android.models.ResolvedPayment%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag jvm-like">androidJvm</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><div class="symbol monospace block">final <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="return-to-business.html">returnToBusiness</a>(<a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a> <a href="return-to-business.html">context</a>, <span data-unresolved-link="net.gini.android.models/ResolvedPayment///PointingToDeclaration/">ResolvedPayment</span> <a href="return-to-business.html">resolvedPayment</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreturnToBusiness%2F%23android.content.Context%23net.gini.android.models.ResolvedPayment%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="returnToBusiness" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreturnToBusiness%2F%23android.content.Context%23net.gini.android.models.ResolvedPayment%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a><div class="brief "><a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreturnToBusiness%2F%23android.content.Context%23net.gini.android.models.ResolvedPayment%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="returnToBusiness" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FreturnToBusiness%2F%23android.content.Context%23net.gini.android.models.ResolvedPayment%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>Starts the Business app that started the payment flow.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FsetCaptureConfiguration%2F%23net.gini.pay.bank.capture.CaptureConfiguration%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="setCaptureConfiguration" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FsetCaptureConfiguration%2F%23net.gini.pay.bank.capture.CaptureConfiguration%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="set-capture-configuration.html">setCaptureConfiguration</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bnet.gini.pay.bank%2FGiniPayBank%2FsetCaptureConfiguration%2F%23net.gini.pay.bank.capture.CaptureConfiguration%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag jvm-like">androidJvm</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><div class="symbol monospace block">final <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-capture-configuration.html">setCaptureConfiguration</a>(<a href="../../net.gini.pay.bank.capture/-capture-configuration/index.html">CaptureConfiguration</a> <a href="set-capture-configuration.html">captureConfiguration</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FsetCaptureConfiguration%2F%23net.gini.pay.bank.capture.CaptureConfiguration%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="setCaptureConfiguration" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FsetCaptureConfiguration%2F%23net.gini.pay.bank.capture.CaptureConfiguration%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a><div class="brief "><a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FsetCaptureConfiguration%2F%23net.gini.pay.bank.capture.CaptureConfiguration%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="setCaptureConfiguration" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FsetCaptureConfiguration%2F%23net.gini.pay.bank.capture.CaptureConfiguration%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>Sets configuration for Capture feature.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FsetGiniApi%2F%23net.gini.android.Gini%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="setGiniApi" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FsetGiniApi%2F%23net.gini.android.Gini%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="set-gini-api.html">setGiniApi</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bnet.gini.pay.bank%2FGiniPayBank%2FsetGiniApi%2F%23net.gini.android.Gini%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag jvm-like">androidJvm</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><div class="symbol monospace block">final <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-gini-api.html">setGiniApi</a>(<span data-unresolved-link="net.gini.android/Gini///PointingToDeclaration/">Gini</span> <a href="set-gini-api.html">giniApi</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FsetGiniApi%2F%23net.gini.android.Gini%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="setGiniApi" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FsetGiniApi%2F%23net.gini.android.Gini%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a><div class="brief "><a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FsetGiniApi%2F%23net.gini.android.Gini%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="setGiniApi" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FsetGiniApi%2F%23net.gini.android.Gini%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>Set the <span data-unresolved-link="net.gini.android/Gini///PointingToDeclaration/">Gini</span> instance to be used for the Pay feature.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FstartCaptureFlow%2F%23androidx.activity.result.ActivityResultLauncher%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="startCaptureFlow" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FstartCaptureFlow%2F%23androidx.activity.result.ActivityResultLauncher%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="start-capture-flow.html">startCaptureFlow</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bnet.gini.pay.bank%2FGiniPayBank%2FstartCaptureFlow%2F%23androidx.activity.result.ActivityResultLauncher%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag jvm-like">androidJvm</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><div class="symbol monospace block">final <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="start-capture-flow.html">startCaptureFlow</a>(<a href="https://developer.android.com/reference/kotlin/androidx/activity/result/ActivityResultLauncher.html">ActivityResultLauncher</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>&gt; <a href="start-capture-flow.html">resultLauncher</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FstartCaptureFlow%2F%23androidx.activity.result.ActivityResultLauncher%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="startCaptureFlow" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FstartCaptureFlow%2F%23androidx.activity.result.ActivityResultLauncher%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a><div class="brief "><a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FstartCaptureFlow%2F%23androidx.activity.result.ActivityResultLauncher%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="startCaptureFlow" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FstartCaptureFlow%2F%23androidx.activity.result.ActivityResultLauncher%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>Screen API for starting the capture flow.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FstartCaptureFlowForIntent%2F%23androidx.activity.result.ActivityResultLauncher%5Bnet.gini.pay.bank.capture.CaptureImportInput%5D%23android.content.Context%23android.content.Intent%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="startCaptureFlowForIntent" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FstartCaptureFlowForIntent%2F%23androidx.activity.result.ActivityResultLauncher%5Bnet.gini.pay.bank.capture.CaptureImportInput%5D%23android.content.Context%23android.content.Intent%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="start-capture-flow-for-intent.html">startCaptureFlowForIntent</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bnet.gini.pay.bank%2FGiniPayBank%2FstartCaptureFlowForIntent%2F%23androidx.activity.result.ActivityResultLauncher%5Bnet.gini.pay.bank.capture.CaptureImportInput%5D%23android.content.Context%23android.content.Intent%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag jvm-like">androidJvm</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><div class="symbol monospace block">final <span data-unresolved-link="net.gini.android.capture.util/CancellationToken///PointingToDeclaration/">CancellationToken</span> <a href="start-capture-flow-for-intent.html">startCaptureFlowForIntent</a>(<a href="https://developer.android.com/reference/kotlin/androidx/activity/result/ActivityResultLauncher.html">ActivityResultLauncher</a>&lt;<a href="../../net.gini.pay.bank.capture/-capture-import-input/index.html">CaptureImportInput</a>&gt; <a href="start-capture-flow-for-intent.html">resultLauncher</a>, <a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a> <a href="start-capture-flow-for-intent.html">context</a>, <a href="https://developer.android.com/reference/kotlin/android/content/Intent.html">Intent</a> <a href="start-capture-flow-for-intent.html">intent</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FstartCaptureFlowForIntent%2F%23androidx.activity.result.ActivityResultLauncher%5Bnet.gini.pay.bank.capture.CaptureImportInput%5D%23android.content.Context%23android.content.Intent%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="startCaptureFlowForIntent" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FstartCaptureFlowForIntent%2F%23androidx.activity.result.ActivityResultLauncher%5Bnet.gini.pay.bank.capture.CaptureImportInput%5D%23android.content.Context%23android.content.Intent%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a><div class="brief "><a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FstartCaptureFlowForIntent%2F%23androidx.activity.result.ActivityResultLauncher%5Bnet.gini.pay.bank.capture.CaptureImportInput%5D%23android.content.Context%23android.content.Intent%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="startCaptureFlowForIntent" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FstartCaptureFlowForIntent%2F%23androidx.activity.result.ActivityResultLauncher%5Bnet.gini.pay.bank.capture.CaptureImportInput%5D%23android.content.Context%23android.content.Intent%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>Screen API for starting the capture flow when a pdf or image document was shared from another app.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" anchor-label="toString" id="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../net.gini.pay.bank.capture.digitalinvoice.onboarding/-digital-onboarding-screen-contract/-presenter/index.html#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250">toString</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag jvm-like">androidJvm</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><div class="symbol monospace block"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="../../net.gini.pay.bank.capture.digitalinvoice.onboarding/-digital-onboarding-screen-contract/-presenter/index.html#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F2121603250">toString</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Properties</h2>
+              <div class="table" data-togglable="Properties"><a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FINSTANCE%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F2121603250" anchor-label="INSTANCE" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FINSTANCE%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":ginipaybank:dokkaHtml/release" data-filterable-set=":ginipaybank:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bnet.gini.pay.bank%2FGiniPayBank%2FINSTANCE%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F2121603250">INSTANCE</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bnet.gini.pay.bank%2FGiniPayBank%2FINSTANCE%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F2121603250"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag jvm-like">androidJvm</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":ginipaybank:dokkaHtml/release"><a data-name="%5Bnet.gini.pay.bank%2FGiniPayBank%2FINSTANCE%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F2121603250" anchor-label="INSTANCE" id="%5Bnet.gini.pay.bank%2FGiniPayBank%2FINSTANCE%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F2121603250" data-filterable-set=":ginipaybank:dokkaHtml/release"></a><div class="symbol monospace block">public final static <a href="index.html">GiniPayBank</a> <a href="index.html#%5Bnet.gini.pay.bank%2FGiniPayBank%2FINSTANCE%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F2121603250">INSTANCE</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2020 Copyright</span><span class="pull-right"><span>Sponsored and developed by dokka</span><a href="https://github.com/Kotlin/dokka"><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+
