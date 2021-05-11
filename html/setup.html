@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting started &mdash; Gini Capture SDK for Android 2.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic,600italic|Source+Code+Pro|Roboto+Slab:400,700" rel="stylesheet" type="text/css" />
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'2.0',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+    <script type="text/javascript">
+        jQuery(function () {
+            SphinxRtdTheme.StickyNav.enable();
+        });
+    </script>
+  
+
+  
+    <link rel="top" title="Gini Capture SDK for Android 2.0 documentation" href="index.html"/>
+        <link rel="next" title="Authentication" href="authentication.html"/>
+        <link rel="prev" title="Gini Pay Bank SDK for Android" href="index.html"/> 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" id="gini-logo">gini API</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="http://developer.gini.net/gini-pay-bank-sdk-android/kdoc/index.html">Gini Pay Bank KDoc</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#integration">Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#capture-feature">Capture Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#pay-feature">Pay Feature</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="capture.html">Capture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pay.html">Pay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customization.html">Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="license.html#licenses-and-acknowledgements-for-incorporated-software">Licenses and Acknowledgements for Incorporated Software</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="license.html#apache-commons-sanselan">Apache Commons Sanselan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="license.html#touchimageview">TouchImageView</a></li>
+<li class="toctree-l3"><a class="reference internal" href="license.html#gini-android-sdk">Gini Android SDK</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Gini Capture SDK for Android</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Getting started</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>To install add our Maven repo to the root build.gradle file and add it as a dependency to your app
+module&#8217;s build.gradle.</p>
+<p>build.gradle:</p>
+<div class="highlight-groovy"><div class="highlight"><pre>repositories {
+    maven {
+        url &#39;https://repo.gini.net/nexus/content/repositories/open
+    }
+}
+</pre></div>
+</div>
+<p>app/build.gradle:</p>
+<div class="highlight-groovy"><div class="highlight"><pre><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">implementation</span> <span class="s1">&#39;net.gini:gini-pay-business-sdk:1.0.0-beta03&#39;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="integration">
+<h2>Integration<a class="headerlink" href="#integration" title="Permalink to this headline">¶</a></h2>
+<p>The entry point into the library is GiniPayBank object which lets you interact with the Capture and Payment features.
+The Capture feature is a layer of abstraction above <a class="reference external" href="https://github.com/gini/gini-capture-sdk-android/">Gini Capture SDK</a> and the Return Assistant feature.</p>
+<dl class="docutils">
+<dt>Capture feature can be used with:</dt>
+<dd><ul class="first last simple">
+<li>the Screen API by calling <tt class="docutils literal"><span class="pre">startCaptureFlow</span></tt> or <tt class="docutils literal"><span class="pre">startCaptureFlowForIntent</span></tt>.</li>
+<li>the Component API by building everything around the provided fragments.</li>
+</ul>
+</dd>
+</dl>
+<p>See example apps for more details about usage of Screen and Component APIs.</p>
+<p>To use capture features, they need to be configured with <tt class="docutils literal"><span class="pre">setCaptureConfiguration</span></tt>.
+Note that configuration is immutable. <tt class="docutils literal"><span class="pre">releaseCapture</span></tt> needs to be called before passing a new configuration.</p>
+<p>To use the pay feature you need to add to your manifest an intent filter for the ginipay URI:</p>
+<div class="highlight-kotlin"><div class="highlight"><pre><span class="p">&lt;</span><span class="n">intent</span><span class="p">-</span><span class="n">filter</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="n">action</span> <span class="n">android</span><span class="p">:</span><span class="n">name</span><span class="p">=</span><span class="s">&quot;android.intent.action.VIEW&quot;</span> <span class="p">/&gt;</span>
+
+    <span class="p">&lt;</span><span class="n">category</span> <span class="n">android</span><span class="p">:</span><span class="n">name</span><span class="p">=</span><span class="s">&quot;android.intent.category.DEFAULT&quot;</span> <span class="p">/&gt;</span>
+
+    <span class="p">&lt;</span><span class="n">data</span>
+        <span class="n">android</span><span class="p">:</span><span class="n">host</span><span class="p">=</span><span class="s">&quot;payment&quot;</span>
+        <span class="n">android</span><span class="p">:</span><span class="n">scheme</span><span class="p">=</span><span class="s">&quot;ginipay&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="n">intent</span><span class="p">-</span><span class="n">filter</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="authentication.html" class="btn btn-neutral float-right" title="Authentication">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Gini Pay Bank SDK for Android"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    </p>
+  </div>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+</body>
+</html>
