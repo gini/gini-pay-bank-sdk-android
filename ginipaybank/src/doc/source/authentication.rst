@@ -9,8 +9,8 @@ the freedom to use a networking implementation of their own choosing. The quicke
 networking is to use the Gini Capture Network Library, which you can use by providing
 ``GiniCaptureNetworkService`` and ``GiniCaptureDefaultNetworkApi`` to the configuration.
 There are helper methods which provide minimal configuration for Service and API:
- - `` getDefaultNetworkService(context: Context, clientId: String, clientSecret: String, emailDomain: String, documentMetadata: DocumentMetadata)``
- - `` getDefaultNetworkApi(service: GiniCaptureDefaultNetworkService)``
+ - ``getDefaultNetworkService(context: Context, clientId: String, clientSecret: String, emailDomain: String, documentMetadata: DocumentMetadata)``
+ - ``getDefaultNetworkApi(service: GiniCaptureDefaultNetworkService)``
 
 You may also use the Gini Pay API lib for Android or implement communication with the Gini API yourself.
 
