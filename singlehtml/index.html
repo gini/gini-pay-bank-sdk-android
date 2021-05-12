@@ -163,7 +163,7 @@ module&#8217;s build.gradle.</p>
 </div>
 <p>app/build.gradle:</p>
 <div class="highlight-groovy"><div class="highlight"><pre><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="n">implementation</span> <span class="s1">&#39;net.gini:gini-pay-business-sdk:1.0.0-beta03&#39;</span>
+    <span class="n">implementation</span> <span class="s1">&#39;net.gini:gini-pay-bank-sdk:1.0.0&#39;</span>
 <span class="o">}</span>
 </pre></div>
 </div>
@@ -208,8 +208,8 @@ networking is to use the Gini Capture Network Library, which you can use by prov
 There are helper methods which provide minimal configuration for Service and API:</p>
 <blockquote>
 <div><ul class="simple">
-<li>`` getDefaultNetworkService(context: Context, clientId: String, clientSecret: String, emailDomain: String, documentMetadata: DocumentMetadata)``</li>
-<li>`` getDefaultNetworkApi(service: GiniCaptureDefaultNetworkService)``</li>
+<li><tt class="docutils literal"><span class="pre">getDefaultNetworkService(context:</span> <span class="pre">Context,</span> <span class="pre">clientId:</span> <span class="pre">String,</span> <span class="pre">clientSecret:</span> <span class="pre">String,</span> <span class="pre">emailDomain:</span> <span class="pre">String,</span> <span class="pre">documentMetadata:</span> <span class="pre">DocumentMetadata)</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">getDefaultNetworkApi(service:</span> <span class="pre">GiniCaptureDefaultNetworkService)</span></tt></li>
 </ul>
 </div></blockquote>
 <p>You may also use the Gini Pay API lib for Android or implement communication with the Gini API yourself.</p>
@@ -279,11 +279,16 @@ the ginipay URI so that it is discoverable by the business apps:</p>
 </div>
 <p>The intent filter can be added to the activity which will handle the payment flow of
 that payment request.</p>
-<p>The flow is:
-1. <tt class="docutils literal"><span class="pre">getRequestId</span></tt> to extract the id from the <tt class="docutils literal"><span class="pre">Intent</span></tt>
-2. <tt class="docutils literal"><span class="pre">getPaymentRequest</span></tt> to get payment details set by the business app.
-3. <tt class="docutils literal"><span class="pre">resolvePaymentRequest</span></tt> to mark the <tt class="docutils literal"><span class="pre">PaymentRequest</span></tt> as paid.
-4. <tt class="docutils literal"><span class="pre">returnToBusiness</span></tt> to return to the business app that started the flow.</p>
+<dl class="docutils">
+<dt>The flow is:</dt>
+<dd><ol class="first last arabic simple">
+<li><tt class="docutils literal"><span class="pre">getRequestId</span></tt> to extract the id from the <tt class="docutils literal"><span class="pre">Intent</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">getPaymentRequest</span></tt> to get payment details set by the business app.</li>
+<li><tt class="docutils literal"><span class="pre">resolvePaymentRequest</span></tt> to mark the <tt class="docutils literal"><span class="pre">PaymentRequest</span></tt> as paid.</li>
+<li><tt class="docutils literal"><span class="pre">returnToBusiness</span></tt> to return to the business app that started the flow.</li>
+</ol>
+</dd>
+</dl>
 </div>
 <span id="document-customization"></span><div class="section" id="customization">
 <h3>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">¶</a></h3>

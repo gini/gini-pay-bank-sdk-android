@@ -27,7 +27,7 @@ The intent filter can be added to the activity which will handle the payment flo
 that payment request.
 
 The flow is:
-1. ``getRequestId`` to extract the id from the ``Intent``
-2. ``getPaymentRequest`` to get payment details set by the business app.
-3. ``resolvePaymentRequest`` to mark the ``PaymentRequest`` as paid.
-4. ``returnToBusiness`` to return to the business app that started the flow.
+ 1. ``getRequestId`` to extract the id from the ``Intent``
+ 2. ``getPaymentRequest`` to get payment details set by the business app.
+ 3. ``resolvePaymentRequest`` to mark the ``PaymentRequest`` as paid.
+ 4. ``returnToBusiness`` to return to the business app that started the flow.
