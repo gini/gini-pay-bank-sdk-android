@@ -7,32 +7,6 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <Spinner
-        android:id="@+id/gini_api_type_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button_start_scanner"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
-        android:entries="@array/gini_api_types"
-        app:layout_constraintBottom_toTopOf="@id/button_start_scanner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/gini_api_type_spinner"
-        android:layout_alignStart="@+id/gini_api_type_spinner"
-        android:layout_alignEnd="@+id/gini_api_type_spinner"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:text="@string/gini_api_type_label"
-        app:layout_constraintBottom_toTopOf="@id/gini_api_type_spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <Button
         android:id="@+id/button_start_scanner"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -57,7 +31,7 @@
         tools:text="v1.0.0" />
 
     <TextView
-        android:id="@+id/text_gini_capture_version"
+        android:id="@+id/text_gini_bank_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_start_scanner"
