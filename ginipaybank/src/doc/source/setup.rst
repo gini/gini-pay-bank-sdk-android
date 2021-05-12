@@ -22,7 +22,7 @@ app/build.gradle:
 .. code-block:: groovy
 
     dependencies {
-        implementation 'net.gini:gini-pay-business-sdk:1.0.0-beta03'
+        implementation 'net.gini:gini-pay-bank-sdk:1.0.0-alpha01'
     }
 
 Integration
