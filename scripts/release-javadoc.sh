@@ -22,10 +22,9 @@ git_password=$2
 rm -rf gh-pages
 git clone -b gh-pages https://"$git_user":"$git_password"@github.com/gini/gini-pay-bank-sdk-android.git gh-pages
 
-rm -rf gh-pages/kdoc
-mkdir -p gh-pages/kdoc
+rm -rf gh-pages/ginipaybank
+mkdir -p gh-pages/ginipaybank
 cp -a ginipaybank/build/dokka/ gh-pages
-mv gh-pages/ginipaybank/* gh-pages/kdoc
 cd gh-pages
 touch .nojekyll
 git add -u
