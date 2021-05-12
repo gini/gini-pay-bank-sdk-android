@@ -26,7 +26,7 @@ app/build.gradle:
 
 ```
 dependencies {
-    implementation 'net.gini:gini-pay-bank-sdk:1.0.0-alpha01'
+    implementation 'net.gini:gini-pay-bank-sdk:1.0.0'
 }
 ```
 
