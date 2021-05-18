@@ -107,7 +107,6 @@ internal fun GiniCapture.Builder.applyConfiguration(configuration: CaptureConfig
     return this.setGiniCaptureNetworkService(configuration.networkService)
         .setGiniCaptureNetworkApi(configuration.networkApi)
         .setShouldShowOnboardingAtFirstRun(configuration.showOnboardingAtFirstRun)
-        .setCustomOnboardingPages(arrayListOf<OnboardingPage>().apply { configuration.onboardingPages.forEach { add(it) } })
         .setShouldShowOnboarding(configuration.showOnboarding)
         .setMultiPageEnabled(configuration.multiPageEnabled)
         .setDocumentImportEnabledFileTypes(configuration.documentImportEnabledFileTypes)
@@ -117,5 +116,12 @@ internal fun GiniCapture.Builder.applyConfiguration(configuration: CaptureConfig
         .setFlashButtonEnabled(configuration.flashButtonEnabled)
         .setBackButtonsEnabled(configuration.backButtonsEnabled)
         .setFlashOnByDefault(configuration.flashOnByDefault)
-        .apply { configuration.eventTracker?.let { setEventTracker(it) } }
+        .apply {
+            configuration.eventTracker?.let { setEventTracker(it) }
+            if (configuration.onboardingPages.isNotEmpty()) {
+                setCustomOnboardingPages(arrayListOf<OnboardingPage>().apply {
+                    configuration.onboardingPages.forEach { add(it) }
+                })
+            }
+        }
 }
