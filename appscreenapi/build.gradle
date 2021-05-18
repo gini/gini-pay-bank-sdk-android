@@ -12,8 +12,8 @@ android {
         applicationId "net.gini.pay.appscreenapi"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
-        versionCode 1
-        versionName "1.0"
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
 
         multiDexEnabled true
     }
