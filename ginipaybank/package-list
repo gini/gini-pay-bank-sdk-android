@@ -53,10 +53,12 @@ $dokka.location:net.gini.pay.bank.capture.digitalinvoice/LineItem/<get-currency>
 $dokka.location:net.gini.pay.bank.capture.digitalinvoice/LineItem/<get-description>/#/PointingToDeclaration/net.gini.pay.bank.capture.digitalinvoice/-line-item/get-description.html
 $dokka.location:net.gini.pay.bank.capture.digitalinvoice/LineItem/<get-grossPrice>/#/PointingToDeclaration/net.gini.pay.bank.capture.digitalinvoice/-line-item/get-gross-price.html
 $dokka.location:net.gini.pay.bank.capture.digitalinvoice/LineItem/<get-id>/#/PointingToDeclaration/net.gini.pay.bank.capture.digitalinvoice/-line-item/get-id.html
+$dokka.location:net.gini.pay.bank.capture.digitalinvoice/LineItem/<get-origTotalGrossPrice>/#/PointingToDeclaration/net.gini.pay.bank.capture.digitalinvoice/-line-item/get-orig-total-gross-price.html
 $dokka.location:net.gini.pay.bank.capture.digitalinvoice/LineItem/<get-quantity>/#/PointingToDeclaration/net.gini.pay.bank.capture.digitalinvoice/-line-item/get-quantity.html
 $dokka.location:net.gini.pay.bank.capture.digitalinvoice/LineItem/<get-rawCurrency>/#/PointingToDeclaration/net.gini.pay.bank.capture.digitalinvoice/-line-item/get-raw-currency.html
 $dokka.location:net.gini.pay.bank.capture.digitalinvoice/LineItem/<get-rawGrossPrice>/#/PointingToDeclaration/net.gini.pay.bank.capture.digitalinvoice/-line-item/get-raw-gross-price.html
 $dokka.location:net.gini.pay.bank.capture.digitalinvoice/LineItem/<get-totalGrossPrice>/#/PointingToDeclaration/net.gini.pay.bank.capture.digitalinvoice/-line-item/get-total-gross-price.html
+$dokka.location:net.gini.pay.bank.capture.digitalinvoice/LineItem/<get-totalGrossPriceDiff>/#/PointingToDeclaration/net.gini.pay.bank.capture.digitalinvoice/-line-item/get-total-gross-price-diff.html
 $dokka.location:net.gini.pay.bank.capture.digitalinvoice/SelectableLineItem/<get-addedByUser>/#/PointingToDeclaration/net.gini.pay.bank.capture.digitalinvoice/-selectable-line-item/get-added-by-user.html
 $dokka.location:net.gini.pay.bank.capture.digitalinvoice/SelectableLineItem/<get-lineItem>/#/PointingToDeclaration/net.gini.pay.bank.capture.digitalinvoice/-selectable-line-item/get-line-item.html
 $dokka.location:net.gini.pay.bank.capture.digitalinvoice/SelectableLineItem/<get-reason>/#/PointingToDeclaration/net.gini.pay.bank.capture.digitalinvoice/-selectable-line-item/get-reason.html
