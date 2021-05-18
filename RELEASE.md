@@ -6,6 +6,7 @@ This document describes the release process for a new version of the Gini Pay Ba
 2. Create a `release` branch from `develop`
   * Update the version in `gradle.properties`
   * Update the version in the `README.md`
+  * Update the version in the `ginipaybank/src/doc/source/setup.rst`
 3. Push the `release` branch and wait for the Jenkins build to finish
 4. If everything is fine create a PR to merge the `release` branch into `master`
 5. After merging tag the version on `master` and push the tag

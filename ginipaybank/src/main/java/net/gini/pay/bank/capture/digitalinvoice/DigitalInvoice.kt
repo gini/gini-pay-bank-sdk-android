@@ -49,6 +49,8 @@ internal class DigitalInvoice(
     val addons
         get() = _addons
 
+    private val amountToPay: BigDecimal
+
     init {
         _selectableLineItems = when (savedSelectableItems) {
             null -> {
@@ -63,10 +65,12 @@ internal class DigitalInvoice(
             }
         }
 
-
         _addons = extractions.mapNotNull { (_, extraction) ->
             DigitalInvoiceAddon.createFromOrNull(extraction)
         }
+
+        amountToPay =
+            extractions["amountToPay"]?.let { parsePriceString(it.value).first } ?: BigDecimal.ZERO
     }
 
     companion object {
@@ -161,9 +165,19 @@ internal class DigitalInvoice(
     fun lineItemsCurency(): Currency? =
         selectableLineItems.firstOrNull()?.lineItem?.currency
 
-    fun selectedLineItemsTotalGrossPriceSum(): BigDecimal =
+    private fun deselectedLineItemsTotalGrossPriceSum(): BigDecimal =
         selectableLineItems.fold<SelectableLineItem, BigDecimal>(BigDecimal.ZERO) { sum, sli ->
-            if (sli.selected) sum.add(sli.lineItem.totalGrossPrice) else sum
+            if (!sli.selected) sum.add(sli.lineItem.totalGrossPrice) else sum
+        }
+
+    private fun lineItemsTotalGrossPriceDiffs(): BigDecimal =
+        selectableLineItems.fold<SelectableLineItem, BigDecimal>(BigDecimal.ZERO) { sum, sli ->
+            sum.add(sli.lineItem.totalGrossPriceDiff)
+        }
+
+    private fun userAddedLineItemsTotalGrossPriceSum(): BigDecimal =
+        selectableLineItems.fold<SelectableLineItem, BigDecimal>(BigDecimal.ZERO) { sum, sli ->
+            if (sli.addedByUser) sum.add(sli.lineItem.totalGrossPrice) else sum
         }
 
     fun newLineItem(): LineItem {
@@ -176,19 +190,16 @@ internal class DigitalInvoice(
         )
     }
 
-    private fun addonsPriceSum(): BigDecimal =
-        addons.fold<DigitalInvoiceAddon, BigDecimal>(BigDecimal.ZERO) { sum, addon ->
-            sum.add(addon.price)
+    fun totalPrice(): BigDecimal =
+        if (amountToPay > BigDecimal.ZERO) {
+            amountToPay
+                .subtract(deselectedLineItemsTotalGrossPriceSum())
+                .add(lineItemsTotalGrossPriceDiffs())
+                .add(userAddedLineItemsTotalGrossPriceSum())
+                .max(BigDecimal.ZERO)
+        } else {
+            amountToPay
         }
-
-    fun totalPrice(): BigDecimal {
-        val itemsPrice = selectedLineItemsTotalGrossPriceSum()
-        if (itemsPrice > BigDecimal.ZERO) {
-            return itemsPrice.add(addonsPriceSum()).max(BigDecimal.ZERO)
-        }
-
-        return BigDecimal.ZERO
-    }
 
     fun selectedAndTotalLineItemsCount(): Pair<Int, Int> =
         Pair(selectedLineItemsCount(), totalLineItemsCount())

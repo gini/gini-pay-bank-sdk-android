@@ -99,7 +99,6 @@ open class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.Vie
             extractions: Map<String, GiniCaptureSpecificExtraction>,
             compoundExtractions: Map<String, GiniCaptureCompoundExtraction>,
             returnReasons: List<GiniCaptureReturnReason>,
-            isInaccurateExtraction: Boolean = true
         ) = DigitalInvoiceFragment().apply {
             arguments = Bundle().apply {
                 putBundle(ARGS_EXTRACTIONS, Bundle().apply {
@@ -109,6 +108,11 @@ open class DigitalInvoiceFragment : Fragment(), DigitalInvoiceScreenContract.Vie
                     compoundExtractions.forEach { putParcelable(it.key, it.value) }
                 })
                 putParcelableArrayList(ARGS_RETURN_REASONS, ArrayList(returnReasons))
+
+                val isInaccurateExtraction = extractions["amountsAreConsistent"]?.let {
+                    it.value == "false"
+                } ?: true
+
                 putBoolean(ARGS_INACCURATE_EXTRACTION, isInaccurateExtraction)
             }
         }
