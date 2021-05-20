@@ -30,6 +30,19 @@ dependencies {
 }
 ```
 
+Example apps
+------------
+
+You can find implementation example of the capture feature in the following modules:
+- `appcomponentapi` for Component API
+- `appscreenapi` for Screen API
+
+You can find an example for the payment feature in `appscreenapi` in `PayActivity`. 
+
+For testing the payment flow integration you can use the example app from [Business SDK](https://github.com/gini/gini-pay-business-sdk-android)
+for starting the flow.
+ 
+
 ## License
 
 Gini Pay Bank SDK is available under a commercial license.
