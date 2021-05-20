@@ -39,7 +39,7 @@ You can find implementation example of the capture feature in the following modu
 
 You can find an example for the payment feature in `appscreenapi` in `PayActivity`. 
 
-For testing the payment flow integration you can use the example app from [Business SDK](https://github.com/gini/gini-pay-business-sdk-android)
+For testing the payment flow integration you can use the example app from [Business SDK](https://github.com/gini/gini-pay-business-sdk-android#example-apps)
 for starting the flow.
  
 
