@@ -172,7 +172,7 @@ internal class DigitalInvoice(
 
     private fun lineItemsTotalGrossPriceDiffs(): BigDecimal =
         selectableLineItems.fold<SelectableLineItem, BigDecimal>(BigDecimal.ZERO) { sum, sli ->
-            sum.add(sli.lineItem.totalGrossPriceDiff)
+            if (!sli.addedByUser) sum.add(sli.lineItem.totalGrossPriceDiff) else sum
         }
 
     private fun userAddedLineItemsTotalGrossPriceSum(): BigDecimal =
