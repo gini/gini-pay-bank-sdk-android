@@ -19,7 +19,8 @@ Table of contents
     Gini Pay Bank KDoc <http://developer.gini.net/gini-pay-bank-sdk-android/kdoc/index.html>
     setup
     authentication
-    capture
-    pay
-    customization
+    capture-feature
+    pay-feature
+    return-assistant-feature
+    ui-customization
     license

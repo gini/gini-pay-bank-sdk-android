@@ -1,5 +1,5 @@
-Pay
-===
+Pay Feature
+===========
 
 Pay feature provides the API for receiving a payment request started
 by a Business app, mark it as payed and return to the app that started
