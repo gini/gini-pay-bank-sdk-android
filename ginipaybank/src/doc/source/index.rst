@@ -22,4 +22,5 @@ Table of contents
     capture
     pay
     customization
+    migrating-from-gvl
     license
