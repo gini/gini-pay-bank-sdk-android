@@ -57,6 +57,9 @@ See the ``appscreenapi`` example app's ``pay`` package for more details.
 Testing
 -------
 
+Testing the payment feature requires an app which uses the Gini Pay Business SDK to create payment requests and to
+forward them to your banking app to view and resolve those payment requests.
+
 Requirements
 ~~~~~~~~~~~~
 
