@@ -1,16 +1,15 @@
 Customization
 =============
 
-Customization of is achieved through Android's resourcing system.
-This means that all `resources of the library <https://github.com/gini/gini-pay-bank-sdk-android/tree/main/ginipaybank/src/main/res>`_
-can be overridden by providing resources with the same name in the
-application. Because the library wraps Gini Capture SDK for those
-screens you need to override `resources from Capture SDK <https://github.com/gini/gini-capture-sdk-android/tree/main/ginicapture/src/main/res>`_.
+Customization is achieved through Android's resourcing system. This means that all `resources of the Gini Pay Bank SDK
+<https://github.com/gini/gini-pay-bank-sdk-android/tree/main/ginipaybank/src/main/res>`_ can be overridden by providing
+resources with the same name in your application. 
 
-Some attributes are set inside the library (styles that start with
-``Root.``) to provide the basic UI, but you can hook into the other
-styles to customize the screen further.
+The capture related screens are provided by the `Gini Capture SDK <https://github.com/gini/gini-capture-sdk-android>`_
+and for those screens you need to override `it's resources
+<https://github.com/gini/gini-capture-sdk-android/tree/main/ginicapture/src/main/res>`_. Please consult the
+`customization guide <https://developer.gini.net/gini-capture-sdk-android/html/customization-guide.html>`_ for the Gini
+Capture SDK to view a screen based overview of the customizable resources.
 
-`See styles file in Gini Bank SDK <https://github.com/gini/gini-pay-bank-sdk-android/blob/main/ginipaybank/src/main/res/values/styles.xml>`_
-
-`See styles file in Gini Capture SDK <https://github.com/gini/gini-capture-sdk-android/blob/main/ginicapture/src/main/res/values/styles.xml>`_
+When you override styles please make sure you that you use the parent style with the ``Root.`` prefix. This ensures that
+your custom style items are merged with the default ones.
