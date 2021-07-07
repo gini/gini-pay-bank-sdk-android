@@ -11,5 +11,5 @@ and for those screens you need to override `it's resources
 `customization guide <https://developer.gini.net/gini-capture-sdk-android/html/customization-guide.html>`_ for the Gini
 Capture SDK to view a screen based overview of the customizable resources.
 
-When you override styles please make sure you that you use the parent style with the ``Root.`` prefix. This ensures that
+When you override styles please make sure that you use the parent style with the ``Root.`` prefix. This ensures that
 your custom style items are merged with the default ones.
