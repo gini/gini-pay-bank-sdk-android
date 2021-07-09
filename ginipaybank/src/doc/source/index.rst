@@ -17,9 +17,10 @@ Table of contents
     :maxdepth: 1
 
     Gini Pay Bank KDoc <http://developer.gini.net/gini-pay-bank-sdk-android/kdoc/index.html>
-    setup
+    getting-started
     authentication
     capture
     pay
     customization
+    migrating-from-gvl
     license

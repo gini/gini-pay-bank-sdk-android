@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import net.gini.android.capture.DocumentImportEnabledFileTypes
+import net.gini.android.capture.help.HelpItem
 import net.gini.android.capture.network.GiniCaptureDefaultNetworkApi
 import net.gini.android.capture.network.GiniCaptureDefaultNetworkService
 import net.gini.android.capture.requirements.RequirementsReport
@@ -16,11 +17,7 @@ import net.gini.android.capture.util.CancellationToken
 import net.gini.pay.appscreenapi.databinding.ActivityMainBinding
 import net.gini.pay.appscreenapi.util.PermissionHandler
 import net.gini.pay.bank.GiniPayBank
-import net.gini.pay.bank.capture.CaptureConfiguration
-import net.gini.pay.bank.capture.CaptureFlowContract
-import net.gini.pay.bank.capture.CaptureFlowImportContract
-import net.gini.pay.bank.capture.CaptureResult
-import net.gini.pay.bank.capture.ResultError
+import net.gini.pay.bank.capture.*
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
@@ -57,7 +54,13 @@ class MainActivity : AppCompatActivity() {
                 qrCodeScanningEnabled = true,
                 multiPageEnabled = true,
                 flashButtonEnabled = true,
-                eventTracker = GiniCaptureEventTracker
+                eventTracker = GiniCaptureEventTracker,
+                customHelpItems = listOf(
+                    HelpItem.Custom(
+                        R.string.custom_help_screen_title,
+                        Intent(this, CustomHelpActivity::class.java)
+                    )
+                )
             )
         )
     }

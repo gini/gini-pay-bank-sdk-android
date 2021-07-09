@@ -26,9 +26,22 @@ app/build.gradle:
 
 ```
 dependencies {
-    implementation 'net.gini:gini-pay-bank-sdk:1.0.1'
+    implementation 'net.gini:gini-pay-bank-sdk:1.1.0'
 }
 ```
+
+Example apps
+------------
+
+You can find implementation example of the capture feature in the following modules:
+- `appcomponentapi` for Component API
+- `appscreenapi` for Screen API
+
+You can find an example for the payment feature in `appscreenapi` in `PayActivity`. 
+
+For testing the payment flow integration you can use the example app from [Business SDK](https://github.com/gini/gini-pay-business-sdk-android#example-apps)
+for starting the flow.
+ 
 
 ## License
 
