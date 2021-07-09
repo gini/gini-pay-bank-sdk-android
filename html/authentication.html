@@ -54,7 +54,7 @@
   
     <link rel="top" title="Gini Capture SDK for Android 2.0 documentation" href="index.html"/>
         <link rel="next" title="Capture" href="capture.html"/>
-        <link rel="prev" title="Getting started" href="setup.html"/> 
+        <link rel="prev" title="Getting started" href="getting-started.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -82,9 +82,10 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference external" href="http://developer.gini.net/gini-pay-bank-sdk-android/kdoc/index.html">Gini Pay Bank KDoc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="setup.html">Getting started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="setup.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="setup.html#integration">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#gini-pay-api-client-credentials">Gini Pay API Client Credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#integration">Integration</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Authentication</a><ul>
@@ -93,8 +94,44 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="capture.html">Capture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pay.html">Pay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pay.html">Pay</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pay.html#setup">Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pay.html#intent-filter">Intent filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pay.html#package-name">Package name</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pay.html#handle-payment-requests">Handle payment requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pay.html#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pay.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pay.html#end-to-end-testing">End to end testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pay.html#testing-in-production">Testing in production</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="customization.html">Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migrating-from-gvl.html">Migrating from the Gini Vision Library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#kotlin">Kotlin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#gini-capture-sdk">Gini Capture SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#gini-pay-api-library">Gini Pay API Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#screen-api">Screen API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#component-api">Component API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#open-with">Open With</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migrating-from-gvl.html#id3">Screen API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migrating-from-gvl.html#id4">Component API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#networking">Networking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migrating-from-gvl.html#default">Default</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migrating-from-gvl.html#custom">Custom</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#event-tracking">Event Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#customization">Customization</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="license.html#licenses-and-acknowledgements-for-incorporated-software">Licenses and Acknowledgements for Incorporated Software</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="license.html#apache-commons-sanselan">Apache Commons Sanselan</a></li>
@@ -140,30 +177,40 @@
 <h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="capture-feature">
 <h2>Capture Feature<a class="headerlink" href="#capture-feature" title="Permalink to this headline">¶</a></h2>
-<p>Communication with the Gini API is not part of the Gini Capture SDK in order to allow clients
+<p>Communication with the Gini Pay API is not part of the Gini Capture SDK in order to allow clients
 the freedom to use a networking implementation of their own choosing. The quickest way to add
 networking is to use the Gini Capture Network Library, which you can use by providing
 <tt class="docutils literal"><span class="pre">GiniCaptureNetworkService</span></tt> and <tt class="docutils literal"><span class="pre">GiniCaptureDefaultNetworkApi</span></tt> to the configuration.
 There are helper methods which provide minimal configuration for Service and API:</p>
-<blockquote>
-<div><ul class="simple">
-<li><tt class="docutils literal"><span class="pre">getDefaultNetworkService(context:</span> <span class="pre">Context,</span> <span class="pre">clientId:</span> <span class="pre">String,</span> <span class="pre">clientSecret:</span> <span class="pre">String,</span> <span class="pre">emailDomain:</span> <span class="pre">String,</span> <span class="pre">documentMetadata:</span> <span class="pre">DocumentMetadata)</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">getDefaultNetworkApi(service:</span> <span class="pre">GiniCaptureDefaultNetworkService)</span></tt></li>
+<ul>
+<li><div class="first highlight-java"><div class="highlight"><pre><span class="n">getDefaultNetworkService</span><span class="o">(</span><span class="n">context</span><span class="o">:</span> <span class="n">Context</span><span class="o">,</span> <span class="n">clientId</span><span class="o">:</span> <span class="n">String</span><span class="o">,</span> <span class="n">clientSecret</span><span class="o">:</span> <span class="n">String</span><span class="o">,</span>
+                         <span class="n">emailDomain</span><span class="o">:</span> <span class="n">String</span><span class="o">,</span> <span class="n">documentMetadata</span><span class="o">:</span> <span class="n">DocumentMetadata</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><div class="first highlight-java"><div class="highlight"><pre><span class="n">getDefaultNetworkApi</span><span class="o">(</span><span class="n">service</span><span class="o">:</span> <span class="n">GiniCaptureDefaultNetworkService</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
 </ul>
-</div></blockquote>
-<p>You may also use the Gini Pay API lib for Android or implement communication with the Gini API yourself.</p>
+<p>You may also use the Gini Pay API Library for Android or implement communication with the Gini Pay API yourself.</p>
 </div>
 <div class="section" id="pay-feature">
 <h2>Pay Feature<a class="headerlink" href="#pay-feature" title="Permalink to this headline">¶</a></h2>
-<p>The pay feature depends on the Gini Pay API lib, which provides an entry point through <tt class="docutils literal"><span class="pre">Gini</span></tt> class.
+<p>The pay feature depends on the Gini Pay API Library, which provides an entry point through <tt class="docutils literal"><span class="pre">Gini</span></tt> class.
 The <tt class="docutils literal"><span class="pre">Gini</span></tt> class can be built either with client credentials (clientId and clientSecret)
 or with a <tt class="docutils literal"><span class="pre">SessionManager</span></tt> if you have a token. For these two cases there are helper methods:</p>
-<blockquote>
-<div><ul class="simple">
-<li><tt class="docutils literal"><span class="pre">getGiniApi(context:</span> <span class="pre">Context,</span> <span class="pre">clientId:</span> <span class="pre">String,</span> <span class="pre">clientSecret:</span> <span class="pre">String,</span> <span class="pre">emailDomain:</span> <span class="pre">String)</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">getGiniApi(context:</span> <span class="pre">Context,</span> <span class="pre">sessionManager:</span> <span class="pre">SessionManager)</span></tt></li>
+<ul>
+<li><div class="first highlight-java"><div class="highlight"><pre><span class="n">getGiniApi</span><span class="o">(</span><span class="n">context</span><span class="o">:</span> <span class="n">Context</span><span class="o">,</span> <span class="n">clientId</span><span class="o">:</span> <span class="n">String</span><span class="o">,</span> <span class="n">clientSecret</span><span class="o">:</span> <span class="n">String</span><span class="o">,</span>
+           <span class="n">emailDomain</span><span class="o">:</span> <span class="n">String</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><div class="first highlight-java"><div class="highlight"><pre><span class="n">getGiniApi</span><span class="o">(</span><span class="n">context</span><span class="o">:</span> <span class="n">Context</span><span class="o">,</span> <span class="n">sessionManager</span><span class="o">:</span> <span class="n">SessionManager</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
 </ul>
-</div></blockquote>
 <p><tt class="docutils literal"><span class="pre">SessionManager</span></tt> is an interface which you need to implement to send the token.</p>
 <p>For more details about <tt class="docutils literal"><span class="pre">Gini</span></tt> see <a class="reference external" href="https://github.com/gini/gini-pay-api-lib-android/">Gini Pay API lib</a>.</p>
 </div>
@@ -178,7 +225,7 @@ or with a <tt class="docutils literal"><span class="pre">SessionManager</span></
         <a href="capture.html" class="btn btn-neutral float-right" title="Capture">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="setup.html" class="btn btn-neutral" title="Getting started"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="getting-started.html" class="btn btn-neutral" title="Getting started"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
