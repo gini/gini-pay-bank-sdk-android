@@ -104,7 +104,7 @@ data class CaptureConfiguration(
     val eventTracker: EventTracker? = null,
 
     /**
-     * A list of [HelpItem.Custom] defining the custom help screens to be shown in the Help Screen.
+     * A list of [HelpItem.Custom] defining the custom help items to be shown in the Help Screen.
      */
     val customHelpItems: List<HelpItem.Custom>,
 )
