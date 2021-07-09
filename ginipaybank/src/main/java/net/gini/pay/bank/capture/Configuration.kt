@@ -4,6 +4,7 @@ import net.gini.android.capture.DocumentImportEnabledFileTypes
 import net.gini.android.capture.GiniCapture
 import net.gini.android.capture.analysis.AnalysisActivity
 import net.gini.android.capture.camera.CameraActivity
+import net.gini.android.capture.help.HelpItem
 import net.gini.android.capture.network.GiniCaptureNetworkApi
 import net.gini.android.capture.network.GiniCaptureNetworkService
 import net.gini.android.capture.onboarding.OnboardingPage
@@ -101,6 +102,11 @@ data class CaptureConfiguration(
      * which can occur during the usage of the Capture feature.
      */
     val eventTracker: EventTracker? = null,
+
+    /**
+     * A list of [HelpItem.Custom] defining the custom help screens to be shown in the Help Screen.
+     */
+    val customHelpItems: List<HelpItem.Custom>,
 )
 
 internal fun GiniCapture.Builder.applyConfiguration(configuration: CaptureConfiguration): GiniCapture.Builder {
@@ -116,6 +122,7 @@ internal fun GiniCapture.Builder.applyConfiguration(configuration: CaptureConfig
         .setFlashButtonEnabled(configuration.flashButtonEnabled)
         .setBackButtonsEnabled(configuration.backButtonsEnabled)
         .setFlashOnByDefault(configuration.flashOnByDefault)
+        .setCustomHelpItems(configuration.customHelpItems)
         .apply {
             configuration.eventTracker?.let { setEventTracker(it) }
             if (configuration.onboardingPages.isNotEmpty()) {
