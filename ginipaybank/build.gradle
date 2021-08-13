@@ -56,9 +56,6 @@ repositories {
 }
 
 dependencies {
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-
     api "net.gini:gini-capture-sdk:${versions.capture}"
     api "net.gini:gini-capture-network-lib:${versions.capture}"
     api "net.gini:gini-capture-accounting-network-lib:${versions.capture}"
