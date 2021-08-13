@@ -31,6 +31,7 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
 
     
 
@@ -52,6 +53,7 @@
   
 
   
+        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Gini Capture SDK for Android 2.0 documentation" href="index.html"/>
         <link rel="next" title="Capture" href="capture.html"/>
         <link rel="prev" title="Getting started" href="getting-started.html"/> 
@@ -88,7 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html#integration">Integration</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Authentication</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Authentication</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#capture-feature">Capture Feature</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pay-feature">Pay Feature</a></li>
 </ul>
@@ -180,15 +182,15 @@
 <p>Communication with the Gini Pay API is not part of the Gini Capture SDK in order to allow clients
 the freedom to use a networking implementation of their own choosing. The quickest way to add
 networking is to use the Gini Capture Network Library, which you can use by providing
-<tt class="docutils literal"><span class="pre">GiniCaptureNetworkService</span></tt> and <tt class="docutils literal"><span class="pre">GiniCaptureDefaultNetworkApi</span></tt> to the configuration.
+<code class="docutils literal notranslate"><span class="pre">GiniCaptureNetworkService</span></code> and <code class="docutils literal notranslate"><span class="pre">GiniCaptureDefaultNetworkApi</span></code> to the configuration.
 There are helper methods which provide minimal configuration for Service and API:</p>
 <ul>
-<li><div class="first highlight-java"><div class="highlight"><pre><span class="n">getDefaultNetworkService</span><span class="o">(</span><span class="n">context</span><span class="o">:</span> <span class="n">Context</span><span class="o">,</span> <span class="n">clientId</span><span class="o">:</span> <span class="n">String</span><span class="o">,</span> <span class="n">clientSecret</span><span class="o">:</span> <span class="n">String</span><span class="o">,</span>
-                         <span class="n">emailDomain</span><span class="o">:</span> <span class="n">String</span><span class="o">,</span> <span class="n">documentMetadata</span><span class="o">:</span> <span class="n">DocumentMetadata</span><span class="o">)</span>
+<li><div class="first highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">getDefaultNetworkService</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">clientId</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">clientSecret</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+                         <span class="n">emailDomain</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">documentMetadata</span><span class="p">:</span> <span class="n">DocumentMetadata</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
-<li><div class="first highlight-java"><div class="highlight"><pre><span class="n">getDefaultNetworkApi</span><span class="o">(</span><span class="n">service</span><span class="o">:</span> <span class="n">GiniCaptureDefaultNetworkService</span><span class="o">)</span>
+<li><div class="first highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">getDefaultNetworkApi</span><span class="p">(</span><span class="n">service</span><span class="p">:</span> <span class="n">GiniCaptureDefaultNetworkService</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
@@ -197,22 +199,22 @@ There are helper methods which provide minimal configuration for Service and API
 </div>
 <div class="section" id="pay-feature">
 <h2>Pay Feature<a class="headerlink" href="#pay-feature" title="Permalink to this headline">¶</a></h2>
-<p>The pay feature depends on the Gini Pay API Library, which provides an entry point through <tt class="docutils literal"><span class="pre">Gini</span></tt> class.
-The <tt class="docutils literal"><span class="pre">Gini</span></tt> class can be built either with client credentials (clientId and clientSecret)
-or with a <tt class="docutils literal"><span class="pre">SessionManager</span></tt> if you have a token. For these two cases there are helper methods:</p>
+<p>The pay feature depends on the Gini Pay API Library, which provides an entry point through <code class="docutils literal notranslate"><span class="pre">Gini</span></code> class.
+The <code class="docutils literal notranslate"><span class="pre">Gini</span></code> class can be built either with client credentials (clientId and clientSecret)
+or with a <code class="docutils literal notranslate"><span class="pre">SessionManager</span></code> if you have a token. For these two cases there are helper methods:</p>
 <ul>
-<li><div class="first highlight-java"><div class="highlight"><pre><span class="n">getGiniApi</span><span class="o">(</span><span class="n">context</span><span class="o">:</span> <span class="n">Context</span><span class="o">,</span> <span class="n">clientId</span><span class="o">:</span> <span class="n">String</span><span class="o">,</span> <span class="n">clientSecret</span><span class="o">:</span> <span class="n">String</span><span class="o">,</span>
-           <span class="n">emailDomain</span><span class="o">:</span> <span class="n">String</span><span class="o">)</span>
+<li><div class="first highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">getGiniApi</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">clientId</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">clientSecret</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+           <span class="n">emailDomain</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
-<li><div class="first highlight-java"><div class="highlight"><pre><span class="n">getGiniApi</span><span class="o">(</span><span class="n">context</span><span class="o">:</span> <span class="n">Context</span><span class="o">,</span> <span class="n">sessionManager</span><span class="o">:</span> <span class="n">SessionManager</span><span class="o">)</span>
+<li><div class="first highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">getGiniApi</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">sessionManager</span><span class="p">:</span> <span class="n">SessionManager</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 </ul>
-<p><tt class="docutils literal"><span class="pre">SessionManager</span></tt> is an interface which you need to implement to send the token.</p>
-<p>For more details about <tt class="docutils literal"><span class="pre">Gini</span></tt> see <a class="reference external" href="https://github.com/gini/gini-pay-api-lib-android/">Gini Pay API lib</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">SessionManager</span></code> is an interface which you need to implement to send the token.</p>
+<p>For more details about <code class="docutils literal notranslate"><span class="pre">Gini</span></code> see <a class="reference external" href="https://github.com/gini/gini-pay-api-lib-android/">Gini Pay API lib</a>.</p>
 </div>
 </div>
 

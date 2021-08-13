@@ -31,6 +31,7 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
 
     
 
@@ -52,6 +53,7 @@
   
 
   
+        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Gini Capture SDK for Android 2.0 documentation" href="index.html"/>
         <link rel="next" title="License" href="license.html"/>
         <link rel="prev" title="Customization" href="customization.html"/> 
@@ -110,7 +112,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="customization.html">Customization</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Migrating from the Gini Vision Library</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Migrating from the Gini Vision Library</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#kotlin">Kotlin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gini-capture-sdk">Gini Capture SDK</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gini-pay-api-library">Gini Pay API Library</a></li>
@@ -193,116 +195,116 @@ the Gini Vision Library did.</p>
 <p>The <a class="reference external" href="https://github.com/gini/gini-pay-api-lib-android">Gini Pay API Library</a> supersedes the Gini API SDK and is used
 to communicate with the <a class="reference external" href="https://pay-api.gini.net/documentation/#gini-pay-api-documentation-v1-0">Gini Pay API</a>.</p>
 <p>You will only need to directly interact with the Gini Pay API Library if you implement a custom networking layer. If you
-use the default networking implementation you don&#8217;t need to interact with it.</p>
+use the default networking implementation you don’t need to interact with it.</p>
 </div>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
-<p>The entry point is the <tt class="docutils literal"><span class="pre">GiniPayBank</span></tt> singleton and to configure the capture feature you need to pass a
-<tt class="docutils literal"><span class="pre">CaptureConfiguration</span></tt> object to its <tt class="docutils literal"><span class="pre">setCaptureConfiguration()</span></tt> method.</p>
-<p>The <tt class="docutils literal"><span class="pre">CaptureConfiguration</span></tt> contains the same options as the Gini Vision Library&#8217;s <tt class="docutils literal"><span class="pre">GiniVision.Builder</span></tt>.</p>
+<p>The entry point is the <code class="docutils literal notranslate"><span class="pre">GiniPayBank</span></code> singleton and to configure the capture feature you need to pass a
+<code class="docutils literal notranslate"><span class="pre">CaptureConfiguration</span></code> object to its <code class="docutils literal notranslate"><span class="pre">setCaptureConfiguration()</span></code> method.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">CaptureConfiguration</span></code> contains the same options as the Gini Vision Library’s <code class="docutils literal notranslate"><span class="pre">GiniVision.Builder</span></code>.</p>
 <p>The configuration is immutable and needs to be released before setting a new configuration.</p>
 <p>This is how it was used in the Gini Vision Library:</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="n">GiniVision</span><span class="o">.</span><span class="na">cleanup</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">GiniVision</span><span class="p">.</span><span class="na">cleanup</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
 
-<span class="n">GiniVision</span><span class="o">.</span><span class="na">newInstance</span><span class="o">()</span>
-    <span class="o">.(...)</span>
-    <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+<span class="n">GiniVision</span><span class="p">.</span><span class="na">newInstance</span><span class="p">()</span>
+    <span class="p">.(...)</span>
+    <span class="p">.</span><span class="na">build</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This is how you need to use it with the Gini Pay Bank SDK:</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="n">GiniPayBank</span><span class="o">.</span><span class="na">releaseCapture</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">GiniPayBank</span><span class="p">.</span><span class="na">releaseCapture</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
 
-<span class="n">val</span> <span class="n">captureConfiguration</span> <span class="o">=</span> <span class="n">CaptureConfiguration</span><span class="o">(</span>
-    <span class="o">...</span>
-<span class="o">)</span>
+<span class="n">val</span> <span class="n">captureConfiguration</span> <span class="o">=</span> <span class="n">CaptureConfiguration</span><span class="p">(</span>
+    <span class="p">...</span>
+<span class="p">)</span>
 
-<span class="n">GiniPayBank</span><span class="o">.</span><span class="na">setCaptureConfiguration</span><span class="o">(</span><span class="n">captureConfiguration</span><span class="o">)</span>
+<span class="n">GiniPayBank</span><span class="p">.</span><span class="na">setCaptureConfiguration</span><span class="p">(</span><span class="n">captureConfiguration</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>To check the requirements you need to call <tt class="docutils literal"><span class="pre">GiniPayBank.checkCaptureRequirements()</span></tt>. It will return a
-<tt class="docutils literal"><span class="pre">RequirementsReport</span></tt> which has the same signature as the one in the Gini Vision Library.</p>
+<p>To check the requirements you need to call <code class="docutils literal notranslate"><span class="pre">GiniPayBank.checkCaptureRequirements()</span></code>. It will return a
+<code class="docutils literal notranslate"><span class="pre">RequirementsReport</span></code> which has the same signature as the one in the Gini Vision Library.</p>
 <p>This is how it was used in the Gini Vision Library:</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="n">val</span> <span class="n">report</span> <span class="o">=</span> <span class="n">GiniVisionRequirements</span><span class="o">.</span><span class="na">checkRequirements</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">report</span> <span class="o">=</span> <span class="n">GiniVisionRequirements</span><span class="p">.</span><span class="na">checkRequirements</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="o">(!</span><span class="n">report</span><span class="o">.</span><span class="na">isFulfilled</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">report</span><span class="o">.</span><span class="na">requirementReports</span><span class="o">.</span><span class="na">forEach</span> <span class="o">{</span> <span class="n">report</span> <span class="o">-&gt;</span>
-        <span class="k">if</span> <span class="o">(!</span><span class="n">report</span><span class="o">.</span><span class="na">isFulfilled</span><span class="o">)</span> <span class="o">{</span>
-            <span class="o">(...)</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">report</span><span class="p">.</span><span class="na">isFulfilled</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">report</span><span class="p">.</span><span class="na">requirementReports</span><span class="p">.</span><span class="na">forEach</span> <span class="p">{</span> <span class="n">report</span> <span class="o">-&gt;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">report</span><span class="p">.</span><span class="na">isFulfilled</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">(...)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>This is how you need to use it with the Gini Pay Bank SDK:</p>
 <blockquote>
-<div><div class="highlight-java"><div class="highlight"><pre><span class="n">val</span> <span class="n">report</span> <span class="o">=</span> <span class="n">GiniPayBank</span><span class="o">.</span><span class="na">checkCaptureRequirements</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
+<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">report</span> <span class="o">=</span> <span class="n">GiniPayBank</span><span class="p">.</span><span class="na">checkCaptureRequirements</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="o">(!</span><span class="n">report</span><span class="o">.</span><span class="na">isFulfilled</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">report</span><span class="o">.</span><span class="na">requirementReports</span><span class="o">.</span><span class="na">forEach</span> <span class="o">{</span> <span class="n">report</span> <span class="o">-&gt;</span>
-        <span class="k">if</span> <span class="o">(!</span><span class="n">report</span><span class="o">.</span><span class="na">isFulfilled</span><span class="o">)</span> <span class="o">{</span>
-            <span class="o">(...)</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">report</span><span class="p">.</span><span class="na">isFulfilled</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">report</span><span class="p">.</span><span class="na">requirementReports</span><span class="p">.</span><span class="na">forEach</span> <span class="p">{</span> <span class="n">report</span> <span class="o">-&gt;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">report</span><span class="p">.</span><span class="na">isFulfilled</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">(...)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div></blockquote>
 </div>
 <div class="section" id="screen-api">
 <h2>Screen API<a class="headerlink" href="#screen-api" title="Permalink to this headline">¶</a></h2>
-<p>Launching the Screen API is done using the Android Result API. We provide the <tt class="docutils literal"><span class="pre">CaptureFlowContract()</span></tt> and you only need
-to set an <tt class="docutils literal"><span class="pre">ActivityResultCallback&lt;CaptureResult&gt;</span></tt> to handle the result.</p>
+<p>Launching the Screen API is done using the Android Result API. We provide the <code class="docutils literal notranslate"><span class="pre">CaptureFlowContract()</span></code> and you only need
+to set an <code class="docutils literal notranslate"><span class="pre">ActivityResultCallback&lt;CaptureResult&gt;</span></code> to handle the result.</p>
 <p>This is how it was used in the Gini Vision Library:</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="kd">const</span> <span class="n">val</span> <span class="n">REQUEST_SCAN</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="n">val</span> <span class="n">REQUEST_SCAN</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="n">fun</span> <span class="nf">launchCapture</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">startActivityForResult</span><span class="o">(</span><span class="n">Intent</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">CameraActivity</span><span class="o">::</span><span class="n">class</span><span class="o">.</span><span class="na">java</span><span class="o">),</span> <span class="n">REQUEST_SCAN</span><span class="o">)</span>
-<span class="o">}</span>
+<span class="n">fun</span> <span class="nf">launchCapture</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">startActivityForResult</span><span class="p">(</span><span class="n">Intent</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">CameraActivity</span><span class="p">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">),</span> <span class="n">REQUEST_SCAN</span><span class="p">)</span>
+<span class="p">}</span>
 
-<span class="n">override</span> <span class="n">fun</span> <span class="nf">onActivityResult</span><span class="o">(</span><span class="n">requestCode</span><span class="o">:</span> <span class="n">Int</span><span class="o">,</span> <span class="n">resultCode</span><span class="o">:</span> <span class="n">Int</span><span class="o">,</span> <span class="n">data</span><span class="o">:</span> <span class="n">Intent</span><span class="o">?)</span> <span class="o">{</span>
-    <span class="kd">super</span><span class="o">.</span><span class="na">onActivityResult</span><span class="o">(</span><span class="n">requestCode</span><span class="o">,</span> <span class="n">resultCode</span><span class="o">,</span> <span class="n">data</span><span class="o">)</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">requestCode</span> <span class="o">==</span> <span class="n">REQUEST_SCAN</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">when</span> <span class="o">(</span><span class="n">resultCode</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">Activity</span><span class="o">.</span><span class="na">RESULT_CANCELED</span> <span class="o">-&gt;</span> <span class="o">{</span>
-                <span class="o">(...)</span>
-            <span class="o">}</span>
-            <span class="n">Activity</span><span class="o">.</span><span class="na">RESULT_OK</span> <span class="o">-&gt;</span> <span class="o">{</span>
-                <span class="o">(...)</span>
-            <span class="o">}</span>
-            <span class="n">CameraActivity</span><span class="o">.</span><span class="na">RESULT_ERROR</span> <span class="o">-&gt;</span> <span class="o">{</span>
-                <span class="o">(...)</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+<span class="n">override</span> <span class="n">fun</span> <span class="nf">onActivityResult</span><span class="p">(</span><span class="n">requestCode</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">resultCode</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Intent</span><span class="o">?</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">super</span><span class="p">.</span><span class="na">onActivityResult</span><span class="p">(</span><span class="n">requestCode</span><span class="p">,</span> <span class="n">resultCode</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">requestCode</span> <span class="o">==</span> <span class="n">REQUEST_SCAN</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">when</span> <span class="p">(</span><span class="n">resultCode</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Activity</span><span class="p">.</span><span class="na">RESULT_CANCELED</span> <span class="o">-&gt;</span> <span class="p">{</span>
+                <span class="p">(...)</span>
+            <span class="p">}</span>
+            <span class="n">Activity</span><span class="p">.</span><span class="na">RESULT_OK</span> <span class="o">-&gt;</span> <span class="p">{</span>
+                <span class="p">(...)</span>
+            <span class="p">}</span>
+            <span class="n">CameraActivity</span><span class="p">.</span><span class="na">RESULT_ERROR</span> <span class="o">-&gt;</span> <span class="p">{</span>
+                <span class="p">(...)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>This is how you need to use it with the Gini Pay Bank SDK:</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="n">val</span> <span class="n">captureLauncher</span> <span class="o">=</span> <span class="n">registerForActivityResult</span><span class="o">(</span><span class="n">CaptureFlowContract</span><span class="o">(),</span> <span class="o">::</span><span class="n">onCaptureResult</span><span class="o">)</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">captureLauncher</span> <span class="o">=</span> <span class="n">registerForActivityResult</span><span class="p">(</span><span class="n">CaptureFlowContract</span><span class="p">(),</span> <span class="p">::</span><span class="n">onCaptureResult</span><span class="p">)</span>
 
-<span class="n">fun</span> <span class="nf">launchCapture</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">GiniPayBank</span><span class="o">.</span><span class="na">startCaptureFlow</span><span class="o">(</span><span class="n">captureLauncher</span><span class="o">)</span>
-<span class="o">}</span>
+<span class="n">fun</span> <span class="nf">launchCapture</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">GiniPayBank</span><span class="p">.</span><span class="na">startCaptureFlow</span><span class="p">(</span><span class="n">captureLauncher</span><span class="p">)</span>
+<span class="p">}</span>
 
-<span class="n">fun</span> <span class="nf">onCaptureResult</span><span class="o">(</span><span class="n">result</span><span class="o">:</span> <span class="n">CaptureResult</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">when</span> <span class="o">(</span><span class="n">result</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">is</span> <span class="n">CaptureResult</span><span class="o">.</span><span class="na">Success</span> <span class="o">-&gt;</span> <span class="o">{</span>
-            <span class="o">(...)</span>
-        <span class="o">}</span>
-        <span class="n">is</span> <span class="n">CaptureResult</span><span class="o">.</span><span class="na">Error</span> <span class="o">-&gt;</span> <span class="o">{</span>
-            <span class="o">(...)</span>
-        <span class="o">}</span>
-        <span class="n">CaptureResult</span><span class="o">.</span><span class="na">Empty</span> <span class="o">-&gt;</span> <span class="o">{</span>
-            <span class="o">(...)</span>
-        <span class="o">}</span>
-        <span class="n">CaptureResult</span><span class="o">.</span><span class="na">Cancel</span> <span class="o">-&gt;</span> <span class="o">{</span>
-            <span class="o">(...)</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+<span class="n">fun</span> <span class="nf">onCaptureResult</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="n">CaptureResult</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">when</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">is</span> <span class="n">CaptureResult</span><span class="p">.</span><span class="na">Success</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="p">(...)</span>
+        <span class="p">}</span>
+        <span class="n">is</span> <span class="n">CaptureResult</span><span class="p">.</span><span class="na">Error</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="p">(...)</span>
+        <span class="p">}</span>
+        <span class="n">CaptureResult</span><span class="p">.</span><span class="na">Empty</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="p">(...)</span>
+        <span class="p">}</span>
+        <span class="n">CaptureResult</span><span class="p">.</span><span class="na">Cancel</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="p">(...)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -313,117 +315,117 @@ to set an <tt class="docutils literal"><span class="pre">ActivityResultCallback&
 <ul class="simple">
 <li>deprecated code was removed,</li>
 <li>support for native activities and fragments was dropped,</li>
-<li>package was renamed from <tt class="docutils literal"><span class="pre">net.gini.android.vision.*</span></tt> to <tt class="docutils literal"><span class="pre">net.gini.android.capture.*</span></tt>,</li>
-<li><tt class="docutils literal"><span class="pre">GiniVision</span></tt> in class or interface names was renamed to <tt class="docutils literal"><span class="pre">GiniCapture</span></tt>.</li>
+<li>package was renamed from <code class="docutils literal notranslate"><span class="pre">net.gini.android.vision.*</span></code> to <code class="docutils literal notranslate"><span class="pre">net.gini.android.capture.*</span></code>,</li>
+<li><code class="docutils literal notranslate"><span class="pre">GiniVision</span></code> in class or interface names was renamed to <code class="docutils literal notranslate"><span class="pre">GiniCapture</span></code>.</li>
 </ul>
 <p>If you are already using Jetpack, then migrating the Component API should be fairly straight forward. In case you are
-using native activities and fragments, then please first switch to using the Jetpack <tt class="docutils literal"><span class="pre">AppCompatActivity</span></tt>.</p>
+using native activities and fragments, then please first switch to using the Jetpack <code class="docutils literal notranslate"><span class="pre">AppCompatActivity</span></code>.</p>
 <p>Apply the following steps to migrate:</p>
 <ul class="simple">
-<li>rename imported packages: replace <tt class="docutils literal"><span class="pre">net.gini.android.vision</span></tt> with <tt class="docutils literal"><span class="pre">net.gini.android.capture</span></tt>,</li>
+<li>rename imported packages: replace <code class="docutils literal notranslate"><span class="pre">net.gini.android.vision</span></code> with <code class="docutils literal notranslate"><span class="pre">net.gini.android.capture</span></code>,</li>
 <li>remove deprecated fragment listener methods,</li>
-<li>rename class names: replace <tt class="docutils literal"><span class="pre">GiniVision</span></tt> with <tt class="docutils literal"><span class="pre">GiniCapture</span></tt>.</li>
+<li>rename class names: replace <code class="docutils literal notranslate"><span class="pre">GiniVision</span></code> with <code class="docutils literal notranslate"><span class="pre">GiniCapture</span></code>.</li>
 </ul>
 </div>
 <div class="section" id="open-with">
 <h2>Open With<a class="headerlink" href="#open-with" title="Permalink to this headline">¶</a></h2>
 <p>When receiving a file through an intent from another app the intent has to be passed to helper methods in the
-<tt class="docutils literal"><span class="pre">GiniPayBank</span></tt> singleton.</p>
+<code class="docutils literal notranslate"><span class="pre">GiniPayBank</span></code> singleton.</p>
 <div class="section" id="id3">
 <h3>Screen API<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>When using the Screen API we provide a helper method which uses the Activity Result API.</p>
 <p>This is how it was used in the Gini Vision Library:</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="kd">const</span> <span class="n">val</span> <span class="n">REQUEST_SCAN</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="n">val</span> <span class="n">REQUEST_SCAN</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="kd">private</span> <span class="n">var</span> <span class="n">fileImportCancellationToken</span><span class="o">:</span> <span class="n">CancellationToken</span><span class="o">?</span> <span class="o">=</span> <span class="kc">null</span>
+<span class="kd">private</span> <span class="kd">var</span> <span class="n">fileImportCancellationToken</span><span class="p">:</span> <span class="n">CancellationToken</span><span class="o">?</span> <span class="o">=</span> <span class="kc">null</span>
 
-<span class="n">fun</span> <span class="nf">launchGiniVisionForIntent</span><span class="o">(</span><span class="n">intent</span><span class="o">:</span> <span class="n">Intent</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="n">GiniVision</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">createIntentForImportedFiles</span><span class="o">(</span><span class="n">intent</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span>
-        <span class="n">object</span> <span class="o">:</span> <span class="n">AsyncCallback</span><span class="o">&lt;</span><span class="n">Intent</span><span class="o">,</span> <span class="n">ImportedFileValidationException</span><span class="o">&gt;</span> <span class="o">{</span>
-            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onSuccess</span><span class="o">(</span><span class="n">result</span><span class="o">:</span> <span class="n">Intent</span><span class="o">)</span> <span class="o">{</span>
+<span class="n">fun</span> <span class="nf">launchGiniVisionForIntent</span><span class="p">(</span><span class="n">intent</span><span class="p">:</span> <span class="n">Intent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="n">GiniVision</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">createIntentForImportedFiles</span><span class="p">(</span><span class="n">intent</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span>
+        <span class="n">object</span> <span class="p">:</span> <span class="n">AsyncCallback</span><span class="o">&lt;</span><span class="n">Intent</span><span class="p">,</span> <span class="n">ImportedFileValidationException</span><span class="o">&gt;</span> <span class="p">{</span>
+            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onSuccess</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="n">Intent</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="kc">null</span>
-                <span class="nf">startActivityForResult</span><span class="o">(</span><span class="n">result</span><span class="o">,</span> <span class="n">REQUEST_SCAN</span><span class="o">)</span>
-            <span class="o">}</span>
+                <span class="nf">startActivityForResult</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">REQUEST_SCAN</span><span class="p">)</span>
+            <span class="p">}</span>
 
-            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onError</span><span class="o">(</span><span class="n">exception</span><span class="o">:</span> <span class="n">ImportedFileValidationException</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onError</span><span class="p">(</span><span class="n">exception</span><span class="p">:</span> <span class="n">ImportedFileValidationException</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="kc">null</span>
-                <span class="nf">handleFileImportError</span><span class="o">(</span><span class="n">exception</span><span class="o">)</span>
-            <span class="o">}</span>
+                <span class="nf">handleFileImportError</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span>
+            <span class="p">}</span>
 
-            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onCancelled</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onCancelled</span><span class="p">()</span> <span class="p">{</span>
                 <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="kc">null</span>
-            <span class="o">}</span>
-        <span class="o">})</span>
-<span class="o">}</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>This is how you need to use it with the Gini Pay Bank SDK:</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="kd">private</span> <span class="n">captureImportLauncher</span> <span class="o">=</span> <span class="n">registerForActivityResult</span><span class="o">(</span><span class="n">CaptureFlowImportContract</span><span class="o">(),</span> <span class="o">::</span><span class="n">onCaptureResult</span><span class="o">)</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="n">captureImportLauncher</span> <span class="o">=</span> <span class="n">registerForActivityResult</span><span class="p">(</span><span class="n">CaptureFlowImportContract</span><span class="p">(),</span> <span class="p">::</span><span class="n">onCaptureResult</span><span class="p">)</span>
 
-<span class="kd">private</span> <span class="n">var</span> <span class="n">fileImportCancellationToken</span><span class="o">:</span> <span class="n">CancellationToken</span><span class="o">?</span> <span class="o">=</span> <span class="kc">null</span>
+<span class="kd">private</span> <span class="kd">var</span> <span class="n">fileImportCancellationToken</span><span class="p">:</span> <span class="n">CancellationToken</span><span class="o">?</span> <span class="o">=</span> <span class="kc">null</span>
 
-<span class="n">fun</span> <span class="nf">launchCaptureForIntent</span><span class="o">(</span><span class="n">intent</span><span class="o">:</span> <span class="n">Intent</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="n">GiniPayBank</span><span class="o">.</span><span class="na">startCaptureFlowForIntent</span><span class="o">(</span><span class="n">captureImportLauncher</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="n">intent</span><span class="o">)</span>
-<span class="o">}</span>
+<span class="n">fun</span> <span class="nf">launchCaptureForIntent</span><span class="p">(</span><span class="n">intent</span><span class="p">:</span> <span class="n">Intent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="n">GiniPayBank</span><span class="p">.</span><span class="na">startCaptureFlowForIntent</span><span class="p">(</span><span class="n">captureImportLauncher</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="n">intent</span><span class="p">)</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id4">
 <h3>Component API<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>When using the Component API we provide a helper method to create a Gini Capture SDK <tt class="docutils literal"><span class="pre">Document</span></tt> which can be passed to
+<p>When using the Component API we provide a helper method to create a Gini Capture SDK <code class="docutils literal notranslate"><span class="pre">Document</span></code> which can be passed to
 the review or analysis fragment.</p>
 <p>This is how it was used in the Gini Vision Library:</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="kd">private</span> <span class="n">var</span> <span class="n">fileImportCancellationToken</span><span class="o">:</span> <span class="n">CancellationToken</span><span class="o">?</span> <span class="o">=</span> <span class="kc">null</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kd">var</span> <span class="n">fileImportCancellationToken</span><span class="p">:</span> <span class="n">CancellationToken</span><span class="o">?</span> <span class="o">=</span> <span class="kc">null</span>
 
-<span class="n">fun</span> <span class="nf">launchGiniVisionForIntent</span><span class="o">(</span><span class="n">intent</span><span class="o">:</span> <span class="n">Intent</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="n">GiniVision</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">createDocumentForImportedFiles</span><span class="o">(</span><span class="n">intent</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span>
-        <span class="n">object</span> <span class="o">:</span> <span class="n">AsyncCallback</span><span class="o">&lt;</span><span class="n">Document</span><span class="o">,</span> <span class="n">ImportedFileValidationException</span><span class="o">&gt;</span> <span class="o">{</span>
-            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onSuccess</span><span class="o">(</span><span class="n">result</span><span class="o">:</span> <span class="n">Document</span><span class="o">)</span> <span class="o">{</span>
+<span class="n">fun</span> <span class="nf">launchGiniVisionForIntent</span><span class="p">(</span><span class="n">intent</span><span class="p">:</span> <span class="n">Intent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="n">GiniVision</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">createDocumentForImportedFiles</span><span class="p">(</span><span class="n">intent</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span>
+        <span class="n">object</span> <span class="p">:</span> <span class="n">AsyncCallback</span><span class="o">&lt;</span><span class="n">Document</span><span class="p">,</span> <span class="n">ImportedFileValidationException</span><span class="o">&gt;</span> <span class="p">{</span>
+            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onSuccess</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="n">Document</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="kc">null</span>
-                <span class="nf">if</span> <span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">isReviewable</span><span class="o">())</span> <span class="o">{</span>
-                    <span class="n">launchMultiPageReviewScreen</span><span class="o">();</span>
-                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                    <span class="n">launchAnalysisScreen</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
+                <span class="nf">if</span> <span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">isReviewable</span><span class="p">())</span> <span class="p">{</span>
+                    <span class="n">launchMultiPageReviewScreen</span><span class="p">();</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="n">launchAnalysisScreen</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
 
-            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onError</span><span class="o">(</span><span class="n">exception</span><span class="o">:</span> <span class="n">ImportedFileValidationException</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onError</span><span class="p">(</span><span class="n">exception</span><span class="p">:</span> <span class="n">ImportedFileValidationException</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="kc">null</span>
-                <span class="nf">handleFileImportError</span><span class="o">(</span><span class="n">exception</span><span class="o">)</span>
-            <span class="o">}</span>
+                <span class="nf">handleFileImportError</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span>
+            <span class="p">}</span>
 
-            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onCancelled</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onCancelled</span><span class="p">()</span> <span class="p">{</span>
                 <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="kc">null</span>
-            <span class="o">}</span>
-        <span class="o">})</span>
-<span class="o">}</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>This is how you need to use it with the Gini Pay Bank SDK:</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="kd">private</span> <span class="n">var</span> <span class="n">fileImportCancellationToken</span><span class="o">:</span> <span class="n">CancellationToken</span><span class="o">?</span> <span class="o">=</span> <span class="kc">null</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kd">var</span> <span class="n">fileImportCancellationToken</span><span class="p">:</span> <span class="n">CancellationToken</span><span class="o">?</span> <span class="o">=</span> <span class="kc">null</span>
 
-<span class="n">fun</span> <span class="nf">launchGiniVisionForIntent</span><span class="o">(</span><span class="n">intent</span><span class="o">:</span> <span class="n">Intent</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="n">GiniPayBank</span><span class="o">.</span><span class="na">createDocumentForImportedFiles</span><span class="o">(</span><span class="n">intent</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span>
-        <span class="n">object</span> <span class="o">:</span> <span class="n">AsyncCallback</span><span class="o">&lt;</span><span class="n">Document</span><span class="o">,</span> <span class="n">ImportedFileValidationException</span><span class="o">&gt;</span> <span class="o">{</span>
-            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onSuccess</span><span class="o">(</span><span class="n">result</span><span class="o">:</span> <span class="n">Document</span><span class="o">)</span> <span class="o">{</span>
+<span class="n">fun</span> <span class="nf">launchGiniVisionForIntent</span><span class="p">(</span><span class="n">intent</span><span class="p">:</span> <span class="n">Intent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="n">GiniPayBank</span><span class="p">.</span><span class="na">createDocumentForImportedFiles</span><span class="p">(</span><span class="n">intent</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span>
+        <span class="n">object</span> <span class="p">:</span> <span class="n">AsyncCallback</span><span class="o">&lt;</span><span class="n">Document</span><span class="p">,</span> <span class="n">ImportedFileValidationException</span><span class="o">&gt;</span> <span class="p">{</span>
+            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onSuccess</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="n">Document</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="kc">null</span>
-                <span class="nf">if</span> <span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">isReviewable</span><span class="o">())</span> <span class="o">{</span>
-                    <span class="n">launchMultiPageReviewScreen</span><span class="o">();</span>
-                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                    <span class="n">launchAnalysisScreen</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
+                <span class="nf">if</span> <span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">isReviewable</span><span class="p">())</span> <span class="p">{</span>
+                    <span class="n">launchMultiPageReviewScreen</span><span class="p">();</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="n">launchAnalysisScreen</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
 
-            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onError</span><span class="o">(</span><span class="n">exception</span><span class="o">:</span> <span class="n">ImportedFileValidationException</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onError</span><span class="p">(</span><span class="n">exception</span><span class="p">:</span> <span class="n">ImportedFileValidationException</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="kc">null</span>
-                <span class="nf">handleFileImportError</span><span class="o">(</span><span class="n">exception</span><span class="o">)</span>
-            <span class="o">}</span>
+                <span class="nf">handleFileImportError</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span>
+            <span class="p">}</span>
 
-            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onCancelled</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">override</span> <span class="n">fun</span> <span class="nf">onCancelled</span><span class="p">()</span> <span class="p">{</span>
                 <span class="n">fileImportCancellationToken</span> <span class="o">=</span> <span class="kc">null</span>
-            <span class="o">}</span>
-        <span class="o">})</span>
-<span class="o">}</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -431,49 +433,49 @@ the review or analysis fragment.</p>
 <div class="section" id="networking">
 <h2>Networking<a class="headerlink" href="#networking" title="Permalink to this headline">¶</a></h2>
 <p>The networking abstraction layer works the same way as in the Gini Vision Library. The only changes are in the class and
-interface names where <tt class="docutils literal"><span class="pre">GiniVision</span></tt> was replaced with <tt class="docutils literal"><span class="pre">GiniCapture</span></tt>.</p>
+interface names where <code class="docutils literal notranslate"><span class="pre">GiniVision</span></code> was replaced with <code class="docutils literal notranslate"><span class="pre">GiniCapture</span></code>.</p>
 <div class="section" id="default">
 <h3>Default<a class="headerlink" href="#default" title="Permalink to this headline">¶</a></h3>
 <p>Migrating the default networking implementation is straight forward:</p>
 <ul class="simple">
-<li>rename imported packages: replace <tt class="docutils literal"><span class="pre">net.gini.android.vision</span></tt> with <tt class="docutils literal"><span class="pre">net.gini.android.capture</span></tt>,</li>
-<li>rename class names: replace <tt class="docutils literal"><span class="pre">GiniVision</span></tt> with <tt class="docutils literal"><span class="pre">GiniCapture</span></tt>,</li>
+<li>rename imported packages: replace <code class="docutils literal notranslate"><span class="pre">net.gini.android.vision</span></code> with <code class="docutils literal notranslate"><span class="pre">net.gini.android.capture</span></code>,</li>
+<li>rename class names: replace <code class="docutils literal notranslate"><span class="pre">GiniVision</span></code> with <code class="docutils literal notranslate"><span class="pre">GiniCapture</span></code>,</li>
 <li>use the Gini Pay Bank SDK capture configuration</li>
 </ul>
 <p>This is how it was used in the Gini Vision Library:</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="n">val</span> <span class="n">networkService</span> <span class="o">=</span> <span class="n">GiniVisionDefaultNetworkService</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
-        <span class="o">.(...)</span>
-        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-<span class="n">val</span> <span class="n">networkApi</span> <span class="o">=</span> <span class="n">GiniVisionDefaultNetworkApi</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">withGiniVisionDefaultNetworkService</span><span class="o">(</span><span class="n">networkService</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">networkService</span> <span class="o">=</span> <span class="n">GiniVisionDefaultNetworkService</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+        <span class="p">.(...)</span>
+        <span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="n">val</span> <span class="n">networkApi</span> <span class="o">=</span> <span class="n">GiniVisionDefaultNetworkApi</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+        <span class="p">.</span><span class="na">withGiniVisionDefaultNetworkService</span><span class="p">(</span><span class="n">networkService</span><span class="p">)</span>
+        <span class="p">.</span><span class="na">build</span><span class="p">();</span>
 
-<span class="n">GiniVision</span><span class="o">.</span><span class="na">cleanup</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
+<span class="n">GiniVision</span><span class="p">.</span><span class="na">cleanup</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
 
-<span class="n">GiniVision</span><span class="o">.</span><span class="na">newInstance</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">setGiniVisionNetworkService</span><span class="o">(</span><span class="n">networkService</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">setGiniVisionNetworkApi</span><span class="o">(</span><span class="n">networkApi</span><span class="o">)</span>
-    <span class="o">.(...)</span>
-    <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+<span class="n">GiniVision</span><span class="p">.</span><span class="na">newInstance</span><span class="p">()</span>
+    <span class="p">.</span><span class="na">setGiniVisionNetworkService</span><span class="p">(</span><span class="n">networkService</span><span class="p">)</span>
+    <span class="p">.</span><span class="na">setGiniVisionNetworkApi</span><span class="p">(</span><span class="n">networkApi</span><span class="p">)</span>
+    <span class="p">.(...)</span>
+    <span class="p">.</span><span class="na">build</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This is how you need to use it with the Gini Pay Bank SDK:</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="n">val</span> <span class="n">networkService</span> <span class="o">=</span> <span class="n">GiniCaptureDefaultNetworkService</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
-        <span class="o">.(...)</span>
-        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-<span class="n">val</span> <span class="n">networkApi</span> <span class="o">=</span> <span class="n">GiniCaptureDefaultNetworkApi</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">withGiniVisionDefaultNetworkService</span><span class="o">(</span><span class="n">networkService</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">networkService</span> <span class="o">=</span> <span class="n">GiniCaptureDefaultNetworkService</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+        <span class="p">.(...)</span>
+        <span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="n">val</span> <span class="n">networkApi</span> <span class="o">=</span> <span class="n">GiniCaptureDefaultNetworkApi</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+        <span class="p">.</span><span class="na">withGiniVisionDefaultNetworkService</span><span class="p">(</span><span class="n">networkService</span><span class="p">)</span>
+        <span class="p">.</span><span class="na">build</span><span class="p">();</span>
 
-<span class="n">GiniPayBank</span><span class="o">.</span><span class="na">releaseCapture</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
+<span class="n">GiniPayBank</span><span class="p">.</span><span class="na">releaseCapture</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
 
-<span class="n">GiniPayBank</span><span class="o">.</span><span class="na">setCaptureConfiguration</span><span class="o">(</span>
-    <span class="n">CaptureConfiguration</span><span class="o">(</span>
-        <span class="n">networkService</span> <span class="o">=</span> <span class="n">networkService</span><span class="o">,</span>
-        <span class="n">networkApi</span> <span class="o">=</span> <span class="n">networkApi</span><span class="o">,</span>
-        <span class="o">...</span>
-    <span class="o">)</span>
-<span class="o">)</span>
+<span class="n">GiniPayBank</span><span class="p">.</span><span class="na">setCaptureConfiguration</span><span class="p">(</span>
+    <span class="n">CaptureConfiguration</span><span class="p">(</span>
+        <span class="n">networkService</span> <span class="o">=</span> <span class="n">networkService</span><span class="p">,</span>
+        <span class="n">networkApi</span> <span class="o">=</span> <span class="n">networkApi</span><span class="p">,</span>
+        <span class="p">...</span>
+    <span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -481,8 +483,8 @@ interface names where <tt class="docutils literal"><span class="pre">GiniVision<
 <h3>Custom<a class="headerlink" href="#custom" title="Permalink to this headline">¶</a></h3>
 <p>Migrating a custom networking layer implementation is also straight forward:</p>
 <ul class="simple">
-<li>rename imported packages: replace <tt class="docutils literal"><span class="pre">net.gini.android.vision</span></tt> with <tt class="docutils literal"><span class="pre">net.gini.android.capture</span></tt>,</li>
-<li>rename interface names: replace <tt class="docutils literal"><span class="pre">GiniVision</span></tt> with <tt class="docutils literal"><span class="pre">GiniCapture</span></tt>,</li>
+<li>rename imported packages: replace <code class="docutils literal notranslate"><span class="pre">net.gini.android.vision</span></code> with <code class="docutils literal notranslate"><span class="pre">net.gini.android.capture</span></code>,</li>
+<li>rename interface names: replace <code class="docutils literal notranslate"><span class="pre">GiniVision</span></code> with <code class="docutils literal notranslate"><span class="pre">GiniCapture</span></code>,</li>
 <li>we recommend moving from the Gini API SDK to the newer Gini Pay API Library which offers kotlin coroutine support.</li>
 </ul>
 </div>
@@ -490,29 +492,29 @@ interface names where <tt class="docutils literal"><span class="pre">GiniVision<
 <div class="section" id="event-tracking">
 <h2>Event Tracking<a class="headerlink" href="#event-tracking" title="Permalink to this headline">¶</a></h2>
 <p>Event tracking works the same way as in the GiniVisionLibrary. You only need to update the package name and set your
-<tt class="docutils literal"><span class="pre">EventTracker</span></tt> implementation when configuring the Gini Pay Bank SDK.</p>
+<code class="docutils literal notranslate"><span class="pre">EventTracker</span></code> implementation when configuring the Gini Pay Bank SDK.</p>
 <p>This is how it was used in the Gini Vision Library:</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="n">val</span> <span class="n">eventTracker</span><span class="o">:</span> <span class="n">EventTracker</span> <span class="o">=</span> <span class="o">(...)</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">eventTracker</span><span class="p">:</span> <span class="n">EventTracker</span> <span class="o">=</span> <span class="p">(...)</span>
 
-<span class="n">GiniVision</span><span class="o">.</span><span class="na">cleanup</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
+<span class="n">GiniVision</span><span class="p">.</span><span class="na">cleanup</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
 
-<span class="n">GiniVision</span><span class="o">.</span><span class="na">newInstance</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">setEventTracker</span><span class="o">(</span><span class="n">eventTracker</span><span class="o">)</span>
-    <span class="o">.(...)</span>
-    <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+<span class="n">GiniVision</span><span class="p">.</span><span class="na">newInstance</span><span class="p">()</span>
+    <span class="p">.</span><span class="na">setEventTracker</span><span class="p">(</span><span class="n">eventTracker</span><span class="p">)</span>
+    <span class="p">.(...)</span>
+    <span class="p">.</span><span class="na">build</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This is how you need to use it with the Gini Pay Bank SDK:</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="n">val</span> <span class="n">eventTracker</span><span class="o">:</span> <span class="n">EventTracker</span> <span class="o">=</span> <span class="o">(...)</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">eventTracker</span><span class="p">:</span> <span class="n">EventTracker</span> <span class="o">=</span> <span class="p">(...)</span>
 
-<span class="n">GiniPayBank</span><span class="o">.</span><span class="na">releaseCapture</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
+<span class="n">GiniPayBank</span><span class="p">.</span><span class="na">releaseCapture</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
 
-<span class="n">GiniPayBank</span><span class="o">.</span><span class="na">setCaptureConfiguration</span><span class="o">(</span>
-    <span class="n">CaptureConfiguration</span><span class="o">(</span>
-        <span class="n">eventTracker</span> <span class="o">=</span> <span class="n">eventTracker</span><span class="o">,</span>
-        <span class="o">...</span>
-    <span class="o">)</span>
-<span class="o">)</span>
+<span class="n">GiniPayBank</span><span class="p">.</span><span class="na">setCaptureConfiguration</span><span class="p">(</span>
+    <span class="n">CaptureConfiguration</span><span class="p">(</span>
+        <span class="n">eventTracker</span> <span class="o">=</span> <span class="n">eventTracker</span><span class="p">,</span>
+        <span class="p">...</span>
+    <span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -520,8 +522,8 @@ interface names where <tt class="docutils literal"><span class="pre">GiniVision<
 <h2>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">¶</a></h2>
 <p>Customization is done the same way via overriding of app resources. You only need to rename the assets:</p>
 <ul class="simple">
-<li>rename <tt class="docutils literal"><span class="pre">gv_</span></tt> prefixes to <tt class="docutils literal"><span class="pre">gc_</span></tt>,</li>
-<li>replace <tt class="docutils literal"><span class="pre">GiniVision</span></tt> in theme and style names with <tt class="docutils literal"><span class="pre">GiniCapture</span></tt>.</li>
+<li>rename <code class="docutils literal notranslate"><span class="pre">gv_</span></code> prefixes to <code class="docutils literal notranslate"><span class="pre">gc_</span></code>,</li>
+<li>replace <code class="docutils literal notranslate"><span class="pre">GiniVision</span></code> in theme and style names with <code class="docutils literal notranslate"><span class="pre">GiniCapture</span></code>.</li>
 </ul>
 </div>
 </div>

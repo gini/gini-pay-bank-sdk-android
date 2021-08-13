@@ -31,6 +31,7 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
 
     
 
@@ -52,6 +53,7 @@
   
 
   
+        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Gini Capture SDK for Android 2.0 documentation" href="index.html"/>
         <link rel="next" title="Pay" href="pay.html"/>
         <link rel="prev" title="Authentication" href="authentication.html"/> 
@@ -93,7 +95,7 @@
 <li class="toctree-l2"><a class="reference internal" href="authentication.html#pay-feature">Pay Feature</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Capture</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Capture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pay.html">Pay</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pay.html#setup">Setup</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pay.html#intent-filter">Intent filter</a></li>
@@ -185,12 +187,12 @@ the document to the Gini Pay API for analysis.</p>
 <p>See authentication section for more details on configuring communication with the backend.</p>
 <p>Capture feature can be used with:</p>
 <ul class="simple">
-<li>the Screen API by calling <tt class="docutils literal"><span class="pre">startCaptureFlow</span></tt> or <tt class="docutils literal"><span class="pre">startCaptureFlowForIntent</span></tt> or</li>
+<li>the Screen API by calling <code class="docutils literal notranslate"><span class="pre">startCaptureFlow</span></code> or <code class="docutils literal notranslate"><span class="pre">startCaptureFlowForIntent</span></code> or</li>
 <li>the Component API by building everything around the provided fragments.</li>
 </ul>
 <p>See example apps for more details about usage of Screen and Component APIs.</p>
-<p>To use capture features, they need to be configured with <tt class="docutils literal"><span class="pre">setCaptureConfiguration</span></tt>.
-Note that configuration is immutable. <tt class="docutils literal"><span class="pre">releaseCapture</span></tt> needs to be called before passing a new configuration.</p>
+<p>To use capture features, they need to be configured with <code class="docutils literal notranslate"><span class="pre">setCaptureConfiguration</span></code>.
+Note that configuration is immutable. <code class="docutils literal notranslate"><span class="pre">releaseCapture</span></code> needs to be called before passing a new configuration.</p>
 <p>The capture feature consists of the following screens:</p>
 <ul class="simple">
 <li>Onboarding: Provides useful hints to the user on how to take a perfect photo of a document.</li>

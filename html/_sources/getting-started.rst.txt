@@ -22,7 +22,7 @@ app/build.gradle:
 .. code-block:: groovy
 
     dependencies {
-        implementation 'net.gini:gini-pay-bank-sdk:1.1.0'
+        implementation 'net.gini:gini-pay-bank-sdk:1.2.0'
     }
 
 Gini Pay API Client Credentials

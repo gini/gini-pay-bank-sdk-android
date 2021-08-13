@@ -31,6 +31,7 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
 
     
 
@@ -52,6 +53,7 @@
   
 
   
+        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Gini Capture SDK for Android 2.0 documentation" href="index.html"/>
         <link rel="next" title="Migrating from the Gini Vision Library" href="migrating-from-gvl.html"/>
         <link rel="prev" title="Pay" href="pay.html"/> 
@@ -109,7 +111,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Customization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Customization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="migrating-from-gvl.html">Migrating from the Gini Vision Library</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#kotlin">Kotlin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#gini-capture-sdk">Gini Capture SDK</a></li>
@@ -175,13 +177,13 @@
             
   <div class="section" id="customization">
 <h1>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">¶</a></h1>
-<p>Customization is achieved through Android&#8217;s resourcing system. This means that all <a class="reference external" href="https://github.com/gini/gini-pay-bank-sdk-android/tree/main/ginipaybank/src/main/res">resources of the Gini Pay Bank SDK</a> can be overridden by providing
+<p>Customization is achieved through Android’s resourcing system. This means that all <a class="reference external" href="https://github.com/gini/gini-pay-bank-sdk-android/tree/main/ginipaybank/src/main/res">resources of the Gini Pay Bank SDK</a> can be overridden by providing
 resources with the same name in your application.</p>
 <p>The capture related screens are provided by the <a class="reference external" href="https://github.com/gini/gini-capture-sdk-android">Gini Capture SDK</a>
-and for those screens you need to override <a class="reference external" href="https://github.com/gini/gini-capture-sdk-android/tree/main/ginicapture/src/main/res">it&#8217;s resources</a>. Please consult the
+and for those screens you need to override <a class="reference external" href="https://github.com/gini/gini-capture-sdk-android/tree/main/ginicapture/src/main/res">it’s resources</a>. Please consult the
 <a class="reference external" href="https://developer.gini.net/gini-capture-sdk-android/html/customization-guide.html">customization guide</a> for the Gini
 Capture SDK to view a screen based overview of the customizable resources.</p>
-<p>When you override styles please make sure that you use the parent style with the <tt class="docutils literal"><span class="pre">Root.</span></tt> prefix. This ensures that
+<p>When you override styles please make sure that you use the parent style with the <code class="docutils literal notranslate"><span class="pre">Root.</span></code> prefix. This ensures that
 your custom style items are merged with the default ones.</p>
 </div>
 
