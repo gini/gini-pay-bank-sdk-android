@@ -4,11 +4,13 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.commit
+import net.gini.android.capture.GiniCaptureError
 import net.gini.android.capture.document.GiniCaptureMultiPageDocument
 import net.gini.android.capture.review.multipage.MultiPageReviewFragment
 import net.gini.android.capture.review.multipage.MultiPageReviewFragmentListener
@@ -48,6 +50,11 @@ class MultiPageReviewExampleActivity : AppCompatActivity(), MultiPageReviewFragm
     }
 
     override fun onImportedDocumentReviewCancelled() {
+        finish()
+    }
+
+    override fun onError(error: GiniCaptureError) {
+        Log.e("GiniCapture", error.message)
         finish()
     }
 

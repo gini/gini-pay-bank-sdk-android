@@ -106,7 +106,7 @@ data class CaptureConfiguration(
     /**
      * A list of [HelpItem.Custom] defining the custom help items to be shown in the Help Screen.
      */
-    val customHelpItems: List<HelpItem.Custom>,
+    val customHelpItems: List<HelpItem.Custom> = emptyList(),
 )
 
 internal fun GiniCapture.Builder.applyConfiguration(configuration: CaptureConfiguration): GiniCapture.Builder {
