@@ -3,8 +3,26 @@ Gini Pay Bank SDK for Android
 
 Documentation
 -------------
-[Integration Guide](https://developer.gini.net/gini-pay-bank-sdk-android/html/)
+* [Integration Guide](https://developer.gini.net/gini-pay-bank-sdk-android/html/)
+* [Reference Docs](http://developer.gini.net/gini-pay-bank-sdk-android/kdoc/index.html)
 
+Requirements
+------------
+
+* Screen API: Android 5.0+ (API Level 21+)
+* Component API: Android 5.0+ (API Level 21+)
+
+### Phone Hardware
+
+* Back-facing camera with auto-focus and flash.
+* Minimum 8MP camera resolution.
+* Minimum 512MB RAM.
+
+### Tablet Hardware
+
+* Back-facing camera with auto-focus.
+* Minimum 8MP camera resolution.
+* Minimum 512MB RAM.
 
 Installation
 ------------
