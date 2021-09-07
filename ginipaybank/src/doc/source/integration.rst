@@ -165,9 +165,8 @@ communication with the Gini API yourself.
 Sending Feedback
 ^^^^^^^^^^^^^^^^
 
-You can help improve our service if your app sends feedback for the extractions the Gini Pay API delivered. Your app
-should send feedback *only* for the extractions the user has seen and accepted (or corrected). Feedback should be sent
-for corrected extractions and for correct extractions. 
+Your app should send feedback for the extractions the Gini Pay API delivered. Feedback should be sent *only* for the
+extractions the user has seen and accepted (or corrected).
 
 For addition information about feedback see the `Gini Pay API documentation
 <https://pay-api.gini.net/documentation/#send-feedback-and-get-even-better-extractions-next-time>`_.
