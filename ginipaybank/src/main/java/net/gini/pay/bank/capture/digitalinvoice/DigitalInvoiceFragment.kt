@@ -45,7 +45,8 @@ private const val TAG_WHAT_IS_THIS_DIALOG = "TAG_WHAT_IS_THIS_DIALOG"
  * - the line items are updated according to the user's modifications.
  *
  * You should show the `DigitalInvoiceFragment` when the
- * [AnalysisFragmentListener.onProceedToReturnAssistant()] is called.
+ * [AnalysisFragmentListener.onExtractionsAvailable()] is called and you have validated the compound extractions using the
+ * [LineItemsValidator].
  *
  * Include the `DigitalInvoiceFragment` into your layout by using the [DigitalInvoiceFragment.createInstance()] factory method to create
  * an instance and display it using the [androidx.fragment.app.FragmentManager].
