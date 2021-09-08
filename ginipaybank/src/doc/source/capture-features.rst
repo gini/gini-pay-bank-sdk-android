@@ -241,3 +241,40 @@ A ``LineItemDetailsFragmentListener`` instance must be available before the ``Li
 an activity. Failing to do so will throw an exception. The listener instance can be provided either implicitly by making
 the host Activity implement the ``LineItemDetailsFragmentListener`` interface or explicitly by setting the listener
 using the ``LineItemDetailsFragment.listener`` property.
+
+Sending Feedback
+~~~~~~~~~~~~~~~~
+
+Your app should send feedback for the extractions related to the return assistant. These extractions are found in the
+``compoundExtractions`` field of the ``CaptureResult`` if you are using the Screen API and in the
+``compoundExtractions`` parameter of the ``DigitalInvoiceFragmentListener.onPayInvoice()`` listener method if you use
+the Component API.
+
+Default Networking Implementation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you use the ``GiniCaptureDefaultNetworkService`` and the ``GiniCaptureDefaultNetworkApi`` then sending feedback for
+the return assistant extractions is done by the ``GiniCaptureDefaultNetworkApi`` when you send feedback for the payment
+data extractions as described in the `Sending Feedback <integration.html#sending-feedback>`_ section.
+
+Custom Networking Implementation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you use your own networking implementation and directly communicate with the Gini Pay API then see `this section
+<https://pay-api.gini.net/documentation/#submitting-feedback-on-extractions>`_ in its documentation on how to send
+feedback for the compound extractions.
+
+In case you use the Gini Pay API Library then sending compound extraction feedback is very similar to how it's shown in `this section
+<https://developer.gini.net/gini-pay-api-lib-android/guides/common-tasks.html#sending-feedback>`_ in its documentation. The only difference is that you need to also pass in the ``CompoundExtraction`` map to ``DocumentTaskManager.sendFeebackForExtractions()``:
+
+.. code-block:: java
+
+    // Extractions seen and accepted by the user (including user modifications)
+    Map<String, SpecificExtraction> specificExtractionFeedback;
+
+    // Return assistant extractions as returned by the CaptureResult or DigitalInvoiceFragmentListener
+    Map<String, CompoundExtraction> compoundExtractionFeedback;
+
+    final Task<Document> sendFeedback = documentTaskManager.sendFeedbackForExtractions(document, 
+            specificExtractionFeedback, compoundExtractionFeedback);
+    sendFeedback.waitForCompletion();
