@@ -44,9 +44,9 @@ private const val TAG_WHAT_IS_THIS_DIALOG = "TAG_WHAT_IS_THIS_DIALOG"
  * - "amountToPay" is updated to contain the sum of the selected line items' prices,
  * - the line items are updated according to the user's modifications.
  *
- * You should show the `DigitalInvoiceFragment` when the
- * [AnalysisFragmentListener.onExtractionsAvailable()] is called and you have validated the compound extractions using the
- * [LineItemsValidator].
+ * Before showing the `DigitalInvoiceFragment` you should validate the compound extractions 
+ * using the [LineItemsValidator]. These extractions are returned in the [AnalysisFragmentListener.onExtractionsAvailable()] 
+ * listener method.
  *
  * Include the `DigitalInvoiceFragment` into your layout by using the [DigitalInvoiceFragment.createInstance()] factory method to create
  * an instance and display it using the [androidx.fragment.app.FragmentManager].

@@ -180,9 +180,9 @@ modifications:
 * ``amountToPay`` in the specific extractions is updated to contain the sum of the selected line items' prices.
 * The line items in the compound extractions are also updated according to the user's modifications.
 
-You should show the ``DigitalInvoiceFragment`` when the
-``AnalysisFragmentListener.onExtractionsAvailable()`` is called and you have validated the compound extractions using the
-``LineItemsValidator``:
+Before showing the ``DigitalInvoiceFragment`` you should validate the compound extractions 
+using the ``LineItemsValidator``. These extractions are returned in the ``AnalysisFragmentListener.onExtractionsAvailable()]``
+listener method:
 
 .. code-block:: java
 
