@@ -6,61 +6,26 @@ Documentation
 * [Integration Guide](https://developer.gini.net/gini-pay-bank-sdk-android/html/)
 * [Reference Docs](http://developer.gini.net/gini-pay-bank-sdk-android/kdoc/index.html)
 
-Requirements
-------------
+Examples
+--------
 
-* Screen API: Android 5.0+ (API Level 21+)
-* Component API: Android 5.0+ (API Level 21+)
+## Invoice Capture
 
-### Phone Hardware
+We are providing example apps for the Screen API and the Component API. These apps demonstrate how
+to integrate the Gini Pay Bank SDK's invoice capture feature:
 
-* Back-facing camera with auto-focus and flash.
-* Minimum 8MP camera resolution.
-* Minimum 512MB RAM.
+You can find the example apps in the following modules:
 
-### Tablet Hardware
+- `appcomponentapi` for the Component API
+- `appscreenapi` for the Screen API
 
-* Back-facing camera with auto-focus.
-* Minimum 8MP camera resolution.
-* Minimum 512MB RAM.
+## Payment Requests
 
-Installation
-------------
+You can find an example on how to handle payment requests in the `appscreenapi` module's `PayActivity`. 
 
-To install add our Maven repo to the root build.gradle file and add it as a dependency to your app
-module's build.gradle.
-
-build.gradle:
-
-```
-repositories {
-    maven {
-        url 'https://repo.gini.net/nexus/content/repositories/open
-    }
-}
-```
-
-app/build.gradle:
-
-```
-dependencies {
-    implementation 'net.gini:gini-pay-bank-sdk:1.2.1'
-}
-```
-
-Example apps
-------------
-
-You can find implementation example of the capture feature in the following modules:
-- `appcomponentapi` for Component API
-- `appscreenapi` for Screen API
-
-You can find an example for the payment feature in `appscreenapi` in `PayActivity`. 
-
-For testing the payment flow integration you can use the example app from [Business SDK](https://github.com/gini/gini-pay-business-sdk-android#example-apps)
-for starting the flow.
+For testing the payment flow integration you can use the example app from [Business
+SDK](https://github.com/gini/gini-pay-business-sdk-android#example-apps) to create payment requests.
  
-
 ## License
 
 Gini Pay Bank SDK is available under a commercial license.

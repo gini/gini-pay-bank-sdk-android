@@ -4,23 +4,23 @@ Gini Pay Bank SDK for Android
 Introduction
 ------------
 
-Gini Pay provides an information extraction system for analyzing business invoices and
-transfers them to the Android banking app, where the payment process will be completed.
-The Gini Pay Bank SDK for Android provides functionality to capture documents with mobile
-phones, accurate line item extraction enables the user to uncheck the items they don't
-want to pay and automatically calculates the new amountToPay.
+The Gini Pay Bank SDK for Android provides all the UI and functionality needed to use the Gini Pay API in your app to
+extract payment information from invoices and to resolve payment requests originating from other apps.
+
+The Gini Pay API provides an information extraction service for analyzing invoices. Specifically it extracts information
+such as the document sender or the payment relevant information (amount to pay, IBAN, etc.). In addition it also
+provides a secure channel for sharing payment related information between clients. 
 
 Table of contents
 -----------------
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
 
-    Gini Pay Bank KDoc <http://developer.gini.net/gini-pay-bank-sdk-android/kdoc/index.html>
     getting-started
-    authentication
-    capture
-    pay
+    integration
+    capture-features
     customization
     migrating-from-gvl
+    reference
     license

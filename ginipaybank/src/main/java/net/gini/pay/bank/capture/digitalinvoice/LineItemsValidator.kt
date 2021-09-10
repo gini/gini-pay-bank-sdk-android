@@ -12,29 +12,38 @@ import net.gini.pay.bank.capture.digitalinvoice.DigitalInvoiceException.*
 internal typealias Validate = (compoundExtractions: Map<String, GiniCaptureCompoundExtraction>) -> Unit
 
 /**
- * Internal use only.
+ * Use this class with the Component API if you are using the return assistant. You should call its [validate] method
+ * with the compound extractions received in the [AnalysisFragmentListener.onExtractionsAvailable()] listener method.
  *
- * @suppress
+ * It checks that the compound extractions contain valid line items which can be used to show the return assistant.
  */
 class LineItemsValidator {
 
     companion object {
 
         /**
-         * Internal use only.
+         * Checks that the compound extractions contain valid line items.
          *
-         * @suppress
+         * In case it's not valid an appropriate [DigitalInvoiceException] subclass will be thrown.
+         *
+         * @param compoundExtractions a map of [GiniCaptureCompoundExtraction]s
+         * @throws LineItemsMissingException if line items are missing from the compound extractions
+         * @throws DescriptionMissingException if description is missing from at least one line item
+         * @throws QuantityMissingException if quantity is missing from at least one line item
+         * @throws GrossPriceMissingException if gross price is missing from at least one line item
+         * @throws MixedCurrenciesException if line items contain more than one currency
+         * @throws QuantityParsingException if a line item's quantity field could not be parsed
+         * @throws GrossPriceParsingException if a line item's gross price field could not be parsed
          */
         @JvmStatic
         @Throws(LineItemsMissingException::class, DescriptionMissingException::class, QuantityMissingException::class,
-                GrossPriceMissingException::class, ArticleNumberMissingException::class, MixedCurrenciesException::class,
+                GrossPriceMissingException::class, MixedCurrenciesException::class,
                 QuantityParsingException::class, GrossPriceParsingException::class)
         fun validate(compoundExtractions: Map<String, GiniCaptureCompoundExtraction>) = listOf(
                 lineItemsAvailable,
                 descriptionAvailable,
                 quantityAvailable,
                 grossPriceAvailable,
-//                articleNumberAvailable,
                 quantityParcelable,
                 grossPriceParcelable,
                 singleCurrency
