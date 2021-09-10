@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.transition.TransitionInflater
 import net.gini.pay.bank.R
+import net.gini.pay.bank.capture.digitalinvoice.details.LineItemDetailsActivity
+import net.gini.pay.bank.capture.digitalinvoice.details.LineItemDetailsFragment
+import net.gini.pay.bank.capture.digitalinvoice.details.LineItemDetailsFragmentListener
 import net.gini.pay.bank.capture.util.autoCleared
 import net.gini.pay.bank.databinding.GpbFragmentDigitalInvoiceOnboardingBinding
 
@@ -18,9 +21,23 @@ import net.gini.pay.bank.databinding.GpbFragmentDigitalInvoiceOnboardingBinding
  */
 
 /**
- * Internal use only.
+ * When you use the Component API the `DigitalInvoiceOnboardingFragment` displays information about the return assistant to the user.
  *
- * @suppress
+ * You should show the `DigitalInvoiceOnboardingFragment` when the
+ * [DigitalInvoiceFragmentListener.showOnboarding()] is called.
+ *
+ * Include the `DigitalInvoiceOnboardingFragment` into your layout by using the [DigitalInvoiceOnboardingFragment.createInstance()] factory method to create
+ * an instance and display it using the [androidx.fragment.app.FragmentManager].
+ *
+ * A [DigitalInvoiceOnboardingFragmentListener] instance must be available before the `DigitalInvoiceOnboardingFragment` is attached to an activity. Failing
+ * to do so will throw an exception. The listener instance can be provided either implicitly by making the hosting Activity implement the
+ * [DigitalInvoiceOnboardingFragmentListener] interface or explicitly by setting the listener using [DigitalInvoiceOnboardingFragment.listener].
+ *
+ * Your Activity is automatically set as the listener in [DigitalInvoiceOnboardingFragment.onCreate()].
+ *
+ * ### Customizing the Digital Invoice Onboarding Screen
+ *
+ * TODO: PPL-14: Customization guide for return assistant - Android
  */
 class DigitalInvoiceOnboardingFragment : Fragment(), DigitalOnboardingScreenContract.View,
     DigitalOnboardingFragmentInterface {

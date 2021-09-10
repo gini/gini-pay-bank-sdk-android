@@ -7,9 +7,7 @@ package net.gini.pay.bank.capture.digitalinvoice
  */
 
 /**
- * Internal use only.
- *
- * @suppress
+ * Exceptions related to the digital invoice used in the return assistant feature.
  */
 sealed class DigitalInvoiceException(message: String? = null, cause: Throwable? = null) : Exception(message, cause) {
 

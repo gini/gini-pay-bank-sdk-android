@@ -49,7 +49,7 @@ interface DigitalInvoiceFragmentListener {
 
 
     /**
-     * Called before displaying [DigitalInvoiceFragmenta] so the user can see the onboarding view.
+     * Called before displaying [DigitalInvoiceFragment] so the user can see the onboarding view.
      *
      * You should display [DigitalInvoiceOnboardingFragment]
      */
