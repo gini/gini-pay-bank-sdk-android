@@ -82,30 +82,40 @@
         
         
             <ul>
-<li class="toctree-l1"><a class="reference external" href="http://developer.gini.net/gini-pay-bank-sdk-android/kdoc/index.html">Gini Pay Bank KDoc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#gini-pay-api-client-credentials">Gini Pay API Client Credentials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#integration">Integration</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="authentication.html#capture-feature">Capture Feature</a></li>
-<li class="toctree-l2"><a class="reference internal" href="authentication.html#pay-feature">Pay Feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="integration.html#capturing-invoices">Capturing Invoices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#android-manifest">Android Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#requirements-check">Requirements Check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#tablet-support">Tablet Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#networking">Networking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#capture-flow">Capture Flow</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="capture.html">Capture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pay.html">Pay</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pay.html#setup">Setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pay.html#intent-filter">Intent filter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pay.html#package-name">Package name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integration.html#handling-payment-requests">Handling Payment Requests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#id5">Networking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#id7">Android Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#package-name">Package Name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#receive-payment-requests">Receive Payment Requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#testing">Testing</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="pay.html#handle-payment-requests">Handle payment requests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pay.html#testing">Testing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pay.html#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pay.html#end-to-end-testing">End to end testing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pay.html#testing-in-production">Testing in production</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="capture-features.html">Invoice Capture Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="capture-features.html#features-from-the-gini-capture-sdk">Features from the Gini Capture SDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="capture-features.html#file-import-open-with">File Import (Open With)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="capture-features.html#return-assistant">Return Assistant</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="capture-features.html#id1">Screen API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="capture-features.html#id3">Component API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="capture-features.html#sending-feedback">Sending Feedback</a></li>
 </ul>
 </li>
 </ul>
@@ -133,15 +143,8 @@
 <li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#customization">Customization</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="license.html#licenses-and-acknowledgements-for-incorporated-software">Licenses and Acknowledgements for Incorporated Software</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="license.html#apache-commons-sanselan">Apache Commons Sanselan</a></li>
-<li class="toctree-l3"><a class="reference internal" href="license.html#touchimageview">TouchImageView</a></li>
-<li class="toctree-l3"><a class="reference internal" href="license.html#gini-android-sdk">Gini Android SDK</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference Doc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
         
@@ -178,23 +181,47 @@
 <h1>Gini Pay Bank SDK for Android<a class="headerlink" href="#gini-pay-bank-sdk-for-android" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>Gini Pay provides an information extraction system for analyzing business invoices and
-transfers them to the Android banking app, where the payment process will be completed.
-The Gini Pay Bank SDK for Android provides functionality to capture documents with mobile
-phones, accurate line item extraction enables the user to uncheck the items they don’t
-want to pay and automatically calculates the new amountToPay.</p>
+<p>The Gini Pay Bank SDK for Android provides all the UI and functionality needed to use the Gini Pay API in your app to
+extract payment information from invoices and to resolve payment requests originating from other apps.</p>
+<p>The Gini Pay API provides an information extraction service for analyzing invoices. Specifically it extracts information
+such as the document sender or the payment relevant information (amount to pay, IBAN, etc.). In addition it also
+provides a secure channel for sharing payment related information between clients.</p>
 </div>
 <div class="section" id="table-of-contents">
 <h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference external" href="http://developer.gini.net/gini-pay-bank-sdk-android/kdoc/index.html">Gini Pay Bank KDoc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="capture.html">Capture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pay.html">Pay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="integration.html#capturing-invoices">Capturing Invoices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integration.html#handling-payment-requests">Handling Payment Requests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="capture-features.html">Invoice Capture Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="capture-features.html#features-from-the-gini-capture-sdk">Features from the Gini Capture SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="capture-features.html#return-assistant">Return Assistant</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="customization.html">Customization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="migrating-from-gvl.html">Migrating from the Gini Vision Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migrating-from-gvl.html">Migrating from the Gini Vision Library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#kotlin">Kotlin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#gini-capture-sdk">Gini Capture SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#gini-pay-api-library">Gini Pay API Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#screen-api">Screen API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#component-api">Component API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#open-with">Open With</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#networking">Networking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#event-tracking">Event Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#customization">Customization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference Doc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 </div>

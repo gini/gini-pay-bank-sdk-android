@@ -55,7 +55,7 @@
   
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Gini Capture SDK for Android 2.0 documentation" href="index.html"/>
-        <link rel="next" title="Authentication" href="authentication.html"/>
+        <link rel="next" title="Integration" href="integration.html"/>
         <link rel="prev" title="Gini Pay Bank SDK for Android" href="index.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -83,30 +83,40 @@
         
         
             <ul class="current">
-<li class="toctree-l1"><a class="reference external" href="http://developer.gini.net/gini-pay-bank-sdk-android/kdoc/index.html">Gini Pay Bank KDoc</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#gini-pay-api-client-credentials">Gini Pay API Client Credentials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#integration">Integration</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="authentication.html#capture-feature">Capture Feature</a></li>
-<li class="toctree-l2"><a class="reference internal" href="authentication.html#pay-feature">Pay Feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="integration.html#capturing-invoices">Capturing Invoices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#android-manifest">Android Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#requirements-check">Requirements Check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#tablet-support">Tablet Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#networking">Networking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#capture-flow">Capture Flow</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="capture.html">Capture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pay.html">Pay</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pay.html#setup">Setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pay.html#intent-filter">Intent filter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pay.html#package-name">Package name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integration.html#handling-payment-requests">Handling Payment Requests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#id5">Networking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#id7">Android Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#package-name">Package Name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#receive-payment-requests">Receive Payment Requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#testing">Testing</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="pay.html#handle-payment-requests">Handle payment requests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pay.html#testing">Testing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pay.html#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pay.html#end-to-end-testing">End to end testing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pay.html#testing-in-production">Testing in production</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="capture-features.html">Invoice Capture Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="capture-features.html#features-from-the-gini-capture-sdk">Features from the Gini Capture SDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="capture-features.html#file-import-open-with">File Import (Open With)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="capture-features.html#return-assistant">Return Assistant</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="capture-features.html#id1">Screen API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="capture-features.html#id3">Component API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="capture-features.html#sending-feedback">Sending Feedback</a></li>
 </ul>
 </li>
 </ul>
@@ -134,15 +144,8 @@
 <li class="toctree-l2"><a class="reference internal" href="migrating-from-gvl.html#customization">Customization</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="license.html#licenses-and-acknowledgements-for-incorporated-software">Licenses and Acknowledgements for Incorporated Software</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="license.html#apache-commons-sanselan">Apache Commons Sanselan</a></li>
-<li class="toctree-l3"><a class="reference internal" href="license.html#touchimageview">TouchImageView</a></li>
-<li class="toctree-l3"><a class="reference internal" href="license.html#gini-android-sdk">Gini Android SDK</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference Doc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
         
@@ -177,35 +180,32 @@
             
   <div class="section" id="getting-started">
 <h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Android 5.0+ (API Level 21+)</li>
+<li>Gini Capture SDK’s <a class="reference external" href="https://developer.gini.net/gini-capture-sdk-android/html/getting-started.html#requirements">requirements</a>.</li>
+</ul>
+<p>The Gini Pay Bank SDK uses our <a class="reference external" href="https://github.com/gini/gini-capture-sdk-android">Gini Capture SDK</a> to capture
+invoices with the camera or by importing them from the device or other apps.</p>
+</div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>To install add our Maven repo to the root build.gradle file and add it as a dependency to your app
-module’s build.gradle.</p>
-<p>build.gradle:</p>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span>repositories {
-    maven {
-        url &#39;https://repo.gini.net/nexus/content/repositories/open
-    }
-}
+<p>The Gini Pay Bank SDK is available in our maven repository which you need to add to your <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> first:</p>
+<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">repositories</span> <span class="p">{</span>
+    <span class="n">maven</span> <span class="p">{</span>
+        <span class="n">url</span> <span class="s1">&#39;https://repo.gini.net/nexus/content/repositories/open&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>app/build.gradle:</p>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
+<p>Now you can add the Gini Pay Bank SDK to your app’s dependencies:</p>
+<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="p">{</span>
     <span class="n">implementation</span> <span class="s1">&#39;net.gini:gini-pay-bank-sdk:1.2.1&#39;</span>
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="gini-pay-api-client-credentials">
-<h2>Gini Pay API Client Credentials<a class="headerlink" href="#gini-pay-api-client-credentials" title="Permalink to this headline">¶</a></h2>
-<p>You should have received Gini Pay API client credentials from us. Please get in touch with us in case you don’t have them.</p>
-<p>Continue to <a class="reference external" href="authentication.html">Authentication</a> to see how to use the client credentials to initialize the Gini Pay
-Business SDK.</p>
-</div>
-<div class="section" id="integration">
-<h2>Integration<a class="headerlink" href="#integration" title="Permalink to this headline">¶</a></h2>
-<p>The entry point into the library is GiniPayBank object which lets you interact with the <a class="reference external" href="capture.html">Capture</a> and
-<a class="reference external" href="pay.html">Payment</a> features.</p>
+<p>After syncing Gradle you can start integrating the SDK.</p>
 </div>
 </div>
 
@@ -215,7 +215,7 @@ Business SDK.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="authentication.html" class="btn btn-neutral float-right" title="Authentication">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="integration.html" class="btn btn-neutral float-right" title="Integration">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Gini Pay Bank SDK for Android"><span class="fa fa-arrow-circle-left"></span> Previous</a>

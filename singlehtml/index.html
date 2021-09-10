@@ -81,30 +81,40 @@
         
         
             <ul>
-<li class="toctree-l1"><a class="reference external" href="http://developer.gini.net/gini-pay-bank-sdk-android/kdoc/index.html">Gini Pay Bank KDoc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-getting-started">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#gini-pay-api-client-credentials">Gini Pay API Client Credentials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#integration">Integration</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#document-authentication">Authentication</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="index.html#capture-feature">Capture Feature</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#pay-feature">Pay Feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-integration">Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#capturing-invoices">Capturing Invoices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#android-manifest">Android Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#requirements-check">Requirements Check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#tablet-support">Tablet Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#networking">Networking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#capture-flow">Capture Flow</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#document-capture">Capture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#document-pay">Pay</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="index.html#setup">Setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#intent-filter">Intent filter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#package-name">Package name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#handling-payment-requests">Handling Payment Requests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#id5">Networking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#id7">Android Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#package-name">Package Name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#receive-payment-requests">Receive Payment Requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#testing">Testing</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#handle-payment-requests">Handle payment requests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#testing">Testing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#end-to-end-testing">End to end testing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#testing-in-production">Testing in production</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-capture-features">Invoice Capture Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#features-from-the-gini-capture-sdk">Features from the Gini Capture SDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#file-import-open-with">File Import (Open With)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#return-assistant">Return Assistant</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#id1">Screen API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#id3">Component API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#sending-feedback">Sending Feedback</a></li>
 </ul>
 </li>
 </ul>
@@ -132,15 +142,8 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#customization">Customization</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#document-license">License</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="index.html#licenses-and-acknowledgements-for-incorporated-software">Licenses and Acknowledgements for Incorporated Software</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#apache-commons-sanselan">Apache Commons Sanselan</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#touchimageview">TouchImageView</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#gini-android-sdk">Gini Android SDK</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-reference">Reference Doc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-license">License</a></li>
 </ul>
 
         
@@ -177,185 +180,469 @@
 <h1>Gini Pay Bank SDK for Android<a class="headerlink" href="#gini-pay-bank-sdk-for-android" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>Gini Pay provides an information extraction system for analyzing business invoices and
-transfers them to the Android banking app, where the payment process will be completed.
-The Gini Pay Bank SDK for Android provides functionality to capture documents with mobile
-phones, accurate line item extraction enables the user to uncheck the items they don’t
-want to pay and automatically calculates the new amountToPay.</p>
+<p>The Gini Pay Bank SDK for Android provides all the UI and functionality needed to use the Gini Pay API in your app to
+extract payment information from invoices and to resolve payment requests originating from other apps.</p>
+<p>The Gini Pay API provides an information extraction service for analyzing invoices. Specifically it extracts information
+such as the document sender or the payment relevant information (amount to pay, IBAN, etc.). In addition it also
+provides a secure channel for sharing payment related information between clients.</p>
 </div>
 <div class="section" id="table-of-contents">
 <h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <span id="document-getting-started"></span><div class="section" id="getting-started">
 <h3>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="requirements">
+<h4>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Android 5.0+ (API Level 21+)</li>
+<li>Gini Capture SDK’s <a class="reference external" href="https://developer.gini.net/gini-capture-sdk-android/html/getting-started.html#requirements">requirements</a>.</li>
+</ul>
+<p>The Gini Pay Bank SDK uses our <a class="reference external" href="https://github.com/gini/gini-capture-sdk-android">Gini Capture SDK</a> to capture
+invoices with the camera or by importing them from the device or other apps.</p>
+</div>
 <div class="section" id="installation">
 <h4>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h4>
-<p>To install add our Maven repo to the root build.gradle file and add it as a dependency to your app
-module’s build.gradle.</p>
-<p>build.gradle:</p>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span>repositories {
-    maven {
-        url &#39;https://repo.gini.net/nexus/content/repositories/open
-    }
-}
+<p>The Gini Pay Bank SDK is available in our maven repository which you need to add to your <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> first:</p>
+<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">repositories</span> <span class="p">{</span>
+    <span class="n">maven</span> <span class="p">{</span>
+        <span class="n">url</span> <span class="s1">&#39;https://repo.gini.net/nexus/content/repositories/open&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>app/build.gradle:</p>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
+<p>Now you can add the Gini Pay Bank SDK to your app’s dependencies:</p>
+<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="p">{</span>
     <span class="n">implementation</span> <span class="s1">&#39;net.gini:gini-pay-bank-sdk:1.2.1&#39;</span>
-<span class="o">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>After syncing Gradle you can start integrating the SDK.</p>
+</div>
+</div>
+<span id="document-integration"></span><div class="section" id="integration">
+<h3>Integration<a class="headerlink" href="#integration" title="Permalink to this headline">¶</a></h3>
+<p>The Gini Pay Bank SDK has two main features: <a class="reference internal" href="#capturing-invoices">capturing invoices</a> for information extraction and <a class="reference internal" href="#handling-payment-requests">handling payment requests</a>. Both
+can be used independently and you may opt to use only one or both in your app.</p>
+<div class="section" id="capturing-invoices">
+<h4>Capturing Invoices<a class="headerlink" href="#capturing-invoices" title="Permalink to this headline">¶</a></h4>
+<p>The capture feature uses our <a class="reference external" href="https://github.com/gini/gini-capture-sdk-android/">Gini Capture SDK</a> to provide
+Activities and Fragments to capture invoices and prepare them for upload to the Gini Pay API. It also allows documents
+to be imported from other apps. The captured images can be reviewed and are optimized on the device to provide the best
+results when used with the Gini Pay API.</p>
+<div class="section" id="android-manifest">
+<h5>Android Manifest<a class="headerlink" href="#android-manifest" title="Permalink to this headline">¶</a></h5>
+<p>The capture feature of the SDK uses the camera therefore the camera permission is required:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;manifest</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">package=</span><span class="s">&quot;...&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.CAMERA&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/manifest&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure you request the camera permission before starting the SDK.</p>
+</div>
+</div>
+<div class="section" id="requirements-check">
+<h5>Requirements Check<a class="headerlink" href="#requirements-check" title="Permalink to this headline">¶</a></h5>
+<p>We recommend running our runtime requirements check first before launching the Gini Capture SDK to ensure the device is
+capable of taking pictures of adequate quality.</p>
+<p>Simply run <code class="docutils literal notranslate"><span class="pre">GiniPayBank.checkCaptureRequirements()</span></code> and inspect the returned <code class="docutils literal notranslate"><span class="pre">RequirementsReport</span></code> for the result:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">On Android 6.0 and later the camera permission is required before checking the requirements.</p>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">RequirementsReport</span> <span class="n">report</span> <span class="o">=</span> <span class="n">GiniPayBank</span><span class="p">.</span><span class="na">checkCaptureRequirements</span><span class="p">((</span><span class="n">Context</span><span class="p">)</span> <span class="k">this</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">report</span><span class="p">.</span><span class="na">isFulfilled</span><span class="p">())</span> <span class="p">{</span>
+    <span class="kd">final</span> <span class="n">StringBuilder</span> <span class="n">stringBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+    <span class="n">report</span><span class="p">.</span><span class="na">getRequirementReports</span><span class="p">().</span><span class="na">forEach</span><span class="p">(</span><span class="n">requirementReport</span> <span class="o">-&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">requirementReport</span><span class="p">.</span><span class="na">isFulfilled</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">stringBuilder</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">requirementReport</span><span class="p">.</span><span class="na">getRequirementId</span><span class="p">());</span>
+            <span class="n">stringBuilder</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;: &quot;</span><span class="p">);</span>
+            <span class="n">stringBuilder</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">requirementReport</span><span class="p">.</span><span class="na">getDetails</span><span class="p">());</span>
+            <span class="n">stringBuilder</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;\n&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="n">Toast</span><span class="p">.</span><span class="na">makeText</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s">&quot;Requirements not fulfilled:\n&quot;</span> <span class="o">+</span> <span class="n">stringBuilder</span><span class="p">,</span>
+            <span class="n">Toast</span><span class="p">.</span><span class="na">LENGTH_LONG</span><span class="p">).</span><span class="na">show</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="gini-pay-api-client-credentials">
-<h4>Gini Pay API Client Credentials<a class="headerlink" href="#gini-pay-api-client-credentials" title="Permalink to this headline">¶</a></h4>
-<p>You should have received Gini Pay API client credentials from us. Please get in touch with us in case you don’t have them.</p>
-<p>Continue to <a class="reference external" href="authentication.html">Authentication</a> to see how to use the client credentials to initialize the Gini Pay
-Business SDK.</p>
+<div class="section" id="configuration">
+<h5>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h5>
+<p>Configuration and interaction is done using <code class="docutils literal notranslate"><span class="pre">CaptureConfiguration</span></code>. To set the configuration use the
+<code class="docutils literal notranslate"><span class="pre">GiniPayBank.setCaptureConfiguration()</span></code> static method.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The configuration is immutable and make sure to call <code class="docutils literal notranslate"><span class="pre">GiniPayBank.releaseCapture()</span></code> before setting a new
+configuration.</p>
 </div>
-<div class="section" id="integration">
-<h4>Integration<a class="headerlink" href="#integration" title="Permalink to this headline">¶</a></h4>
-<p>The entry point into the library is GiniPayBank object which lets you interact with the <a class="reference external" href="capture.html">Capture</a> and
-<a class="reference external" href="pay.html">Payment</a> features.</p>
+<p>You should call <code class="docutils literal notranslate"><span class="pre">GiniPayBank.releaseCapture()</span></code> after the SDK returned control to your application and your app has
+sent feedback to the Gini Pay API and is not using the capture feature anymore.</p>
+<p>To view all the configuration options see the documentation of <a class="reference external" href="http://developer.gini.net/gini-pay-bank-sdk-android/kdoc/ginipaybank/net.gini.pay.bank.capture/-capture-configuration/index.html">CaptureConfiguration</a>.</p>
+<p>Information about the configurable features are available on the <a class="reference external" href="capture-features.html">Capture Features</a> page.</p>
 </div>
+<div class="section" id="tablet-support">
+<h5>Tablet Support<a class="headerlink" href="#tablet-support" title="Permalink to this headline">¶</a></h5>
+<p>The Gini Pay Bank SDK can be used on tablets, too. Some UI elements adapt to the larger screen to offer the best user
+experience for tablet users.</p>
+<p>Many tablets with at least 8MP cameras don’t have an LED flash. Therefore we don’t require flash for tablets. For this
+reason the extraction quality on those tablets might be lower compared to smartphones.</p>
+<p>On tablets landscape orientation is also supported (smartphones are portrait only). We advise you to test your
+integration on tablets in both orientations.</p>
+<p>In landscape the camera screen’s UI displays the camera trigger button on the right side of the screen. Users
+can reach the camera trigger more easily this way. The camera preview along with the document corner guides are shown in
+landscape to match the device’s orientation.</p>
+<p>Other UI elements on all the screens maintain their relative position and the screen layouts are scaled automatically to
+fit the current orientation.</p>
 </div>
-<span id="document-authentication"></span><div class="section" id="authentication">
-<h3>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="capture-feature">
-<h4>Capture Feature<a class="headerlink" href="#capture-feature" title="Permalink to this headline">¶</a></h4>
-<p>Communication with the Gini Pay API is not part of the Gini Capture SDK in order to allow clients
-the freedom to use a networking implementation of their own choosing. The quickest way to add
-networking is to use the Gini Capture Network Library, which you can use by providing
-<code class="docutils literal notranslate"><span class="pre">GiniCaptureNetworkService</span></code> and <code class="docutils literal notranslate"><span class="pre">GiniCaptureDefaultNetworkApi</span></code> to the configuration.
-There are helper methods which provide minimal configuration for Service and API:</p>
-<ul>
-<li><div class="first highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">getDefaultNetworkService</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">clientId</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">clientSecret</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-                         <span class="n">emailDomain</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">documentMetadata</span><span class="p">:</span> <span class="n">DocumentMetadata</span><span class="p">)</span>
+<div class="section" id="networking">
+<h5>Networking<a class="headerlink" href="#networking" title="Permalink to this headline">¶</a></h5>
+<p>The Gini Pay Bank SDK allows you to use the default networking implementation of our Gini Capture SDK to communicate with the Gini
+Pay API. You may also implement your own networking layer.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You should have received Gini Pay API client credentials from us. Please get in touch with us in case you don’t have
+them. Without credentials you won’t be able to use the Gini Pay API.</p>
+</div>
+<div class="section" id="default-implementation">
+<h6>Default Implementation<a class="headerlink" href="#default-implementation" title="Permalink to this headline">¶</a></h6>
+<p>The capture feature is not aware of any networking implementations and requires you to set them in the
+<code class="docutils literal notranslate"><span class="pre">CaptureConfiguration</span></code>.</p>
+<p>The default networking implementations are the <code class="docutils literal notranslate"><span class="pre">GiniCaptureDefaultNetworkService</span></code> and
+<code class="docutils literal notranslate"><span class="pre">GiniCaptureDefaultNetworkApi</span></code>. We provide you with two helper methods to create them with the minimal configuration:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">networkService</span> <span class="o">=</span> <span class="n">getDefaultNetworkService</span><span class="p">(</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+    <span class="n">clientId</span> <span class="o">=</span> <span class="n">myClientId</span><span class="p">,</span>
+    <span class="n">clientSecret</span> <span class="o">=</span> <span class="n">myClientSecret</span><span class="p">,</span>
+    <span class="n">emailDomain</span> <span class="o">=</span> <span class="n">myEmailDomain</span><span class="p">,</span>
+    <span class="n">documentMetadata</span> <span class="o">=</span> <span class="n">myDocumentMetadata</span>
+<span class="p">)</span>
+
+<span class="n">val</span> <span class="n">networkApi</span> <span class="o">=</span> <span class="n">getDefaultNetworkApi</span><span class="p">(</span><span class="n">networkService</span><span class="p">)</span>
+
+<span class="n">GiniPayBank</span><span class="p">.</span><span class="na">setCaptureConfiguration</span><span class="p">(</span>
+    <span class="n">CaptureConfiguration</span><span class="p">(</span>
+        <span class="n">networkService</span> <span class="o">=</span> <span class="n">networkService</span><span class="p">,</span>
+        <span class="n">networkApi</span> <span class="o">=</span> <span class="n">networkApi</span>
+    <span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
+<p>For all configuration options of the default networking implementation see the documentation of
+<a class="reference external" href="http://developer.gini.net/gini-capture-sdk-android/network/javadoc/net/gini/android/capture/network/GiniCaptureDefaultNetworkService.Builder.html">GiniCaptureDefaultNetworkService.Builder</a>
+and <a class="reference external" href="http://developer.gini.net/gini-capture-sdk-android/network/javadoc/net/gini/android/capture/network/GiniCaptureDefaultNetworkApi.Builder.html">GiniCaptureDefaultNetworkApi.Builder</a>.</p>
+</div>
+<div class="section" id="custom-implementation">
+<h6>Custom Implementation<a class="headerlink" href="#custom-implementation" title="Permalink to this headline">¶</a></h6>
+<p>You can also provide your own networking by implementing the <code class="docutils literal notranslate"><span class="pre">GiniCaptureNetworkService</span></code> and the
+<code class="docutils literal notranslate"><span class="pre">GiniCaptureNetworkApi</span></code> interfaces:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">GiniCaptureNetworkService</span></code></dt>
+<dd>This interface is used to upload, analyze and delete documents. See the <a class="reference external" href="http://developer.gini.net/gini-capture-sdk-android/ginicapture/dokka/ginicapture/net.gini.android.capture.network/-gini-capture-network-service/index.html">reference documentation</a>
+for details.</dd>
+</dl>
 </li>
-<li><div class="first highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">getDefaultNetworkApi</span><span class="p">(</span><span class="n">service</span><span class="p">:</span> <span class="n">GiniCaptureDefaultNetworkService</span><span class="p">)</span>
-</pre></div>
-</div>
+<li><dl class="first docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">GiniCaptureNetworkApi</span></code></dt>
+<dd>This interface is used to declare network tasks which should be called by you outside of the Gini Capture SDK (e.g.,
+for sending feedback after the user saw and potentielly corrected the extractions).  See the <a class="reference external" href="http://developer.gini.net/gini-capture-sdk-android/ginicapture/dokka/ginicapture/net.gini.android.capture.network/-gini-capture-network-api/index.html">reference documentation</a>
+for details.</dd>
+</dl>
 </li>
 </ul>
-<p>You may also use the Gini Pay API Library for Android or implement communication with the Gini Pay API yourself.</p>
+<p>You may also use the <a class="reference external" href="https://github.com/gini/gini-pay-api-lib-android">Gini Pay API Library</a> for Android or implement
+communication with the Gini API yourself.</p>
 </div>
-<div class="section" id="pay-feature">
-<h4>Pay Feature<a class="headerlink" href="#pay-feature" title="Permalink to this headline">¶</a></h4>
-<p>The pay feature depends on the Gini Pay API Library, which provides an entry point through <code class="docutils literal notranslate"><span class="pre">Gini</span></code> class.
-The <code class="docutils literal notranslate"><span class="pre">Gini</span></code> class can be built either with client credentials (clientId and clientSecret)
-or with a <code class="docutils literal notranslate"><span class="pre">SessionManager</span></code> if you have a token. For these two cases there are helper methods:</p>
-<ul>
-<li><div class="first highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">getGiniApi</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">clientId</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">clientSecret</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+<div class="section" id="sending-feedback">
+<h6>Sending Feedback<a class="headerlink" href="#sending-feedback" title="Permalink to this headline">¶</a></h6>
+<p>Your app should send feedback for the extractions the Gini Pay API delivered. Feedback should be sent <em>only</em> for the
+extractions the user has seen and accepted (or corrected).</p>
+<p>For addition information about feedback see the <a class="reference external" href="https://pay-api.gini.net/documentation/#send-feedback-and-get-even-better-extractions-next-time">Gini Pay API documentation</a>.</p>
+<div class="section" id="id2">
+<h7>Default Implementation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h7>
+<p>The example below shows how to correct extractions and send feedback using the default networking implementation:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">networkApi</span><span class="p">:</span> <span class="n">GiniCaptureDefaultNetworkApi</span> <span class="c1">// Provided</span>
+
+<span class="n">val</span> <span class="n">extractions</span><span class="p">:</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">GiniCaptureSpecificExtraction</span><span class="o">&gt;</span> <span class="c1">// Provided</span>
+
+<span class="c1">// Modify the amount to pay extraction&#39;s value.</span>
+<span class="n">GiniCaptureSpecificExtraction</span> <span class="n">amountToPay</span> <span class="o">=</span> <span class="n">extractions</span><span class="o">[</span><span class="s">&quot;amountToPay&quot;</span><span class="o">]</span><span class="p">;</span>
+<span class="n">amountToPay</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="s">&quot;31.00:EUR&quot;</span>
+
+<span class="c1">// You should send feedback only for extractions the user has seen and accepted.</span>
+<span class="c1">// In this example only the amountToPay was wrong and we can reuse the other extractions.</span>
+ <span class="n">val</span> <span class="n">feedback</span> <span class="o">=</span> <span class="n">mapOf</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">GiniCaptureSpecificExtraction</span><span class="o">&gt;</span><span class="p">(</span>
+     <span class="s">&quot;iban&quot;</span> <span class="n">to</span> <span class="n">mExtractions</span><span class="o">[</span><span class="s">&quot;iban&quot;</span><span class="o">]</span><span class="p">,</span>
+     <span class="s">&quot;amountToPay&quot;</span> <span class="n">to</span> <span class="n">amountTopay</span><span class="p">,</span>
+     <span class="s">&quot;bic&quot;</span> <span class="n">to</span> <span class="n">mExtractions</span><span class="o">[</span><span class="s">&quot;bic&quot;</span><span class="o">]</span><span class="p">,</span>
+     <span class="s">&quot;senderName&quot;</span> <span class="n">to</span> <span class="n">mExtractions</span><span class="o">[</span><span class="s">&quot;sencerName&quot;</span><span class="o">]</span>
+ <span class="p">)</span>
+
+ <span class="n">networkApi</span><span class="p">.</span><span class="na">sendFeedback</span><span class="p">(</span><span class="n">feedback</span><span class="p">,</span> <span class="n">object</span> <span class="p">:</span> <span class="n">GiniCaptureNetworkCallback</span><span class="o">&lt;</span><span class="n">Void</span><span class="p">,</span> <span class="n">Error</span><span class="o">&gt;</span> <span class="p">{</span>
+     <span class="n">override</span> <span class="n">fun</span> <span class="nf">failure</span><span class="p">(</span><span class="n">error</span><span class="p">:</span> <span class="n">Error</span><span class="p">)</span> <span class="p">{</span>
+         <span class="c1">// Handle the error.</span>
+     <span class="p">}</span>
+
+     <span class="n">override</span> <span class="n">fun</span> <span class="nf">success</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="n">Void</span><span class="o">?</span><span class="p">)</span> <span class="p">{</span>
+         <span class="c1">// Feedback sent successfully.</span>
+     <span class="p">}</span>
+
+     <span class="n">override</span> <span class="n">fun</span> <span class="nf">cancelled</span><span class="p">()</span> <span class="p">{</span>
+         <span class="c1">// Handle cancellation.</span>
+     <span class="p">}</span>
+ <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h7>Custom Implementation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h7>
+<p>If you use your own networking implementation and directly communicate with the Gini Pay API then see <a class="reference external" href="https://pay-api.gini.net/documentation/#submitting-feedback-on-extractions">this section</a> in its documentation on how to send
+feedback.</p>
+<p>In case you use the Gini Pay API Library then see <a class="reference external" href="https://developer.gini.net/gini-pay-api-lib-android/guides/common-tasks.html#sending-feedback">this section</a> in its documentation
+for details.</p>
+</div>
+</div>
+</div>
+<div class="section" id="capture-flow">
+<h5>Capture Flow<a class="headerlink" href="#capture-flow" title="Permalink to this headline">¶</a></h5>
+<p>The capture flow can be used in two ways, either by using the <a class="reference internal" href="#screen-api">Screen API</a> or the <a class="reference internal" href="#component-api">Component API</a>:</p>
+<ul class="simple">
+<li>The <em>Screen API</em> provides activities for easy integration that can be customized in a
+limited way. The screen and configuration design is based on our long-lasting experience with
+integration in customer apps.</li>
+<li>In the <em>Component API</em> we provide fragments for advanced integration
+with more freedom for customization.</li>
+</ul>
+<div class="section" id="screen-api">
+<h6>Screen API<a class="headerlink" href="#screen-api" title="Permalink to this headline">¶</a></h6>
+<p>This is the easiest way to use the capture flow. You only need to:</p>
+<ol class="arabic simple">
+<li>Request camera access,</li>
+<li>Configure the capture feature using the <code class="docutils literal notranslate"><span class="pre">CaptureConfiguration</span></code>,</li>
+<li>Register an activity result handler with the <code class="docutils literal notranslate"><span class="pre">CaptureFlowContract()</span></code>,</li>
+<li>Start the capture flow.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Check out the <a class="reference external" href="https://github.com/gini/gini-pay-bank-sdk-android/tree/main/appscreenapi">Screen API example app</a> to see how an integration could look
+like.</p>
+</div>
+<p>The following example shows how to launch the capture flow using the <em>Screen API</em> and how to handle the results:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Use the androidx&#39;s Activity Result API to register a handler for the capture result.</span>
+<span class="n">val</span> <span class="n">captureLauncher</span> <span class="o">=</span> <span class="n">registerForActivityResult</span><span class="p">(</span><span class="n">CaptureFlowContract</span><span class="p">())</span> <span class="p">{</span> <span class="n">result</span><span class="p">:</span> <span class="n">CaptureResult</span> <span class="o">-&gt;</span>
+    <span class="n">when</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">is</span> <span class="n">CaptureResult</span><span class="p">.</span><span class="na">Success</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">handleExtractions</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">specificExtractions</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">is</span> <span class="n">CaptureResult</span><span class="p">.</span><span class="na">Error</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">when</span> <span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">value</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">is</span> <span class="n">ResultError</span><span class="p">.</span><span class="na">Capture</span> <span class="o">-&gt;</span> <span class="p">{</span>
+                    <span class="n">val</span> <span class="n">captureError</span><span class="p">:</span> <span class="n">GiniCaptureError</span> <span class="o">=</span> <span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">value</span> <span class="n">as</span> <span class="n">ResultError</span><span class="p">.</span><span class="na">Capture</span><span class="p">).</span><span class="na">giniCaptureError</span>
+                    <span class="n">handleCaptureError</span><span class="p">(</span><span class="n">captureError</span><span class="p">)</span>
+                <span class="p">}</span>
+                <span class="n">is</span> <span class="n">ResultError</span><span class="p">.</span><span class="na">FileImport</span> <span class="o">-&gt;</span> <span class="p">{</span>
+                    <span class="c1">// See the File Import section on the Capture Features page for more details.</span>
+                    <span class="n">val</span> <span class="n">fileImportError</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="na">value</span> <span class="n">as</span> <span class="n">ResultError</span><span class="p">.</span><span class="na">FileImport</span>
+                    <span class="nf">handleFileImportError</span><span class="p">(</span><span class="n">fileImportError</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">CaptureResult</span><span class="p">.</span><span class="na">Empty</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">handleNoExtractions</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="n">CaptureResult</span><span class="p">.</span><span class="na">Cancel</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">handleCancellation</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">fun</span> <span class="nf">launchGiniCapture</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Make sure camera permission has been already granted at this point.</span>
+
+    <span class="c1">// Check that the device fulfills the requirements.</span>
+    <span class="n">val</span> <span class="n">report</span> <span class="o">=</span> <span class="n">GiniCaptureRequirements</span><span class="p">.</span><span class="na">checkRequirements</span><span class="p">((</span><span class="n">Context</span><span class="p">)</span> <span class="k">this</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">report</span><span class="p">.</span><span class="na">isFulfilled</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">handleUnfulfilledRequirements</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Instantiate the networking implementations.</span>
+    <span class="n">val</span> <span class="n">networkService</span><span class="p">:</span> <span class="n">GiniCaptureNetworkService</span>  <span class="o">=</span> <span class="p">...</span>
+    <span class="n">val</span> <span class="n">networkApi</span><span class="p">:</span> <span class="n">GiniCaptureNetworkApi</span> <span class="o">=</span> <span class="p">...</span>
+
+    <span class="c1">// Cleanup to make sure everything is reset.</span>
+    <span class="n">GiniPayBank</span><span class="p">.</span><span class="na">releaseCapture</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+
+    <span class="c1">// Configure the capture feature.</span>
+    <span class="n">GiniPayBank</span><span class="p">.</span><span class="na">setCaptureConfiguration</span><span class="p">(</span>
+        <span class="n">CaptureConfiguration</span><span class="p">(</span>
+            <span class="n">networkService</span> <span class="o">=</span> <span class="n">networkService</span><span class="p">,</span>
+            <span class="n">networkApi</span> <span class="o">=</span> <span class="n">networkApi</span><span class="p">,</span>
+            <span class="p">...</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1">// Launch and wait for the result.</span>
+    <span class="n">GiniPayBank</span><span class="p">.</span><span class="na">startCaptureFlow</span><span class="p">(</span><span class="n">captureLauncher</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="component-api">
+<h6>Component API<a class="headerlink" href="#component-api" title="Permalink to this headline">¶</a></h6>
+<p>This is the more complicated way of using the capture flow. The advantage is that it is based on fragments and you
+have full control over how these are shown in your UI.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Check out the <a class="reference external" href="https://github.com/gini/gini-pay-bank-sdk-android/tree/main/appcomponentapi">Component API example app</a> to see how an integration could look
+like.</p>
+</div>
+<p>Before launching the first fragment you need to:</p>
+<ol class="arabic simple">
+<li>Request camera access,</li>
+<li>Configure the capture feature using the <code class="docutils literal notranslate"><span class="pre">CaptureConfiguration</span></code>.</li>
+</ol>
+<p>The Component API is exposed as-is from the Gini Capture SDK and you can follow <a class="reference external" href="https://developer.gini.net/gini-capture-sdk-android/html/integration.html#component-api">it’s guide</a> to learn how to integrate
+it.</p>
+</div>
+</div>
+</div>
+<div class="section" id="handling-payment-requests">
+<h4>Handling Payment Requests<a class="headerlink" href="#handling-payment-requests" title="Permalink to this headline">¶</a></h4>
+<p>The Gini Pay Bank SDK enables your app to handle payment requests started by the Gini Pay Business SDK in another app.
+You can retrieve the payment requests’s content, mark the payment request as payed and also return your user to the app
+that created the payment request.</p>
+<div class="section" id="id5">
+<h5>Networking<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h5>
+<p>The pay feature depends on the <a class="reference external" href="https://github.com/gini/gini-pay-api-lib-android">Gini Pay API Library</a>, which
+provides an entry point through the <code class="docutils literal notranslate"><span class="pre">Gini</span></code> class.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You should have received Gini Pay API client credentials from us. Please get in touch with us in case you don’t have
+them. Without credentials you won’t be able to use the Gini Pay API.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Gini</span></code> class can be built either with client credentials or with a <code class="docutils literal notranslate"><span class="pre">SessionManager</span></code> if you already have an
+authorization token. We provide helper methods for each case:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">getGiniApi</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">clientId</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">clientSecret</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
            <span class="n">emailDomain</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span>
 </pre></div>
 </div>
-</li>
-<li><div class="first highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">getGiniApi</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">sessionManager</span><span class="p">:</span> <span class="n">SessionManager</span><span class="p">)</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">getGiniApi</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">sessionManager</span><span class="p">:</span> <span class="n">SessionManager</span><span class="p">)</span>
 </pre></div>
 </div>
-</li>
-</ul>
 <p><code class="docutils literal notranslate"><span class="pre">SessionManager</span></code> is an interface which you need to implement to send the token.</p>
-<p>For more details about <code class="docutils literal notranslate"><span class="pre">Gini</span></code> see <a class="reference external" href="https://github.com/gini/gini-pay-api-lib-android/">Gini Pay API lib</a>.</p>
-</div>
-</div>
-<span id="document-capture"></span><div class="section" id="capture">
-<h3>Capture<a class="headerlink" href="#capture" title="Permalink to this headline">¶</a></h3>
-<p>The Capture feature is a layer of abstraction above <a class="reference external" href="https://github.com/gini/gini-capture-sdk-android/">Gini Capture SDK</a> with the additional Return Assistant feature.</p>
-<p>The capture feature provides Activities and Fragments for capturing,
-reviewing and analyzing photos of invoices and remittance slips.</p>
-<p>By integrating this feature into your application you can allow your
-users to easily take pictures of documents, review them
-and - by implementing the necessary networking interfaces - upload
-the document to the Gini Pay API for analysis.</p>
-<p>See authentication section for more details on configuring communication with the backend.</p>
-<p>Capture feature can be used with:</p>
-<ul class="simple">
-<li>the Screen API by calling <code class="docutils literal notranslate"><span class="pre">startCaptureFlow</span></code> or <code class="docutils literal notranslate"><span class="pre">startCaptureFlowForIntent</span></code> or</li>
-<li>the Component API by building everything around the provided fragments.</li>
-</ul>
-<p>See example apps for more details about usage of Screen and Component APIs.</p>
-<p>To use capture features, they need to be configured with <code class="docutils literal notranslate"><span class="pre">setCaptureConfiguration</span></code>.
-Note that configuration is immutable. <code class="docutils literal notranslate"><span class="pre">releaseCapture</span></code> needs to be called before passing a new configuration.</p>
-<p>The capture feature consists of the following screens:</p>
-<ul class="simple">
-<li>Onboarding: Provides useful hints to the user on how to take a perfect photo of a document.</li>
-<li>Camera: The actual camera screen to capture the image of the document.</li>
-<li>Review: Offers the opportunity to the user to check the sharpness of the image and to rotate it into reading direction, if necessary.</li>
-<li>Analysis: Provides a UI for the analysis process of the document by showing the user a loading indicator and the image of the document.</li>
-<li>Digital Invoice: Provides UI in which the user case unselect and edit extracted line items.</li>
-</ul>
-</div>
-<span id="document-pay"></span><div class="section" id="pay">
-<h3>Pay<a class="headerlink" href="#pay" title="Permalink to this headline">¶</a></h3>
-<p>Pay feature provides the API for receiving a payment request started
-by a Business app, mark it as payed and return to the app that started
-the flow.</p>
-<div class="section" id="setup">
-<h4>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h4>
-<p>The pay feature needs to be initialized by calling <code class="docutils literal notranslate"><span class="pre">GiniPayBank.setGiniApi()</span></code>.
-See the <a class="reference external" href="authentication.html">authentication</a> page for more details.</p>
-<div class="section" id="intent-filter">
-<h5>Intent filter<a class="headerlink" href="#intent-filter" title="Permalink to this headline">¶</a></h5>
-<p>To use the pay feature you need to add to your manifest an intent filter for
-the ginipay URI so that it is discoverable by the business apps:</p>
-<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="n">intent</span><span class="p">-</span><span class="n">filter</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="n">action</span> <span class="n">android</span><span class="p">:</span><span class="n">name</span><span class="p">=</span><span class="s">&quot;android.intent.action.VIEW&quot;</span> <span class="p">/&gt;</span>
+<p>For more details about the <code class="docutils literal notranslate"><span class="pre">Gini</span></code> class see the Gini Pay API Library’s <a class="reference external" href="https://developer.gini.net/gini-pay-api-lib-android/guides/getting-started.html#creating-the-gini-instance">documentation</a>.</p>
+<p>Once you have a <code class="docutils literal notranslate"><span class="pre">Gini</span></code> instance you need to pass it to <code class="docutils literal notranslate"><span class="pre">GiniPayBank.setGiniApi()</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">giniApi</span> <span class="o">=</span> <span class="n">getGiniApi</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">myClientId</span><span class="p">,</span> <span class="n">myClientSecret</span><span class="p">,</span> <span class="n">myEmailDomain</span><span class="p">)</span>
 
-    <span class="p">&lt;</span><span class="n">category</span> <span class="n">android</span><span class="p">:</span><span class="n">name</span><span class="p">=</span><span class="s">&quot;android.intent.category.DEFAULT&quot;</span> <span class="p">/&gt;</span>
-
-    <span class="p">&lt;</span><span class="k">data</span>
-        <span class="n">android</span><span class="p">:</span><span class="n">host</span><span class="p">=</span><span class="s">&quot;payment&quot;</span>
-        <span class="n">android</span><span class="p">:</span><span class="n">scheme</span><span class="p">=</span><span class="s">&quot;ginipay&quot;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;/</span><span class="n">intent</span><span class="p">-</span><span class="n">filter</span><span class="p">&gt;</span>
+<span class="n">GiniPayBank</span><span class="p">.</span><span class="na">setGiniApi</span><span class="p">(</span><span class="n">giniApi</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The intent filter can be added to the activity which will handle the payment flow of
-that payment request.</p>
+</div>
+<div class="section" id="id7">
+<h5>Android Manifest<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h5>
+<p>To be able to receive payment requests you need to add an intent filter for the ginipay URI to your manifest. This also
+allows the Gini Pay Business SDK to detect if your app is installed:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;intent-filter&gt;</span>
+    <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">&quot;android.intent.action.VIEW&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">&quot;android.intent.category.DEFAULT&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;data</span>
+        <span class="na">android:host=</span><span class="s">&quot;payment&quot;</span>
+        <span class="na">android:scheme=</span><span class="s">&quot;ginipay&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/intent-filter&gt;</span>
+</pre></div>
+</div>
+<p>The intent filter can be added to the activity which will handle the payment flow of that payment request.</p>
 </div>
 <div class="section" id="package-name">
-<h5>Package name<a class="headerlink" href="#package-name" title="Permalink to this headline">¶</a></h5>
+<h5>Package Name<a class="headerlink" href="#package-name" title="Permalink to this headline">¶</a></h5>
 <p>You also need to tell us your app’s package name. It will be associated with the payment provider we
 create for your banking app in the Gini Pay API. The Gini Pay Business SDK will only open your banking app if
 it is installed and it has the same package name as the one known by the Gini Pay API.</p>
 <p>If you have different package names for development and production
 then please share both of them with us so that we can use the right one for each environment.</p>
 </div>
+<div class="section" id="receive-payment-requests">
+<h5>Receive Payment Requests<a class="headerlink" href="#receive-payment-requests" title="Permalink to this headline">¶</a></h5>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can see an example implementation in the Screen API example app’s <a class="reference external" href="https://github.com/gini/gini-pay-bank-sdk-android/tree/main/appscreenapi/src/main/java/net/gini/pay/appscreenapi/pay">pay</a>
+package.</p>
 </div>
-<div class="section" id="handle-payment-requests">
-<h4>Handle payment requests<a class="headerlink" href="#handle-payment-requests" title="Permalink to this headline">¶</a></h4>
-<p>The flow is:</p>
-<ol class="arabic simple">
-<li><code class="docutils literal notranslate"><span class="pre">getRequestId</span></code> to extract the id from the <code class="docutils literal notranslate"><span class="pre">Intent</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">getPaymentRequest</span></code> to get payment details set by the business app.</li>
-<li><code class="docutils literal notranslate"><span class="pre">resolvePaymentRequest</span></code> to mark the <code class="docutils literal notranslate"><span class="pre">PaymentRequest</span></code> as paid.</li>
-<li><code class="docutils literal notranslate"><span class="pre">returnToBusiness</span></code> to return to the business app that started the flow.</li>
+<p>When your activity is launched with an intent you should follow the steps below to receive and handle the payment
+request:</p>
+<ol class="arabic">
+<li><p class="first">Extract the payment request id from the intent with <code class="docutils literal notranslate"><span class="pre">getRequestId()</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">requestId</span> <span class="o">=</span> <span class="n">getRequestId</span><span class="p">(</span><span class="n">intent</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Retrieve the payment details set by the business app using <code class="docutils literal notranslate"><span class="pre">GiniPayBank.getPaymentRequest()</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">paymentRequest</span><span class="p">:</span> <span class="n">PaymentRequest</span> <span class="o">=</span> <span class="n">giniPayBank</span><span class="p">.</span><span class="na">getPaymentRequest</span><span class="p">(</span><span class="n">requestId</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Show the payment details to your user:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">showPaymentDetails</span><span class="p">(</span>
+    <span class="n">paymentRequest</span><span class="p">.</span><span class="na">recipient</span><span class="p">,</span>
+    <span class="n">paymentRequest</span><span class="p">.</span><span class="na">iban</span><span class="p">,</span>
+    <span class="n">paymentRequest</span><span class="p">.</span><span class="na">bic</span><span class="p">,</span>
+    <span class="n">paymentRequest</span><span class="p">.</span><span class="na">amount</span><span class="p">,</span>
+    <span class="n">paymentRequest</span><span class="p">.</span><span class="na">purpose</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">After your user has initiated the payment mark the payment request as paid using
+<code class="docutils literal notranslate"><span class="pre">GiniPayBank.resolvePaymentRequest()</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// The actual payment details used for the payment (as corrected and accepted by the user).</span>
+<span class="n">val</span> <span class="n">usedPaymentDetails</span> <span class="o">=</span> <span class="n">ResolvePaymentInput</span><span class="p">(</span>
+    <span class="n">recipient</span> <span class="o">=</span> <span class="s">&quot;...&quot;</span><span class="p">,</span>
+    <span class="n">iban</span> <span class="o">=</span> <span class="s">&quot;...&quot;</span><span class="p">,</span>
+    <span class="n">bic</span> <span class="o">=</span> <span class="s">&quot;...&quot;</span><span class="p">,</span>
+    <span class="n">amount</span> <span class="o">=</span> <span class="s">&quot;...&quot;</span><span class="p">,</span>
+    <span class="n">purpose</span> <span class="o">=</span> <span class="s">&quot;...&quot;</span>
+<span class="p">)</span>
+
+<span class="n">val</span> <span class="n">resolvedPayment</span><span class="p">:</span> <span class="n">ResolvedPayment</span> <span class="o">=</span> <span class="n">giniPayBank</span><span class="p">.</span><span class="na">resolvePaymentRequest</span><span class="p">(</span><span class="n">requestId</span><span class="p">,</span> <span class="n">usedPaymentDetails</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">You can allow your user to return to the business app that started the flow using <code class="docutils literal notranslate"><span class="pre">GiniPayBank.returnToBusiness()</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">giniPayBank</span><span class="p">.</span><span class="na">returnToBusiness</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">resolvedPayment</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
 </ol>
-<p>See the <code class="docutils literal notranslate"><span class="pre">appscreenapi</span></code> example app’s <code class="docutils literal notranslate"><span class="pre">pay</span></code> package for more details.</p>
 </div>
 <div class="section" id="testing">
-<h4>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h4>
+<h5>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h5>
 <p>Testing the payment feature requires an app which uses the Gini Pay Business SDK to create payment requests and to
 forward them to your banking app to view and resolve those payment requests.</p>
 <div class="section" id="requirements">
-<h5>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h5>
+<h6>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h6>
 <div class="section" id="example-business-app">
-<h6>Example business app<a class="headerlink" href="#example-business-app" title="Permalink to this headline">¶</a></h6>
+<h7>Example business app<a class="headerlink" href="#example-business-app" title="Permalink to this headline">¶</a></h7>
 <p>An example business app is available in the <a class="reference external" href="https://github.com/gini/gini-pay-business-sdk-android">Gini Pay Business SDK’s</a>
 repository.</p>
 <p>You can use the same Gini Pay API client credentials in the example business app as in your app, if not otherwise
 specified.</p>
 <div class="section" id="development-gini-pay-api-client-credentials">
-<h7>Development Gini Pay API client credentials<a class="headerlink" href="#development-gini-pay-api-client-credentials" title="Permalink to this headline">¶</a></h7>
+<h8>Development Gini Pay API client credentials<a class="headerlink" href="#development-gini-pay-api-client-credentials" title="Permalink to this headline">¶</a></h8>
 <p>In order to test using our example business app you need to use development client credentials. This will make sure
 the Gini Pay Business SDK will use a payment provider which will open your development banking app.</p>
 </div>
 </div>
 </div>
 <div class="section" id="end-to-end-testing">
-<h5>End to end testing<a class="headerlink" href="#end-to-end-testing" title="Permalink to this headline">¶</a></h5>
+<h6>End to end testing<a class="headerlink" href="#end-to-end-testing" title="Permalink to this headline">¶</a></h6>
 <p>After you’ve set the client credentials in the example business app you can install it along with your banking app on
 your device.</p>
 <p>Run the example business app and import an invoice or take a picture of one to start the payment flow.</p>
@@ -366,7 +653,7 @@ you may redirect back to the business app.</p>
 Bank SDK work together correctly.</p>
 </div>
 <div class="section" id="testing-in-production">
-<h5>Testing in production<a class="headerlink" href="#testing-in-production" title="Permalink to this headline">¶</a></h5>
+<h6>Testing in production<a class="headerlink" href="#testing-in-production" title="Permalink to this headline">¶</a></h6>
 <p>The steps are the same but instead of the development client credentials you will need to use production client
 credentials. This will make sure the Gini Pay Business SDK receives real payment providers including the one which
 opens your production banking app.</p>
@@ -374,6 +661,247 @@ opens your production banking app.</p>
 before installing it.</p>
 <p>You can also test with a real business app. Please contact us in case you don’t know which business app(s) to install
 for starting the payment flow.</p>
+</div>
+</div>
+</div>
+</div>
+<span id="document-capture-features"></span><div class="section" id="invoice-capture-features">
+<h3>Invoice Capture Features<a class="headerlink" href="#invoice-capture-features" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="features-from-the-gini-capture-sdk">
+<h4>Features from the Gini Capture SDK<a class="headerlink" href="#features-from-the-gini-capture-sdk" title="Permalink to this headline">¶</a></h4>
+<p>The capture feature uses our <a class="reference external" href="https://github.com/gini/gini-capture-sdk-android/">Gini Capture SDK</a>. All features
+listed in its <a class="reference external" href="https://developer.gini.net/gini-capture-sdk-android/html/features.html">documentation</a> can be used here
+as well.</p>
+<p>An important difference is in how you configure the capture features. In the Gini Pay Bank SDK you need to use the
+<code class="docutils literal notranslate"><span class="pre">CaptureConfiguration</span></code> instead of the Gini Capture SDK’s <code class="docutils literal notranslate"><span class="pre">GiniCapture.Builder</span></code>. The configuration names are the same
+so you can easily map them to the <code class="docutils literal notranslate"><span class="pre">CaptureConfiguration</span></code>.</p>
+<div class="section" id="file-import-open-with">
+<h5>File Import (Open With)<a class="headerlink" href="#file-import-open-with" title="Permalink to this headline">¶</a></h5>
+<p>Another difference is related to the <a class="reference external" href="https://developer.gini.net/gini-capture-sdk-android/html/features.html#file-import-open-with">file import</a> (or “open with”)
+feature which allows importing of files from other apps via Android’s “open with” or “share” functionality.</p>
+<div class="section" id="screen-api">
+<h6>Screen API<a class="headerlink" href="#screen-api" title="Permalink to this headline">¶</a></h6>
+<p>To handle imported files using the Gini Pay Bank SDK you need to register an activity result handler with the
+<code class="docutils literal notranslate"><span class="pre">CaptureFlowImportContract()</span></code> and then pass the incoming intent to
+<code class="docutils literal notranslate"><span class="pre">GiniPayBank.GiniPayBank.startCaptureFlowForIntent()</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Use the androidx&#39;s Activity Result API to register a handler for the capture result.</span>
+<span class="n">val</span> <span class="n">captureImportLauncher</span> <span class="o">=</span> <span class="n">registerForActivityResult</span><span class="p">(</span><span class="n">CaptureFlowImportContract</span><span class="p">())</span> <span class="p">{</span> <span class="n">result</span><span class="p">:</span> <span class="n">CaptureResult</span> <span class="o">-&gt;</span>
+    <span class="n">when</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">is</span> <span class="n">CaptureResult</span><span class="p">.</span><span class="na">Success</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">handleExtractions</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">specificExtractions</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">is</span> <span class="n">CaptureResult</span><span class="p">.</span><span class="na">Error</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">when</span> <span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">value</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">is</span> <span class="n">ResultError</span><span class="p">.</span><span class="na">Capture</span> <span class="o">-&gt;</span> <span class="p">{</span>
+                    <span class="n">val</span> <span class="n">captureError</span><span class="p">:</span> <span class="n">GiniCaptureError</span> <span class="o">=</span> <span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">value</span> <span class="n">as</span> <span class="n">ResultError</span><span class="p">.</span><span class="na">Capture</span><span class="p">).</span><span class="na">giniCaptureError</span>
+                    <span class="n">handleCaptureError</span><span class="p">(</span><span class="n">captureError</span><span class="p">)</span>
+                <span class="p">}</span>
+                <span class="n">is</span> <span class="n">ResultError</span><span class="p">.</span><span class="na">FileImport</span> <span class="o">-&gt;</span> <span class="p">{</span>
+                    <span class="n">val</span> <span class="n">fileImportError</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="na">value</span> <span class="n">as</span> <span class="n">ResultError</span><span class="p">.</span><span class="na">FileImport</span>
+                    <span class="nf">handleFileImportError</span><span class="p">(</span><span class="n">fileImportError</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">CaptureResult</span><span class="p">.</span><span class="na">Empty</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">handleNoExtractions</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="n">CaptureResult</span><span class="p">.</span><span class="na">Cancel</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">handleCancellation</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">fun</span> <span class="nf">handleFileImportError</span><span class="p">(</span><span class="n">exception</span><span class="p">:</span> <span class="n">ImportedFileValidationException</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="n">message</span> <span class="o">=</span> <span class="p">...</span>
+    <span class="n">exception</span><span class="p">.</span><span class="na">validationError</span><span class="o">?</span><span class="p">.</span><span class="na">let</span> <span class="p">{</span> <span class="n">validationError</span> <span class="o">-&gt;</span>
+        <span class="c1">// Get the default message</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">getString</span><span class="p">(</span><span class="n">validationError</span><span class="p">.</span><span class="na">textResource</span><span class="p">)</span>
+        <span class="c1">// Or use custom messages</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">when</span> <span class="p">(</span><span class="n">validationError</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">FileImportValidator</span><span class="p">.</span><span class="na">Error</span><span class="p">.</span><span class="na">TYPE_NOT_SUPPORTED</span> <span class="o">-&gt;</span> <span class="p">...</span>
+            <span class="n">FileImportValidator</span><span class="p">.</span><span class="na">Error</span><span class="p">.</span><span class="na">SIZE_TOO_LARGE</span> <span class="o">-&gt;</span> <span class="p">...</span>
+            <span class="n">FileImportValidator</span><span class="p">.</span><span class="na">Error</span><span class="p">.</span><span class="na">TOO_MANY_PDF_PAGES</span> <span class="o">-&gt;</span> <span class="p">...</span>
+            <span class="n">FileImportValidator</span><span class="p">.</span><span class="na">Error</span><span class="p">.</span><span class="na">PASSWORD_PROTECTED_PDF</span> <span class="o">-&gt;</span> <span class="p">...</span>
+            <span class="n">FileImportValidator</span><span class="p">.</span><span class="na">Error</span><span class="p">.</span><span class="na">TOO_MANY_DOCUMENT_PAGES</span> <span class="o">-&gt;</span> <span class="p">...</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">AlertDialog</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+        <span class="p">.</span><span class="na">setMessage</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="p">.</span><span class="na">setPositiveButton</span><span class="p">(</span><span class="s">&quot;OK&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">finish</span><span class="p">()</span> <span class="p">}</span>
+        <span class="p">.</span><span class="na">show</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">fun</span> <span class="nf">startGiniPayBankSDKForImportedFile</span><span class="p">(</span><span class="n">importedFileIntent</span><span class="p">:</span> <span class="n">Intent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Configure capture first</span>
+    <span class="n">configureCapture</span><span class="p">();</span>
+
+    <span class="n">fileImportCancellationToken</span> <span class="o">=</span>
+        <span class="n">GiniPayBank</span><span class="p">.</span><span class="na">startCaptureFlowForIntent</span><span class="p">(</span><span class="n">captureImportLauncher</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="n">importedFileIntent</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="component-api">
+<h6>Component API<a class="headerlink" href="#component-api" title="Permalink to this headline">¶</a></h6>
+<p>When using the Component API you need to create a <code class="docutils literal notranslate"><span class="pre">Document</span></code> from the intent using
+<code class="docutils literal notranslate"><span class="pre">GiniPayBank.createDocumentForImportedFiles()</span></code> and then continue either to the <code class="docutils literal notranslate"><span class="pre">ReviewFragmentCompat</span></code>,
+<code class="docutils literal notranslate"><span class="pre">MultiPageReviewFragment</span></code> or <code class="docutils literal notranslate"><span class="pre">AnalysisFragmentCompat</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">fun</span> <span class="nf">startGiniPayBankSDKForImportedFile</span><span class="p">(</span><span class="n">importedFileIntent</span><span class="p">:</span> <span class="n">Intent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">GiniPayBank</span><span class="p">.</span><span class="na">createDocumentForImportedFiles</span><span class="p">(</span><span class="n">importedFileIntent</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="n">object</span> <span class="p">:</span> <span class="n">AsyncCallback</span><span class="o">&lt;</span><span class="n">Document</span><span class="p">,</span> <span class="n">ImportedFileValidationException</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="n">override</span> <span class="n">fun</span> <span class="nf">onSuccess</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="n">Document</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">isReviewable</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// If you have enabled capturing documents with multiple pages:</span>
+                <span class="n">launchMultiPageReviewScreen</span><span class="p">()</span>
+                <span class="c1">// OR if you didn&#39;t:</span>
+                <span class="n">launchSinglePageReviewScreen</span><span class="p">()</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">launchAnalysisScreen</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="n">finish</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="n">override</span> <span class="n">fun</span> <span class="nf">onError</span><span class="p">(</span><span class="n">exception</span><span class="p">:</span> <span class="n">ImportedFileValidationException</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">handleFileImportError</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="n">override</span> <span class="n">fun</span> <span class="nf">onCancelled</span><span class="p">()</span> <span class="p">{</span>
+            <span class="c1">// Handle cancellation.</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="return-assistant">
+<h4>Return Assistant<a class="headerlink" href="#return-assistant" title="Permalink to this headline">¶</a></h4>
+<p>The return assistant feature allows your users to view and edit payable items in an invoice. The total amount is
+updated to be the sum of only those items which the user opts to pay.</p>
+<p>To enable this feature simply set <code class="docutils literal notranslate"><span class="pre">returnAssistantEnabled</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code> in the <code class="docutils literal notranslate"><span class="pre">CaptureConfiguration</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">CaptureConfiguration</span><span class="p">(</span><span class="n">returnAssistantEnabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h5>Screen API<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h5>
+<p>When integrating using the Screen API it is enough to enable the return assistant feature. The Gini Pay Bank SDK will
+show the return assistant automatically if the invoice contained payable items and will update the extractions returned
+to your app according to the user’s changes.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">amountToPay</span></code> extraction is updated to be the sum of items the user decided to pay. It includes discounts and
+additional charges that might be present on the invoice.</p>
+<p>The extractions related to the return assistant are stored in the <code class="docutils literal notranslate"><span class="pre">compoundExtractions</span></code> field of the
+<code class="docutils literal notranslate"><span class="pre">CaptureResult</span></code>. See the Gini Pay API’s <a class="reference external" href="https://pay-api.gini.net/documentation/#return-assistant-extractions">documentation</a> to learn about the return assistant’s compound
+extractions.</p>
+</div>
+<div class="section" id="id3">
+<h5>Component API<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h5>
+<p>Using the Component API is more challenging. You need to manage three additional fragments: <code class="docutils literal notranslate"><span class="pre">DigitalInvoiceFragment</span></code>,
+<code class="docutils literal notranslate"><span class="pre">DigitalInvoiceOnboardingFragment</span></code> and <code class="docutils literal notranslate"><span class="pre">LineItemDetailsFragment</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See the Component API example app’s <a class="reference external" href="https://github.com/gini/gini-pay-bank-sdk-android/tree/main/appcomponentapi/src/main/java/net/gini/pay/appcomponentapi/digitalinvoice">digitalinvoice package</a>
+for a sample integration.</p>
+</div>
+<p>The following diagram extends the one found in the Gini Capture SDK’s <a class="reference external" href="https://developer.gini.net/gini-capture-sdk-android/html/integration.html#component-api">Component API guide</a>. It shows the possible flows
+through the SDK based on the listener method invocations. For brevity each fragment’s listener is shown next to it. In
+your integration you will provide the listener implementations and handle the listener method calls. You should navigate
+to the appropriate fragment based on this diagram.</p>
+<p>The part related to the return assistant is in the lower right corner:</p>
+<a class="reference internal image-reference" href="_images/Return-Assistant-Component-API.jpg"><img alt="Diagram of possible flows through the SDK with the Component API fragments and their listeners including the return assistant." src="_images/Return-Assistant-Component-API.jpg" style="width: 100%;" /></a>
+<div class="section" id="digitalinvoicefragment">
+<h6>DigitalInvoiceFragment<a class="headerlink" href="#digitalinvoicefragment" title="Permalink to this headline">¶</a></h6>
+<p>This is the entry point for the return assistant. It displays the line items extracted from an invoice and their total
+price. The user can deselect line items which should not be paid for and also edit the quantity, price or description of
+each line item. The total price is always updated to include only the selected line items.</p>
+<p>The returned extractions in the <code class="docutils literal notranslate"><span class="pre">DigitalInvoiceFragmentListener.onPayInvoice()</span></code> are updated to include the user’s
+modifications:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">amountToPay</span></code> in the specific extractions is updated to contain the sum of the selected line items’ prices.</li>
+<li>The line items in the compound extractions are also updated according to the user’s modifications.</li>
+</ul>
+<p>Before showing the <code class="docutils literal notranslate"><span class="pre">DigitalInvoiceFragment</span></code> you should validate the compound extractions
+using the <code class="docutils literal notranslate"><span class="pre">LineItemsValidator</span></code>. These extractions are returned in the <code class="docutils literal notranslate"><span class="pre">AnalysisFragmentListener.onExtractionsAvailable()]</span></code>
+listener method:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">override</span> <span class="n">fun</span> <span class="nf">onExtractionsAvailable</span><span class="p">(</span>
+    <span class="n">extractions</span><span class="p">:</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">GiniCaptureSpecificExtraction</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">compoundExtractions</span><span class="p">:</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">GiniCaptureCompoundExtraction</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">returnReasons</span><span class="p">:</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">GiniCaptureReturnReason</span><span class="o">&gt;</span>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="c1">// Check whether the compound extractions contain valid line items or not</span>
+        <span class="n">LineItemsValidator</span><span class="p">.</span><span class="na">validate</span><span class="p">(</span><span class="n">compoundExtractions</span><span class="p">)</span>
+
+        <span class="c1">// At this point there are valid line items and you can start the return assistant</span>
+        <span class="n">val</span> <span class="n">fragment</span> <span class="o">=</span> <span class="n">DigitalInvoiceFragment</span><span class="p">.</span><span class="na">createInstance</span><span class="p">(</span><span class="n">extractions</span><span class="p">,</span> <span class="n">compoundExtractions</span><span class="p">,</span> <span class="n">returnReasons</span><span class="p">)</span>
+        <span class="n">startReturnAssistant</span><span class="p">(</span><span class="n">fragment</span><span class="p">)</span>
+
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">notUsed</span><span class="p">:</span> <span class="n">DigitalInvoiceException</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// There were no valid line items and you can proceed directly to handling the extractions</span>
+        <span class="c1">// without the return assistant</span>
+        <span class="n">handleExtractions</span><span class="p">(</span><span class="n">extractions</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">DigitalInvoiceFragmentListener</span></code> instance must be available before the <code class="docutils literal notranslate"><span class="pre">DigitalInvoiceFragment</span></code> is attached to an
+Activity. Failing to do so will throw an exception. The listener instance can be provided either implicitly by making
+the hosting Activity implement the <code class="docutils literal notranslate"><span class="pre">DigitalInvoiceFragmentListener</span></code> interface or explicitly by setting the listener
+using the <code class="docutils literal notranslate"><span class="pre">DigitalInvoiceFragment.listener</span></code> property.</p>
+</div>
+<div class="section" id="digitalinvoiceonboardingfragment">
+<h6>DigitalInvoiceOnboardingFragment<a class="headerlink" href="#digitalinvoiceonboardingfragment" title="Permalink to this headline">¶</a></h6>
+<p>This fragment shows the onboarding screen related to the return assistant. It displays information about the return
+assistant to the user.</p>
+<p>You should show the <code class="docutils literal notranslate"><span class="pre">DigitalInvoiceOnboardingFragment</span></code> when the <code class="docutils literal notranslate"><span class="pre">DigitalInvoiceFragmentListener.showOnboarding()</span></code> is
+called.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">DigitalInvoiceOnboardingFragmentListener</span></code> instance must be available before the
+<code class="docutils literal notranslate"><span class="pre">DigitalInvoiceOnboardingFragment</span></code> is attached to an activity. Failing to do so will throw an exception. The listener
+instance can be provided either implicitly by making the host Activity implement the
+<code class="docutils literal notranslate"><span class="pre">DigitalInvoiceOnboardingFragmentListener</span></code> interface or explicitly by setting the listener using the
+<code class="docutils literal notranslate"><span class="pre">DigitalInvoiceOnboardingFragment.listener</span></code> property.</p>
+</div>
+<div class="section" id="lineitemdetailsfragment">
+<h6>LineItemDetailsFragment<a class="headerlink" href="#lineitemdetailsfragment" title="Permalink to this headline">¶</a></h6>
+<p>This fragment allows the user to edit the details of a line item: description, quantity and price. It also allows the
+user to deselect the line item.</p>
+<p>The returned line item in the <code class="docutils literal notranslate"><span class="pre">LineItemDetailsFragmentListener.onSave()</span></code> listener method is updated to contain the
+user’s modifications.</p>
+<p>You should show the LineItemDetailsFragment when the <code class="docutils literal notranslate"><span class="pre">DigitalInvoiceFragmentListener.onEditLineItem()</span></code> is called.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">LineItemDetailsFragmentListener</span></code> instance must be available before the <code class="docutils literal notranslate"><span class="pre">LineItemDetailsFragment</span></code> is attached to
+an activity. Failing to do so will throw an exception. The listener instance can be provided either implicitly by making
+the host Activity implement the <code class="docutils literal notranslate"><span class="pre">LineItemDetailsFragmentListener</span></code> interface or explicitly by setting the listener
+using the <code class="docutils literal notranslate"><span class="pre">LineItemDetailsFragment.listener</span></code> property.</p>
+</div>
+</div>
+<div class="section" id="sending-feedback">
+<h5>Sending Feedback<a class="headerlink" href="#sending-feedback" title="Permalink to this headline">¶</a></h5>
+<p>Your app should send feedback for the extractions related to the return assistant. These extractions are found in the
+<code class="docutils literal notranslate"><span class="pre">compoundExtractions</span></code> field of the <code class="docutils literal notranslate"><span class="pre">CaptureResult</span></code> if you are using the Screen API and in the
+<code class="docutils literal notranslate"><span class="pre">compoundExtractions</span></code> parameter of the <code class="docutils literal notranslate"><span class="pre">DigitalInvoiceFragmentListener.onPayInvoice()</span></code> listener method if you use
+the Component API.</p>
+<div class="section" id="default-networking-implementation">
+<h6>Default Networking Implementation<a class="headerlink" href="#default-networking-implementation" title="Permalink to this headline">¶</a></h6>
+<p>If you use the <code class="docutils literal notranslate"><span class="pre">GiniCaptureDefaultNetworkService</span></code> and the <code class="docutils literal notranslate"><span class="pre">GiniCaptureDefaultNetworkApi</span></code> then sending feedback for
+the return assistant extractions is done by the <code class="docutils literal notranslate"><span class="pre">GiniCaptureDefaultNetworkApi</span></code> when you send feedback for the payment
+data extractions as described in the <a class="reference external" href="integration.html#sending-feedback">Sending Feedback</a> section.</p>
+</div>
+<div class="section" id="custom-networking-implementation">
+<h6>Custom Networking Implementation<a class="headerlink" href="#custom-networking-implementation" title="Permalink to this headline">¶</a></h6>
+<p>If you use your own networking implementation and directly communicate with the Gini Pay API then see <a class="reference external" href="https://pay-api.gini.net/documentation/#submitting-feedback-on-extractions">this section</a> in its documentation on how to send
+feedback for the compound extractions.</p>
+<p>In case you use the Gini Pay API Library then sending compound extraction feedback is very similar to how it’s shown in <a class="reference external" href="https://developer.gini.net/gini-pay-api-lib-android/guides/common-tasks.html#sending-feedback">this section</a> in its documentation. The only difference is that you need to also pass in the <code class="docutils literal notranslate"><span class="pre">CompoundExtraction</span></code> map to <code class="docutils literal notranslate"><span class="pre">DocumentTaskManager.sendFeebackForExtractions()</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Extractions seen and accepted by the user (including user modifications)</span>
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">SpecificExtraction</span><span class="o">&gt;</span> <span class="n">specificExtractionFeedback</span><span class="p">;</span>
+
+<span class="c1">// Return assistant extractions as returned by the CaptureResult or DigitalInvoiceFragmentListener</span>
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">CompoundExtraction</span><span class="o">&gt;</span> <span class="n">compoundExtractionFeedback</span><span class="p">;</span>
+
+<span class="kd">final</span> <span class="n">Task</span><span class="o">&lt;</span><span class="n">Document</span><span class="o">&gt;</span> <span class="n">sendFeedback</span> <span class="o">=</span> <span class="n">documentTaskManager</span><span class="p">.</span><span class="na">sendFeedbackForExtractions</span><span class="p">(</span><span class="n">document</span><span class="p">,</span>
+        <span class="n">specificExtractionFeedback</span><span class="p">,</span> <span class="n">compoundExtractionFeedback</span><span class="p">);</span>
+<span class="n">sendFeedback</span><span class="p">.</span><span class="na">waitForCompletion</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -740,6 +1268,13 @@ interface names where <code class="docutils literal notranslate"><span class="pr
 </ul>
 </div>
 </div>
+<span id="document-reference"></span><div class="section" id="reference-doc">
+<h3>Reference Doc<a class="headerlink" href="#reference-doc" title="Permalink to this headline">¶</a></h3>
+<p>You can view the reference documentation here:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://developer.gini.net/gini-pay-bank-sdk-android/kdoc/index.html">Gini Pay Bank KDoc</a></li>
+</ul>
+</div>
 <span id="document-license"></span><div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
 <p>The Gini Pay Bank SDK are licensed under a Private License and
@@ -761,320 +1296,6 @@ also integrate several third party libraries.</p>
 <span class="n">For</span> <span class="n">license</span> <span class="n">related</span> <span class="n">inquiries</span> <span class="n">contact</span> <span class="n">Gini</span> <span class="n">via</span> <span class="n">the</span> <span class="n">email</span> <span class="n">address</span>
 <span class="n">technical</span><span class="o">-</span><span class="n">support</span><span class="nd">@gini</span><span class="o">.</span><span class="n">net</span><span class="o">.</span>
 </pre></div>
-</div>
-<div class="section" id="licenses-and-acknowledgements-for-incorporated-software">
-<h4>Licenses and Acknowledgements for Incorporated Software<a class="headerlink" href="#licenses-and-acknowledgements-for-incorporated-software" title="Permalink to this headline">¶</a></h4>
-<p>This library makes use of the following third party libraries:</p>
-<div class="section" id="apache-commons-sanselan">
-<h5>Apache Commons Sanselan<a class="headerlink" href="#apache-commons-sanselan" title="Permalink to this headline">¶</a></h5>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                              Apache License
-                        Version 2.0, January 2004
-                     http://www.apache.org/licenses/
-
-TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
-1. Definitions.
-
-   &quot;License&quot; shall mean the terms and conditions for use, reproduction,
-   and distribution as defined by Sections 1 through 9 of this document.
-
-   &quot;Licensor&quot; shall mean the copyright owner or entity authorized by
-   the copyright owner that is granting the License.
-
-   &quot;Legal Entity&quot; shall mean the union of the acting entity and all
-   other entities that control, are controlled by, or are under common
-   control with that entity. For the purposes of this definition,
-   &quot;control&quot; means (i) the power, direct or indirect, to cause the
-   direction or management of such entity, whether by contract or
-   otherwise, or (ii) ownership of fifty percent (50%) or more of the
-   outstanding shares, or (iii) beneficial ownership of such entity.
-
-   &quot;You&quot; (or &quot;Your&quot;) shall mean an individual or Legal Entity
-   exercising permissions granted by this License.
-
-   &quot;Source&quot; form shall mean the preferred form for making modifications,
-   including but not limited to software source code, documentation
-   source, and configuration files.
-
-   &quot;Object&quot; form shall mean any form resulting from mechanical
-   transformation or translation of a Source form, including but
-   not limited to compiled object code, generated documentation,
-   and conversions to other media types.
-
-   &quot;Work&quot; shall mean the work of authorship, whether in Source or
-   Object form, made available under the License, as indicated by a
-   copyright notice that is included in or attached to the work
-   (an example is provided in the Appendix below).
-
-   &quot;Derivative Works&quot; shall mean any work, whether in Source or Object
-   form, that is based on (or derived from) the Work and for which the
-   editorial revisions, annotations, elaborations, or other modifications
-   represent, as a whole, an original work of authorship. For the purposes
-   of this License, Derivative Works shall not include works that remain
-   separable from, or merely link (or bind by name) to the interfaces of,
-   the Work and Derivative Works thereof.
-
-   &quot;Contribution&quot; shall mean any work of authorship, including
-   the original version of the Work and any modifications or additions
-   to that Work or Derivative Works thereof, that is intentionally
-   submitted to Licensor for inclusion in the Work by the copyright owner
-   or by an individual or Legal Entity authorized to submit on behalf of
-   the copyright owner. For the purposes of this definition, &quot;submitted&quot;
-   means any form of electronic, verbal, or written communication sent
-   to the Licensor or its representatives, including but not limited to
-   communication on electronic mailing lists, source code control systems,
-   and issue tracking systems that are managed by, or on behalf of, the
-   Licensor for the purpose of discussing and improving the Work, but
-   excluding communication that is conspicuously marked or otherwise
-   designated in writing by the copyright owner as &quot;Not a Contribution.&quot;
-
-   &quot;Contributor&quot; shall mean Licensor and any individual or Legal Entity
-   on behalf of whom a Contribution has been received by Licensor and
-   subsequently incorporated within the Work.
-
-2. Grant of Copyright License. Subject to the terms and conditions of
-   this License, each Contributor hereby grants to You a perpetual,
-   worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-   copyright license to reproduce, prepare Derivative Works of,
-   publicly display, publicly perform, sublicense, and distribute the
-   Work and such Derivative Works in Source or Object form.
-
-3. Grant of Patent License. Subject to the terms and conditions of
-   this License, each Contributor hereby grants to You a perpetual,
-   worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-   (except as stated in this section) patent license to make, have made,
-   use, offer to sell, sell, import, and otherwise transfer the Work,
-   where such license applies only to those patent claims licensable
-   by such Contributor that are necessarily infringed by their
-   Contribution(s) alone or by combination of their Contribution(s)
-   with the Work to which such Contribution(s) was submitted. If You
-   institute patent litigation against any entity (including a
-   cross-claim or counterclaim in a lawsuit) alleging that the Work
-   or a Contribution incorporated within the Work constitutes direct
-   or contributory patent infringement, then any patent licenses
-   granted to You under this License for that Work shall terminate
-   as of the date such litigation is filed.
-
-4. Redistribution. You may reproduce and distribute copies of the
-   Work or Derivative Works thereof in any medium, with or without
-   modifications, and in Source or Object form, provided that You
-   meet the following conditions:
-
-   (a) You must give any other recipients of the Work or
-       Derivative Works a copy of this License; and
-
-   (b) You must cause any modified files to carry prominent notices
-       stating that You changed the files; and
-
-   (c) You must retain, in the Source form of any Derivative Works
-       that You distribute, all copyright, patent, trademark, and
-       attribution notices from the Source form of the Work,
-       excluding those notices that do not pertain to any part of
-       the Derivative Works; and
-
-   (d) If the Work includes a &quot;NOTICE&quot; text file as part of its
-       distribution, then any Derivative Works that You distribute must
-       include a readable copy of the attribution notices contained
-       within such NOTICE file, excluding those notices that do not
-       pertain to any part of the Derivative Works, in at least one
-       of the following places: within a NOTICE text file distributed
-       as part of the Derivative Works; within the Source form or
-       documentation, if provided along with the Derivative Works; or,
-       within a display generated by the Derivative Works, if and
-       wherever such third-party notices normally appear. The contents
-       of the NOTICE file are for informational purposes only and
-       do not modify the License. You may add Your own attribution
-       notices within Derivative Works that You distribute, alongside
-       or as an addendum to the NOTICE text from the Work, provided
-       that such additional attribution notices cannot be construed
-       as modifying the License.
-
-   You may add Your own copyright statement to Your modifications and
-   may provide additional or different license terms and conditions
-   for use, reproduction, or distribution of Your modifications, or
-   for any such Derivative Works as a whole, provided Your use,
-   reproduction, and distribution of the Work otherwise complies with
-   the conditions stated in this License.
-
-5. Submission of Contributions. Unless You explicitly state otherwise,
-   any Contribution intentionally submitted for inclusion in the Work
-   by You to the Licensor shall be under the terms and conditions of
-   this License, without any additional terms or conditions.
-   Notwithstanding the above, nothing herein shall supersede or modify
-   the terms of any separate license agreement you may have executed
-   with Licensor regarding such Contributions.
-
-6. Trademarks. This License does not grant permission to use the trade
-   names, trademarks, service marks, or product names of the Licensor,
-   except as required for reasonable and customary use in describing the
-   origin of the Work and reproducing the content of the NOTICE file.
-
-7. Disclaimer of Warranty. Unless required by applicable law or
-   agreed to in writing, Licensor provides the Work (and each
-   Contributor provides its Contributions) on an &quot;AS IS&quot; BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-   implied, including, without limitation, any warranties or conditions
-   of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-   PARTICULAR PURPOSE. You are solely responsible for determining the
-   appropriateness of using or redistributing the Work and assume any
-   risks associated with Your exercise of permissions under this License.
-
-8. Limitation of Liability. In no event and under no legal theory,
-   whether in tort (including negligence), contract, or otherwise,
-   unless required by applicable law (such as deliberate and grossly
-   negligent acts) or agreed to in writing, shall any Contributor be
-   liable to You for damages, including any direct, indirect, special,
-   incidental, or consequential damages of any character arising as a
-   result of this License or out of the use or inability to use the
-   Work (including but not limited to damages for loss of goodwill,
-   work stoppage, computer failure or malfunction, or any and all
-   other commercial damages or losses), even if such Contributor
-   has been advised of the possibility of such damages.
-
-9. Accepting Warranty or Additional Liability. While redistributing
-   the Work or Derivative Works thereof, You may choose to offer,
-   and charge a fee for, acceptance of support, warranty, indemnity,
-   or other liability obligations and/or rights consistent with this
-   License. However, in accepting such obligations, You may act only
-   on Your own behalf and on Your sole responsibility, not on behalf
-   of any other Contributor, and only if You agree to indemnify,
-   defend, and hold each Contributor harmless for any liability
-   incurred by, or claims asserted against, such Contributor by reason
-   of your accepting any such warranty or additional liability.
-
-END OF TERMS AND CONDITIONS
-
-APPENDIX: How to apply the Apache License to your work.
-
-   To apply the Apache License to your work, attach the following
-   boilerplate notice, with the fields enclosed by brackets &quot;[]&quot;
-   replaced with your own identifying information. (Don&#39;t include
-   the brackets!)  The text should be enclosed in the appropriate
-   comment syntax for the file format. We also recommend that a
-   file or class name and description of purpose be included on the
-   same &quot;printed page&quot; as the copyright notice for easier
-   identification within third-party archives.
-
-Copyright [yyyy] [name of copyright owner]
-
-Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-
- EXTERNAL COMPONENTS
-
- Apache Commons Sanselan includes a number of components with separate copyright
- notices and license terms. Your use of these components is subject to the terms
- and conditions of the following licenses.
-
- rgb.txt comes from the X.org project and is under the following licenses:
-
-    Copyright 1985, 1989, 1998  The Open Group
-
-    Permission to use, copy, modify, distribute, and sell this software and its
-    documentation for any purpose is hereby granted without fee, provided that
-    the above copyright notice appear in all copies and that both that
-    copyright notice and this permission notice appear in supporting
-    documentation.
-
-    The above copyright notice and this permission notice shall be included
-    in all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS
-    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-    IN NO EVENT SHALL THE OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR
-    OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-    OTHER DEALINGS IN THE SOFTWARE.
-
-    Except as contained in this notice, the name of The Open Group shall
-    not be used in advertising or otherwise to promote the sale, use or
-    other dealings in this Software without prior written authorization
-    from The Open Group.
-
-    Copyright (c) 1994, 2008, Oracle and/or its affiliates. All rights reserved.
-
-    Permission is hereby granted, free of charge, to any person obtaining a
-    copy of this software and associated documentation files (the &quot;Software&quot;),
-    to deal in the Software without restriction, including without limitation
-    the rights to use, copy, modify, merge, publish, distribute, sublicense,
-    and/or sell copies of the Software, and to permit persons to whom the
-    Software is furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice (including the next
-    paragraph) shall be included in all copies or substantial portions of the
-    Software.
-
-    THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-    DEALINGS IN THE SOFTWARE.
-</pre></div>
-</div>
-</div>
-<div class="section" id="touchimageview">
-<h5>TouchImageView<a class="headerlink" href="#touchimageview" title="Permalink to this headline">¶</a></h5>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2012</span> <span class="n">Michael</span> <span class="n">Ortiz</span>
-
-<span class="n">Permission</span> <span class="ow">is</span> <span class="n">hereby</span> <span class="n">granted</span><span class="p">,</span> <span class="n">free</span> <span class="n">of</span> <span class="n">charge</span><span class="p">,</span> <span class="n">to</span> <span class="nb">any</span> <span class="n">person</span> <span class="n">obtaining</span> <span class="n">a</span>
-<span class="n">copy</span> <span class="n">of</span> <span class="n">this</span> <span class="n">software</span> <span class="ow">and</span> <span class="n">associated</span> <span class="n">documentation</span> <span class="n">files</span> <span class="p">(</span><span class="n">the</span> <span class="s2">&quot;Software&quot;</span><span class="p">),</span>
-<span class="n">to</span> <span class="n">deal</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Software</span> <span class="n">without</span> <span class="n">restriction</span><span class="p">,</span> <span class="n">including</span> <span class="n">without</span> <span class="n">limitation</span>
-<span class="n">the</span> <span class="n">rights</span> <span class="n">to</span> <span class="n">use</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">modify</span><span class="p">,</span> <span class="n">merge</span><span class="p">,</span> <span class="n">publish</span><span class="p">,</span> <span class="n">distribute</span><span class="p">,</span> <span class="n">sublicense</span><span class="p">,</span>
-<span class="ow">and</span><span class="o">/</span><span class="ow">or</span> <span class="n">sell</span> <span class="n">copies</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Software</span><span class="p">,</span> <span class="ow">and</span> <span class="n">to</span> <span class="n">permit</span> <span class="n">persons</span> <span class="n">to</span> <span class="n">whom</span> <span class="n">the</span>
-<span class="n">Software</span> <span class="ow">is</span> <span class="n">furnished</span> <span class="n">to</span> <span class="n">do</span> <span class="n">so</span><span class="p">,</span> <span class="n">subject</span> <span class="n">to</span> <span class="n">the</span> <span class="n">following</span> <span class="n">conditions</span><span class="p">:</span>
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">copyright</span> <span class="n">notice</span> <span class="ow">and</span> <span class="n">this</span> <span class="n">permission</span> <span class="n">notice</span> <span class="n">shall</span> <span class="n">be</span> <span class="n">included</span>
-<span class="ow">in</span> <span class="nb">all</span> <span class="n">copies</span> <span class="ow">or</span> <span class="n">substantial</span> <span class="n">portions</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Software</span><span class="o">.</span>
-
-<span class="n">THE</span> <span class="n">SOFTWARE</span> <span class="n">IS</span> <span class="n">PROVIDED</span> <span class="s2">&quot;AS IS&quot;</span><span class="p">,</span> <span class="n">WITHOUT</span> <span class="n">WARRANTY</span> <span class="n">OF</span> <span class="n">ANY</span> <span class="n">KIND</span><span class="p">,</span> <span class="n">EXPRESS</span>
-<span class="n">OR</span> <span class="n">IMPLIED</span><span class="p">,</span> <span class="n">INCLUDING</span> <span class="n">BUT</span> <span class="n">NOT</span> <span class="n">LIMITED</span> <span class="n">TO</span> <span class="n">THE</span> <span class="n">WARRANTIES</span> <span class="n">OF</span> <span class="n">MERCHANTABILITY</span><span class="p">,</span>
-<span class="n">FITNESS</span> <span class="n">FOR</span> <span class="n">A</span> <span class="n">PARTICULAR</span> <span class="n">PURPOSE</span> <span class="n">AND</span> <span class="n">NONINFRINGEMENT</span><span class="o">.</span> <span class="n">IN</span> <span class="n">NO</span> <span class="n">EVENT</span> <span class="n">SHALL</span>
-<span class="n">THE</span> <span class="n">AUTHORS</span> <span class="n">OR</span> <span class="n">COPYRIGHT</span> <span class="n">HOLDERS</span> <span class="n">BE</span> <span class="n">LIABLE</span> <span class="n">FOR</span> <span class="n">ANY</span> <span class="n">CLAIM</span><span class="p">,</span> <span class="n">DAMAGES</span> <span class="n">OR</span> <span class="n">OTHER</span>
-<span class="n">LIABILITY</span><span class="p">,</span> <span class="n">WHETHER</span> <span class="n">IN</span> <span class="n">AN</span> <span class="n">ACTION</span> <span class="n">OF</span> <span class="n">CONTRACT</span><span class="p">,</span> <span class="n">TORT</span> <span class="n">OR</span> <span class="n">OTHERWISE</span><span class="p">,</span> <span class="n">ARISING</span>
-<span class="n">FROM</span><span class="p">,</span> <span class="n">OUT</span> <span class="n">OF</span> <span class="n">OR</span> <span class="n">IN</span> <span class="n">CONNECTION</span> <span class="n">WITH</span> <span class="n">THE</span> <span class="n">SOFTWARE</span> <span class="n">OR</span> <span class="n">THE</span> <span class="n">USE</span> <span class="n">OR</span> <span class="n">OTHER</span>
-<span class="n">DEALINGS</span> <span class="n">IN</span> <span class="n">THE</span> <span class="n">SOFTWARE</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="gini-android-sdk">
-<h5>Gini Android SDK<a class="headerlink" href="#gini-android-sdk" title="Permalink to this headline">¶</a></h5>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">MIT</span> <span class="n">License</span> <span class="p">(</span><span class="n">MIT</span><span class="p">)</span>
-
-<span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">Gini</span> <span class="n">GmbH</span>
-
-<span class="n">Permission</span> <span class="ow">is</span> <span class="n">hereby</span> <span class="n">granted</span><span class="p">,</span> <span class="n">free</span> <span class="n">of</span> <span class="n">charge</span><span class="p">,</span> <span class="n">to</span> <span class="nb">any</span> <span class="n">person</span> <span class="n">obtaining</span> <span class="n">a</span> <span class="n">copy</span>
-<span class="n">of</span> <span class="n">this</span> <span class="n">software</span> <span class="ow">and</span> <span class="n">associated</span> <span class="n">documentation</span> <span class="n">files</span> <span class="p">(</span><span class="n">the</span> <span class="s2">&quot;Software&quot;</span><span class="p">),</span> <span class="n">to</span> <span class="n">deal</span>
-<span class="ow">in</span> <span class="n">the</span> <span class="n">Software</span> <span class="n">without</span> <span class="n">restriction</span><span class="p">,</span> <span class="n">including</span> <span class="n">without</span> <span class="n">limitation</span> <span class="n">the</span> <span class="n">rights</span>
-<span class="n">to</span> <span class="n">use</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">modify</span><span class="p">,</span> <span class="n">merge</span><span class="p">,</span> <span class="n">publish</span><span class="p">,</span> <span class="n">distribute</span><span class="p">,</span> <span class="n">sublicense</span><span class="p">,</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span> <span class="n">sell</span>
-<span class="n">copies</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Software</span><span class="p">,</span> <span class="ow">and</span> <span class="n">to</span> <span class="n">permit</span> <span class="n">persons</span> <span class="n">to</span> <span class="n">whom</span> <span class="n">the</span> <span class="n">Software</span> <span class="ow">is</span>
-<span class="n">furnished</span> <span class="n">to</span> <span class="n">do</span> <span class="n">so</span><span class="p">,</span> <span class="n">subject</span> <span class="n">to</span> <span class="n">the</span> <span class="n">following</span> <span class="n">conditions</span><span class="p">:</span>
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">copyright</span> <span class="n">notice</span> <span class="ow">and</span> <span class="n">this</span> <span class="n">permission</span> <span class="n">notice</span> <span class="n">shall</span> <span class="n">be</span> <span class="n">included</span> <span class="ow">in</span>
-<span class="nb">all</span> <span class="n">copies</span> <span class="ow">or</span> <span class="n">substantial</span> <span class="n">portions</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Software</span><span class="o">.</span>
-
-<span class="n">THE</span> <span class="n">SOFTWARE</span> <span class="n">IS</span> <span class="n">PROVIDED</span> <span class="s2">&quot;AS IS&quot;</span><span class="p">,</span> <span class="n">WITHOUT</span> <span class="n">WARRANTY</span> <span class="n">OF</span> <span class="n">ANY</span> <span class="n">KIND</span><span class="p">,</span> <span class="n">EXPRESS</span> <span class="n">OR</span>
-<span class="n">IMPLIED</span><span class="p">,</span> <span class="n">INCLUDING</span> <span class="n">BUT</span> <span class="n">NOT</span> <span class="n">LIMITED</span> <span class="n">TO</span> <span class="n">THE</span> <span class="n">WARRANTIES</span> <span class="n">OF</span> <span class="n">MERCHANTABILITY</span><span class="p">,</span>
-<span class="n">FITNESS</span> <span class="n">FOR</span> <span class="n">A</span> <span class="n">PARTICULAR</span> <span class="n">PURPOSE</span> <span class="n">AND</span> <span class="n">NONINFRINGEMENT</span><span class="o">.</span> <span class="n">IN</span> <span class="n">NO</span> <span class="n">EVENT</span> <span class="n">SHALL</span> <span class="n">THE</span>
-<span class="n">AUTHORS</span> <span class="n">OR</span> <span class="n">COPYRIGHT</span> <span class="n">HOLDERS</span> <span class="n">BE</span> <span class="n">LIABLE</span> <span class="n">FOR</span> <span class="n">ANY</span> <span class="n">CLAIM</span><span class="p">,</span> <span class="n">DAMAGES</span> <span class="n">OR</span> <span class="n">OTHER</span>
-<span class="n">LIABILITY</span><span class="p">,</span> <span class="n">WHETHER</span> <span class="n">IN</span> <span class="n">AN</span> <span class="n">ACTION</span> <span class="n">OF</span> <span class="n">CONTRACT</span><span class="p">,</span> <span class="n">TORT</span> <span class="n">OR</span> <span class="n">OTHERWISE</span><span class="p">,</span> <span class="n">ARISING</span> <span class="n">FROM</span><span class="p">,</span>
-<span class="n">OUT</span> <span class="n">OF</span> <span class="n">OR</span> <span class="n">IN</span> <span class="n">CONNECTION</span> <span class="n">WITH</span> <span class="n">THE</span> <span class="n">SOFTWARE</span> <span class="n">OR</span> <span class="n">THE</span> <span class="n">USE</span> <span class="n">OR</span> <span class="n">OTHER</span> <span class="n">DEALINGS</span> <span class="n">IN</span>
-<span class="n">THE</span> <span class="n">SOFTWARE</span><span class="o">.</span>
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 </div>

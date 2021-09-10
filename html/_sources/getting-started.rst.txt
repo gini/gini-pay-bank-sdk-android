@@ -1,40 +1,34 @@
 Getting started
 ===============
 
+Requirements
+------------
+
+* Android 5.0+ (API Level 21+)
+* Gini Capture SDK's `requirements <https://developer.gini.net/gini-capture-sdk-android/html/getting-started.html#requirements>`_.
+
+The Gini Pay Bank SDK uses our `Gini Capture SDK <https://github.com/gini/gini-capture-sdk-android>`_ to capture
+invoices with the camera or by importing them from the device or other apps.
+
 Installation
 ------------
 
-To install add our Maven repo to the root build.gradle file and add it as a dependency to your app
-module's build.gradle.
+The Gini Pay Bank SDK is available in our maven repository which you need to add to your ``build.gradle`` first:
 
-build.gradle:
-
-.. code-block:: groovy
+.. code:: groovy
 
     repositories {
         maven {
-            url 'https://repo.gini.net/nexus/content/repositories/open
+            url 'https://repo.gini.net/nexus/content/repositories/open'
         }
     }
 
-app/build.gradle:
+Now you can add the Gini Pay Bank SDK to your app's dependencies:
 
-.. code-block:: groovy
+.. code:: groovy
 
     dependencies {
         implementation 'net.gini:gini-pay-bank-sdk:1.2.1'
     }
 
-Gini Pay API Client Credentials
--------------------------------
-
-You should have received Gini Pay API client credentials from us. Please get in touch with us in case you don't have them.
-
-Continue to `Authentication <authentication.html>`_ to see how to use the client credentials to initialize the Gini Pay
-Business SDK.
-
-Integration
------------
-
-The entry point into the library is GiniPayBank object which lets you interact with the `Capture <capture.html>`_ and
-`Payment <pay.html>`_ features.
+After syncing Gradle you can start integrating the SDK.
