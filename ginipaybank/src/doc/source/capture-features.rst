@@ -119,7 +119,7 @@ When using the Component API you need to create a ``Document`` from the intent u
 Return Assistant
 ----------------
 
-The return assistant features allows your users to view and edit the payable items in an invoice. The total amount is
+The return assistant feature allows your users to view and edit payable items in an invoice. The total amount is
 updated to be the sum of only those items which the user opts to pay.
 
 To enable this feature simply set ``returnAssistantEnabled`` to ``true`` in the ``CaptureConfiguration``: 
@@ -135,8 +135,8 @@ When integrating using the Screen API it is enough to enable the return assistan
 show the return assistant automatically if the invoice contained payable items and will update the extractions returned
 to your app according to the user's changes.
 
-The ``amountToPay`` extraction is updated to be the sum of items the user decided to pay and also includes discounts or
-other charges.
+The ``amountToPay`` extraction is updated to be the sum of items the user decided to pay. It includes discounts and
+additional charges that might be present on the invoice.
 
 The extractions related to the return assistant are stored in the ``compoundExtractions`` field of the
 ``CaptureResult``. See the Gini Pay API's `documentation
@@ -177,8 +177,8 @@ each line item. The total price is always updated to include only the selected l
 The returned extractions in the ``DigitalInvoiceFragmentListener.onPayInvoice()`` are updated to include the user's
 modifications:
 
-* ``amountToPay`` in the specific extractions is updated to contain the sum of the selected line items' prices,
-* the line items in the compound extractions are also updated according to the user's modifications.
+* ``amountToPay`` in the specific extractions is updated to contain the sum of the selected line items' prices.
+* The line items in the compound extractions are also updated according to the user's modifications.
 
 You should show the ``DigitalInvoiceFragment`` when the
 ``AnalysisFragmentListener.onExtractionsAvailable()`` is called and you have validated the compound extractions using the
