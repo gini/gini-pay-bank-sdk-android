@@ -13,7 +13,6 @@ class ExampleApplication : Application() {
 
         startKoin {
             androidContext(this@ExampleApplication)
-            fileProperties("/client.properties")
             modules(giniModule, viewModelModule)
         }
     }
