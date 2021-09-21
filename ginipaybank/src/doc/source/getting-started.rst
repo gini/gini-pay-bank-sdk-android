@@ -28,7 +28,7 @@ Now you can add the Gini Pay Bank SDK to your app's dependencies:
 .. code:: groovy
 
     dependencies {
-        implementation 'net.gini:gini-pay-bank-sdk:1.2.1'
+        implementation 'net.gini:gini-pay-bank-sdk:1.3.0'
     }
 
 After syncing Gradle you can start integrating the SDK.
