@@ -5,6 +5,7 @@ import net.gini.android.capture.GiniCapture
 import net.gini.android.capture.analysis.AnalysisActivity
 import net.gini.android.capture.camera.CameraActivity
 import net.gini.android.capture.help.HelpItem
+import net.gini.android.capture.logging.ErrorLoggerListener
 import net.gini.android.capture.network.GiniCaptureNetworkApi
 import net.gini.android.capture.network.GiniCaptureNetworkService
 import net.gini.android.capture.onboarding.OnboardingPage
@@ -107,6 +108,18 @@ data class CaptureConfiguration(
      * A list of [HelpItem.Custom] defining the custom help items to be shown in the Help Screen.
      */
     val customHelpItems: List<HelpItem.Custom> = emptyList(),
+
+    /**
+     * Set whether the default Gini error logging implementation is on or not.
+     *
+     * On by default.
+     */
+    val giniErrorLoggerIsOn: Boolean = true,
+
+    /**
+     * Set an [ErrorLoggerListener] to be notified of errors.
+     */
+    val errorLoggerListener: ErrorLoggerListener? = null,
 )
 
 internal fun GiniCapture.Builder.applyConfiguration(configuration: CaptureConfiguration): GiniCapture.Builder {
@@ -123,8 +136,10 @@ internal fun GiniCapture.Builder.applyConfiguration(configuration: CaptureConfig
         .setBackButtonsEnabled(configuration.backButtonsEnabled)
         .setFlashOnByDefault(configuration.flashOnByDefault)
         .setCustomHelpItems(configuration.customHelpItems)
+        .setGiniErrorLoggerIsOn(configuration.giniErrorLoggerIsOn)
         .apply {
             configuration.eventTracker?.let { setEventTracker(it) }
+            configuration.errorLoggerListener?.let { setCustomErrorLoggerListener(it) }
             if (configuration.onboardingPages.isNotEmpty()) {
                 setCustomOnboardingPages(arrayListOf<OnboardingPage>().apply {
                     configuration.onboardingPages.forEach { add(it) }
