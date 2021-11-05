@@ -1,6 +1,16 @@
 Gini Pay Bank SDK for Android
 ===============================
 
+**Deprecation Notice**
+----------------------
+
+The Gini Pay Bank SDK for Android was replaced by the new
+[Gini Bank SDK](https://github.com/gini/gini-mobile-android/blob/main/bank-sdk/).
+
+This SDK won't be developed further and we kindly ask you to switch to the new Gini Bank SDK. Migration entails only a
+few steps which you can find in this 
+[migration guide](https://github.com/gini/gini-mobile-android/blob/main/bank-sdk/migrate-from-other-bank-sdk.md).
+
 Documentation
 -------------
 * [Integration Guide](https://developer.gini.net/gini-pay-bank-sdk-android/html/)
